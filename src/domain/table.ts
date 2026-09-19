@@ -26,15 +26,38 @@ export function stackPiles(piles: CardPile[], sourceId: string, targetId: string
 
 export function drawCard(piles: CardPile[], id: string, newId: string): CardPile[] {
   const source = piles.find((pile) => pile.id === id)
-  if (!source || source.cards.length < 2 || piles.some((pile) => pile.id === newId)) return piles
+  return source && source.cards.length > 1 ? drawCards(piles, id, [newId]) : piles
+}
+
+export function drawCards(piles: CardPile[], id: string, newIds: string[]): CardPile[] {
+  const source = piles.find((pile) => pile.id === id)
+  if (!source || !newIds.length || new Set(newIds).size !== newIds.length || newIds.some((newId) => piles.some((pile) => pile.id === newId))) return piles
+  const count = Math.min(newIds.length, source.cards.length)
+  const remaining = source.cards.slice(0, -count)
   return [
-    ...piles.map((pile) => pile.id === id ? { ...pile, cards: pile.cards.slice(0, -1) } : pile),
-    { id: newId, cards: source.cards.slice(-1), x: clampPosition(source.x + (source.x > 75 ? -12 : 12)), y: clampPosition(source.y + (source.y > 65 ? -35 : 35)) },
+    ...piles.filter((pile) => pile.id !== id || remaining.length).map((pile) => pile.id === id ? { ...pile, cards: remaining } : pile),
+    ...source.cards.slice(-count).reverse().map((card, index) => ({
+      id: newIds[index], cards: [card],
+      x: clampPosition(source.x + (source.x > 75 ? -12 : 12) + index * 4),
+      y: clampPosition(source.y + (source.y > 65 ? -35 : 35) + index * 3),
+    })),
   ]
 }
 
-export function flipTop(piles: CardPile[], id: string): CardPile[] {
-  return piles.map((pile) => pile.id === id ? { ...pile, cards: pile.cards.map((card, index) => index === pile.cards.length - 1 ? { ...card, faceUp: !card.faceUp } : card) } : pile)
+export function flipPile(piles: CardPile[], id: string): CardPile[] {
+  return piles.map((pile) => pile.id === id ? { ...pile, cards: [...pile.cards].reverse().map((card) => ({ ...card, faceUp: !card.faceUp })) } : pile)
+}
+
+export function movePiles(piles: CardPile[], ids: string[], dx: number, dy: number): CardPile[] {
+  const moving = piles.filter((pile) => ids.includes(pile.id))
+  if (!moving.length) return piles
+  const x = Math.max(-Math.min(...moving.map((pile) => pile.x)), Math.min(dx, 100 - Math.max(...moving.map((pile) => pile.x))))
+  const y = Math.max(-Math.min(...moving.map((pile) => pile.y)), Math.min(dy, 100 - Math.max(...moving.map((pile) => pile.y))))
+  return [...piles.filter((pile) => !ids.includes(pile.id)), ...moving.map((pile) => ({ ...pile, x: pile.x + x, y: pile.y + y }))]
+}
+
+export function stackSelected(piles: CardPile[], ids: string[], targetId: string): CardPile[] {
+  return piles.filter((pile) => ids.includes(pile.id) && pile.id !== targetId).reduce((next, pile) => stackPiles(next, pile.id, targetId), piles)
 }
 
 export function coverPile(piles: CardPile[], id: string): CardPile[] {

@@ -86,22 +86,17 @@ button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-v
 .table-piece--selected .table-piece__cards > .card { outline: 2px solid #ccb172; outline-offset: 3px; }
 .table-piece--dragging { cursor: grabbing; filter: drop-shadow(0 16px 12px #0007); }
 .table-piece--target .table-piece__cards > .card { outline: 3px dashed #a9d3b2; outline-offset: 8px; }
-.table-piece__tools { display: flex; justify-content: center; gap: 5px; padding-top: 10px; }
-.table-piece__tools button { padding: 4px 6px; background: #14231ecc; color: #c1b393; border: 1px solid #6a715659; border-radius: 3px; cursor: pointer; font-size: 9px; white-space: nowrap; }
-.table-piece__tools button:hover { color: #f0d69f; border-color: #bba276; }
 .table-surface__hint { position: absolute; bottom: 16px; left: 20px; right: 20px; margin: 0; color: #b8b39b88; font-size: 10px; text-align: center; pointer-events: none; }
 .history-controls { display: flex; gap: 6px; margin-bottom: 8px; }.history-controls button { flex: 1; font-size: 10px; padding-inline: 5px; }.history-controls button:disabled { opacity: .35; cursor: default; }
 .timeline__note { font-size: 10px; line-height: 1.7; color: #928674; }
 @media (prefers-reduced-motion: reduce) { .card { transition: none; } }
 .table-tools { height: 52px; display: flex; align-items: center; gap: 22px; padding-right: 110px; color: #a99b85; font-size: 11px; }
-.table-tools__actions { display: flex; align-items: center; gap: 7px; }
 .table-tools button, .table-tools select { padding: 6px 10px; background: #211d19; color: #c9b995; border: 1px solid #51473d; border-radius: 3px; cursor: pointer; font-size: 11px; }
 .table-piece__cards .card__text { display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden; min-height: 0; margin: 0; font: 14px/1.85 'Gowun Batang', serif; }
 .table-piece__cards .card__tags { margin-top: 12px; }
 .table-piece__cards .card:not(.card--back) { display: flex; flex-direction: column; }
 .table-piece__cards .card:not(.card--back) > * { flex-shrink: 0; }
 .table-piece__cards .card:not(.card--back) .card__text { flex: 1; min-height: 0; }
-.table-piece__tools { opacity: .65; transition: opacity .15s; }.table-piece:hover .table-piece__tools, .table-piece:focus-within .table-piece__tools { opacity: 1; }
 .table-history { position: absolute; right: 28px; top: 102px; z-index: 200; font-size: 11px; color: #c4a971; }
 .table-history > summary { cursor: pointer; padding: 6px 10px; border: 1px solid #51473d; border-radius: 3px; background: #211d19; }
 .table-history .timeline { position: absolute; right: 0; width: 290px; max-height: 65vh; overflow: auto; margin-top: 10px; padding: 20px; border: 1px solid #66573e; background: #211d19; box-shadow: 0 12px 32px #0008; }
@@ -123,3 +118,25 @@ button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-v
 .card-reader__metadata { margin-top: 12px; padding: 16px 20px; background: #211d19; color: #c9b995; border: 1px solid #51473d; font-size: 12px; }
 .card-reader__metadata summary { cursor: pointer; }.card-reader__metadata dt { margin-top: 16px; color: #c4a971; }.card-reader__metadata dd { margin: 5px 0 0; line-height: 1.8; overflow-wrap: anywhere; }
 .scenario-notes { margin-bottom: 22px; font-size: 12px; color: #b7a991; }.scenario-notes > summary { cursor: pointer; }.scenario-notes > div { margin-top: 16px; padding: 20px; border: 1px solid #51473d; }
+
+.table-help-button { margin-left: auto; }
+kbd { font-family: inherit; font-size: .9em; opacity: .7; white-space: nowrap; }
+.table-selection-box { position: absolute; z-index: 300; pointer-events: none; border: 1px solid #d9c28b; background: #d9c28b20; }
+.table-menu-layer { position: fixed; inset: 0; z-index: 1000; }
+.table-menu { position: fixed; min-width: 250px; padding: 7px; border: 1px solid #86704f; border-radius: 7px; background: #25231e; box-shadow: 0 15px 45px #0009; }
+.table-menu button { display: flex; justify-content: space-between; align-items: center; gap: 26px; width: 100%; padding: 10px 12px; border: 0; background: transparent; color: #e6d8bd; text-align: left; cursor: pointer; font-size: 12px; }
+.table-menu button:hover, .table-menu button:focus-visible { background: #493e2d; outline: none; border-radius: 3px; }
+.table-menu button[aria-disabled='true'] { color: #827a6b; cursor: default; }
+.table-menu button:nth-last-child(2) { margin-top: 5px; border-top: 1px solid #51473d; }
+.card-peek { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; background: #080b09aa; backdrop-filter: blur(3px); pointer-events: none; }
+.card-peek > div { width: min(566px, 92vw); max-height: 94vh; overflow: hidden; }
+.card-peek > div > p { margin: 10px 0 0; color: #d0c2a8; text-align: center; font-size: 12px; }
+.card-peek .card { width: 100%; min-height: 560px; padding: 44px 42px; border-radius: 6px; box-shadow: 0 20px 70px #0007; }
+.card-peek .card__kind { font-size: 12px; }.card-peek .card h3 { font-size: 30px; line-height: 1.45; margin: 18px 0 26px; padding-bottom: 22px; }
+.card-peek .card__text { font-size: 20px; line-height: 1.95; min-height: 0; margin: 0; }.card-peek .card__tags { font-size: 12px; margin-top: 32px; gap: 8px; }
+.card-reader .card--back, .card-peek .card--back { gap: 60px; }.card-reader .card-back__seal, .card-peek .card-back__seal { width: 110px; height: 110px; font-size: 70px; }
+.table-help { width: min(650px, 92vw); max-height: 90vh; padding: 0; border: 1px solid #86704f; border-radius: 8px; background: #25231e; color: #e6d8bd; }
+.table-help::backdrop { background: #080b09b0; backdrop-filter: blur(3px); }.table-help > div { padding: 28px; }
+.table-help header { display: flex; justify-content: space-between; align-items: center; gap: 24px; }.table-help h2 { margin: 0; font: 24px 'Gowun Batang', serif; }
+.table-help button { padding: 8px 12px; border: 1px solid #51473d; background: #211d19; color: #d2c2a2; cursor: pointer; }
+.table-help dl > div { display: grid; grid-template-columns: 1fr 1.2fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid #51473d; font-size: 12px; line-height: 1.7; }.table-help dt { color: #cfb783; }.table-help dd { margin: 0; }.table-help p { color: #b4a68d; font-size: 12px; }

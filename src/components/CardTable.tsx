@@ -1,155 +1,356 @@
-import { useRef, useState, type PointerEvent } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState, type PointerEvent } from 'react'
 import type { Scenario } from '../domain/types'
-import { clampPosition, coverPile, drawCard, flipTop, movePile, shufflePile, stackPiles, type CardPile } from '../domain/table'
+import { coverPile, drawCards, flipPile, movePiles, shufflePile, stackSelected, type CardPile } from '../domain/table'
 import { CardReader, CardView } from './CardView'
 import { cardKinds } from './cardKinds'
+import { tableHelp, tableShortcut } from './tableInput'
+import { TableContextMenu, type TableMenuItem } from './TableContextMenu'
 
 interface Props {
   scenario: Scenario
   piles: CardPile[]
   onChange: (piles: CardPile[], label: string) => void
+  onUndo: () => void
+  onRedo: () => void
+  canUndo: boolean
+  canRedo: boolean
 }
 
-interface Drag {
-  id: string
+interface Gesture {
+  kind: 'cards' | 'box'
   pointerId: number
   startX: number
   startY: number
-  x: number
-  y: number
+  beforeSelection: string[]
+  ids: string[]
+  sourceId?: string
+  drawId?: string
+  base: CardPile[]
+  next?: CardPile[]
+  targetId?: string
   moved: boolean
+  additive?: boolean
 }
 
-export function CardTable({ scenario, piles, onChange }: Props) {
-  const [readingId, setReadingId] = useState<string | null>(null)
-  const [selectedId, setSelectedId] = useState<string | null>(null)
-  const [preview, setPreview] = useState<{ id: string; x: number; y: number; targetId?: string } | null>(null)
+export function CardTable({ scenario, piles, onChange, onUndo, onRedo, canUndo, canRedo }: Props) {
+  const [selectedIds, setSelectedIds] = useState<string[]>([])
+  const [reading, setReading] = useState<{ id: string; held: boolean } | null>(null)
+  const [preview, setPreview] = useState<{ piles: CardPile[]; ids: string[]; targetId?: string } | null>(null)
+  const [box, setBox] = useState<{ x: number; y: number; width: number; height: number } | null>(null)
+  const [menu, setMenu] = useState<{ x: number; y: number; ids: string[] } | null>(null)
+  const [helpOpen, setHelpOpen] = useState(false)
   const surfaceRef = useRef<HTMLDivElement>(null)
+  const helpRef = useRef<HTMLDialogElement>(null)
   const pieces = useRef(new Map<string, HTMLDivElement>())
-  const drag = useRef<Drag | null>(null)
+  const gesture = useRef<Gesture | null>(null)
+  const hoveredId = useRef<string | null>(null)
+  const pendingFocus = useRef<string | null>(null)
+  const heldKeys = useRef(new Set<string>())
   const suppressClick = useRef(false)
-  const selected = piles.find((pile) => pile.id === selectedId)
-  const readingCard = scenario.cards.find((card) => card.id === readingId && piles.some((pile) => pile.cards.at(-1)?.cardId === card.id && pile.cards.at(-1)?.faceUp))
+  const shown = preview?.piles ?? piles
+  const selection = selectedIds.filter((id) => piles.some((pile) => pile.id === id))
+  const readingPile = piles.find((pile) => pile.id === reading?.id)
+  const readingTop = readingPile?.cards.at(-1)
+  const readingCard = scenario.cards.find((card) => card.id === readingTop?.cardId)
 
   const nameOf = (pile: CardPile) => {
     const kinds = new Set(pile.cards.map((item) => scenario.cards.find((card) => card.id === item.cardId)!.kind))
-    return `${kinds.size === 1 ? cardKinds[[...kinds][0]].label : '혼합'} ${pile.cards.length > 1 ? '덱' : '카드'}`
+    return (kinds.size === 1 ? cardKinds[[...kinds][0]].label : '혼합') + (pile.cards.length > 1 ? ' 덱' : ' 카드')
   }
 
-  const draw = (pile: CardPile) => {
-    const id = crypto.randomUUID()
-    onChange(drawCard(piles, pile.id, id), '한 장 꺼내기')
-    setSelectedId(id)
+  const pointedId = () => {
+    const focused = document.activeElement?.closest<HTMLElement>('[data-pile-id]')?.dataset.pileId
+    const id = hoveredId.current ?? focused
+    return id && piles.some((pile) => pile.id === id) ? id : undefined
   }
 
-  const startDrag = (event: PointerEvent<HTMLDivElement>, pile: CardPile) => {
-    if (event.button !== 0 || (event.target as HTMLElement).closest('[data-table-control]')) return
+  const targetIds = () => {
+    const id = pointedId()
+    return id ? selection.includes(id) ? selection : [id] : selection
+  }
+
+  const focusPile = (id?: string) => {
+    if (id) pieces.current.get(id)?.querySelector<HTMLButtonElement>('.card')?.focus({ preventScroll: true })
+  }
+
+  const closeMenu = () => {
+    if (menu?.ids.length) focusPile(menu.ids.at(-1))
+    else surfaceRef.current?.focus({ preventScroll: true })
+    setMenu(null)
+  }
+
+  const inspect = (id: string, held = false) => {
+    setReading({ id, held })
+    if (!held) heldKeys.current.clear()
+  }
+
+  const draw = (id: string, count = 1) => {
+    const source = piles.find((pile) => pile.id === id)
+    if (!source || source.cards.length < 2) return
+    const ids = Array.from({ length: Math.min(count, source.cards.length) }, () => crypto.randomUUID())
+    onChange(drawCards(piles, id, ids), ids.length + '장 꺼내기')
+    setSelectedIds(ids)
+    hoveredId.current = null
+    pendingFocus.current = ids.at(-1)!
+  }
+
+  const changeSelected = (ids: string[], operation: (piles: CardPile[], id: string) => CardPile[], label: string) => {
+    if (!ids.length) return
+    onChange(ids.reduce((next, id) => operation(next, id), piles), label)
+    setSelectedIds(ids)
+  }
+
+  const group = (ids: string[]) => {
+    if (ids.length < 2) return
+    const target = ids.at(-1)!
+    onChange(stackSelected(piles, ids, target), '선택한 카드 쌓기')
+    setSelectedIds([target])
+  }
+
+  const openMenu = (ids: string[], x: number, y: number) => {
+    setSelectedIds(ids)
+    setReading(null)
+    heldKeys.current.clear()
+    setMenu({ x, y, ids })
+  }
+
+  const menuItems = (ids: string[]): TableMenuItem[] => {
+    const deck = ids.length === 1 && (piles.find((pile) => pile.id === ids[0])?.cards.length ?? 0) > 1
+    return [
+      { label: '크게 읽기', shortcut: '더블클릭', disabled: ids.length !== 1, run: () => inspect(ids[0]) },
+      { label: '뒤집기', shortcut: 'F', disabled: !ids.length, run: () => changeSelected(ids, flipPile, '뒤집기') },
+      { label: '한 장 꺼내기', shortcut: '1', disabled: !deck, run: () => draw(ids[0]) },
+      { label: '덱 섞기', shortcut: 'R', disabled: !ids.some((id) => piles.find((pile) => pile.id === id)!.cards.length > 1), run: () => changeSelected(ids, shufflePile, '덱 섞기') },
+      { label: '선택한 카드 쌓기', shortcut: 'G', disabled: ids.length < 2, run: () => group(ids) },
+      { label: '모두 뒷면으로', disabled: !ids.length, run: () => changeSelected(ids, coverPile, '모두 덮기') },
+      { label: '되돌리기', shortcut: 'Ctrl/⌘ Z', disabled: !canUndo, run: onUndo },
+      { label: '다시 하기', shortcut: 'Ctrl/⌘ ⇧ Z', disabled: !canRedo, run: onRedo },
+    ]
+  }
+
+  const cancelGesture = () => {
+    const current = gesture.current
+    if (current) {
+      setSelectedIds(current.beforeSelection)
+      gesture.current = null
+      if (surfaceRef.current?.hasPointerCapture(current.pointerId)) surfaceRef.current.releasePointerCapture(current.pointerId)
+    }
+    setPreview(null)
+    setBox(null)
+    suppressClick.current = true
+  }
+
+  const startCards = (event: PointerEvent<HTMLDivElement>, pile: CardPile) => {
+    if (event.button !== 0) return
+    const wasSelected = selection.includes(pile.id)
+    const ids = event.shiftKey ? wasSelected ? selection.filter((id) => id !== pile.id) : [...selection, pile.id] : wasSelected ? selection : [pile.id]
+    setSelectedIds(ids)
     suppressClick.current = false
-    setSelectedId(pile.id)
-    drag.current = { id: pile.id, pointerId: event.pointerId, startX: event.clientX, startY: event.clientY, x: pile.x, y: pile.y, moved: false }
+    if (!ids.includes(pile.id)) return
+    gesture.current = {
+      kind: 'cards', pointerId: event.pointerId, startX: event.clientX, startY: event.clientY,
+      beforeSelection: selection, ids, sourceId: pile.id,
+      drawId: pile.cards.length > 1 && !wasSelected && !event.shiftKey ? crypto.randomUUID() : undefined,
+      base: piles, moved: false,
+    }
   }
 
-  const moveDrag = (event: PointerEvent<HTMLDivElement>) => {
-    const current = drag.current
+  const startBox = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.button !== 0 || (event.target as HTMLElement).closest('[data-pile-id], [data-table-control]')) return
+    gesture.current = {
+      kind: 'box', pointerId: event.pointerId, startX: event.clientX, startY: event.clientY,
+      beforeSelection: selection, ids: [], base: piles, moved: false, additive: event.shiftKey,
+    }
+    suppressClick.current = false
+  }
+
+  const moveGesture = (event: PointerEvent<HTMLDivElement>) => {
+    const current = gesture.current
     const surface = surfaceRef.current
     if (!current || current.pointerId !== event.pointerId || !surface) return
     const dx = event.clientX - current.startX
     const dy = event.clientY - current.startY
-    if (!current.moved && Math.hypot(dx, dy) < 5) return
-    current.moved = true
-    event.currentTarget.setPointerCapture(event.pointerId)
+    if (!current.moved && Math.hypot(dx, dy) < 6) return
     event.preventDefault()
-    const width = event.currentTarget.offsetWidth
-    const height = event.currentTarget.offsetHeight
-    const x = clampPosition(current.x + dx / Math.max(1, surface.clientWidth - width) * 100)
-    const y = clampPosition(current.y + dy / Math.max(1, surface.clientHeight - height) * 100)
+    surface.setPointerCapture(event.pointerId)
     const bounds = surface.getBoundingClientRect()
-    const centerX = bounds.left + (surface.clientWidth - width) * x / 100 + width / 2
-    const centerY = bounds.top + (surface.clientHeight - height) * y / 100 + height / 2
-    const target = [...piles].reverse().find((pile) => {
-      if (pile.id === current.id) return false
+    if (current.kind === 'box') {
+      current.moved = true
+      const left = Math.max(bounds.left, Math.min(current.startX, event.clientX))
+      const top = Math.max(bounds.top, Math.min(current.startY, event.clientY))
+      const right = Math.min(bounds.right, Math.max(current.startX, event.clientX))
+      const bottom = Math.min(bounds.bottom, Math.max(current.startY, event.clientY))
+      setBox({ x: left - bounds.left, y: top - bounds.top, width: Math.max(0, right - left), height: Math.max(0, bottom - top) })
+      const hit = piles.filter((pile) => {
+        const rect = pieces.current.get(pile.id)?.getBoundingClientRect()
+        return rect && rect.right > left && rect.left < right && rect.bottom > top && rect.top < bottom
+      }).map((pile) => pile.id)
+      setSelectedIds([...new Set([...(current.additive ? current.beforeSelection : []), ...hit])])
+      return
+    }
+    const source = current.base.find((pile) => pile.id === current.sourceId)!
+    const element = pieces.current.get(current.sourceId!)!
+    const width = element.offsetWidth
+    const height = element.offsetHeight
+    if (!current.moved && current.drawId) {
+      current.base = drawCards(current.base, current.sourceId!, [current.drawId]).map((pile) => pile.id === current.drawId ? { ...pile, x: source.x, y: source.y } : pile)
+      current.ids = [current.drawId]
+      setSelectedIds(current.ids)
+    }
+    current.moved = true
+    const next = movePiles(current.base, current.ids, dx / Math.max(1, surface.clientWidth - width) * 100, dy / Math.max(1, surface.clientHeight - height) * 100)
+    const moving = next.find((pile) => pile.id === (current.drawId ?? current.sourceId))!
+    const centerX = bounds.left + (surface.clientWidth - width) * moving.x / 100 + width / 2
+    const centerY = bounds.top + (surface.clientHeight - height) * moving.y / 100 + height / 2
+    current.targetId = [...piles].reverse().find((pile) => {
+      if (current.ids.includes(pile.id)) return false
       const rect = pieces.current.get(pile.id)?.getBoundingClientRect()
-      return rect && Math.abs(centerX - (rect.left + rect.width / 2)) < rect.width * .42 && Math.abs(centerY - (rect.top + rect.height / 2)) < rect.height * .42
-    })
-    setPreview({ id: current.id, x, y, targetId: target?.id })
+      return rect && Math.abs(centerX - (rect.left + rect.width / 2)) < rect.width * .38 && Math.abs(centerY - (rect.top + rect.height / 2)) < rect.height * .38
+    })?.id
+    current.next = next
+    setPreview({ piles: next, ids: current.ids, targetId: current.targetId })
   }
 
-  const endDrag = (event: PointerEvent<HTMLDivElement>, cancelled = false) => {
-    const current = drag.current
+  const endGesture = (event: PointerEvent<HTMLDivElement>) => {
+    const current = gesture.current
     if (!current || current.pointerId !== event.pointerId) return
-    if (current.moved) {
-      suppressClick.current = true
-      if (!cancelled && preview) {
-        if (preview.targetId) {
-          onChange(stackPiles(piles, current.id, preview.targetId), '카드 겹쳐 쌓기')
-          setSelectedId(preview.targetId)
-        } else onChange(movePile(piles, current.id, preview.x, preview.y), '카드 이동')
+    gesture.current = null
+    suppressClick.current = current.moved
+    if (current.kind === 'cards' && current.moved && current.next) {
+      if (current.drawId && current.targetId === current.sourceId) setSelectedIds(current.beforeSelection)
+      else {
+        const next = current.targetId ? stackSelected(current.next, current.ids, current.targetId) : current.next
+        onChange(next, current.drawId ? '한 장 꺼내 이동' : current.targetId ? '카드 겹쳐 쌓기' : '카드 이동')
+        setSelectedIds(current.targetId ? [current.targetId] : current.ids)
       }
-    }
-    drag.current = null
+      hoveredId.current = null
+    } else if (current.kind === 'box' && !current.moved) setSelectedIds([])
+    else if (current.kind === 'cards' && !event.shiftKey) setSelectedIds([current.sourceId!])
     setPreview(null)
+    setBox(null)
     if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId)
   }
+
+  useEffect(() => {
+    if (helpOpen) helpRef.current?.showModal()
+    else helpRef.current?.close()
+  }, [helpOpen])
+
+  useLayoutEffect(() => {
+    if (pendingFocus.current) {
+      focusPile(pendingFocus.current)
+      pendingFocus.current = null
+    }
+  })
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      const element = event.target as HTMLElement
+      const editing = !!element.closest('input, textarea, select, [contenteditable]:not([contenteditable="false"])')
+      if (document.querySelector('dialog[open]') || menu || element.closest('[role="menu"]')) return
+      if (element.closest('button:not(.card), summary') && ['Space', 'Enter', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.code)) return
+      const action = tableShortcut(event, editing)
+      if (!action) return
+      const ids = targetIds()
+      if (action === 'inspect' && !ids.length) return
+      event.preventDefault()
+      if (event.repeat) return
+      if (action === 'cancel') {
+        if (gesture.current) cancelGesture()
+        else { setReading(null); setSelectedIds([]); heldKeys.current.clear() }
+        return
+      }
+      if (gesture.current) return
+      if (action === 'inspect') {
+        heldKeys.current.add(event.code)
+        inspect(pointedId() ?? ids.at(-1)!, true)
+      } else if (action === 'undo') onUndo()
+      else if (action === 'redo') onRedo()
+      else if (action === 'selectAll') setSelectedIds(piles.map((pile) => pile.id))
+      else if (action === 'help') setHelpOpen(true)
+      else if (action === 'flip') changeSelected(ids, flipPile, '뒤집기')
+      else if (action === 'shuffle') changeSelected(ids.filter((id) => piles.find((pile) => pile.id === id)!.cards.length > 1), shufflePile, '덱 섞기')
+      else if (action === 'group') group(ids)
+      else if (typeof action === 'number' && ids.length === 1) draw(ids[0], action)
+      else if (action === 'menu') {
+        const rect = pieces.current.get(ids.at(-1) ?? '')?.getBoundingClientRect() ?? surfaceRef.current!.getBoundingClientRect()
+        openMenu(ids, rect.left + Math.min(rect.width / 2, 100), rect.top + 30)
+      } else if (['left', 'right', 'up', 'down'].includes(String(action)) && ids.length) {
+        onChange(movePiles(piles, ids, action === 'left' ? -2 : action === 'right' ? 2 : 0, action === 'up' ? -2 : action === 'down' ? 2 : 0), '카드 이동')
+        setSelectedIds(ids)
+      }
+    }
+    const onKeyUp = (event: KeyboardEvent) => {
+      heldKeys.current.delete(event.code)
+      if (!heldKeys.current.size) setReading((value) => value?.held ? null : value)
+    }
+    const onBlur = () => { heldKeys.current.clear(); setReading((value) => value?.held ? null : value); setMenu(null); hoveredId.current = null; cancelGesture() }
+    const onPointerEnd = () => { if (gesture.current) cancelGesture() }
+    window.addEventListener('keydown', onKeyDown)
+    window.addEventListener('keyup', onKeyUp)
+    window.addEventListener('blur', onBlur)
+    window.addEventListener('pointerup', onPointerEnd)
+    window.addEventListener('pointercancel', onPointerEnd)
+    return () => {
+      window.removeEventListener('keydown', onKeyDown)
+      window.removeEventListener('keyup', onKeyUp)
+      window.removeEventListener('blur', onBlur)
+      window.removeEventListener('pointerup', onPointerEnd)
+      window.removeEventListener('pointercancel', onPointerEnd)
+    }
+  })
 
   return (
     <section className="free-table">
       <div className="table-tools">
-        <span>{selected ? `${nameOf(selected)} · ${selected.cards.length}장` : '카드를 자유롭게 놓아보세요'}</span>
-        {selected && <div className="table-tools__actions">
-          <button onClick={() => onChange(flipTop(piles, selected.id), '카드 뒤집기')}>뒤집기</button>
-          {selected.cards.length > 1 && <>
-            <button onClick={() => draw(selected)}>한 장 꺼내기</button>
-            <button onClick={() => onChange(shufflePile(piles, selected.id), '덱 섞기')}>섞기</button>
-            <button onClick={() => onChange(coverPile(piles, selected.id), '덱 모두 덮기')}>모두 덮기</button>
-          </>}
-          {piles.length > 1 && <select aria-label="다른 묶음 위에 쌓기" value="" onChange={(event) => {
-            if (!event.target.value) return
-            onChange(stackPiles(piles, selected.id, event.target.value), '카드 겹쳐 쌓기')
-            setSelectedId(event.target.value)
-          }}>
-            <option value="">다른 묶음 위에 쌓기…</option>
-            {piles.map((pile, index) => pile.id !== selected.id && <option key={pile.id} value={pile.id}>{nameOf(pile)} {index + 1} · {pile.cards.length}장</option>)}
-          </select>}
-        </div>}
+        <span>{selection.length ? selection.length + '개 선택' : '클릭으로 선택 · 덱에서 드래그하여 한 장 꺼내기'}</span>
+        {selection.length > 0 && <button type="button" aria-haspopup="menu" onClick={(event) => {
+          const rect = event.currentTarget.getBoundingClientRect()
+          openMenu(selection, rect.left, rect.bottom + 6)
+        }}>동작 ▾</button>}
+        <button type="button" className="table-help-button" onClick={() => setHelpOpen(true)}>조작법 <kbd>?</kbd></button>
       </div>
-        <div className="table-surface" ref={surfaceRef} aria-label="자유 카드 테이블" onClick={(event) => { if (event.target === event.currentTarget) setSelectedId(null) }}>
-          <div className="table-watermark" aria-hidden="true"><span>♛</span><strong>왕관재판</strong><small>THE CROWN TRIAL</small></div>
-          {piles.map((pile, index) => {
-            const top = pile.cards.at(-1)!
-            const card = scenario.cards.find((item) => item.id === top.cardId)!
-            const position = preview?.id === pile.id ? preview : pile
-            const isDeck = pile.cards.length > 1
-            const label = `${nameOf(pile)} ${index + 1} · ${pile.cards.length}장`
-            return (
-              <div key={pile.id} ref={(element) => { if (element) pieces.current.set(pile.id, element); else pieces.current.delete(pile.id) }}
-                className={`table-piece ${isDeck ? 'table-piece--deck' : ''} ${selectedId === pile.id ? 'table-piece--selected' : ''} ${preview?.id === pile.id ? 'table-piece--dragging' : ''} ${preview?.targetId === pile.id ? 'table-piece--target' : ''}`}
-                style={{ left: `${position.x}%`, top: `${position.y}%`, transform: `translate(-${position.x}%, -${position.y}%)`, zIndex: selectedId === pile.id ? 100 : index + 1 }}
-                onPointerDown={(event) => startDrag(event, pile)} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerCancel={(event) => endDrag(event, true)}
-                onClickCapture={(event) => { if (suppressClick.current) { event.stopPropagation(); suppressClick.current = false } }}
-                onDoubleClick={(event) => { if ((event.target as HTMLElement).closest('[data-table-control]')) return; if (isDeck && !top.faceUp) draw(pile) }}
-                onKeyDown={(event) => {
-                  if ((event.target as HTMLElement).closest('[data-table-control]')) return
-                  const direction = { ArrowLeft: [-2, 0], ArrowRight: [2, 0], ArrowUp: [0, -2], ArrowDown: [0, 2] }[event.key]
-                  if (direction) { setSelectedId(pile.id); event.preventDefault(); onChange(movePile(piles, pile.id, pile.x + direction[0], pile.y + direction[1]), '카드 이동') }
-                  if (event.key.toLowerCase() === 'f') { setSelectedId(pile.id); event.preventDefault(); onChange(flipTop(piles, pile.id), '카드 뒤집기') }
-                  if (event.key === 'Escape') { drag.current = null; setPreview(null) }
-                }}>
-                <div className="table-piece__label"><span>{nameOf(pile)}</span><b>{pile.cards.length}장</b></div>
-                <div className="table-piece__cards"><CardView card={card} faceDown={!top.faceUp} backLabel={`${label} ${isDeck ? '선택' : '펼치기'}`} onClick={() => {
-                  setSelectedId(pile.id)
-                  if (top.faceUp) setReadingId(card.id)
-                  else if (!isDeck) onChange(flipTop(piles, pile.id), '카드 뒤집기')
-                }} /></div>
-                <div className="table-piece__tools" data-table-control>
-                  {isDeck && <button type="button" aria-label={`${label} 한 장 꺼내기`} onClick={() => draw(pile)}>1장 꺼내기</button>}
-                  <button type="button" aria-label={`${label} ${isDeck ? '맨 위 ' : ''}뒤집기`} onClick={() => { setSelectedId(pile.id); onChange(flipTop(piles, pile.id), '카드 뒤집기') }}>↻ {isDeck ? '맨 위' : '뒤집기'}</button>
-                </div>
-              </div>
-            )
-          })}
-          <p className="table-surface__hint" aria-live="polite">{preview?.targetId ? '여기에 놓으면 하나의 덱으로 쌓입니다' : '드래그로 이동 · 겹쳐 쌓기 · 카드를 눌러 펼치고 크게 읽기 · F로 뒤집기'}</p>
+      <div className="table-surface" ref={surfaceRef} aria-label="자유 카드 테이블" tabIndex={-1}
+        onPointerDown={startBox} onPointerMove={moveGesture} onPointerUp={endGesture} onPointerCancel={cancelGesture}
+        onLostPointerCapture={() => { if (gesture.current) cancelGesture() }}
+        onContextMenu={(event) => {
+          if ((event.target as HTMLElement).closest('[data-pile-id]')) return
+          event.preventDefault()
+          openMenu(selection, event.clientX, event.clientY)
+        }}
+        onClickCapture={(event) => { if (suppressClick.current) { event.stopPropagation(); suppressClick.current = false } }}>
+        <div className="table-watermark" aria-hidden="true"><span>♛</span><strong>왕관재판</strong><small>THE CROWN TRIAL</small></div>
+        {shown.map((pile, index) => {
+          const top = pile.cards.at(-1)!
+          const card = scenario.cards.find((item) => item.id === top.cardId)!
+          const label = nameOf(pile) + ' ' + (index + 1) + ' · ' + pile.cards.length + '장'
+          return <div key={pile.id} data-pile-id={pile.id} ref={(element) => { if (element) pieces.current.set(pile.id, element); else pieces.current.delete(pile.id) }}
+            className={['table-piece', pile.cards.length > 1 && 'table-piece--deck', selectedIds.includes(pile.id) && 'table-piece--selected', preview?.ids.includes(pile.id) && 'table-piece--dragging', preview?.targetId === pile.id && 'table-piece--target'].filter(Boolean).join(' ')}
+            style={{ left: pile.x + '%', top: pile.y + '%', transform: 'translate(-' + pile.x + '%, -' + pile.y + '%)', zIndex: preview?.ids.includes(pile.id) ? 200 + index : selectedIds.includes(pile.id) ? 100 + index : index + 1 }}
+            onPointerDown={(event) => startCards(event, pile)}
+            onPointerEnter={() => { hoveredId.current = pile.id }}
+            onPointerLeave={() => { if (hoveredId.current === pile.id) hoveredId.current = null }}
+            onDoubleClick={() => { if (!suppressClick.current) inspect(pile.id) }}
+            onContextMenu={(event) => { event.preventDefault(); openMenu(selection.includes(pile.id) ? selection : [pile.id], event.clientX, event.clientY) }}>
+            <div className="table-piece__label"><span>{nameOf(pile)}</span><b>{pile.cards.length}장</b></div>
+            <div className="table-piece__cards"><CardView card={card} selected={selectedIds.includes(pile.id)} faceDown={!top.faceUp} backLabel={label + ' 선택'}
+              onClick={(event) => { if (event.detail === 0) setSelectedIds(event.shiftKey ? selection.includes(pile.id) ? selection.filter((id) => id !== pile.id) : [...selection, pile.id] : [pile.id]) }} /></div>
+          </div>
+        })}
+        {box && <div className="table-selection-box" style={{ left: box.x, top: box.y, width: box.width, height: box.height }} />}
+        <p className="table-surface__hint" aria-live="polite">{preview?.targetId ? '놓으면 이 묶음 위에 쌓입니다' : preview ? '놓아 배치 · Esc로 취소' : '우클릭 메뉴 · F 뒤집기 · R 섞기 · Space 잠깐 확대 · 더블클릭 크게 읽기'}</p>
+      </div>
+      {menu && <TableContextMenu x={menu.x} y={menu.y} items={menuItems(menu.ids)} onClose={closeMenu} />}
+      <CardReader card={reading?.held ? undefined : readingCard} faceDown={!readingTop?.faceUp} onClose={() => setReading(null)} />
+      {reading?.held && readingCard && <div className="card-peek" role="region" aria-label="카드 잠깐 확대">
+        <div><CardView card={readingCard} faceDown={!readingTop?.faceUp} /><p>키를 놓으면 테이블로 돌아갑니다</p></div>
+      </div>}
+      <dialog className="table-help" ref={helpRef} aria-label="테이블 조작법" onClose={() => setHelpOpen(false)} onClick={(event) => { if (event.target === event.currentTarget) setHelpOpen(false) }}>
+        <div><header><h2>카드만, 자연스럽게.</h2><button onClick={() => setHelpOpen(false)} aria-label="조작법 닫기">닫기 ×</button></header>
+          <dl>{tableHelp.map(([keys, description]) => <div key={keys}><dt>{keys}</dt><dd>{description}</dd></div>)}</dl>
+          <p>확대는 뒤집기가 아닙니다. 뒷면 카드는 확대해도 뒷면입니다.</p>
         </div>
-      <CardReader card={readingCard} onClose={() => setReadingId(null)} />
+      </dialog>
     </section>
   )
 }

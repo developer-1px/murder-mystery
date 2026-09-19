@@ -67,7 +67,11 @@ export default function App() {
           <p className="timeline__note">과거 배치에서 조작하면 새 가지에 기록합니다. 새로고침하면 초기화됩니다.</p>
         </section>
       </details>}
-      {workspace === 'table' ? <CardTable scenario={scenario} piles={snapshot.piles} onChange={commit} /> : <CardLibrary scenario={scenario} issues={validationIssues} />}
+      {workspace === 'table' ? <CardTable scenario={scenario} piles={snapshot.piles} onChange={commit}
+        onUndo={() => setCursor((value) => Math.max(0, value - 1))}
+        onRedo={() => setCursor((value) => Math.min(branch.snapshots.length - 1, value + 1))}
+        canUndo={cursor > 0} canRedo={cursor < branch.snapshots.length - 1}
+      /> : <CardLibrary scenario={scenario} issues={validationIssues} />}
     </main>
   )
 }

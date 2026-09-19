@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { coverPile, drawCard, flipTop, movePile, shufflePile, stackPiles, type CardPile } from './table'
+import { coverPile, drawCard, drawCards, flipPile, movePile, movePiles, shufflePile, stackPiles, stackSelected, type CardPile } from './table'
 
 const initial = (): CardPile[] => [
   { id: 'deck', x: 10, y: 10, cards: [{ cardId: 'a', faceUp: false }, { cardId: 'b', faceUp: false }, { cardId: 'c', faceUp: false }] },
@@ -16,10 +16,27 @@ describe('규칙 없는 카드 테이블', () => {
     expect(drawCard(after, 'drawn', 'another')).toBe(after)
   })
 
-  it('맨 위만 뒤집고 모두 덮을 수 있다', () => {
-    const flipped = flipTop(initial(), 'deck')
-    expect(flipped[0].cards.map((card) => card.faceUp)).toEqual([false, false, true])
+  it('덱은 실제 묶음처럼 순서를 반대로 하고 양면을 뒤집는다', () => {
+    const flipped = flipPile(initial(), 'deck')
+    expect(flipped[0].cards.map((card) => card.cardId)).toEqual(['c', 'b', 'a'])
+    expect(flipped[0].cards.map((card) => card.faceUp)).toEqual([true, true, true])
+    expect(flipPile(flipped, 'deck')).toEqual(initial())
     expect(coverPile(flipped, 'deck')[0].cards.every((card) => !card.faceUp)).toBe(true)
+  })
+
+  it('여러 장을 위에서부터 꺼내도 카드가 사라지거나 복제되지 않는다', () => {
+    const before = initial()
+    const drawn = drawCards(before, 'deck', ['one', 'two', 'three', 'extra'])
+    expect(drawn.map((pile) => pile.id)).toEqual(['single', 'one', 'two', 'three'])
+    expect(drawn.flatMap((pile) => pile.cards).map((card) => card.cardId)).toEqual(['d', 'c', 'b', 'a'])
+    expect(before[0].cards).toHaveLength(3)
+    expect(drawCards(before, 'deck', ['single'])).toBe(before)
+  })
+
+  it('그룹은 경계에 닿아도 카드 사이 간격을 유지한다', () => {
+    const moved = movePiles(initial(), ['deck', 'single'], 70, -80)
+    expect(moved.map((pile) => [pile.x, pile.y])).toEqual([[50, 0], [100, 50]])
+    expect(stackSelected(moved, ['deck', 'single'], 'single')[0].cards).toHaveLength(4)
   })
 
   it('카드 종류나 게임 규칙과 무관하게 겹쳐 쌓는다', () => {
