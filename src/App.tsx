@@ -1,192 +1,73 @@
-import { useMemo, useState } from 'react'
-import { CardView } from './components/CardView'
+import { useState } from 'react'
 import { CardLibrary } from './components/CardLibrary'
-import { canSeeCard, describeEvent, forkBranch, replay } from './domain/engine'
-import type { Branch, Card, GameEvent, Verdict } from './domain/types'
+import { CardTable } from './components/CardTable'
+import { cardKinds } from './components/cardKinds'
+import type { CardPile } from './domain/table'
+import type { CardKind } from './domain/types'
 import { scenario, validationIssues } from './scenario/load'
 
-type Workspace = 'playtest' | 'library'
+interface TableBranch {
+  id: string
+  name: string
+  snapshots: { label: string; piles: CardPile[] }[]
+}
 
-const eventId = () => crypto.randomUUID()
-const now = () => new Date().toISOString()
+const initialPiles: CardPile[] = (Object.keys(cardKinds) as CardKind[]).map((kind, index) => ({
+  id: `deck-${kind}`,
+  cards: scenario.cards.filter((card) => card.kind === kind).map((card) => ({ cardId: card.id, faceUp: false })),
+  x: 4 + index * 30,
+  y: 12,
+})).filter((pile) => pile.cards.length)
 
 export default function App() {
-  const [workspace, setWorkspace] = useState<Workspace>('playtest')
-  const [perspective, setPerspective] = useState('designer')
-  const [branches, setBranches] = useState<Branch[]>([{ id: 'main', name: '기본 실행', events: [] }])
+  const [workspace, setWorkspace] = useState<'table' | 'library'>('table')
+  const [branches, setBranches] = useState<TableBranch[]>([{ id: 'main', name: '기본 테이블', snapshots: [{ label: '처음 배치', piles: initialPiles }] }])
   const [branchId, setBranchId] = useState('main')
-  const branch = branches.find((item) => item.id === branchId)!
   const [cursor, setCursor] = useState(0)
-  const [selectedCardId, setSelectedCardId] = useState<string | null>(null)
-  const [selectedLocationId, setSelectedLocationId] = useState(scenario.locations[0].id)
-  const state = useMemo(() => replay(scenario, branch.events, cursor), [branch, cursor])
-  const selectedCard = scenario.cards.find((card) => card.id === selectedCardId && (canSeeCard(state, card.id, perspective) || (card.locationId === selectedLocationId && state.cards[card.id].zone === 'location')))
-  const activeCharacterId = perspective === 'designer' ? scenario.characters[0].id : perspective
-  const activeCharacter = scenario.characters.find((character) => character.id === activeCharacterId)!
-  const designer = perspective === 'designer'
-
-  const commit = (event: GameEvent) => {
-    const nextEvents = [...branch.events.slice(0, cursor), event]
-    setBranches((items) => items.map((item) => item.id === branch.id ? { ...item, events: nextEvents } : item))
-    setCursor(nextEvents.length)
-  }
+  const branch = branches.find((item) => item.id === branchId)!
+  const snapshot = branch.snapshots[cursor]
 
   const fork = () => {
-    const next = forkBranch(branch, cursor, branches.length)
+    const next: TableBranch = { id: crypto.randomUUID(), name: `테이블 ${branches.length + 1}`, snapshots: branch.snapshots.slice(0, cursor + 1) }
     setBranches((items) => [...items, next])
     setBranchId(next.id)
-    setCursor(next.events.length)
   }
 
-  const switchBranch = (id: string) => {
-    const next = branches.find((item) => item.id === id)!
-    setBranchId(id)
-    setCursor(next.events.length)
+  const commit = (piles: CardPile[], label: string) => {
+    if (piles === snapshot.piles) return
+    const snapshots = [...branch.snapshots.slice(0, cursor + 1), { label, piles }]
+    if (cursor < branch.snapshots.length - 1) {
+      const id = crypto.randomUUID()
+      setBranches((items) => [...items, { id, name: `테이블 ${items.length + 1}`, snapshots }])
+      setBranchId(id)
+    } else setBranches((items) => items.map((item) => item.id === branchId ? { ...item, snapshots } : item))
+    setCursor(snapshots.length - 1)
   }
-
-  const acquire = (card: Card, forced = false) => commit({ id: eventId(), type: 'acquire', actorId: activeCharacterId, cardId: card.id, at: now(), forced })
-  const publish = (card: Card) => commit({ id: eventId(), type: 'publish', actorId: activeCharacterId, cardId: card.id, at: now() })
-  const submit = (card: Card) => commit({ id: eventId(), type: 'submit', actorId: activeCharacterId, cardId: card.id, at: now() })
-  const present = (card: Card, targetId: string) => commit({ id: eventId(), type: 'present', actorId: activeCharacterId, targetId, cardId: card.id, at: now() })
-  const verdict = (claimId: string, value: Verdict) => commit({ id: eventId(), type: 'verdict', actorId: activeCharacterId, claimId, verdict: value, at: now() })
-
-  const hand = scenario.cards.filter((card) => state.cards[card.id].zone === 'hand' && state.cards[card.id].ownerId === activeCharacterId && canSeeCard(state, card.id, perspective))
-  const publicCards = scenario.cards.filter((card) => ['public', 'court'].includes(state.cards[card.id].zone))
-  const locationCards = scenario.cards.filter((card) => card.locationId === selectedLocationId && state.cards[card.id].zone === 'location')
 
   return (
     <main className="app-shell">
       <header className="topbar">
-        <div>
-          <span className="eyebrow">MURDER MYSTERY WORKBENCH</span>
-          <h1>{scenario.meta.title}</h1>
-        </div>
+        <div><span className="eyebrow">MURDER MYSTERY WORKBENCH</span><h1>{scenario.meta.title}</h1></div>
         <div className="topbar__actions">
-          <span className={`health ${validationIssues.some((issue) => issue.severity === 'error') ? 'health--error' : ''}`}>
-            <i /> {validationIssues.length ? `검증 ${validationIssues.length}건` : '시나리오 정상'}
-          </span>
+          <span className={`health ${validationIssues.some((issue) => issue.severity === 'error') ? 'health--error' : ''}`}><i />{validationIssues.length ? `검증 ${validationIssues.length}건` : '시나리오 정상'}</span>
           <nav className="workspace-tabs" aria-label="작업 공간">
-            <button className={workspace === 'playtest' ? 'active' : ''} onClick={() => setWorkspace('playtest')}>테스트 실행</button>
+            <button className={workspace === 'table' ? 'active' : ''} onClick={() => setWorkspace('table')}>카드 테이블</button>
             <button className={workspace === 'library' ? 'active' : ''} onClick={() => setWorkspace('library')}>카드 라이브러리</button>
           </nav>
         </div>
       </header>
-
-      {workspace === 'playtest' ? (
-        <div className="workbench">
-          <aside className="sidebar sidebar--left">
-            <section>
-              <div className="section-heading"><span>관점</span><small>VIEWPOINT</small></div>
-              <button className={`character character--designer ${designer ? 'active' : ''}`} onClick={() => setPerspective('designer')}>
-                <span className="character__sigil">✦</span><span><strong>설계자</strong><small>모든 정보 열람</small></span>
-              </button>
-              <div className="character-list">
-                {scenario.characters.map((character) => (
-                  <button className={`character ${perspective === character.id ? 'active' : ''}`} onClick={() => setPerspective(character.id)} key={character.id} style={{ '--character': character.color } as React.CSSProperties}>
-                    <span className="character__sigil">{character.name[0]}</span>
-                    <span><strong>{character.name}</strong><small>{character.title}</small></span>
-                  </button>
-                ))}
-              </div>
-            </section>
-            <section>
-              <div className="section-heading"><span>조사 장소</span><small>ROUND {scenario.meta.round}</small></div>
-              <div className="location-list">
-                {scenario.locations.map((location) => (
-                  <button className={selectedLocationId === location.id ? 'active' : ''} onClick={() => setSelectedLocationId(location.id)} key={location.id}>
-                    <strong>{location.name}</strong><small>{location.description}</small>
-                  </button>
-                ))}
-              </div>
-            </section>
-          </aside>
-
-          <section className="tabletop">
-            <div className="tabletop__header">
-              <div><span className="eyebrow">ACTIVE LOCATION</span><h2>{scenario.locations.find((item) => item.id === selectedLocationId)?.name}</h2></div>
-              <div className="round-badge"><strong>Ⅰ</strong><span>첫 번째<br />조사 라운드</span></div>
-            </div>
-
-            <div className="zone">
-              <div className="zone__heading"><h3>조사 가능한 카드</h3><span>{locationCards.length}장 남음</span></div>
-              <div className="card-row">
-                {locationCards.length ? locationCards.map((card) => (
-                  <CardView key={card.id} card={card} state={state.cards[card.id]} designer={designer} selected={selectedCardId === card.id} onClick={() => setSelectedCardId(card.id)} />
-                )) : <p className="empty">이 장소에서 확인할 카드를 모두 가져갔습니다.</p>}
-              </div>
-            </div>
-
-            <div className="zone zone--public">
-              <div className="zone__heading"><h3>공개 테이블 · 법정</h3><span>모두가 아는 정보</span></div>
-              <div className="card-row card-row--small">
-                {publicCards.length ? publicCards.map((card) => <CardView key={card.id} card={card} state={state.cards[card.id]} compact designer={designer} onClick={() => setSelectedCardId(card.id)} />) : <p className="empty">아직 공개된 카드가 없습니다.</p>}
-              </div>
-              <div className="facts">
-                <span>공식 사실</span>
-                {state.officialFacts.length ? state.officialFacts.map((id) => <strong key={id}>⚖ {scenario.claims.find((claim) => claim.id === id)?.text}</strong>) : <small>재판에서 인정된 사실이 없습니다.</small>}
-              </div>
-            </div>
-
-            <div className="zone zone--hand">
-              <div className="zone__heading"><h3>{designer ? scenario.characters[0].name : scenario.characters.find((item) => item.id === perspective)?.name}의 손패</h3><span>{hand.length}장</span></div>
-              <details className="character-profile" key={activeCharacter.id}>
-                <summary>{activeCharacter.name} 인물 설정서</summary>
-                <p>{activeCharacter.publicProfile}</p>
-                <p><strong>욕망</strong> · {activeCharacter.desire}</p>
-                <p><strong>파멸</strong> · {activeCharacter.ruin}</p>
-              </details>
-              <div className="card-row card-row--small">
-                {hand.map((card) => <CardView key={card.id} card={card} state={state.cards[card.id]} compact designer={designer} selected={selectedCardId === card.id} onClick={() => setSelectedCardId(card.id)} />)}
-              </div>
-            </div>
-          </section>
-
-          <aside className="sidebar sidebar--right">
-            <section className="inspector">
-              <div className="section-heading"><span>카드 작업</span><small>INSPECTOR</small></div>
-              {selectedCard ? (
-                <>
-                  <CardView card={selectedCard} state={state.cards[selectedCard.id]} designer={designer} />
-                  <div className="action-grid">
-                    {state.cards[selectedCard.id].zone === 'location' && <button className="primary" onClick={() => acquire(selectedCard)}>손패로 가져오기</button>}
-                    {designer && state.cards[selectedCard.id].zone !== 'hand' && <button onClick={() => acquire(selectedCard, true)}>강제로 손패 이동</button>}
-                    {state.cards[selectedCard.id].zone === 'hand' && <button onClick={() => publish(selectedCard)}>모두에게 공개</button>}
-                    {state.cards[selectedCard.id].zone === 'hand' && <button onClick={() => submit(selectedCard)}>법정에 제출</button>}
-                  </div>
-                  {state.cards[selectedCard.id].zone === 'hand' && (
-                    <label className="select-label">비공개 제시
-                      <select defaultValue="" onChange={(event) => { if (event.target.value) present(selectedCard, event.target.value); event.target.value = '' }}>
-                        <option value="">상대 선택…</option>
-                        {scenario.characters.filter((character) => character.id !== activeCharacterId).map((character) => <option key={character.id} value={character.id}>{character.name}</option>)}
-                      </select>
-                    </label>
-                  )}
-                  {selectedCard.claimId && state.cards[selectedCard.id].zone === 'court' && (
-                    <div className="verdicts">
-                      <span>{scenario.claims.find((claim) => claim.id === selectedCard.claimId)?.text}</span>
-                      <div><button onClick={() => verdict(selectedCard.claimId!, 'accepted')}>인정</button><button onClick={() => verdict(selectedCard.claimId!, 'rejected')}>기각</button><button onClick={() => verdict(selectedCard.claimId!, 'reserved')}>유보</button></div>
-                    </div>
-                  )}
-                </>
-              ) : <p className="empty">카드를 선택하면 내용과 행동을 확인할 수 있습니다.</p>}
-            </section>
-
-            <section className="timeline">
-              <div className="section-heading"><span>실행 기록</span><small>{cursor}/{branch.events.length}</small></div>
-              <select value={branchId} onChange={(event) => switchBranch(event.target.value)}>{branches.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
-              <button className="fork-button" onClick={fork}>현재 시점에서 Fork</button>
-              <button className={`event ${cursor === 0 ? 'active' : ''}`} onClick={() => setCursor(0)}><b>0</b><span>게임 시작</span></button>
-              {branch.events.map((event, index) => (
-                <button className={`event ${cursor === index + 1 ? 'active' : ''}`} onClick={() => setCursor(index + 1)} key={event.id}>
-                  <b>{index + 1}</b><span>{describeEvent(event, scenario)}{event.forced && <em>강제 조작</em>}</span>
-                </button>
-              ))}
-            </section>
-          </aside>
-        </div>
-      ) : (
-        <CardLibrary scenario={scenario} state={state} issues={validationIssues} />
-      )}
+      {workspace === 'table' && <details className="table-history">
+        <summary>기록 · {cursor}</summary>
+        <section className="timeline">
+          <div className="section-heading"><span>테이블 기록</span><small>{cursor}/{branch.snapshots.length - 1}</small></div>
+          <select aria-label="테이블 가지" value={branchId} onChange={(event) => { const next = branches.find((item) => item.id === event.target.value)!; setBranchId(next.id); setCursor(next.snapshots.length - 1) }}>{branches.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
+          <div className="history-controls"><button disabled={cursor === 0} onClick={() => setCursor(cursor - 1)}>↶ 되돌리기</button><button disabled={cursor === branch.snapshots.length - 1} onClick={() => setCursor(cursor + 1)}>↷ 다시 하기</button></div>
+          <button className="fork-button" onClick={fork}>현재 배치에서 Fork</button>
+          {branch.snapshots.map((item, index) => <button className={`event ${cursor === index ? 'active' : ''}`} key={index} onClick={() => setCursor(index)}><b>{index}</b><span>{item.label}</span></button>)}
+          <p className="timeline__note">과거 배치에서 조작하면 새 가지에 기록합니다. 새로고침하면 초기화됩니다.</p>
+        </section>
+      </details>}
+      {workspace === 'table' ? <CardTable scenario={scenario} piles={snapshot.piles} onChange={commit} /> : <CardLibrary scenario={scenario} issues={validationIssues} />}
     </main>
   )
 }

@@ -16,36 +16,11 @@ button { color: inherit; }
 .workspace-tabs { display: flex; padding: 4px; border: 1px solid #4a4138; background: #211d19; }
 .workspace-tabs button { padding: 9px 15px; border: 0; background: transparent; color: #948a7d; cursor: pointer; font-size: 12px; }
 .workspace-tabs button.active { color: #1e1a16; background: #c4a971; font-weight: 700; }
-.workbench { min-height: calc(100vh - 86px); display: grid; grid-template-columns: 228px minmax(650px, 1fr) 300px; }
-.sidebar { background: rgba(25, 22, 19, .82); }
-.sidebar--left { border-right: 1px solid #3f3730; }.sidebar--right { border-left: 1px solid #3f3730; }
-.sidebar section { padding: 20px 16px; border-bottom: 1px solid #3a332d; }
-.section-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 13px; text-transform: uppercase; font-size: 11px; color: #c4a971; letter-spacing: .12em; }
-.section-heading small { color: #736b62; font-size: 9px; }
-.character { --character: #9b845f; display: flex; align-items: center; width: 100%; gap: 10px; border: 1px solid transparent; border-left: 2px solid transparent; background: transparent; padding: 8px; cursor: pointer; text-align: left; }
-.character:hover, .character.active { background: #2e2924; border-color: #4a423a; border-left-color: var(--character); }
-.character__sigil { display: grid; place-items: center; width: 29px; height: 29px; border-radius: 50%; border: 1px solid var(--character); color: var(--character); font-family: 'Gowun Batang'; }
-.character span:last-child { display: flex; flex-direction: column; }.character strong { font: 700 13px 'Gowun Batang'; }.character small { color: #847b71; font-size: 10px; }
-.character--designer { margin-bottom: 9px; --character: #c4a971; }
-.location-list { display: grid; gap: 7px; }.location-list button { padding: 10px; text-align: left; border: 1px solid #3d3630; background: #211d1a; cursor: pointer; }
-.location-list button.active { border-color: #9d8154; background: #302a23; }.location-list strong, .location-list small { display: block; }.location-list strong { font: 700 12px 'Gowun Batang'; }.location-list small { margin-top: 4px; color: #857d73; font-size: 9px; line-height: 1.5; }
-.tabletop { padding: 26px 28px 34px; overflow: auto; background-image: linear-gradient(rgba(255,255,255,.013) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.013) 1px, transparent 1px); background-size: 28px 28px; }
-.tabletop__header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 18px; border-bottom: 1px solid #4b4035; }.tabletop__header h2 { margin: 5px 0 0; font: 700 24px 'Gowun Batang'; }
-.round-badge { display: flex; gap: 10px; align-items: center; color: #958979; font-size: 9px; text-transform: uppercase; letter-spacing: .08em; }.round-badge strong { color: #c5aa75; font: 32px 'Gowun Batang'; }
-.zone { margin-top: 24px; }.zone__heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }.zone__heading h3 { margin: 0; font: 700 15px 'Gowun Batang'; }.zone__heading span { color: #7d746b; font-size: 10px; }
-.zone--public { padding: 18px; border: 1px solid #55483b; background: rgba(52, 43, 35, .32); }.zone--hand { padding: 18px; border: 1px solid #3b4850; background: rgba(29, 38, 43, .34); }
-.card-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 13px; }.card-row--small { grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); }
 .card { position: relative; min-height: 238px; padding: 23px 16px 15px; border: 1px solid #6b5944; background: linear-gradient(145deg, #eee4d0, #cbbb9f); color: #282018; cursor: pointer; text-align: left; box-shadow: 0 7px 18px rgba(0,0,0,.28); transition: transform .15s ease, box-shadow .15s ease; overflow: hidden; }
-.card::before { content: ''; position: absolute; inset: 6px; border: 1px solid rgba(86, 62, 36, .25); pointer-events: none; }.card:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(0,0,0,.38); }.card--selected { outline: 2px solid #cfad68; outline-offset: 2px; }
+.card::before { content: ''; position: absolute; inset: 6px; border: 1px solid rgba(86, 62, 36, .25); pointer-events: none; }.card:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(0,0,0,.38); }
 .card--memory { background: linear-gradient(145deg, #d9d3db, #aaa1af); }.card--rumor { background: linear-gradient(145deg, #d5d7c5, #a5a987); }.card--testimony { background: linear-gradient(145deg, #d7c6b6, #b18d72); }
-.card__kind { position: relative; color: #745e43; font-size: 9px; letter-spacing: .18em; font-weight: 700; }.card h3 { position: relative; margin: 9px 0 12px; padding-bottom: 10px; border-bottom: 1px solid rgba(69,48,29,.25); font: 700 17px 'Gowun Batang'; }.card__text { position: relative; min-height: 85px; white-space: pre-line; font: 400 12px/1.7 'Gowun Batang'; }.card__tags { position: relative; display: flex; flex-wrap: wrap; gap: 4px; margin-top: 12px; font-size: 9px; color: #795f44; }.card__meta { position: relative; display: flex; flex-direction: column; margin-top: 10px; padding-top: 8px; border-top: 1px dashed rgba(50,39,25,.3); font-size: 8px; opacity: .8; }.card__meta code { overflow: hidden; text-overflow: ellipsis; }
-.card--compact { min-height: 128px; padding-top: 18px; }.card--compact h3 { font-size: 14px; }.empty { color: #766e65; font: 12px/1.6 'Gowun Batang'; }
-.facts { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 14px; padding-top: 13px; border-top: 1px solid #52463a; }.facts > span { color: #c4a971; font-size: 10px; letter-spacing: .12em; }.facts strong { padding: 5px 8px; background: #231f1a; color: #d8c8a6; font: 11px 'Gowun Batang'; }.facts small { color: #726a61; }
-.inspector .card { width: 100%; }.action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 12px; }.action-grid button, .fork-button, .verdicts button { padding: 9px; border: 1px solid #554a3f; background: #2a2520; cursor: pointer; font-size: 10px; }.action-grid button.primary { grid-column: 1/-1; color: #211c17; background: #c2a66f; font-weight: 700; }.select-label { display: grid; gap: 5px; margin-top: 10px; color: #8d8378; font-size: 10px; }.select-label select, .timeline select { width: 100%; padding: 8px; color: #d8cdbb; border: 1px solid #4b433a; background: #201c18; }
-.verdicts { margin-top: 12px; padding: 11px; border: 1px solid #705b43; background: #221d18; }.verdicts span { display: block; margin-bottom: 9px; font: 11px/1.5 'Gowun Batang'; }.verdicts div { display: grid; grid-template-columns: repeat(3,1fr); gap: 4px; }
-.timeline { max-height: 46vh; overflow: auto; }.timeline select { margin-bottom: 7px; }.fork-button { width: 100%; margin-bottom: 10px; color: #c9aa72; border-style: dashed; }.event { display: grid; grid-template-columns: 24px 1fr; gap: 8px; align-items: start; width: 100%; padding: 8px 5px; border: 0; border-left: 1px solid #4b4136; background: transparent; text-align: left; cursor: pointer; }.event b { display: grid; place-items: center; width: 20px; height: 20px; margin-left: -15px; border-radius: 50%; background: #2b2621; color: #9b8a73; font-size: 9px; }.event span { color: #999087; font-size: 9px; line-height: 1.5; }.event.active { background: #302920; }.event.active b { background: #b99b63; color: #211b15; }.event em { display: block; color: #c57768; font-style: normal; }
+.card__kind { position: relative; color: #745e43; font-size: 9px; letter-spacing: .18em; font-weight: 700; }.card h3 { position: relative; margin: 9px 0 12px; padding-bottom: 10px; border-bottom: 1px solid rgba(69,48,29,.25); font: 700 17px 'Gowun Batang'; }.card__text { position: relative; min-height: 85px; white-space: pre-line; font: 400 12px/1.7 'Gowun Batang'; }.card__tags { position: relative; display: flex; flex-wrap: wrap; gap: 4px; margin-top: 12px; font-size: 9px; color: #795f44; }
 .library { padding: 42px; max-width: 1500px; margin: auto; }.library__header { display: flex; align-items: end; justify-content: space-between; margin-bottom: 30px; }.library__header h2 { margin: 7px 0; font: 700 30px 'Gowun Batang'; }.library__header p { margin: 0; color: #80776e; }.filters { display: flex; gap: 8px; }.filters input, .filters select { padding: 11px; border: 1px solid #51473d; background: #201c18; color: #ded3c1; }.filters input { width: 270px; }.library__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 18px; }.issues { margin-bottom: 20px; padding: 12px 18px; border: 1px solid #7c4e45; background: #3a2521; }.issues p { margin: 4px 0; font-size: 11px; }.issues strong { color: #e0a597; margin-right: 8px; }
-@media (max-width: 1250px) { .workbench { grid-template-columns: 210px minmax(620px,1fr) 280px; }.tabletop { padding-inline: 18px; } }
 
 .library__header { gap: 24px; align-items: center; }
 .library__header p { font-size: 13px; line-height: 1.7; color: #aaa094; }
@@ -70,24 +45,81 @@ button { color: inherit; }
 .library .card h3 { width: 100%; line-height: 1.5; }
 .library .card__text { margin: 0 0 8px; font-size: 13px; line-height: 1.85; }
 .library .card__tags { margin-top: auto; padding-top: 12px; }
-.library .card__meta { width: 100%; font-size: 10px; line-height: 1.7; }
 .library__empty { text-align: center; padding: 60px 20px; border: 1px dashed #51473d; }
 .library__empty p { color: #aaa094; }
-.library__empty button, .card-detail__header button { padding: 10px 18px; background: #c4a971; color: #211b15; border: 1px solid #c4a971; cursor: pointer; }
-.card-detail { width: min(820px, 90vw); max-height: 88vh; overflow: auto; padding: 26px; color: #e9e0d0; background: #231e19; border: 1px solid #a2895e; box-shadow: 0 24px 80px #0009; }
-.card-detail::backdrop { background: #090705bd; }
-.card-detail__header { display: flex; justify-content: space-between; gap: 20px; align-items: center; margin-bottom: 24px; }
-.card-detail__header h2 { margin: 0; font: 700 25px 'Gowun Batang', serif; }
-.card-detail__body { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
-.card-detail__body .card { width: 100%; padding: 28px; }
-.card-detail__body .card__text { font-size: 16px; line-height: 1.9; }
-.card-detail__body h3 { margin-top: 0; }
-.card-detail dl { margin: 0; font-size: 13px; }
-.card-detail dt { color: #b59c73; margin-top: 18px; }
-.card-detail dd { margin: 5px 0 0; line-height: 1.7; overflow-wrap: anywhere; }
-.card-detail dd code { font-size: 11px; }
+.library__empty button { padding: 10px 18px; background: #c4a971; color: #211b15; border: 1px solid #c4a971; cursor: pointer; }
 .character-profile { margin-bottom: 16px; color: #c5b9a6; font-size: 12px; }
 .character-profile summary { cursor: pointer; color: #c4a971; }
 .character-profile p { line-height: 1.8; }
 .character-profile strong { color: #e1c790; }
 button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible { outline: 2px solid #d5b879; outline-offset: 3px; }
+
+.card--back { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; color: #c5aa74; background: repeating-linear-gradient(45deg, transparent 0 9px, #c4a97108 9px 10px), repeating-linear-gradient(-45deg, transparent 0 9px, #c4a97108 9px 10px), radial-gradient(ellipse at center, #344446, #1d2c30); border-color: #a78b5e; text-align: center; }
+.card--back::before { inset: 8px; border: 1px solid #a88d5970; outline: 1px solid #a88d5935; outline-offset: -5px; }
+.card-back__edition { font: 8px 'Noto Sans KR', sans-serif; letter-spacing: .3em; }
+.card-back__seal { display: grid; place-items: center; width: 70px; height: 70px; border: 1px solid #a78b5e80; outline: 1px solid #a78b5e40; outline-offset: 5px; border-radius: 50%; font: 44px 'Gowun Batang', serif; }
+.card-back__caption { font: 700 14px 'Gowun Batang', serif; letter-spacing: .3em; }
+.library .card--back { align-items: center; justify-content: center; }
+.card-display-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 18px; }
+.card-display-controls button, .history-controls button { padding: 8px 12px; border: 1px solid #51473d; background: #211d19; cursor: pointer; font-size: 11px; }
+.card-display-controls button[aria-pressed='true'] { background: #c4a971; color: #211b15; border-color: #c4a971; }
+.card-display-controls span { margin-left: 6px; color: #aa9c87; font-size: 11px; }
+.free-table { padding: 0 26px 24px; min-width: 0; }
+.table-surface { position: relative; height: max(800px, calc(100vh - 160px)); border: 1px solid #5e503d; border-radius: 14px; background: radial-gradient(ellipse at 50% 40%, #34413c, #202e2b 60%, #192522); box-shadow: inset 0 0 0 7px #131d1970, inset 0 0 80px #0b151570, 0 14px 30px #0003; isolation: isolate; overflow: hidden; }
+.table-surface::before { content: ''; position: absolute; inset: 12px; border: 1px solid #a79b7029; border-radius: 8px; pointer-events: none; background-image: repeating-linear-gradient(0deg, #ffffff02 0 1px, transparent 1px 3px); }
+.table-watermark { position: absolute; left: 50%; top: 58%; transform: translate(-50%, -50%); display: flex; align-items: center; flex-direction: column; gap: 10px; color: #c4b48b18; pointer-events: none; user-select: none; }
+.table-watermark span { font-size: 76px; }.table-watermark strong { font: 700 35px 'Gowun Batang', serif; letter-spacing: .25em; white-space: nowrap; }.table-watermark small { font-size: 8px; letter-spacing: .4em; }
+.table-piece { position: absolute; width: 216px; height: 382px; touch-action: none; user-select: none; cursor: grab; }
+.table-piece__label { height: 28px; display: flex; align-items: start; justify-content: space-between; gap: 8px; padding: 0 2px; color: #d3c5a7; font: 11px 'Gowun Batang', serif; }
+.table-piece__label b { color: #d7c096; padding: 1px 5px; border: 1px solid #ab996740; border-radius: 3px; font: 9px 'Noto Sans KR', sans-serif; background: #152320; }
+.table-piece__cards { position: relative; height: 322px; }
+.table-piece__cards .card { position: relative; width: 100%; height: 322px; min-height: 322px; padding: 25px 22px; border-radius: 5px; cursor: inherit; }
+.table-piece__cards .card:hover { transform: none; }
+.table-piece__cards .card h3 { font-size: 20px; line-height: 1.5; }
+.table-piece__cards .card__tags { font-size: 9px; line-height: 1.6; }
+.table-piece__cards .card--back { gap: 35px; }
+.table-piece__cards .card-back__seal { width: 80px; height: 80px; font-size: 48px; }
+.table-piece__cards .card-back__edition { font-size: 8px; }.table-piece__cards .card-back__caption { font-size: 17px; }
+.table-piece--deck .table-piece__cards::before, .table-piece--deck .table-piece__cards::after { content: ''; position: absolute; inset: 0; border: 1px solid #8a8069; border-radius: 5px; background: #b6ab90; box-shadow: 0 3px 1px #17231e; z-index: -1; }
+.table-piece--deck .table-piece__cards::before { transform: translate(6px, 6px) rotate(2deg); }
+.table-piece--deck .table-piece__cards::after { transform: translate(3px, 3px) rotate(-1deg); }
+.table-piece--selected .table-piece__cards > .card { outline: 2px solid #ccb172; outline-offset: 3px; }
+.table-piece--dragging { cursor: grabbing; filter: drop-shadow(0 16px 12px #0007); }
+.table-piece--target .table-piece__cards > .card { outline: 3px dashed #a9d3b2; outline-offset: 8px; }
+.table-piece__tools { display: flex; justify-content: center; gap: 5px; padding-top: 10px; }
+.table-piece__tools button { padding: 4px 6px; background: #14231ecc; color: #c1b393; border: 1px solid #6a715659; border-radius: 3px; cursor: pointer; font-size: 9px; white-space: nowrap; }
+.table-piece__tools button:hover { color: #f0d69f; border-color: #bba276; }
+.table-surface__hint { position: absolute; bottom: 16px; left: 20px; right: 20px; margin: 0; color: #b8b39b88; font-size: 10px; text-align: center; pointer-events: none; }
+.history-controls { display: flex; gap: 6px; margin-bottom: 8px; }.history-controls button { flex: 1; font-size: 10px; padding-inline: 5px; }.history-controls button:disabled { opacity: .35; cursor: default; }
+.timeline__note { font-size: 10px; line-height: 1.7; color: #928674; }
+@media (prefers-reduced-motion: reduce) { .card { transition: none; } }
+.table-tools { height: 52px; display: flex; align-items: center; gap: 22px; padding-right: 110px; color: #a99b85; font-size: 11px; }
+.table-tools__actions { display: flex; align-items: center; gap: 7px; }
+.table-tools button, .table-tools select { padding: 6px 10px; background: #211d19; color: #c9b995; border: 1px solid #51473d; border-radius: 3px; cursor: pointer; font-size: 11px; }
+.table-piece__cards .card__text { display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden; min-height: 0; margin: 0; font: 14px/1.85 'Gowun Batang', serif; }
+.table-piece__cards .card__tags { margin-top: 12px; }
+.table-piece__cards .card:not(.card--back) { display: flex; flex-direction: column; }
+.table-piece__cards .card:not(.card--back) > * { flex-shrink: 0; }
+.table-piece__cards .card:not(.card--back) .card__text { flex: 1; min-height: 0; }
+.table-piece__tools { opacity: .65; transition: opacity .15s; }.table-piece:hover .table-piece__tools, .table-piece:focus-within .table-piece__tools { opacity: 1; }
+.table-history { position: absolute; right: 28px; top: 102px; z-index: 200; font-size: 11px; color: #c4a971; }
+.table-history > summary { cursor: pointer; padding: 6px 10px; border: 1px solid #51473d; border-radius: 3px; background: #211d19; }
+.table-history .timeline { position: absolute; right: 0; width: 290px; max-height: 65vh; overflow: auto; margin-top: 10px; padding: 20px; border: 1px solid #66573e; background: #211d19; box-shadow: 0 12px 32px #0008; }
+.timeline .section-heading { display: flex; justify-content: space-between; margin-bottom: 12px; }
+.timeline select { width: 100%; padding: 8px; margin-bottom: 8px; color: #d8cdbb; border: 1px solid #4b433a; background: #201c18; }
+.fork-button { width: 100%; padding: 9px; margin-bottom: 12px; color: #c9aa72; border: 1px dashed #554a3f; background: #2a2520; cursor: pointer; font-size: 11px; }
+.event { display: flex; align-items: center; gap: 12px; width: 100%; padding: 8px; border: 0; background: transparent; color: #b0a28d; text-align: left; cursor: pointer; font-size: 11px; }
+.event b { color: #c4a971; }.event.active { background: #3a3023; }
+.card-reader { width: min(590px, 94vw); max-height: 94vh; padding: 0 12px 12px; border: 0; background: transparent; color: #e9e0d0; overflow: auto; }
+.card-reader::backdrop { background: #090b09bf; backdrop-filter: blur(6px); }
+.card-reader__sheet { position: relative; padding-top: 40px; }
+.card-reader__close { position: absolute; right: 0; top: 0; padding: 8px 14px; border: 0; border-radius: 4px; background: #29271f; color: #e0d5bd; cursor: pointer; font-size: 12px; }
+.card-reader .card { width: 100%; min-height: 560px; padding: 44px 42px; border-radius: 6px; cursor: text; box-shadow: 0 20px 70px #0007; }
+.card-reader .card:hover { transform: none; }
+.card-reader .card__kind { font-size: 12px; }
+.card-reader .card h3 { font-size: 30px; line-height: 1.45; margin: 18px 0 26px; padding-bottom: 22px; }
+.card-reader .card__text { display: block; font-size: 20px; line-height: 1.95; min-height: 0; margin: 0; overflow: visible; }
+.card-reader .card__tags { font-size: 12px; margin-top: 32px; gap: 8px; }
+.card-reader__metadata { margin-top: 12px; padding: 16px 20px; background: #211d19; color: #c9b995; border: 1px solid #51473d; font-size: 12px; }
+.card-reader__metadata summary { cursor: pointer; }.card-reader__metadata dt { margin-top: 16px; color: #c4a971; }.card-reader__metadata dd { margin: 5px 0 0; line-height: 1.8; overflow-wrap: anywhere; }
+.scenario-notes { margin-bottom: 22px; font-size: 12px; color: #b7a991; }.scenario-notes > summary { cursor: pointer; }.scenario-notes > div { margin-top: 16px; padding: 20px; border: 1px solid #51473d; }

@@ -1,24 +1,21 @@
-import { useEffect, useRef, useState } from 'react'
-import type { CardKind, GameState, Scenario, ValidationIssue } from '../domain/types'
-import { CardView } from './CardView'
+import { useState } from 'react'
+import type { CardKind, Scenario, ValidationIssue } from '../domain/types'
+import { CardReader, CardView } from './CardView'
 import { cardKinds } from './cardKinds'
 
 interface Props {
   scenario: Scenario
-  state: GameState
   issues: ValidationIssue[]
 }
 
 const kinds = Object.keys(cardKinds) as CardKind[]
-const zoneLabels = { location: '조사 장소', hand: '개인 손패', public: '공개 테이블', court: '법정', official: '공식 사실' }
-
-export function CardLibrary({ scenario, state, issues }: Props) {
+export function CardLibrary({ scenario, issues }: Props) {
   const [kind, setKind] = useState<CardKind | 'all'>('all')
   const [search, setSearch] = useState('')
   const [selectedId, setSelectedId] = useState<string | null>(null)
-  const dialogRef = useRef<HTMLDialogElement>(null)
+  const [faceDown, setFaceDown] = useState(false)
+  const [revealed, setRevealed] = useState<Set<string>>(new Set())
   const selected = scenario.cards.find((card) => card.id === selectedId)
-  const selectedState = selected && state.cards[selected.id]
   const query = search.trim().toLocaleLowerCase()
   const groups = kinds.map((key) => {
     const all = scenario.cards.filter((card) => card.kind === key)
@@ -32,11 +29,6 @@ export function CardLibrary({ scenario, state, issues }: Props) {
   })
   const visibleGroups = groups.filter((group) => (kind === 'all' || group.kind === kind) && group.cards.length > 0)
   const resultCount = visibleGroups.reduce((count, group) => count + group.cards.length, 0)
-
-  useEffect(() => {
-    if (selectedId) dialogRef.current?.showModal()
-    else dialogRef.current?.close()
-  }, [selectedId])
 
   return (
     <section className="library">
@@ -54,6 +46,13 @@ export function CardLibrary({ scenario, state, issues }: Props) {
         </div>
       </div>
 
+      <details className="scenario-notes">
+        <summary>인물 설정서</summary>
+        <div>{scenario.characters.map((character) => <details className="character-profile" key={character.id}>
+          <summary>{character.name} · {character.title}</summary><p>{character.publicProfile}</p><p><strong>욕망</strong> · {character.desire}</p><p><strong>파멸</strong> · {character.ruin}</p>
+        </details>)}</div>
+      </details>
+
       <nav className="kind-filters" aria-label="카드 종류">
         <button type="button" aria-pressed={kind === 'all'} onClick={() => setKind('all')}>
           전체 <span>{scenario.cards.length}</span>
@@ -64,6 +63,11 @@ export function CardLibrary({ scenario, state, issues }: Props) {
           </button>
         ))}
       </nav>
+      <div className="card-display-controls" aria-label="카드 표시 방식">
+        <button type="button" aria-pressed={!faceDown} onClick={() => { setFaceDown(false); setSelectedId(null) }}>앞면 보기</button>
+        <button type="button" aria-pressed={faceDown} onClick={() => { setFaceDown(true); setRevealed(new Set()); setSelectedId(null) }}>하나씩 열기</button>
+        {faceDown && <><button type="button" onClick={() => { setRevealed(new Set()); setSelectedId(null) }}>모두 덮기</button><span>한 번 눌러 펼치고, 다시 눌러 상세 보기</span></>}
+      </div>
       <p className="library__count" role="status">
         {kind === 'all' ? '전체 종류' : cardKinds[kind].label} · {resultCount}장{query && ` · “${search.trim()}” 검색 결과`}
       </p>
@@ -76,7 +80,10 @@ export function CardLibrary({ scenario, state, issues }: Props) {
             <div><h3 id={`group-${group.kind}`}>{group.label} <span>{group.cards.length}장</span></h3><p>{group.description}</p></div>
           </div>
           <div className="library__grid">
-            {group.cards.map((card) => <CardView key={card.id} card={card} state={state.cards[card.id]} designer onClick={() => setSelectedId(card.id)} />)}
+            {group.cards.map((card, index) => <CardView key={card.id} card={card} faceDown={faceDown && !revealed.has(card.id)} backLabel={`${group.label} 카드 ${index + 1} 펼치기`} onClick={() => {
+              if (faceDown && !revealed.has(card.id)) setRevealed((ids) => new Set([...ids, card.id]))
+              else setSelectedId(card.id)
+            }} />)}
           </div>
         </section>
       ))}
@@ -88,25 +95,20 @@ export function CardLibrary({ scenario, state, issues }: Props) {
         </div>
       )}
 
-      <dialog className="card-detail" ref={dialogRef} onClose={() => setSelectedId(null)} aria-labelledby="card-detail-title">
-        {selected && selectedState && <>
-          <div className="card-detail__header"><h2 id="card-detail-title">{selected.title}</h2><button type="button" onClick={() => setSelectedId(null)}>닫기</button></div>
-          <div className="card-detail__body">
-            <CardView card={selected} state={selectedState} designer />
-            <div>
-              <h3>설계 정보</h3>
+      <CardReader card={selected} onClose={() => setSelectedId(null)}>
+        {selected &&
+            <details className="card-reader__metadata">
+              <summary>설계 정보</summary>
               <dl>
                 <dt>종류</dt><dd>{cardKinds[selected.kind].label}</dd>
                 <dt>시작 위치</dt><dd>{selected.initialOwnerId ? `${scenario.characters.find((character) => character.id === selected.initialOwnerId)?.name}의 손패` : scenario.locations.find((location) => location.id === selected.locationId)?.name ?? '배치되지 않음'}</dd>
-                <dt>현재 위치</dt><dd>{zoneLabels[selectedState.zone]}{selectedState.ownerId && ` · ${scenario.characters.find((character) => character.id === selectedState.ownerId)?.name}`}</dd>
                 <dt>연결된 주장</dt><dd>{scenario.claims.find((claim) => claim.id === selected.claimId)?.text ?? '연결된 주장이 없습니다.'}</dd>
-                <dt>열람 중인 인물</dt><dd>{selectedState.visibleTo.length ? selectedState.visibleTo.map((id) => scenario.characters.find((character) => character.id === id)?.name).join(', ') : '아직 공개되지 않음'}</dd>
+                <dt>테이블 배치</dt><dd>테이블에서 자유롭게 옮깁니다. 시나리오의 시작 위치는 참고 정보입니다.</dd>
                 <dt>원본</dt><dd><code>scenarios/crown-trial/cards.json</code><br /><code>{selected.id}</code></dd>
               </dl>
-            </div>
-          </div>
-        </>}
-      </dialog>
+            </details>
+        }
+      </CardReader>
     </section>
   )
 }
