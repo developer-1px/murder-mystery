@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "type": "object",
+    "required": ["id", "name", "title", "color", "publicProfile", "desire", "ruin"],
+    "additionalProperties": false,
+    "properties": {
+      "id": { "type": "string" }, "name": { "type": "string" }, "title": { "type": "string" },
+      "color": { "type": "string" }, "publicProfile": { "type": "string" },
+      "desire": { "type": "string" }, "ruin": { "type": "string" }
+    }
+  }
+}

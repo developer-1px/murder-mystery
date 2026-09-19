@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "title", "kind", "text", "tags"],
+    "additionalProperties": false,
+    "properties": {
+      "id": { "type": "string" }, "title": { "type": "string" },
+      "kind": { "enum": ["memory", "rumor", "evidence", "testimony"] },
+      "text": { "type": "string" }, "tags": { "type": "array", "items": { "type": "string" } },
+      "locationId": { "type": "string" }, "initialOwnerId": { "type": "string" },
+      "claimId": { "type": "string" }, "unlocks": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}
