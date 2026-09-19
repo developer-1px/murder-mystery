@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { CardView } from './components/CardView'
+import { CardLibrary } from './components/CardLibrary'
 import { canSeeCard, describeEvent, forkBranch, replay } from './domain/engine'
 import type { Branch, Card, GameEvent, Verdict } from './domain/types'
 import { scenario, validationIssues } from './scenario/load'
@@ -18,11 +19,10 @@ export default function App() {
   const [cursor, setCursor] = useState(0)
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null)
   const [selectedLocationId, setSelectedLocationId] = useState(scenario.locations[0].id)
-  const [search, setSearch] = useState('')
-  const [kind, setKind] = useState('all')
   const state = useMemo(() => replay(scenario, branch.events, cursor), [branch, cursor])
-  const selectedCard = scenario.cards.find((card) => card.id === selectedCardId)
+  const selectedCard = scenario.cards.find((card) => card.id === selectedCardId && (canSeeCard(state, card.id, perspective) || (card.locationId === selectedLocationId && state.cards[card.id].zone === 'location')))
   const activeCharacterId = perspective === 'designer' ? scenario.characters[0].id : perspective
+  const activeCharacter = scenario.characters.find((character) => character.id === activeCharacterId)!
   const designer = perspective === 'designer'
 
   const commit = (event: GameEvent) => {
@@ -53,10 +53,6 @@ export default function App() {
   const hand = scenario.cards.filter((card) => state.cards[card.id].zone === 'hand' && state.cards[card.id].ownerId === activeCharacterId && canSeeCard(state, card.id, perspective))
   const publicCards = scenario.cards.filter((card) => ['public', 'court'].includes(state.cards[card.id].zone))
   const locationCards = scenario.cards.filter((card) => card.locationId === selectedLocationId && state.cards[card.id].zone === 'location')
-  const filteredCards = scenario.cards.filter((card) => {
-    const query = search.toLowerCase()
-    return (kind === 'all' || card.kind === kind) && `${card.title} ${card.text} ${card.tags.join(' ')}`.toLowerCase().includes(query)
-  })
 
   return (
     <main className="app-shell">
@@ -133,6 +129,12 @@ export default function App() {
 
             <div className="zone zone--hand">
               <div className="zone__heading"><h3>{designer ? scenario.characters[0].name : scenario.characters.find((item) => item.id === perspective)?.name}의 손패</h3><span>{hand.length}장</span></div>
+              <details className="character-profile" key={activeCharacter.id}>
+                <summary>{activeCharacter.name} 인물 설정서</summary>
+                <p>{activeCharacter.publicProfile}</p>
+                <p><strong>욕망</strong> · {activeCharacter.desire}</p>
+                <p><strong>파멸</strong> · {activeCharacter.ruin}</p>
+              </details>
               <div className="card-row card-row--small">
                 {hand.map((card) => <CardView key={card.id} card={card} state={state.cards[card.id]} compact designer={designer} selected={selectedCardId === card.id} onClick={() => setSelectedCardId(card.id)} />)}
               </div>
@@ -183,14 +185,7 @@ export default function App() {
           </aside>
         </div>
       ) : (
-        <section className="library">
-          <div className="library__header">
-            <div><span className="eyebrow">CARD LIBRARY</span><h2>시나리오의 모든 카드</h2><p>문구, 연결, 현재 상태를 한곳에서 검사합니다.</p></div>
-            <div className="filters"><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="카드, 태그, 내용 검색" /><select value={kind} onChange={(event) => setKind(event.target.value)}><option value="all">모든 유형</option><option value="memory">기억</option><option value="rumor">소문</option><option value="evidence">물증</option><option value="testimony">증언</option></select></div>
-          </div>
-          {validationIssues.length > 0 && <div className="issues">{validationIssues.map((issue) => <p key={`${issue.path}-${issue.message}`}><strong>{issue.path}</strong> {issue.message}</p>)}</div>}
-          <div className="library__grid">{filteredCards.map((card) => <CardView key={card.id} card={card} state={state.cards[card.id]} designer onClick={() => setSelectedCardId(card.id)} />)}</div>
-        </section>
+        <CardLibrary scenario={scenario} state={state} issues={validationIssues} />
       )}
     </main>
   )
