@@ -1,0 +1,5 @@
+[
+  { "id": "study", "name": "왕세자의 서재", "description": "사건이 일어난 밀폐된 서재. 책상과 벽난로가 흐트러져 있다.", "cardIds": ["evidence.guard-log", "evidence.broken-seal", "evidence.second-glass"] },
+  { "id": "apothecary", "name": "왕실 약제실", "description": "왕실 가족의 처방전과 약품 장부가 보관된 곳.", "cardIds": ["evidence.physician-log", "evidence.belladonna-ledger", "rumor.apothecary-visit"] },
+  { "id": "west-corridor", "name": "서쪽 회랑", "description": "서재와 경비 초소를 잇는 좁은 회랑.", "cardIds": ["testimony.page-sighting", "evidence.mud-print"] }
+]

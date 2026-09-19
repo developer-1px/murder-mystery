@@ -1,0 +1,13 @@
+[
+  { "id": "memory.queen-poison", "title": "감춰둔 약병", "kind": "memory", "text": "당신은 아드리안의 술에 벨라도나를 넣도록 지시했다. 하지만 그 양이 치명적이었는지는 모른다.", "tags": ["왕비", "독", "비밀"], "initialOwnerId": "queen", "claimId": "claim.queen-poison" },
+  { "id": "memory.rowen-order", "title": "경비 철수 명령", "kind": "memory", "text": "22시, 아드리안은 직접 서재 앞 경비를 물리라고 명령했다. 당신은 그 기록을 지웠다.", "tags": ["로웬", "경비", "비밀"], "initialOwnerId": "rowen", "claimId": "claim.rowen-perjury" },
+  { "id": "memory.isabel-draught", "title": "잠들지 못한 밤", "kind": "memory", "text": "당신은 남편의 술에 수면제를 넣었다. 대화를 피하려 했을 뿐 죽일 생각은 없었다.", "tags": ["이사벨", "약물", "비밀"], "initialOwnerId": "isabel" },
+  { "id": "evidence.guard-log", "title": "조작된 경비일지", "kind": "evidence", "text": "22시 이후 서재 경비 기록이 통째로 비어 있다. 잉크 자국은 누군가 기록을 긁어냈음을 보여준다.", "tags": ["경비", "로웬", "시간"], "locationId": "study", "claimId": "claim.rowen-perjury" },
+  { "id": "evidence.broken-seal", "title": "부서진 왕실 인장", "kind": "evidence", "text": "벽난로 아래에서 유언장에 쓰이는 왕실 인장 조각이 발견되었다.", "tags": ["유언장", "베네딕트", "왕위"], "locationId": "study" },
+  { "id": "evidence.second-glass", "title": "두 번째 술잔", "kind": "evidence", "text": "책상 아래 잔에는 아직 마르지 않은 포도주가 남았다. 22시 30분 이후 사용된 잔이다.", "tags": ["시간", "생존", "서재"], "locationId": "study", "claimId": "claim.alive-2218" },
+  { "id": "evidence.physician-log", "title": "왕실 주치의 진료일지", "kind": "evidence", "text": "겨울 14일 — 왕세자 불면증 호소.\n겨울 15일 — 왕세자비에게 수면제 처방.\n겨울 16일 — 선왕의 진료기록 열람 요청.", "tags": ["약물", "이사벨", "선왕"], "locationId": "apothecary" },
+  { "id": "evidence.belladonna-ledger", "title": "벨라도나 구입장부", "kind": "evidence", "text": "왕비의 시녀가 벨라도나를 구입했다. 시신에서 검출된 독과는 농도가 다르다.", "tags": ["왕비", "독", "장부"], "locationId": "apothecary", "claimId": "claim.queen-poison" },
+  { "id": "rumor.apothecary-visit", "title": "약제사의 소문", "kind": "rumor", "text": "사건 사흘 전, 왕비의 시녀가 폐점 뒤 약제실을 찾았다고 한다.", "tags": ["왕비", "소문", "약제실"], "locationId": "apothecary" },
+  { "id": "testimony.page-sighting", "title": "시종의 목격", "kind": "testimony", "text": "시종은 22시 18분에 서재 안에서 왕세자의 목소리를 들었다고 증언한다.", "tags": ["목격", "시간", "생존"], "locationId": "west-corridor", "claimId": "claim.alive-2218" },
+  { "id": "evidence.mud-print", "title": "진흙 묻은 군화 자국", "kind": "evidence", "text": "서쪽 회랑 창가에 대신급 의전 군화와 일치하는 진흙 자국이 남아 있다.", "tags": ["베네딕트", "회랑", "동선"], "locationId": "west-corridor" }
+]

@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap');
+
+:root { color: #e9e0d0; background: #171411; font-family: 'Noto Sans KR', sans-serif; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 1180px; min-height: 100vh; background: radial-gradient(circle at 50% 0%, #302820 0, #171411 43%, #100e0c 100%); }
+button, input, select { font: inherit; }
+button { color: inherit; }
+.app-shell { min-height: 100vh; }
+.topbar { height: 86px; padding: 0 24px 0 28px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #494038; background: rgba(22, 19, 16, .95); }
+.topbar h1 { margin: 2px 0 0; font: 700 26px 'Gowun Batang', serif; letter-spacing: .08em; }
+.eyebrow { color: #b79b69; letter-spacing: .18em; font-size: 10px; font-weight: 700; }
+.topbar__actions { display: flex; align-items: center; gap: 20px; }
+.health { display: flex; gap: 8px; align-items: center; color: #b9c3a4; font-size: 12px; }
+.health i { width: 7px; height: 7px; border-radius: 50%; background: #708657; box-shadow: 0 0 10px #708657; }
+.health--error { color: #d98a80; }.health--error i { background: #bd5248; }
+.workspace-tabs { display: flex; padding: 4px; border: 1px solid #4a4138; background: #211d19; }
+.workspace-tabs button { padding: 9px 15px; border: 0; background: transparent; color: #948a7d; cursor: pointer; font-size: 12px; }
+.workspace-tabs button.active { color: #1e1a16; background: #c4a971; font-weight: 700; }
+.workbench { min-height: calc(100vh - 86px); display: grid; grid-template-columns: 228px minmax(650px, 1fr) 300px; }
+.sidebar { background: rgba(25, 22, 19, .82); }
+.sidebar--left { border-right: 1px solid #3f3730; }.sidebar--right { border-left: 1px solid #3f3730; }
+.sidebar section { padding: 20px 16px; border-bottom: 1px solid #3a332d; }
+.section-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 13px; text-transform: uppercase; font-size: 11px; color: #c4a971; letter-spacing: .12em; }
+.section-heading small { color: #736b62; font-size: 9px; }
+.character { --character: #9b845f; display: flex; align-items: center; width: 100%; gap: 10px; border: 1px solid transparent; border-left: 2px solid transparent; background: transparent; padding: 8px; cursor: pointer; text-align: left; }
+.character:hover, .character.active { background: #2e2924; border-color: #4a423a; border-left-color: var(--character); }
+.character__sigil { display: grid; place-items: center; width: 29px; height: 29px; border-radius: 50%; border: 1px solid var(--character); color: var(--character); font-family: 'Gowun Batang'; }
+.character span:last-child { display: flex; flex-direction: column; }.character strong { font: 700 13px 'Gowun Batang'; }.character small { color: #847b71; font-size: 10px; }
+.character--designer { margin-bottom: 9px; --character: #c4a971; }
+.location-list { display: grid; gap: 7px; }.location-list button { padding: 10px; text-align: left; border: 1px solid #3d3630; background: #211d1a; cursor: pointer; }
+.location-list button.active { border-color: #9d8154; background: #302a23; }.location-list strong, .location-list small { display: block; }.location-list strong { font: 700 12px 'Gowun Batang'; }.location-list small { margin-top: 4px; color: #857d73; font-size: 9px; line-height: 1.5; }
+.tabletop { padding: 26px 28px 34px; overflow: auto; background-image: linear-gradient(rgba(255,255,255,.013) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.013) 1px, transparent 1px); background-size: 28px 28px; }
+.tabletop__header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 18px; border-bottom: 1px solid #4b4035; }.tabletop__header h2 { margin: 5px 0 0; font: 700 24px 'Gowun Batang'; }
+.round-badge { display: flex; gap: 10px; align-items: center; color: #958979; font-size: 9px; text-transform: uppercase; letter-spacing: .08em; }.round-badge strong { color: #c5aa75; font: 32px 'Gowun Batang'; }
+.zone { margin-top: 24px; }.zone__heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }.zone__heading h3 { margin: 0; font: 700 15px 'Gowun Batang'; }.zone__heading span { color: #7d746b; font-size: 10px; }
+.zone--public { padding: 18px; border: 1px solid #55483b; background: rgba(52, 43, 35, .32); }.zone--hand { padding: 18px; border: 1px solid #3b4850; background: rgba(29, 38, 43, .34); }
+.card-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 13px; }.card-row--small { grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); }
+.card { position: relative; min-height: 238px; padding: 23px 16px 15px; border: 1px solid #6b5944; background: linear-gradient(145deg, #eee4d0, #cbbb9f); color: #282018; cursor: pointer; text-align: left; box-shadow: 0 7px 18px rgba(0,0,0,.28); transition: transform .15s ease, box-shadow .15s ease; overflow: hidden; }
+.card::before { content: ''; position: absolute; inset: 6px; border: 1px solid rgba(86, 62, 36, .25); pointer-events: none; }.card:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(0,0,0,.38); }.card--selected { outline: 2px solid #cfad68; outline-offset: 2px; }
+.card--memory { background: linear-gradient(145deg, #d9d3db, #aaa1af); }.card--rumor { background: linear-gradient(145deg, #d5d7c5, #a5a987); }.card--testimony { background: linear-gradient(145deg, #d7c6b6, #b18d72); }
+.card__kind { position: relative; color: #745e43; font-size: 9px; letter-spacing: .18em; font-weight: 700; }.card h3 { position: relative; margin: 9px 0 12px; padding-bottom: 10px; border-bottom: 1px solid rgba(69,48,29,.25); font: 700 17px 'Gowun Batang'; }.card__text { position: relative; min-height: 85px; white-space: pre-line; font: 400 12px/1.7 'Gowun Batang'; }.card__tags { position: relative; display: flex; flex-wrap: wrap; gap: 4px; margin-top: 12px; font-size: 9px; color: #795f44; }.card__meta { position: relative; display: flex; flex-direction: column; margin-top: 10px; padding-top: 8px; border-top: 1px dashed rgba(50,39,25,.3); font-size: 8px; opacity: .8; }.card__meta code { overflow: hidden; text-overflow: ellipsis; }
+.card--compact { min-height: 128px; padding-top: 18px; }.card--compact h3 { font-size: 14px; }.empty { color: #766e65; font: 12px/1.6 'Gowun Batang'; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 14px; padding-top: 13px; border-top: 1px solid #52463a; }.facts > span { color: #c4a971; font-size: 10px; letter-spacing: .12em; }.facts strong { padding: 5px 8px; background: #231f1a; color: #d8c8a6; font: 11px 'Gowun Batang'; }.facts small { color: #726a61; }
+.inspector .card { width: 100%; }.action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 12px; }.action-grid button, .fork-button, .verdicts button { padding: 9px; border: 1px solid #554a3f; background: #2a2520; cursor: pointer; font-size: 10px; }.action-grid button.primary { grid-column: 1/-1; color: #211c17; background: #c2a66f; font-weight: 700; }.select-label { display: grid; gap: 5px; margin-top: 10px; color: #8d8378; font-size: 10px; }.select-label select, .timeline select { width: 100%; padding: 8px; color: #d8cdbb; border: 1px solid #4b433a; background: #201c18; }
+.verdicts { margin-top: 12px; padding: 11px; border: 1px solid #705b43; background: #221d18; }.verdicts span { display: block; margin-bottom: 9px; font: 11px/1.5 'Gowun Batang'; }.verdicts div { display: grid; grid-template-columns: repeat(3,1fr); gap: 4px; }
+.timeline { max-height: 46vh; overflow: auto; }.timeline select { margin-bottom: 7px; }.fork-button { width: 100%; margin-bottom: 10px; color: #c9aa72; border-style: dashed; }.event { display: grid; grid-template-columns: 24px 1fr; gap: 8px; align-items: start; width: 100%; padding: 8px 5px; border: 0; border-left: 1px solid #4b4136; background: transparent; text-align: left; cursor: pointer; }.event b { display: grid; place-items: center; width: 20px; height: 20px; margin-left: -15px; border-radius: 50%; background: #2b2621; color: #9b8a73; font-size: 9px; }.event span { color: #999087; font-size: 9px; line-height: 1.5; }.event.active { background: #302920; }.event.active b { background: #b99b63; color: #211b15; }.event em { display: block; color: #c57768; font-style: normal; }
+.library { padding: 42px; max-width: 1500px; margin: auto; }.library__header { display: flex; align-items: end; justify-content: space-between; margin-bottom: 30px; }.library__header h2 { margin: 7px 0; font: 700 30px 'Gowun Batang'; }.library__header p { margin: 0; color: #80776e; }.filters { display: flex; gap: 8px; }.filters input, .filters select { padding: 11px; border: 1px solid #51473d; background: #201c18; color: #ded3c1; }.filters input { width: 270px; }.library__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 18px; }.issues { margin-bottom: 20px; padding: 12px 18px; border: 1px solid #7c4e45; background: #3a2521; }.issues p { margin: 4px 0; font-size: 11px; }.issues strong { color: #e0a597; margin-right: 8px; }
+@media (max-width: 1250px) { .workbench { grid-template-columns: 210px minmax(620px,1fr) 280px; }.tabletop { padding-inline: 18px; } }

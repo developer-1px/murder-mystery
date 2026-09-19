@@ -1,0 +1,8 @@
+[
+  { "id": "queen", "name": "엘레노라", "title": "왕비", "color": "#A94B5C", "publicProfile": "왕세자의 계모이자 왕실의 실질적 안주인.", "desire": "카시안의 왕위 계승을 확정하라.", "ruin": "자신의 독살 시도가 공식 사실이 된다." },
+  { "id": "cassian", "name": "카시안", "title": "둘째 왕자", "color": "#B7843D", "publicProfile": "왕세자의 이복동생이자 유력한 후계자.", "desire": "자신의 계승권을 확보하라.", "ruin": "왕위 찬탈 공모가 인정된다." },
+  { "id": "isabel", "name": "이사벨", "title": "왕세자비", "color": "#5B779A", "publicProfile": "죽은 왕세자 아드리안의 아내.", "desire": "태아와 자신의 왕실 지위를 지켜라.", "ruin": "수면제 투여가 살인 의도로 판결된다." },
+  { "id": "seraphine", "name": "세라핀", "title": "외국 공주", "color": "#7C5A91", "publicProfile": "동맹 혼인을 위해 머물던 외국 왕족.", "desire": "혼인 조약에서 자신의 운명을 되찾아라.", "ruin": "왕국과 조국 모두에게 버림받는다." },
+  { "id": "benedict", "name": "베네딕트", "title": "왕실 재상", "color": "#4F725F", "publicProfile": "삼대에 걸쳐 왕실을 보좌한 재상.", "desire": "왕실의 정통성과 비밀을 지켜라.", "ruin": "왕실 혈통이 전면 공개되어 정통성이 무너진다." },
+  { "id": "rowen", "name": "로웬", "title": "근위대장", "color": "#6C6F75", "publicProfile": "15년 동안 왕세자의 호위를 담당한 근위대장.", "desire": "실제 살인 책임자를 법정에 세워라.", "ruin": "경비 철수와 기록 조작이 살인 공모로 인정된다." }
+]
