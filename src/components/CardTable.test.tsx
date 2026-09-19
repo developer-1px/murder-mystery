@@ -5,6 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import type { CardPile } from '../domain/table'
 import type { Scenario } from '../domain/types'
 import { CardTable } from './CardTable'
+import App from '../App'
 
 const scenario: Scenario = {
   meta: { id: 'test', title: '테이블', version: '1', round: 1 }, characters: [], locations: [], claims: [],
@@ -76,15 +77,47 @@ afterEach(async () => {
 })
 
 describe('테이블 실제 입력 경로', () => {
-  it('클릭은 선택만 하며 뒷면 더블클릭도 비밀을 노출하지 않는다', async () => {
+  it('뒷면 클릭은 위 한 장만 앞면으로 가져와 손패에 놓고 크게 보여준다', async () => {
     await click(card())
-    expect(card().getAttribute('aria-pressed')).toBe('true')
     expect(card().classList.contains('card--back')).toBe(true)
-    expect(change).not.toHaveBeenCalled()
-    await emit(card(), new MouseEvent('dblclick', { bubbles: true }))
+    expect(change).toHaveBeenCalledOnce()
+    const next = change.mock.calls[0][0]
+    expect(next.find((pile) => pile.id === 'deck')!.cards).toHaveLength(2)
+    expect(next.at(-1)).toMatchObject({ y: 100, cards: [{ cardId: 'c', faceUp: true }] })
     const reader = query('.card-reader')
-    expect(reader.getAttribute('aria-label')).toBe('뒷면 카드 크게 보기')
-    expect(reader.textContent).not.toContain('비밀')
+    expect(reader.getAttribute('aria-label')).toBe('비밀 제목 c 크게 보기')
+    expect(reader.textContent).toContain('비밀 본문 c')
+  })
+
+  it('2/3 키는 후보만 보여주고 클릭한 한 장만 확정한다', async () => {
+    await act(() => card().focus())
+    await key('Digit3', { key: '3' })
+    expect(host.querySelectorAll('.card-choice .card')).toHaveLength(3)
+    expect(query('.card-choice').textContent).toContain('비밀 본문 b')
+    expect(change).not.toHaveBeenCalled()
+    await emit(query('.card-choice header button'), new MouseEvent('click', { bubbles: true }))
+    expect(query('.card-choice')).toBeNull()
+    expect(change).not.toHaveBeenCalled()
+    await key('Digit2', { key: '2' })
+    expect(host.querySelectorAll('.card-choice .card')).toHaveLength(2)
+    await emit(query('.card-choice .card:last-child'), new MouseEvent('click', { bubbles: true }))
+    expect(query('.card-choice')).toBeNull()
+    expect(change).toHaveBeenCalledOnce()
+    expect(change.mock.calls[0][0].at(-1)!.cards).toEqual([{ cardId: 'b', faceUp: true }])
+    expect(change.mock.calls[0][0][0].cards).toEqual([{ cardId: 'a', faceUp: false }, { cardId: 'c', faceUp: false }])
+  })
+
+  it('선택 취소는 기록을 만들지 않고, 마지막 한 장에도 3 키가 안전하게 동작한다', async () => {
+    await act(() => card().focus())
+    await key('Digit3', { key: '3' })
+    await emit(query('.card-choice'), new Event('cancel', { cancelable: true }))
+    expect(query('.card-choice')).toBeNull()
+    expect(change).not.toHaveBeenCalled()
+    await act(() => card('single').focus())
+    await key('Digit3', { key: '3' })
+    expect(change).toHaveBeenCalledOnce()
+    expect(change.mock.calls[0][0].some((pile) => pile.id === 'single')).toBe(false)
+    expect(change.mock.calls[0][0].at(-1)!.cards).toEqual([{ cardId: 'd', faceUp: true }])
   })
 
   it('Space/Alt 유지 확대는 현재 면만 보이며 마지막 키 해제·blur에 닫힌다', async () => {
@@ -105,7 +138,7 @@ describe('테이블 실제 입력 경로', () => {
   })
 
   it('다중 선택 중 확대는 선택 마지막이 아니라 가리킨 카드를 보여준다', async () => {
-    await click(card())
+    await click(card(), true)
     await click(card('single'), true)
     await act(() => card().focus())
     await key('Space')
@@ -146,8 +179,8 @@ describe('테이블 실제 입력 경로', () => {
     expect(next.flatMap((pile) => pile.cards).map((item) => item.cardId).sort()).toEqual(['a', 'b', 'c', 'd'])
   })
 
-  it('선택한 덱을 드래그하면 전체가 움직이고 숫자로 꺼낸 뒤 G가 새 선택에 적용된다', async () => {
-    await click(card())
+  it('Shift로 선택한 덱을 드래그하면 전체가 움직인다', async () => {
+    await click(card(), true)
     expect(card().getAttribute('aria-pressed')).toBe('true')
     const move = change
     // jsdom은 초점이 있는 DOM 순서 변경에도 window blur를 발생시킨다.
@@ -162,16 +195,10 @@ describe('테이블 실제 입력 경로', () => {
     const moved = move.mock.calls[0][0] as CardPile[]
     expect(moved).toHaveLength(2)
     expect(moved.find((pile) => pile.id === 'deck')!.cards).toHaveLength(3)
-    await act(() => card().focus())
-    await key('Digit2', { key: '2' })
-    expect(host.querySelectorAll('[data-pile-id]')).toHaveLength(4)
-    expect(document.activeElement?.closest('[data-pile-id]')?.getAttribute('data-pile-id')).not.toBe('deck')
-    await key('KeyG', { key: 'g' })
-    expect(host.querySelectorAll('[data-pile-id]')).toHaveLength(3)
   })
 
   it('텍스트 입력·한글 조합·키 반복은 카드 조작을 일으키지 않는다', async () => {
-    await click(card())
+    await click(card(), true)
     await act(() => query('input').focus())
     await key('KeyF', { key: 'f' })
     await key('KeyZ', { ctrlKey: true })
@@ -183,7 +210,7 @@ describe('테이블 실제 입력 경로', () => {
   })
 
   it('키보드 메뉴는 첫 항목에 초점을 두고 방향키·Escape 후 카드로 돌아온다', async () => {
-    await click(card())
+    await click(card(), true)
     await key('F10', { key: 'F10', shiftKey: true })
     expect(document.activeElement?.getAttribute('role')).toBe('menuitem')
     expect(document.activeElement?.textContent).toContain('크게 읽기')
@@ -192,5 +219,24 @@ describe('테이블 실제 입력 경로', () => {
     await key('Escape')
     expect(query('[role="menu"]')).toBeNull()
     expect(document.activeElement).toBe(card())
+  })
+
+  it('실제 앱 기록에서 가져오기를 한 번에 되돌리고 다시 할 수 있다', async () => {
+    await act(() => root.render(<App />))
+    Object.assign(query('.table-surface'), { hasPointerCapture: () => false })
+    const total = () => [...host.querySelectorAll('.table-piece__label b')].reduce((sum, item) => sum + parseInt(item.textContent!), 0)
+    const before = total()
+    await click(query('[data-pile-id] .card'))
+    expect(query('.table-history summary').textContent).toBe('기록 · 1')
+    expect(total()).toBe(before)
+    expect(query('.table-piece:last-of-type')?.style.top).toBe('100%')
+    await emit(query('.card-reader__close'), new MouseEvent('click', { bubbles: true }))
+    await key('KeyZ', { key: 'z', metaKey: true })
+    expect(query('.table-history summary').textContent).toBe('기록 · 0')
+    expect(host.querySelectorAll('[data-pile-id]')).toHaveLength(4)
+    await key('KeyZ', { key: 'z', metaKey: true, shiftKey: true })
+    expect(query('.table-history summary').textContent).toBe('기록 · 1')
+    expect(host.querySelectorAll('[data-pile-id]')).toHaveLength(5)
+    expect(total()).toBe(before)
   })
 })

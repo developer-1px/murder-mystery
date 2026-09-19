@@ -44,6 +44,25 @@ export function drawCards(piles: CardPile[], id: string, newIds: string[]): Card
   ]
 }
 
+export function cardCandidates(piles: CardPile[], id: string, count: number): TableCard[] {
+  if (!Number.isInteger(count) || count < 1 || count > 3) return []
+  return piles.find((pile) => pile.id === id)?.cards.slice(-count).reverse() ?? []
+}
+
+// 손패는 테이블 아래의 배치일 뿐, 소유권이나 공개 권한을 의미하지 않는다.
+export function takeCandidate(piles: CardPile[], sourceId: string, count: number, cardId: string, newId: string): CardPile[] {
+  const candidates = cardCandidates(piles, sourceId, count)
+  if (!candidates.some((card) => card.cardId === cardId) || piles.some((pile) => pile.id === newId)) return piles
+  const source = piles.find((pile) => pile.id === sourceId)!
+  const shownIds = new Set(candidates.map((card) => card.cardId))
+  const remaining = source.cards.filter((card) => card.cardId !== cardId).map((card) => shownIds.has(card.cardId) ? { ...card, faceUp: false } : card)
+  const handCount = piles.filter((pile) => pile.y >= 90).length
+  return [
+    ...piles.filter((pile) => pile.id !== sourceId || remaining.length > 0).map((pile) => pile.id === sourceId ? { ...pile, cards: remaining } : pile),
+    { id: newId, cards: [{ cardId, faceUp: true }], x: 4 + (handCount % 7) * 15, y: 100 },
+  ]
+}
+
 export function flipPile(piles: CardPile[], id: string): CardPile[] {
   return piles.map((pile) => pile.id === id ? { ...pile, cards: [...pile.cards].reverse().map((card) => ({ ...card, faceUp: !card.faceUp })) } : pile)
 }

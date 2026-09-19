@@ -1,10 +1,11 @@
 import { useEffect, useLayoutEffect, useRef, useState, type PointerEvent } from 'react'
 import type { Scenario } from '../domain/types'
-import { coverPile, drawCards, flipPile, movePiles, shufflePile, stackSelected, type CardPile } from '../domain/table'
+import { cardCandidates, coverPile, drawCards, flipPile, movePiles, shufflePile, stackSelected, takeCandidate, type CardPile } from '../domain/table'
 import { CardReader, CardView } from './CardView'
 import { cardKinds } from './cardKinds'
 import { tableHelp, tableShortcut } from './tableInput'
 import { TableContextMenu, type TableMenuItem } from './TableContextMenu'
+import { CardChoice } from './CardChoice'
 
 interface Props {
   scenario: Scenario
@@ -39,6 +40,7 @@ export function CardTable({ scenario, piles, onChange, onUndo, onRedo, canUndo, 
   const [box, setBox] = useState<{ x: number; y: number; width: number; height: number } | null>(null)
   const [menu, setMenu] = useState<{ x: number; y: number; ids: string[] } | null>(null)
   const [helpOpen, setHelpOpen] = useState(false)
+  const [choice, setChoice] = useState<{ sourceId: string; count: number; base: CardPile[] } | null>(null)
   const surfaceRef = useRef<HTMLDivElement>(null)
   const helpRef = useRef<HTMLDialogElement>(null)
   const pieces = useRef(new Map<string, HTMLDivElement>())
@@ -52,6 +54,7 @@ export function CardTable({ scenario, piles, onChange, onUndo, onRedo, canUndo, 
   const readingPile = piles.find((pile) => pile.id === reading?.id)
   const readingTop = readingPile?.cards.at(-1)
   const readingCard = scenario.cards.find((card) => card.id === readingTop?.cardId)
+  const candidates = choice?.base === piles ? cardCandidates(piles, choice.sourceId, choice.count) : []
 
   const nameOf = (pile: CardPile) => {
     const kinds = new Set(pile.cards.map((item) => scenario.cards.find((card) => card.id === item.cardId)!.kind))
@@ -84,14 +87,33 @@ export function CardTable({ scenario, piles, onChange, onUndo, onRedo, canUndo, 
     if (!held) heldKeys.current.clear()
   }
 
-  const draw = (id: string, count = 1) => {
-    const source = piles.find((pile) => pile.id === id)
-    if (!source || source.cards.length < 2) return
-    const ids = Array.from({ length: Math.min(count, source.cards.length) }, () => crypto.randomUUID())
-    onChange(drawCards(piles, id, ids), ids.length + '장 꺼내기')
-    setSelectedIds(ids)
+  const take = (sourceId: string, count: number, cardId: string) => {
+    const id = crypto.randomUUID()
+    const next = takeCandidate(piles, sourceId, count, cardId, id)
+    if (next === piles) return
+    setChoice(null)
+    onChange(next, count === 1 ? '펼쳐서 손패로 가져오기' : count + '장 중 한 장 가져오기')
+    setSelectedIds([id])
     hoveredId.current = null
-    pendingFocus.current = ids.at(-1)!
+    pendingFocus.current = id
+    inspect(id)
+  }
+
+  const reveal = (id: string, count = 1) => {
+    const cards = cardCandidates(piles, id, count)
+    if (!cards.length) return
+    if (cards.length === 1) take(id, 1, cards[0].cardId)
+    else {
+      setReading(null)
+      heldKeys.current.clear()
+      setChoice({ sourceId: id, count, base: piles })
+    }
+  }
+
+  const cancelChoice = () => {
+    const id = choice?.sourceId
+    setChoice(null)
+    focusPile(id)
   }
 
   const changeSelected = (ids: string[], operation: (piles: CardPile[], id: string) => CardPile[], label: string) => {
@@ -119,7 +141,9 @@ export function CardTable({ scenario, piles, onChange, onUndo, onRedo, canUndo, 
     return [
       { label: '크게 읽기', shortcut: '더블클릭', disabled: ids.length !== 1, run: () => inspect(ids[0]) },
       { label: '뒤집기', shortcut: 'F', disabled: !ids.length, run: () => changeSelected(ids, flipPile, '뒤집기') },
-      { label: '한 장 꺼내기', shortcut: '1', disabled: !deck, run: () => draw(ids[0]) },
+      { label: '한 장 펼쳐 가져오기', shortcut: '1', disabled: ids.length !== 1, run: () => reveal(ids[0]) },
+      { label: '2장 중 한 장 고르기', shortcut: '2', disabled: !deck, run: () => reveal(ids[0], 2) },
+      { label: '3장 중 한 장 고르기', shortcut: '3', disabled: !deck, run: () => reveal(ids[0], 3) },
       { label: '덱 섞기', shortcut: 'R', disabled: !ids.some((id) => piles.find((pile) => pile.id === id)!.cards.length > 1), run: () => changeSelected(ids, shufflePile, '덱 섞기') },
       { label: '선택한 카드 쌓기', shortcut: 'G', disabled: ids.length < 2, run: () => group(ids) },
       { label: '모두 뒷면으로', disabled: !ids.length, run: () => changeSelected(ids, coverPile, '모두 덮기') },
@@ -271,7 +295,7 @@ export function CardTable({ scenario, piles, onChange, onUndo, onRedo, canUndo, 
       else if (action === 'flip') changeSelected(ids, flipPile, '뒤집기')
       else if (action === 'shuffle') changeSelected(ids.filter((id) => piles.find((pile) => pile.id === id)!.cards.length > 1), shufflePile, '덱 섞기')
       else if (action === 'group') group(ids)
-      else if (typeof action === 'number' && ids.length === 1) draw(ids[0], action)
+      else if (typeof action === 'number' && ids.length === 1) reveal(ids[0], action)
       else if (action === 'menu') {
         const rect = pieces.current.get(ids.at(-1) ?? '')?.getBoundingClientRect() ?? surfaceRef.current!.getBoundingClientRect()
         openMenu(ids, rect.left + Math.min(rect.width / 2, 100), rect.top + 30)
@@ -303,7 +327,11 @@ export function CardTable({ scenario, piles, onChange, onUndo, onRedo, canUndo, 
   return (
     <section className="free-table">
       <div className="table-tools">
-        <span>{selection.length ? selection.length + '개 선택' : '클릭으로 선택 · 덱에서 드래그하여 한 장 꺼내기'}</span>
+        <span>{selection.length ? selection.length + '개 선택' : '뒷면 클릭으로 펼쳐 가져오기 · Shift+클릭으로 선택'}</span>
+        <div className="table-reveal-tools" aria-label="펼쳐 보고 가져오기">
+          {[1, 2, 3].map((count) => <button key={count} type="button" disabled={selection.length !== 1} aria-label={count === 1 ? '한 장 펼쳐 가져오기' : count + '장 중 한 장 고르기'}
+            onClick={() => reveal(selection[0], count)}><kbd>{count}</kbd><span>{count === 1 ? '한 장 가져오기' : count + '장 중 고르기'}</span></button>)}
+        </div>
         {selection.length > 0 && <button type="button" aria-haspopup="menu" onClick={(event) => {
           const rect = event.currentTarget.getBoundingClientRect()
           openMenu(selection, rect.left, rect.bottom + 6)
@@ -320,6 +348,7 @@ export function CardTable({ scenario, piles, onChange, onUndo, onRedo, canUndo, 
         }}
         onClickCapture={(event) => { if (suppressClick.current) { event.stopPropagation(); suppressClick.current = false } }}>
         <div className="table-watermark" aria-hidden="true"><span>♛</span><strong>왕관재판</strong><small>THE CROWN TRIAL</small></div>
+        <div className="table-hand-area" aria-label="내 손패 영역"><span>내 손패 <small>가져온 카드도 자유롭게 옮길 수 있습니다</small></span></div>
         {shown.map((pile, index) => {
           const top = pile.cards.at(-1)!
           const card = scenario.cards.find((item) => item.id === top.cardId)!
@@ -333,15 +362,21 @@ export function CardTable({ scenario, piles, onChange, onUndo, onRedo, canUndo, 
             onDoubleClick={() => { if (!suppressClick.current) inspect(pile.id) }}
             onContextMenu={(event) => { event.preventDefault(); openMenu(selection.includes(pile.id) ? selection : [pile.id], event.clientX, event.clientY) }}>
             <div className="table-piece__label"><span>{nameOf(pile)}</span><b>{pile.cards.length}장</b></div>
-            <div className="table-piece__cards"><CardView card={card} selected={selectedIds.includes(pile.id)} faceDown={!top.faceUp} backLabel={label + ' 선택'}
-              onClick={(event) => { if (event.detail === 0) setSelectedIds(event.shiftKey ? selection.includes(pile.id) ? selection.filter((id) => id !== pile.id) : [...selection, pile.id] : [pile.id]) }} /></div>
+            <div className="table-piece__cards"><CardView card={card} selected={selectedIds.includes(pile.id)} faceDown={!top.faceUp} backLabel={label + ' 펼쳐 가져오기'}
+              onClick={(event) => {
+                if (event.detail > 1) return
+                if (!event.shiftKey && !top.faceUp) reveal(pile.id)
+                else if (event.detail === 0) setSelectedIds(event.shiftKey ? selection.includes(pile.id) ? selection.filter((id) => id !== pile.id) : [...selection, pile.id] : [pile.id])
+              }} /></div>
           </div>
         })}
         {box && <div className="table-selection-box" style={{ left: box.x, top: box.y, width: box.width, height: box.height }} />}
-        <p className="table-surface__hint" aria-live="polite">{preview?.targetId ? '놓으면 이 묶음 위에 쌓입니다' : preview ? '놓아 배치 · Esc로 취소' : '우클릭 메뉴 · F 뒤집기 · R 섞기 · Space 잠깐 확대 · 더블클릭 크게 읽기'}</p>
+        <p className="table-surface__hint" aria-live="polite">{preview?.targetId ? '놓으면 이 묶음 위에 쌓입니다' : preview ? '놓아 배치 · Esc로 취소' : '1 한 장 가져오기 · 2 / 3 펼쳐 보고 고르기 · F 뒤집기 · Space 확대 · 우클릭 메뉴'}</p>
       </div>
       {menu && <TableContextMenu x={menu.x} y={menu.y} items={menuItems(menu.ids)} onClose={closeMenu} />}
       <CardReader card={reading?.held ? undefined : readingCard} faceDown={!readingTop?.faceUp} onClose={() => setReading(null)} />
+      {choice && candidates.length > 0 && <CardChoice cards={candidates.map((item) => scenario.cards.find((card) => card.id === item.cardId)!)}
+        onPick={(id) => take(choice.sourceId, choice.count, id)} onCancel={cancelChoice} />}
       {reading?.held && readingCard && <div className="card-peek" role="region" aria-label="카드 잠깐 확대">
         <div><CardView card={readingCard} faceDown={!readingTop?.faceUp} /><p>키를 놓으면 테이블로 돌아갑니다</p></div>
       </div>}

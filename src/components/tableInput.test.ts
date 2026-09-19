@@ -21,6 +21,7 @@ describe('테이블 단축키', () => {
     expect(tableShortcut({ code: 'AltLeft', key: 'Alt', altKey: true })).toBe('inspect')
     expect(tableShortcut({ code: 'KeyF', key: 'ㄹ' })).toBe('flip')
     expect(tableShortcut({ code: 'Digit3', key: '3' })).toBe(3)
+    expect(tableShortcut({ code: 'Digit4', key: '4' })).toBeNull()
     expect(tableShortcut({ code: 'F10', key: 'F10', shiftKey: true })).toBe('menu')
   })
 })

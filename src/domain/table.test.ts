@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { coverPile, drawCard, drawCards, flipPile, movePile, movePiles, shufflePile, stackPiles, stackSelected, type CardPile } from './table'
+import { cardCandidates, coverPile, drawCard, drawCards, flipPile, movePile, movePiles, shufflePile, stackPiles, stackSelected, takeCandidate, type CardPile } from './table'
 
 const initial = (): CardPile[] => [
   { id: 'deck', x: 10, y: 10, cards: [{ cardId: 'a', faceUp: false }, { cardId: 'b', faceUp: false }, { cardId: 'c', faceUp: false }] },
@@ -7,6 +7,34 @@ const initial = (): CardPile[] => [
 ]
 
 describe('규칙 없는 카드 테이블', () => {
+  it('후보를 위에서부터 보여주되 원래 덱과 앞뒤 상태는 건드리지 않는다', () => {
+    const before = initial()
+    expect(cardCandidates(before, 'deck', 2).map((card) => card.cardId)).toEqual(['c', 'b'])
+    expect(cardCandidates(before, 'single', 3)).toHaveLength(1)
+    expect(cardCandidates(before, 'deck', 4)).toEqual([])
+    expect(before[0].cards.every((card) => !card.faceUp)).toBe(true)
+  })
+
+  it('고른 한 장만 앞면 손패로 가져오고 나머지 후보는 원래 순서의 뒷면으로 반환한다', () => {
+    const before = initial()
+    before[0].cards.forEach((card) => { card.faceUp = true })
+    const after = takeCandidate(before, 'deck', 2, 'b', 'taken')
+    expect(after[0].cards).toEqual([{ cardId: 'a', faceUp: true }, { cardId: 'c', faceUp: false }])
+    expect(after.at(-1)).toMatchObject({ id: 'taken', y: 100, cards: [{ cardId: 'b', faceUp: true }] })
+    expect(after.flatMap((pile) => pile.cards).map((card) => card.cardId).sort()).toEqual(['a', 'b', 'c', 'd'])
+    expect(before[0].cards).toHaveLength(3)
+    expect(before[0].cards.every((card) => card.faceUp)).toBe(true)
+  })
+
+  it('마지막 카드도 가져오며 후보 밖 선택이나 중복 ID는 원본을 유지한다', () => {
+    const before = initial()
+    const after = takeCandidate(before, 'single', 1, 'd', 'taken')
+    expect(after.some((pile) => pile.id === 'single')).toBe(false)
+    expect(after.flatMap((pile) => pile.cards)).toHaveLength(4)
+    expect(takeCandidate(before, 'deck', 2, 'a', 'taken')).toBe(before)
+    expect(takeCandidate(before, 'deck', 2, 'b', 'single')).toBe(before)
+  })
+
   it('한 장만 꺼내며 순서, 뒷면과 원본 스냅샷을 보존한다', () => {
     const before = initial()
     const after = drawCard(before, 'deck', 'drawn')

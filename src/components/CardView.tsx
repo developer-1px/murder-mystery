@@ -1,4 +1,4 @@
-import { useEffect, useRef, type MouseEventHandler, type ReactNode } from 'react'
+import { useEffect, useLayoutEffect, useRef, type MouseEventHandler, type ReactNode } from 'react'
 import type { Card } from '../domain/types'
 import { cardKinds } from './cardKinds'
 
@@ -11,20 +11,51 @@ interface Props {
 }
 
 export function CardView({ card, onClick, selected, faceDown, backLabel }: Props) {
+  const ref = useRef<HTMLElement>(null)
+  useLayoutEffect(() => {
+    const root = ref.current
+    if (!root || faceDown) return
+    const face = root.querySelector<HTMLElement>('.card__face')!
+    let active = true
+    const fit = () => {
+      if (!active || !face.clientHeight || !face.clientWidth) return
+      const overflows = () => face.scrollHeight > face.clientHeight + 1 || face.scrollWidth > face.clientWidth + 1
+      face.style.setProperty('--fit', '1')
+      if (!overflows()) return
+      let low = .05
+      let high = 1
+      for (let step = 0; step < 12; step++) {
+        const middle = (low + high) / 2
+        face.style.setProperty('--fit', String(middle))
+        if (overflows()) high = middle
+        else low = middle
+      }
+      face.style.setProperty('--fit', String(low))
+    }
+    fit()
+    const observer = typeof ResizeObserver === 'undefined' ? undefined : new ResizeObserver(fit)
+    observer?.observe(root)
+    document.fonts?.ready.then(fit)
+    document.fonts?.addEventListener('loadingdone', fit)
+    return () => { active = false; observer?.disconnect(); document.fonts?.removeEventListener('loadingdone', fit) }
+  }, [card, faceDown])
+
   const Surface = onClick ? 'button' : 'article'
-  if (faceDown) return (
-    <Surface className="card card--back" onClick={onClick} aria-pressed={selected} aria-label={backLabel ?? '뒷면 카드'}>
-      <span className="card-back__edition">CROWN TRIAL</span>
-      <span className="card-back__seal" aria-hidden="true">♛</span>
-      <span className="card-back__caption">왕관재판</span>
-    </Surface>
-  )
   return (
-    <Surface className={`card card--${card.kind}`} onClick={onClick} aria-pressed={selected}>
-      <span className="card__kind">{cardKinds[card.kind].label}</span>
-      <h3>{card.title}</h3>
-      <p className="card__text">{card.text}</p>
-      <div className="card__tags">{card.tags.map((tag) => <span key={tag}>#{tag}</span>)}</div>
+    <Surface ref={(element) => { ref.current = element }} className={`card card--${faceDown ? 'back' : card.kind}`}
+      onClick={onClick} aria-pressed={selected} aria-label={faceDown ? backLabel ?? '뒷면 카드' : undefined}>
+      <div className="card__face">
+        {faceDown ? <>
+          <span className="card-back__edition">CROWN TRIAL</span>
+          <span className="card-back__seal" aria-hidden="true">♛</span>
+          <span className="card-back__caption">왕관재판</span>
+        </> : <>
+          <span className="card__kind">{cardKinds[card.kind].label}</span>
+          <h3>{card.title}</h3>
+          <p className="card__text">{card.text}</p>
+          <div className="card__tags">{card.tags.map((tag) => <span key={tag}>#{tag}</span>)}</div>
+        </>}
+      </div>
     </Surface>
   )
 }
