@@ -1,195 +1,178 @@
 {
   "designerOnly": true,
-  "description": "정답 카드 한 장 없이 이사벨의 최종 행위를 특정하고, 다른 인물의 위해와 정치적 비밀을 분리하기 위한 쟁점 묶음.",
+  "description": "다섯 용의자에게 핵심 의혹 카드 8장씩을 배정한다. 이사벨의 묶음은 수면제 의혹이 대부분이며 실제 살해 단서는 공통 사인과 간접 연결로 분리한다.",
   "groups": [
     {
-      "id": "issue.survival",
-      "title": "22시 52분의 생존",
-      "question": "베네딕트의 공격 뒤 아드리안이 살아 있었음을 독립된 기록으로 확인할 수 있는가?",
+      "id": "suspicion.queen",
+      "title": "엘레노라 · 독살 명령",
+      "question": "독을 구하고 술에 넣으라고 명령한 뒤 취소한 왕비가 실제 살해까지 이어 갔는가?",
       "fragments": [
         {
-          "id": "bell-time",
-          "label": "22시 52분 호출 시각",
+          "id": "suspicion.queen.cards",
+          "label": "핵심 의혹 카드 8장",
+          "cardIds": [
+            "memory.queen-recall",
+            "evidence.dispensing-counterfoil",
+            "evidence.belladonna-ledger",
+            "testimony.apothecary-counter",
+            "testimony.marta-order",
+            "evidence.recall-slip",
+            "testimony.marta-recall",
+            "evidence.gilt-glass"
+          ]
+        }
+      ],
+      "auditNote": "반출·명령·취소·잔류물을 나누어 둔다. 독살 시도는 분명하지만 치사량과 실제 음용은 별도로 증명해야 한다."
+    },
+    {
+      "id": "suspicion.cassian",
+      "title": "카시안 · 형제간 폭행",
+      "question": "아드리안을 직접 폭행하고 왕위와 연인을 얻을 수 있었던 카시안이 마지막 숨까지 끊었는가?",
+      "fragments": [
+        {
+          "id": "suspicion.cassian.cards",
+          "label": "핵심 의혹 카드 8장",
+          "cardIds": [
+            "memory.cassian-assault",
+            "rumor.cassian-quarrel",
+            "evidence.stopped-watch",
+            "testimony.page-sighting",
+            "memory.cassian-sedative",
+            "evidence.isabel-letter",
+            "rumor.cassian-isabel-truth",
+            "evidence.coronation-book"
+          ]
+        }
+      ],
+      "auditNote": "폭행·동기·계승 이익이 강하지만 폐예배실의 기다림과 뒤의 생존 신호가 최종 살해 여부를 갈라야 한다."
+    },
+    {
+      "id": "suspicion.seraphine",
+      "title": "세라핀 · 계승과 혼인",
+      "question": "혼인을 거부하고 왕위를 준비한 세라핀이 아드리안의 죽음을 앞당겼는가?",
+      "fragments": [
+        {
+          "id": "suspicion.seraphine.cards",
+          "label": "핵심 의혹 카드 8장",
+          "cardIds": [
+            "memory.seraphine-archive",
+            "memory.seraphine-marriage",
+            "evidence.marriage-treaty",
+            "rumor.marriage",
+            "evidence.marriage-annex",
+            "testimony.isabel-attendant",
+            "testimony.foreign-envoy",
+            "evidence.succession-leaf"
+          ]
+        }
+      ],
+      "auditNote": "밀약·금서고 침입·계승 동기는 충분하지만 서고 체류와 직접 살해 행위는 분리한다."
+    },
+    {
+      "id": "suspicion.benedict",
+      "title": "베네딕트 · 목 압박과 유언",
+      "question": "아드리안을 목 졸라 쓰러뜨리고 유언을 숨긴 베네딕트가 그 자리에서 죽였는가?",
+      "fragments": [
+        {
+          "id": "suspicion.benedict.cards",
+          "label": "핵심 의혹 카드 8장",
+          "cardIds": [
+            "memory.benedict-birth-dates",
+            "memory.benedict-will-clause",
+            "rumor.multiple-footsteps",
+            "evidence.black-cloth",
+            "evidence.repaired-coat",
+            "testimony.tailor",
+            "testimony.night-attendant",
+            "rumor.benedict-edmund-letter"
+          ]
+        }
+      ],
+      "auditNote": "현장 접근과 공격 흔적은 가장 직접적이다. 그래서 22시 52분 생존 신호가 나오기 전에는 가장 그럴듯한 진범이어야 한다."
+    },
+    {
+      "id": "suspicion.isabel",
+      "title": "이사벨 · 수면제 투여",
+      "question": "아드리안에게 수면제를 먹이고 혼인 문제로 다툰 이사벨이 약물 이상의 행위를 했는가?",
+      "fragments": [
+        {
+          "id": "suspicion.isabel.cards",
+          "label": "핵심 의혹 카드 8장",
+          "cardIds": [
+            "memory.isabel-draught",
+            "evidence.sedative-prescription",
+            "evidence.second-glass",
+            "evidence.physician-log",
+            "evidence.wine-bottle",
+            "testimony.physician-limits",
+            "rumor.secret-letter",
+            "memory.isabel-alive"
+          ]
+        }
+      ],
+      "auditNote": "8장 중 6장은 수면제의 확보·투여·효과에 관한 카드다. 실제 살해와 연결되는 나머지 2장은 익명 방문자와 출처 불명의 망토 고리여서 단독으로 이사벨을 지목하지 못한다."
+    },
+    {
+      "id": "reconstruction.final-act",
+      "title": "공통 사인 · 마지막 행위",
+      "question": "다섯 사람의 위해와 별개로 실제 숨을 끊은 시간과 방법을 복원할 수 있는가?",
+      "fragments": [
+        {
+          "id": "survival",
+          "label": "선행 공격 뒤 생존",
           "cardIds": [
             "evidence.bell-register",
+            "testimony.bell-attendant",
             "evidence.bell-repair"
           ]
         },
         {
-          "id": "voice-after-attack",
-          "label": "기침과 “이사…”라는 목소리",
-          "cardIds": [
-            "testimony.bell-attendant"
-          ]
-        },
-        {
-          "id": "benedict-left",
-          "label": "베네딕트는 그 전에 떠났다",
-          "cardIds": [
-            "testimony.night-attendant",
-            "evidence.repaired-coat"
-          ]
-        }
-      ],
-      "auditNote": "생존 시각과 베네딕트의 공격을 결합해야 그의 공격을 최종 사인에서 제외한다."
-    },
-    {
-      "id": "issue.method",
-      "title": "녹색 쿠션의 질식",
-      "question": "목의 공격 흔적과 실제 사인을 구분할 수 있는가?",
-      "fragments": [
-        {
-          "id": "nonfatal-neck",
-          "label": "좁은 압박 흔적은 치명상이 아니다",
-          "cardIds": [
-            "testimony.head-examination"
-          ]
-        },
-        {
-          "id": "green-cushion",
-          "label": "젖은 녹색 벨벳 쿠션",
-          "cardIds": [
-            "evidence.broken-seal"
-          ]
-        },
-        {
-          "id": "drug-limit",
-          "label": "약물만으로는 사망량이 아니다",
-          "cardIds": [
-            "testimony.residue-examination",
-            "evidence.physician-log"
-          ]
-        }
-      ],
-      "auditNote": "독, 수면제, 폭행을 모두 실제 위해로 인정하되 최종 질식과 구분한다."
-    },
-    {
-      "id": "issue.isabel-return",
-      "title": "이사벨의 두 번째 방문",
-      "question": "첫 방문 뒤 돌아갔다는 말과 22시 54분 귀환 흔적을 구분할 수 있는가?",
-      "fragments": [
-        {
-          "id": "blue-cloak",
-          "label": "뒤편 계단의 푸른 옷자락",
-          "cardIds": [
-            "rumor.secret-letter",
-            "evidence.mud-print"
-          ]
-        },
-        {
-          "id": "broken-clasp",
-          "label": "쿠션의 은빛 조각과 부러진 고리",
+          "id": "method",
+          "label": "부드러운 물체에 의한 질식",
           "cardIds": [
             "evidence.broken-seal",
-            "memory.isabel-alive"
+            "testimony.head-examination",
+            "testimony.residue-examination"
           ]
         },
         {
-          "id": "missing-meeting",
-          "label": "카시안은 약속 장소에서 혼자 기다렸다",
+          "id": "late-access",
+          "label": "22시 54분의 익명 접근",
           "cardIds": [
-            "rumor.cassian-isabel-truth"
+            "evidence.mud-print",
+            "rumor.isabel-annulment",
+            "evidence.corridor-plan"
           ]
         }
       ],
-      "auditNote": "카시안의 기다림은 이사벨의 알리바이가 아니라 약속 불이행을 증명한다."
+      "auditNote": "공통 사인 카드는 특정 용의자의 묶음으로 세지 않는다. 시간·방법·접근을 결합한 뒤에야 각 용의자의 의혹 카드와 대조한다."
     },
     {
-      "id": "issue.motive",
-      "title": "혼인 무효와 아이의 배제",
-      "question": "이사벨이 돌아갈 급박한 이유가 있었는가?",
+      "id": "investigator.rowen",
+      "title": "로웬 · 수사의 신뢰",
+      "question": "살해범이 아닌 로웬의 경비 공백과 기록 조작이 수사 결과를 얼마나 흔드는가?",
       "fragments": [
         {
-          "id": "annulment",
-          "label": "혼인 무효 초안",
-          "cardIds": [
-            "evidence.annulment-draft"
-          ]
-        },
-        {
-          "id": "sedative",
-          "label": "첫 술의 수면제",
-          "cardIds": [
-            "memory.isabel-draught",
-            "evidence.sedative-prescription"
-          ]
-        },
-        {
-          "id": "petition",
-          "label": "아이의 지위를 둘러싼 청원",
-          "cardIds": [
-            "evidence.isabel-petition",
-            "evidence.pregnancy-notes"
-          ]
-        }
-      ],
-      "auditNote": "동기만으로 유죄가 되지 않으며 재방문과 사인이 함께 필요하다."
-    },
-    {
-      "id": "issue.rowen",
-      "title": "로웬의 은폐와 무죄",
-      "question": "경비 공백과 기록 수정이 살인 공모인지 사후 은폐인지 구분할 수 있는가?",
-      "fragments": [
-        {
-          "id": "guard-promise",
-          "label": "이사벨에게 약속한 경비 공백",
+          "id": "blank-pass",
+          "label": "최종 소지자를 모르는 통행패",
           "cardIds": [
             "memory.rowen-order",
-            "evidence.guard-log"
+            "evidence.guard-log",
+            "testimony.guard-withdrawal"
           ]
         },
         {
           "id": "early-discovery",
-          "label": "23시 02분의 선행 발견",
+          "label": "공식 경보 전 발견과 기록 수정",
           "cardIds": [
             "memory.rowen-alive",
-            "rumor.rowen-second-visit"
-          ]
-        },
-        {
-          "id": "altered-log",
-          "label": "23시 05분으로 고친 기록",
-          "cardIds": [
+            "rumor.rowen-second-visit",
             "evidence.ink-blotter",
             "testimony.body-discovery"
           ]
         }
       ],
-      "auditNote": "진범의 손에서 경비 약속이 밝혀지면 로웬은 공범으로 보이지만, 살해 시각의 직접 행위와는 분리된다."
-    },
-    {
-      "id": "issue.truth-fates",
-      "title": "밝힐 진실과 묻을 진실",
-      "question": "각 진실이 추리와 정치 점수에 서로 다른 압력을 주는가?",
-      "fragments": [
-        {
-          "id": "murder-truths",
-          "label": "사인과 방문을 완성하는 진실",
-          "cardIds": [
-            "memory.isabel-alive",
-            "memory.benedict-birth-dates",
-            "memory.rowen-alive"
-          ]
-        },
-        {
-          "id": "political-truths",
-          "label": "왕위와 관계를 흔드는 진실",
-          "cardIds": [
-            "memory.queen-poison",
-            "memory.cassian-sedative",
-            "memory.seraphine-archive",
-            "memory.benedict-will-clause"
-          ]
-        },
-        {
-          "id": "rowen-fatal",
-          "label": "진범의 손에서 로웬에게 치명적인 진실",
-          "cardIds": [
-            "memory.rowen-order"
-          ]
-        }
-      ],
-      "auditNote": "추리에 유리한 공개가 원래 주인의 승리에도 유리하다고 가정하지 않는다."
+      "auditNote": "로웬은 살해 의혹 카드 수 비교에서 제외한다. 그의 카드는 진범 특정이 아니라 수사관의 신뢰와 공모 오해를 만든다."
     }
   ]
 }

@@ -33,7 +33,7 @@
     {
       "id": "guard-gap",
       "time": "22:00",
-      "summary": "로웬이 이사벨에게 약속한 대로 서재 앞과 뒤편 계단의 경비를 비운다.",
+      "summary": "로웬이 왕세자실의 봉인만 믿고 무기명 통행패를 발급한 뒤 서재 앞과 뒤편 계단의 경비를 비운다.",
       "cardIds": [
         "memory.rowen-order",
         "evidence.guard-log",
