@@ -70,8 +70,8 @@
     },
     {
       "id": "suspicion.benedict",
-      "title": "베네딕트 · 목 압박과 유언",
-      "question": "아드리안을 목 졸라 쓰러뜨리고 유언을 숨긴 베네딕트가 그 자리에서 죽였는가?",
+      "title": "베네딕트 · 입을 막은 제압과 유언",
+      "question": "아드리안의 입을 막고 몸을 눌러 움직이지 않게 만든 베네딕트가 그 자리에서 죽였는가?",
       "fragments": [
         {
           "id": "suspicion.benedict.cards",
@@ -88,7 +88,7 @@
           ]
         }
       ],
-      "auditNote": "현장 접근과 공격 흔적은 가장 직접적이다. 그래서 22시 52분 생존 신호가 나오기 전에는 가장 그럴듯한 진범이어야 한다."
+      "auditNote": "현장 접근과 입가의 손가락 멍은 베네딕트를 가장 직접적으로 가리킨다. 22시 52분 생존 신호와 뒤에 겹친 넓은 압박을 연결해야 선행 제압과 최종 살해를 분리할 수 있다."
     },
     {
       "id": "suspicion.isabel",
@@ -128,7 +128,7 @@
         },
         {
           "id": "method",
-          "label": "부드러운 물체에 의한 질식",
+          "label": "손으로 막은 입과 뒤의 넓은 압박",
           "cardIds": [
             "evidence.broken-seal",
             "testimony.head-examination",
