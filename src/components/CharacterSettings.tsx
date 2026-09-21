@@ -64,12 +64,12 @@ export function CharacterSettings({ settings }: CharacterSettingsProps) {
           </div>
         </section>
         <section className="character-setting__actions" id="final-actions">
-          <header><span>→</span><h3><SectionLink id="final-actions">마지막 진실 결정</SectionLink></h3></header>
-          <p>최종 기소 직전, 가진 타인의 진실 중 하나는 세상에 밝히고 하나는 끝까지 묻습니다. 자신의 진실을 되돌려 받았거나 기소되면 보호하려던 진실은 모두 밝혀집니다.</p>
-          <p>최종 재판이 끝나면 아래 행동 중 하나를 언제든 선택해 뒷면으로 냅니다. 모두가 선택한 뒤 동시에 공개하며, 기소와 진실이 이 행동을 어디로 이끄는지는 선택하기 전에 설명하지 않습니다.</p>
+          <header><span>→</span><h3><SectionLink id="final-actions">묻어야 할 진실</SectionLink></h3></header>
+          <p>당신은 아래 진실 두 장을 가지고 시작합니다. 둘 다 세상에 밝혀지지 않기를 바라지만, 직접 가지고 있는 한 끝내 묻을 수 없습니다.</p>
+          <p>다른 사람과 1장 대 1장으로 교환해 맡기십시오. 카드의 내용은 교환이 끝나기 전까지 보여 줄 수 없습니다.</p>
           <div>
             {selected.finalActions.map((action) => <article key={action.title}>
-              <span>운명의 선택</span><h4>{action.title}</h4><p>{action.intent}</p><blockquote>“{action.omen}”</blockquote>
+              <span>묻어야 할 진실</span><h4>{action.title}</h4><p>{action.intent}</p><blockquote>{action.omen}</blockquote>
             </article>)}
           </div>
         </section>

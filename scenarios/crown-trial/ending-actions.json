@@ -1,77 +1,89 @@
 {
-  "note": "최종 기소 전에 모든 플레이어가 동시에 결정한다. 기소된 사람의 선택은 무효가 되고 그가 가진 진실은 모두 밝혀진다.",
-  "actions": [
+  "note": "각 인물 설정서에 표시되는 시작 진실 두 장. 최종 행동 목록이 아니라 다른 사람에게 맡겨 묻어야 하는 개인 카드다.",
+  "truths": [
     {
-      "id": "queen.reveal",
+      "id": "memory.queen-poison",
       "characterId": "queen",
-      "alwaysSelectable": true,
-      "resolution": "가지고 있는 타인의 진실 하나가 역사와 최종 채점에 남게 한다."
+      "title": "젊은 베네딕트의 편지",
+      "truth": "카시안이 선왕의 친자가 아닐 수 있음을 보여 주는 베네딕트의 오래된 편지다. 아이가 생겼다는 소식과 그날 밤을 함께 짊어지겠다는 약속이 적혀 있다.",
+      "stakes": "이 진실이 밝혀지면 카시안의 혈통과 계승 자격이 공격받고, 당신과 베네딕트의 관계까지 왕실의 기록에 남는다."
     },
     {
-      "id": "queen.bury",
+      "id": "memory.queen-recall",
       "characterId": "queen",
-      "alwaysSelectable": true,
-      "resolution": "가지고 있는 타인의 진실 하나가 누구에게도 알려지지 않게 한다."
+      "title": "마르타에게 준 지시",
+      "truth": "19시 20분, 당신은 마르타에게 약병의 내용물을 아드리안의 두 번째 술에 넣으라고 직접 명령했다. 곧 취소했어도 처음 내린 명령은 사라지지 않는다.",
+      "stakes": "이 진실이 밝혀지면 당신은 실제 사인과 관계없이 아드리안을 죽이려 한 사람으로 남고, 카시안도 왕위를 노린 공모자로 의심받는다."
     },
     {
-      "id": "cassian.reveal",
+      "id": "memory.cassian-assault",
       "characterId": "cassian",
-      "alwaysSelectable": true,
-      "resolution": "가지고 있는 타인의 진실 하나가 역사와 최종 채점에 남게 한다."
+      "title": "피가 밴 왕자 반지",
+      "truth": "21시 52분, 당신은 아드리안과 몸싸움을 벌였다. 무거운 반지의 홈에는 아드리안의 피와 머리카락이 남아 있다.",
+      "stakes": "이 진실이 밝혀지면 당신은 가장 이른 공격자로 확인된다. 22시 52분의 생존 신호가 함께 나오지 않는 한 살해범으로 기소될 수 있다."
     },
     {
-      "id": "cassian.bury",
+      "id": "memory.cassian-sedative",
       "characterId": "cassian",
-      "alwaysSelectable": true,
-      "resolution": "가지고 있는 타인의 진실 하나가 누구에게도 알려지지 않게 한다."
+      "title": "푸른 밀랍의 편지",
+      "truth": "당신이 이사벨과 아이를 위해 형과 왕관까지 버리겠다고 쓴 편지다. 사건 밤 폐예배실에서 만나자는 약속도 적혀 있다.",
+      "stakes": "이 진실이 밝혀지면 이사벨과의 관계와 아이의 친부 문제가 공식화되고, 당신과 아이의 계승 자격이 함께 흔들린다."
     },
     {
-      "id": "isabel.reveal",
+      "id": "memory.isabel-draught",
       "characterId": "isabel",
-      "alwaysSelectable": true,
-      "resolution": "가지고 있는 타인의 진실 하나가 역사와 최종 채점에 남게 한다."
+      "title": "찢어 둔 수면제 처방전",
+      "truth": "당신 명의의 처방전에 “아드리안의 첫 번째 술”이라고 적었다가 찢어 둔 원본이다. 당신이 먼저 아드리안에게 수면제를 먹였음을 증명한다.",
+      "stakes": "이 진실이 밝혀지면 당신은 계획적으로 아드리안을 무력화한 사람으로 확인된다. 두 번째 방문이 드러나지 않아도 강한 살해 동기가 된다."
     },
     {
-      "id": "isabel.bury",
+      "id": "memory.isabel-alive",
       "characterId": "isabel",
-      "alwaysSelectable": true,
-      "resolution": "가지고 있는 타인의 진실 하나가 누구에게도 알려지지 않게 한다."
+      "title": "부러진 푸른 망토 고리",
+      "truth": "22시 54분 서재로 돌아갔을 때 부러진 당신의 은제 망토 고리다. 홈에는 아드리안의 얼굴을 눌렀던 녹색 벨벳 쿠션과 같은 실이 끼어 있다.",
+      "stakes": "이 진실은 당신의 두 번째 방문과 실제 사인을 직접 연결한다. 밝혀지면 로웬이 당신을 진범으로 기소할 결정적인 축이 완성된다."
     },
     {
-      "id": "seraphine.reveal",
+      "id": "memory.seraphine-archive",
       "characterId": "seraphine",
-      "alwaysSelectable": true,
-      "resolution": "가지고 있는 타인의 진실 하나가 역사와 최종 채점에 남게 한다."
+      "title": "북부 사절에게 보낸 밀서",
+      "truth": "아드리안의 즉위가 멈추면 혼인도 멈춘다며, 당신의 계승권을 지지하는 대가로 국경 요새 두 곳을 넘기겠다고 약속한 편지다.",
+      "stakes": "이 진실이 밝혀지면 당신은 아드리안의 죽음으로 이익을 얻으려 외세와 거래한 왕녀가 된다. 혼인을 피하려던 선택이 반역과 살해 동기로 바뀔 수 있다."
     },
     {
-      "id": "seraphine.bury",
+      "id": "memory.seraphine-marriage",
       "characterId": "seraphine",
-      "alwaysSelectable": true,
-      "resolution": "가지고 있는 타인의 진실 하나가 누구에게도 알려지지 않게 한다."
+      "title": "금서고에서 베낀 계승법",
+      "truth": "허가 없이 금서고에 들어가 직계 왕녀의 계승권 조항을 베낀 문서다. 금서고 열쇠의 밀랍 본까지 남아 있다.",
+      "stakes": "이 진실이 밝혀지면 당신이 혼인 회피를 넘어 왕위를 준비했다는 사실이 드러난다. 왕관을 요구할 근거가 되는 동시에 절도와 음모의 증거가 된다."
     },
     {
-      "id": "benedict.reveal",
+      "id": "memory.benedict-will-clause",
       "characterId": "benedict",
-      "alwaysSelectable": true,
-      "resolution": "가지고 있는 타인의 진실 하나가 역사와 최종 채점에 남게 한다."
+      "title": "유언 낭독 보류 명령",
+      "truth": "선왕의 최종 유언을 당신의 허락 전까지 목록에서 빼고 누구에게도 읽어 주지 말라고 기록관에게 내린 비공개 명령이다.",
+      "stakes": "이 진실이 밝혀지면 당신이 왕위계승 기록을 조작해 왕국을 통제하려 했다는 의심을 받는다. 유언의 내용과 무관하게 재상으로서의 권위가 무너진다."
     },
     {
-      "id": "benedict.bury",
+      "id": "memory.benedict-birth-dates",
       "characterId": "benedict",
-      "alwaysSelectable": true,
-      "resolution": "가지고 있는 타인의 진실 하나가 누구에게도 알려지지 않게 한다."
+      "title": "휘어진 재상 목걸이",
+      "truth": "아드리안의 목을 조를 때 휘어진 재상 인장 목걸이다. 인장에는 피가, 사슬에는 아드리안의 셔츠와 같은 흰 실이 남아 있다.",
+      "stakes": "당신은 이 공격으로 아드리안이 죽었다고 믿는다. 이 진실이 밝혀지면 22시 52분 생존 신호가 함께 나오지 않는 한 당신이 진범으로 기소된다."
     },
     {
-      "id": "rowen.reveal",
+      "id": "memory.rowen-order",
       "characterId": "rowen",
-      "alwaysSelectable": true,
-      "resolution": "가지고 있는 타인의 진실 하나가 역사와 최종 채점에 남게 한다."
+      "title": "왕세자비에게 보낸 경비 약속",
+      "truth": "당신은 이사벨이 문서를 찾도록 22시부터 서재 앞을 비우고 뒤편 계단을 순찰하지 않겠다고 약속했다.",
+      "stakes": "실제 진범 이사벨의 손에서 이 진실이 밝혀지면 경비 공백을 만든 당신은 단순한 명령 위반자가 아니라 살해를 도운 공범으로 보인다. 이 카드가 치명적이라는 사실은 당신만 안다."
     },
     {
-      "id": "rowen.bury",
+      "id": "memory.rowen-alive",
       "characterId": "rowen",
-      "alwaysSelectable": true,
-      "resolution": "가지고 있는 타인의 진실 하나가 누구에게도 알려지지 않게 한다."
+      "title": "고쳐 쓴 경비일지 원본",
+      "truth": "당신이 23시 02분 시신을 먼저 발견하고도 공식 입실 시각을 23시 05분으로 고쳐 쓴 원본이다.",
+      "stakes": "이 진실이 밝혀지면 최초 현장을 훼손하고 수사 기록을 조작한 사실이 드러난다. 올바른 진범을 기소해도 근위대와 당신의 수사는 신뢰를 잃는다."
     }
   ]
 }
