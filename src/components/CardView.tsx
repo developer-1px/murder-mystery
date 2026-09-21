@@ -18,6 +18,12 @@ interface Props {
   tabIndex?: number
 }
 
+function withSubjectParticle(name: string) {
+  const last = name.codePointAt(name.length - 1) ?? 0
+  const hasFinalConsonant = last >= 0xac00 && last <= 0xd7a3 && (last - 0xac00) % 28 !== 0
+  return `${name}${hasFinalConsonant ? '이' : '가'}`
+}
+
 export function CardView({ card, onClick, selected, faceDown, backLabel, backTitle, backSubtitle, to, disabled, tabIndex }: Props) {
   const ref = useRef<HTMLElement>(null)
   const owner = card.kind === 'memory' ? scenario.characters.find(character => character.id === card.initialOwnerId) : undefined
@@ -57,7 +63,7 @@ export function CardView({ card, onClick, selected, faceDown, backLabel, backTit
           {backSubtitle && <span className="card-back__subtitle">{backSubtitle}</span>}
           <span className="card-back__edition">CROWN TRIAL</span>
         </> : <>
-          <span className="card__kind">{owner ? `${owner.name}의 비밀` : cardKinds[card.kind].label}</span>
+          <span className="card__kind">{owner ? `${withSubjectParticle(owner.name)} 묻어야 하는 진실` : cardKinds[card.kind].label}</span>
           <h3>{card.title}</h3>
           <p className="card__text">{card.text}</p>
           <div className="card__tags">{card.tags.map((tag) => <span key={tag}>#{tag}</span>)}</div>
