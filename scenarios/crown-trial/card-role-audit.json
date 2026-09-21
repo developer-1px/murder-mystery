@@ -1,0 +1,124 @@
+{
+  "description": "맥거핀을 막기 위한 카드 주 역할 감사표. 모든 카드는 플레이어가 사실을 확정하거나, 의심·거래·최종 선택을 바꾸는 한 가지 주 역할을 가진다.",
+  "roles": {
+    "buried_truth": "원래 주인의 행동·욕망·파멸을 결정적으로 연결하고 마지막에 밝히거나 묻는 대상",
+    "motive": "범행이나 정치적 행동을 선택할 이유를 세운다",
+    "psychological_evidence": "행동과 반응을 통해 특정 인물에 대한 심증을 만든다",
+    "physical_evidence": "사물·문서·검사 결과로 확인 가능한 사실을 고정한다",
+    "desire": "그 인물이 마지막에 무엇을 우선해 묻을지 추정하게 한다",
+    "ruin": "그 인물이 무엇을 피하려 거짓말하고 거래하는지 추정하게 한다",
+    "secret_hint": "비공개 관계나 숨은 계획을 다른 단서와 연결하게 한다",
+    "timeline": "시각·동선·생존 여부·알리바이를 고정한다",
+    "rebuttal": "그럴듯하지만 잘못된 단독 결론 하나를 명시적으로 제거한다"
+  },
+  "cardsByPrimaryRole": {
+    "buried_truth": [
+      "memory.benedict-birth-dates",
+      "memory.benedict-will-clause",
+      "memory.cassian-assault",
+      "memory.cassian-sedative",
+      "memory.isabel-alive",
+      "memory.isabel-petition",
+      "memory.queen-poison",
+      "memory.queen-recall",
+      "memory.rowen-alive",
+      "memory.rowen-order",
+      "memory.seraphine-archive",
+      "memory.seraphine-ledger"
+    ],
+    "motive": [
+      "evidence.annulment-draft",
+      "evidence.marriage-treaty",
+      "rumor.apothecary-visit",
+      "rumor.missing-document",
+      "testimony.dinner-steward"
+    ],
+    "psychological_evidence": [
+      "rumor.benedict-edmund-letter"
+    ],
+    "physical_evidence": [
+      "evidence.black-cloth",
+      "evidence.broken-seal",
+      "evidence.burnt-will",
+      "evidence.corridor-plan",
+      "evidence.dispensing-counterfoil",
+      "evidence.gilt-glass",
+      "evidence.guard-log",
+      "evidence.ink-blotter",
+      "evidence.last-will",
+      "evidence.mud-print",
+      "evidence.physician-log",
+      "evidence.second-glass",
+      "evidence.wine-bottle"
+    ],
+    "desire": [
+      "evidence.archive-register",
+      "evidence.coronation-book",
+      "evidence.guard-charter",
+      "evidence.isabel-petition",
+      "evidence.marriage-annex",
+      "evidence.succession-leaf",
+      "evidence.watch-roster",
+      "rumor.cassian-isabel-truth",
+      "rumor.marriage",
+      "rumor.queen-old-letter",
+      "testimony.foreign-envoy",
+      "testimony.page-sighting"
+    ],
+    "ruin": [
+      "evidence.belladonna-ledger",
+      "evidence.repaired-coat",
+      "evidence.sedative-prescription",
+      "evidence.stopped-watch",
+      "rumor.cassian-quarrel",
+      "rumor.isabel-annulment",
+      "rumor.multiple-footsteps",
+      "rumor.rowen-second-visit",
+      "rumor.seraphine-copy",
+      "testimony.guard-withdrawal",
+      "testimony.isabel-attendant",
+      "testimony.marta-order"
+    ],
+    "secret_hint": [
+      "evidence.isabel-letter",
+      "evidence.pregnancy-notes",
+      "evidence.royal-birth-register",
+      "evidence.royal-recognition",
+      "evidence.young-benedict-letter",
+      "rumor.heir-calendar",
+      "rumor.old-portrait"
+    ],
+    "timeline": [
+      "evidence.bell-register",
+      "evidence.bell-repair",
+      "evidence.minister-dispatch",
+      "rumor.guard-return",
+      "rumor.night-sewing",
+      "rumor.princess-pages",
+      "rumor.queen-luggage",
+      "rumor.secret-letter",
+      "testimony.apothecary-counter",
+      "testimony.archive-copyist",
+      "testimony.archivist",
+      "testimony.bell-attendant",
+      "testimony.body-discovery",
+      "testimony.clock-keeper",
+      "testimony.head-examination",
+      "testimony.late-patrol",
+      "testimony.minister-clerk",
+      "testimony.night-attendant",
+      "testimony.recall-messenger",
+      "testimony.study-servant",
+      "testimony.tailor",
+      "testimony.wardrobe-keeper"
+    ],
+    "rebuttal": [
+      "evidence.recall-slip",
+      "evidence.uniform-samples",
+      "testimony.marta-recall",
+      "testimony.old-midwife",
+      "testimony.physician-limits",
+      "testimony.residue-examination"
+    ]
+  }
+}
