@@ -52,17 +52,17 @@
     "claimId": "claim.cassian-isabel-letters"
   },
   {
-    "id": "memory.isabel-draught",
-    "title": "절반만 남은 처방전",
+    "id": "memory.isabel-petition",
+    "title": "봉인되지 않은 후견 청원서",
     "kind": "memory",
-    "text": "복용자 이름이 있는 윗부분은 거칠게 찢겨 나갔다. 남은 주의란 옆에는 같은 필체로 “첫 번째 잔”이라고 썼다가 문지른 흔적이 있다. 약의 이름은 찢긴 경계에 걸려 읽을 수 없다.",
+    "text": "봉인이 없는 청원서 초안이다. “C의 계승 자격이 정지될 경우, 죽은 A의 혼인 중 잉태된 아이를 우선 심의하고 출생 전까지 모친을 단독 후견인으로 인정한다.” 작성자와 제출일은 비어 있다.",
     "tags": [
-      "찢긴 처방전",
-      "첫 번째 잔",
-      "지워진 약명"
+      "봉인 없는 청원",
+      "C의 자격 정지",
+      "태아의 단독 후견"
     ],
     "initialOwnerId": "isabel",
-    "claimId": "claim.isabel-sedative"
+    "claimId": "claim.isabel-political-request"
   },
   {
     "id": "memory.isabel-alive",
@@ -91,14 +91,14 @@
     "claimId": "claim.marriage-condition"
   },
   {
-    "id": "memory.seraphine-marriage",
-    "title": "27-4 조항의 필사본",
+    "id": "memory.seraphine-ledger",
+    "title": "긁어 지운 서고 출입부",
     "kind": "memory",
-    "text": "“적법한 직계의 딸은 심의에서 배제하지 아니한다.” 아래에는 혈통·중죄·혼인 상태를 다시 살핀다는 27-4 조항과 작은 열쇠 모양의 밀랍 자국이 있다. 어느 책에서 베꼈는지는 적혀 있지 않다.",
+    "text": "금서고 출입부에서 뜯겨 나온 한 장이다. 20:20 행의 이름은 칼끝으로 긁혔지만 첫 글자 ‘S’와 “계승 심의 27-4”가 희미하게 남아 있다. 반출물 반환 칸은 비어 있다.",
     "tags": [
-      "27-4 조항",
-      "열쇠 자국",
-      "필사본"
+      "긁힌 S",
+      "20시20분",
+      "미반환 계승 문서"
     ],
     "initialOwnerId": "seraphine",
     "claimId": "claim.seraphine-archive-visit"

@@ -3,6 +3,15 @@
   "designerOnly": "진범은 이사벨이다. 베네딕트는 자신이 죽였다고 믿지만 아드리안은 그 뒤 종을 울렸다.",
   "rows": [
     {
+      "id": "isabel-petition",
+      "time": "사건 사흘 전",
+      "summary": "이사벨이 카시안의 계승 자격 정지와 태아의 우선 심의를 전제로 한 후견 청원서 초안을 준비한다.",
+      "cardIds": [
+        "memory.isabel-petition",
+        "evidence.isabel-petition"
+      ]
+    },
+    {
       "id": "poison-order",
       "time": "19:20",
       "summary": "엘레노라가 마르타에게 독을 넣으라고 명령한다.",
@@ -46,7 +55,6 @@
       "summary": "이사벨이 아드리안에게 혼인 무효와 아이의 배제 계획을 듣고 자기 방으로 돌아간다.",
       "cardIds": [
         "evidence.annulment-draft",
-        "memory.isabel-draught",
         "testimony.isabel-attendant"
       ]
     },
@@ -115,10 +123,10 @@
     "memory.queen-recall": "queen",
     "memory.cassian-assault": "cassian",
     "memory.cassian-sedative": "cassian",
-    "memory.isabel-draught": "isabel",
+    "memory.isabel-petition": "isabel",
     "memory.isabel-alive": "isabel",
     "memory.seraphine-archive": "seraphine",
-    "memory.seraphine-marriage": "seraphine",
+    "memory.seraphine-ledger": "seraphine",
     "memory.benedict-will-clause": "benedict",
     "memory.benedict-birth-dates": "benedict",
     "memory.rowen-order": "rowen",

@@ -111,13 +111,13 @@
         "label": "혼인 무효와 아이의 배제",
         "cardIds": [
           "evidence.annulment-draft",
-          "memory.isabel-draught",
+          "memory.isabel-petition",
           "evidence.isabel-petition"
         ],
         "paths": [
           [
             "evidence.annulment-draft",
-            "memory.isabel-draught"
+            "memory.isabel-petition"
           ],
           [
             "evidence.annulment-draft",

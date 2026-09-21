@@ -1,6 +1,6 @@
 {
   "designerOnly": true,
-  "description": "다섯 용의자에게 핵심 의혹 카드 8장씩을 배정한다. 이사벨의 묶음은 수면제 의혹이 대부분이며 실제 살해 단서는 공통 사인과 간접 연결로 분리한다.",
+  "description": "다섯 용의자에게 핵심 의혹 카드 8장씩을 배정한다. 이사벨의 묶음은 수면제 의혹과 숨은 계승 계획이 대부분이며 실제 살해 단서는 공통 사인과 간접 연결로 분리한다.",
   "groups": [
     {
       "id": "suspicion.queen",
@@ -56,7 +56,7 @@
           "label": "핵심 의혹 카드 8장",
           "cardIds": [
             "memory.seraphine-archive",
-            "memory.seraphine-marriage",
+            "memory.seraphine-ledger",
             "evidence.marriage-treaty",
             "rumor.marriage",
             "evidence.marriage-annex",
@@ -92,14 +92,14 @@
     },
     {
       "id": "suspicion.isabel",
-      "title": "이사벨 · 수면제 투여",
-      "question": "아드리안에게 수면제를 먹이고 혼인 문제로 다툰 이사벨이 약물 이상의 행위를 했는가?",
+      "title": "이사벨 · 수면제와 아이의 계승",
+      "question": "아드리안에게 수면제를 먹이고 아이의 독립된 계승을 준비한 이사벨이 약물 이상의 행위를 했는가?",
       "fragments": [
         {
           "id": "suspicion.isabel.cards",
           "label": "핵심 의혹 카드 8장",
           "cardIds": [
-            "memory.isabel-draught",
+            "memory.isabel-petition",
             "evidence.sedative-prescription",
             "evidence.second-glass",
             "evidence.physician-log",
@@ -110,7 +110,7 @@
           ]
         }
       ],
-      "auditNote": "8장 중 6장은 수면제의 확보·투여·효과에 관한 카드다. 실제 살해와 연결되는 나머지 2장은 익명 방문자와 출처 불명의 망토 고리여서 단독으로 이사벨을 지목하지 못한다."
+      "auditNote": "핵심 카드 중 5장은 수면제의 확보·투여·효과, 1장은 아이를 앞세운 숨은 계승 계획에 관한 것이다. 실제 살해와 연결되는 나머지 2장은 익명 방문자와 출처 불명의 망토 고리여서 단독으로 이사벨을 지목하지 못한다."
     },
     {
       "id": "reconstruction.final-act",
