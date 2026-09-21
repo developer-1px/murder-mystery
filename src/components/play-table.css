@@ -128,6 +128,20 @@
 .play-complete > div b { font: 23px 'Gowun Batang', serif; color: #e3c58c; }
 .play-complete > div i { margin: 0 10px; }
 .play-complete small { font-size: 10px; line-height: 1.8; margin: 18px 0 20px; color: #9dac8f; }
+.play[data-phase=complete] .play-canvas, .play[data-phase=complete] .play-stage-note, .play[data-phase=complete] .play-hud { display: none; }
+.play[data-phase=complete] .play-scene-content { inset: 70px 18px 18px; align-items: start; }
+.play[data-phase=complete] .play-stage { padding: 22px 0 48px; }
+.play-truth-ending { width: min(1120px, 100%); margin: 0 auto; }
+.play-truth-ending > p { margin-bottom: 30px; }
+.play-truth-group { width: 100%; margin: 0 0 34px; padding-top: 20px; border-top: 1px solid #91a08355; }
+.play-truth-group h5 { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 0; color: #e8ddc6; font: 700 18px 'Gowun Batang', serif; }
+.play-truth-group h5 b { display: grid; place-items: center; min-width: 26px; height: 26px; padding: 0 7px; border-radius: 999px; background: #dbc393; color: #203127; font: 700 12px 'Noto Sans KR', sans-serif; }
+.play-truth-group > p { margin: 7px 0 18px; color: #abb9a4; font: 10px 'Noto Sans KR', sans-serif; }
+.play-truth-ending .play-record-cards { grid-template-columns: repeat(auto-fit, minmax(190px, 220px)); justify-content: center; gap: 20px; width: 100%; }
+.play-truth-ending .card { color: #211b25; border-color: #8a778d; box-shadow: 0 10px 24px #07140f80; }
+.play-truth-ending .card__kind, .play-truth-ending .card__tags { color: #5b4660; }
+.play-truth-group--buried { opacity: .72; }
+.play-truth-group--buried h5 b { background: #7f8779; color: #f0eadc; }
 .play-record, .play-character { padding: 30px 40px 44px; max-width: 1250px; margin: auto; }
 .play-record > header, .play-character > header { border-bottom: 1px solid #9fa98055; padding-bottom: 15px; margin-bottom: 22px; }
 .play-record h3, .play-character h3 { font: 700 26px 'Gowun Batang', serif; margin: 8px 0; }
@@ -157,4 +171,5 @@
 .play-warning { position: fixed; top: 64px; left: 20px; z-index: 60; max-width: 340px; margin: 0; padding: 12px; border: 1px solid #926342; border-radius: 6px; background: #382619; color: #e6be93; font-size: 11px; }
 @media (max-width: 1050px) { .play-phase-control { top: 64px; }.play-phase-control > button { height: 34px; }.play-stage-note { top: 99px; left: 10%; right: 10%; }.play-canvas { top: 120px; }.play-overview { top: 105px; max-height: calc(100dvh - 125px); }.play-scene-content { top: 148px; }.play-question, .play-submit { gap: 20px; }.play-submit-panel { min-width: min(430px, calc(100vw - var(--table-card-width) - 90px)); padding-inline: 18px; }.play-submit .play-person-choices > button:not(.play-primary) { width: 75px; }.play-person-choices { gap: 7px; }.play-perspective-choices > button:not(.play-primary) { width: 112px; }.play-intro h3 { font-size: 25px; } }
 @media (max-height: 760px) { .play-stage { padding-block: 8px; }.play-person-choices { margin-top: 12px; }.play-person-choices > button:not(.play-primary) { padding-block: 10px; }.play-inspection-result h4, .play-question h4, .play-submit h4 { font-size: 19px; }.play-discussion-symbol { font-size: 38px; }.play-bot-turn { padding-block: 12px; } }
+@media (max-width: 520px) { .play[data-phase=complete] .play-scene-content { inset-inline: 10px; }.play-truth-ending .play-record-cards { grid-template-columns: minmax(210px, 260px); }.play-truth-ending > span { font-size: 34px; }.play-truth-ending h4 { font-size: 25px; } }
 @media (prefers-reduced-motion: reduce) { .play *, .play *::before, .play *::after { transition: none !important; } }

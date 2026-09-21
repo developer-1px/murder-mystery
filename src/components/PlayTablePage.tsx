@@ -154,7 +154,7 @@ function PlayTable({ session, act, newGame, cursor, lastStep, onUndo, onRedo, au
     reorderHand: cardIds => act({ type: 'reorder-hand', cardIds }),
   }
 
-  return <section className="play" data-view={view} style={{ '--actor-color': viewer?.color ?? actor.color } as CSSProperties}>
+  return <section className="play" data-view={view} data-phase={session.phase} style={{ '--actor-color': viewer?.color ?? actor.color } as CSSProperties}>
     <header className="play-toolbar">
       <h2 className="sr-only">{viewer ? `${viewer.name} 시점 · ${session.round}라운드` : '플레이할 인물 선택'}</h2>
       <nav className="play-tabs" aria-label="플레이 화면">
@@ -255,8 +255,8 @@ function TruthEnding({ session, onRead, onRecord, newGame }: { session: PlaySess
   const revealed = Object.entries(session.truthOutcomes).filter(([, outcome]) => outcome === 'revealed').map(([id]) => id)
   const buried = Object.entries(session.truthOutcomes).filter(([, outcome]) => outcome === 'buried').map(([id]) => id)
   return <div className="play-complete play-truth-ending"><span>⚖</span><h4>{player(session.indictment ?? '')?.name} 기소</h4><p>로웬의 기소로 진실의 운명이 확정되었습니다.</p>
-    <section><h5>세상에 밝혀진 진실 · {revealed.length}</h5><div className="play-record-cards">{revealed.map(id => <CardView key={id} card={cards.get(id)!} onClick={() => onRead(id)} />)}</div></section>
-    <section><h5>영원히 묻힌 진실 · {buried.length}</h5><div className="play-record-cards">{buried.map(id => <CardView key={id} card={cards.get(id)!} onClick={() => onRead(id)} />)}</div></section>
+    <section className="play-truth-group play-truth-group--revealed"><h5><span>세상에 밝혀진 진실</span><b>{revealed.length}</b></h5><p>카드를 누르면 크게 읽을 수 있습니다.</p><div className="play-record-cards">{revealed.map(id => <CardView key={id} card={cards.get(id)!} onClick={() => onRead(id)} />)}</div></section>
+    <section className="play-truth-group play-truth-group--buried"><h5><span>영원히 묻힌 진실</span><b>{buried.length}</b></h5><p>묻힌 진실의 내용은 끝내 공개되지 않습니다.</p><div className="play-record-cards">{buried.map(id => <CardView key={id} card={cards.get(id)!} faceDown backTitle="영원히 묻힌 진실" backLabel="내용이 공개되지 않은 진실" />)}</div></section>
     <small>기소된 사람이 가진 진실과 자기 손에 남은 자기 진실은 모두 밝혀졌습니다.</small><button className="play-primary" onClick={onRecord}>공개 기록 돌아보기 →</button><button className="play-text-button" onClick={newGame}>기존 기록을 남기고 새 플레이</button>
   </div>
 }
