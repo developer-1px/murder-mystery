@@ -3,6 +3,7 @@ import type { Card } from '../domain/types'
 import { cardKinds } from './cardKinds'
 import { Link } from 'react-router'
 import { CopyLinkButton } from '../routing'
+import { scenario } from '../scenario/load'
 
 interface Props {
   card: Card
@@ -19,6 +20,7 @@ interface Props {
 
 export function CardView({ card, onClick, selected, faceDown, backLabel, backTitle, backSubtitle, to, disabled, tabIndex }: Props) {
   const ref = useRef<HTMLElement>(null)
+  const owner = card.kind === 'memory' ? scenario.characters.find(character => character.id === card.initialOwnerId) : undefined
   useLayoutEffect(() => {
     const root = ref.current
     if (!root || faceDown) return
@@ -55,7 +57,7 @@ export function CardView({ card, onClick, selected, faceDown, backLabel, backTit
           {backSubtitle && <span className="card-back__subtitle">{backSubtitle}</span>}
           <span className="card-back__edition">CROWN TRIAL</span>
         </> : <>
-          <span className="card__kind">{cardKinds[card.kind].label}</span>
+          <span className="card__kind">{owner ? `${owner.name}의 비밀` : cardKinds[card.kind].label}</span>
           <h3>{card.title}</h3>
           <p className="card__text">{card.text}</p>
           <div className="card__tags">{card.tags.map((tag) => <span key={tag}>#{tag}</span>)}</div>
