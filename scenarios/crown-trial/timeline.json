@@ -1,277 +1,112 @@
 {
-  "description": "설계자가 사건의 전체 흐름을 시간대와 관련 인물별로 펼쳐 보고, 카드 조각의 누락·중복·편중을 확인하는 분류표다.",
-  "designerOnly": true,
+  "description": "아드리안이 여러 번 위해를 당한 밤. 22시 52분의 생존을 확인해야 베네딕트의 공격과 이사벨의 살해를 구분할 수 있다.",
+  "designerOnly": "진범은 이사벨이다. 베네딕트는 자신이 죽였다고 믿지만 아드리안은 그 뒤 종을 울렸다.",
   "rows": [
     {
-      "id": "past",
-      "time": "과거",
-      "summary": "왕실의 혈통·혼인·계승에 쌓인 오래된 사실",
-      "cardIds": [
-        "evidence.young-benedict-letter",
-        "memory.queen-old-letter",
-        "rumor.old-portrait",
-        "evidence.royal-birth-register",
-        "evidence.royal-recognition",
-        "memory.benedict-birth-dates",
-        "memory.benedict-edmund-letter",
-        "evidence.guard-charter",
-        "evidence.succession-leaf",
-        "evidence.marriage-treaty",
-        "rumor.marriage",
-        "evidence.marriage-annex"
-      ]
-    },
-    {
-      "id": "before-night",
-      "time": "사건 전",
-      "summary": "즉위와 혼인, 유언장을 둘러싼 갈등이 드러남",
-      "cardIds": [
-        "rumor.missing-document",
-        "evidence.archive-register",
-        "testimony.archivist",
-        "evidence.last-will",
-        "evidence.burnt-will",
-        "evidence.coronation-book",
-        "memory.benedict-will-clause",
-        "evidence.annulment-draft",
-        "memory.isabel-annulment",
-        "evidence.isabel-letter",
-        "rumor.heir-calendar",
-        "evidence.pregnancy-notes",
-        "evidence.isabel-petition"
-      ]
-    },
-    {
-      "id": "1920",
+      "id": "poison-order",
       "time": "19:20",
-      "summary": "마르타가 왕비전 명의로 벨라도나를 수령",
+      "summary": "엘레노라가 마르타에게 독을 넣으라고 명령한다.",
       "cardIds": [
-        "rumor.apothecary-visit",
-        "evidence.belladonna-ledger",
-        "evidence.dispensing-counterfoil",
-        "testimony.apothecary-counter"
-      ]
-    },
-    {
-      "id": "after-1920",
-      "time": "19:20 이후",
-      "summary": "엘레노라가 약을 넣으라고 명령하고 마르타가 실행",
-      "cardIds": [
-        "memory.queen-poison",
+        "memory.queen-recall",
         "testimony.marta-order"
       ]
     },
     {
-      "id": "1935",
+      "id": "poison-recall",
       "time": "19:35",
-      "summary": "엘레노라가 명령을 거두고 마르타가 다시 불려감",
+      "summary": "엘레노라가 명령을 취소하지만 약병의 행방은 이미 불분명하다.",
       "cardIds": [
-        "memory.queen-recall",
         "evidence.recall-slip",
+        "memory.queen-recall",
         "testimony.marta-recall"
       ]
     },
     {
-      "id": "2020",
-      "time": "20:20",
-      "summary": "세라핀이 왕실서고에서 계승법을 베낌",
+      "id": "cassian-assault",
+      "time": "21:52",
+      "summary": "카시안이 아드리안과 몸싸움을 벌인 뒤 떠난다.",
       "cardIds": [
-        "memory.seraphine-archive",
-        "memory.seraphine-copy",
+        "memory.cassian-assault",
+        "rumor.cassian-quarrel"
+      ]
+    },
+    {
+      "id": "guard-gap",
+      "time": "22:00",
+      "summary": "로웬이 이사벨에게 약속한 대로 서재 앞과 뒤편 계단의 경비를 비운다.",
+      "cardIds": [
+        "memory.rowen-order",
+        "evidence.guard-log",
+        "testimony.guard-withdrawal"
+      ]
+    },
+    {
+      "id": "isabel-first",
+      "time": "22:28–22:34",
+      "summary": "이사벨이 아드리안에게 혼인 무효와 아이의 배제 계획을 듣고 자기 방으로 돌아간다.",
+      "cardIds": [
+        "evidence.annulment-draft",
+        "memory.isabel-draught",
         "testimony.isabel-attendant"
       ]
     },
     {
-      "id": "2040",
-      "time": "20:40",
-      "summary": "첫 번째 술이 서재로 전달됨",
+      "id": "cassian-alibi",
+      "time": "22:36–22:58",
+      "summary": "카시안은 폐예배실에서 이사벨을 기다리지만 그녀는 오지 않는다.",
       "cardIds": [
-        "memory.isabel-draught",
-        "testimony.study-servant"
+        "rumor.cassian-isabel-truth",
+        "memory.cassian-sedative"
       ]
     },
     {
-      "id": "2055",
-      "time": "20:55",
-      "summary": "세라핀이 혼인조약을 들고 서재에서 아드리안과 실랑이함",
+      "id": "benedict-attack",
+      "time": "22:38–22:50",
+      "summary": "베네딕트가 아드리안을 목 졸라 쓰러뜨리고 죽였다고 믿은 채 떠난다.",
       "cardIds": [
-        "memory.seraphine-marriage",
-        "evidence.broken-seal"
-      ]
-    },
-    {
-      "id": "dinner",
-      "time": "만찬 직후",
-      "summary": "아드리안이 자정까지 선왕의 유언장을 요구",
-      "cardIds": [
-        "testimony.dinner-steward"
-      ]
-    },
-    {
-      "id": "2152",
-      "time": "21:52",
-      "summary": "카시안과 아드리안이 다투고 아드리안이 머리를 다침",
-      "cardIds": [
-        "memory.cassian-assault",
-        "rumor.cassian-quarrel",
-        "evidence.stopped-watch"
-      ]
-    },
-    {
-      "id": "2200",
-      "time": "22:00",
-      "summary": "서재 앞 경비가 철수하고 근무 기록이 수정됨",
-      "cardIds": [
-        "memory.rowen-order",
-        "testimony.guard-withdrawal",
-        "evidence.guard-log",
-        "evidence.ink-blotter",
-        "evidence.corridor-plan"
-      ]
-    },
-    {
-      "id": "2208",
-      "time": "22:08",
-      "summary": "서재 호출 뒤 두 번째 술이 전달됨",
-      "cardIds": [
-        "evidence.bell-register",
-        "testimony.bell-attendant",
-        "evidence.bell-repair",
-        "testimony.clock-keeper"
-      ]
-    },
-    {
-      "id": "2215",
-      "time": "22:15",
-      "summary": "로웬이 보고하고 아드리안의 응답을 들음",
-      "cardIds": [
-        "memory.rowen-alive"
-      ]
-    },
-    {
-      "id": "after-2230",
-      "time": "22:30 이후",
-      "summary": "검은 정복의 인물이 서쪽 회랑과 서재 쪽에서 목격됨",
-      "cardIds": [
-        "rumor.multiple-footsteps",
-        "evidence.mud-print"
-      ]
-    },
-    {
-      "id": "2233",
-      "time": "22:33",
-      "summary": "이사벨이 소파의 아드리안을 보고 문서를 찾음",
-      "cardIds": [
-        "memory.isabel-alive"
-      ]
-    },
-    {
-      "id": "2238-2249",
-      "time": "22:38–22:49",
-      "summary": "베네딕트가 서재에 들어가 22시 41분경 아드리안을 제압해 숨지게 한 뒤, 찢어진 소매로 돌아옴",
-      "cardIds": [
+        "memory.benedict-birth-dates",
+        "evidence.black-cloth",
+        "evidence.repaired-coat",
         "testimony.night-attendant"
       ]
     },
     {
-      "id": "2239-secret-meeting",
-      "time": "22:39–22:52",
-      "summary": "이사벨이 카시안의 방에 머문 비밀 만남",
-      "cardIds": [
-        "memory.cassian-isabel-truth"
-      ]
-    },
-    {
-      "id": "2240-public-alibis",
-      "time": "22:40",
-      "summary": "엘레노라·카시안·세라핀이 각자의 처소에서 확인됨",
-      "cardIds": [
-        "testimony.recall-messenger",
-        "testimony.page-sighting",
-        "testimony.archive-copyist"
-      ]
-    },
-    {
-      "id": "2240-2248-west-gate",
-      "time": "22:40–22:48",
-      "summary": "로웬이 서쪽 외문의 점검과 교대 인계에 참여함",
-      "cardIds": [
-        "evidence.watch-roster",
-        "testimony.late-patrol",
-        "rumor.guard-return"
-      ]
-    },
-    {
-      "id": "2243",
-      "time": "22:43",
-      "summary": "베네딕트 서명의 문서가 발송 접수됨",
-      "cardIds": [
-        "evidence.minister-dispatch",
-        "testimony.minister-clerk",
-        "rumor.night-sewing"
-      ]
-    },
-    {
-      "id": "2250-public-alibis",
-      "time": "22:50–22:51",
-      "summary": "세 사람의 두 번째 시각 조각이 각 처소에 남음",
-      "cardIds": [
-        "rumor.queen-luggage",
-        "rumor.princess-pages",
-        "rumor.secret-letter"
-      ]
-    },
-    {
-      "id": "2252",
+      "id": "last-bell",
       "time": "22:52",
-      "summary": "베네딕트가 찢어진 정복을 수선하도록 맡김",
+      "summary": "아드리안이 직접 종을 울리고 기침하며 “이사…”라고 말한다. 베네딕트의 공격 뒤에도 살아 있었다.",
       "cardIds": [
-        "testimony.tailor"
+        "evidence.bell-register",
+        "testimony.bell-attendant",
+        "evidence.bell-repair"
       ]
     },
     {
-      "id": "2255",
-      "time": "22:55",
-      "summary": "로웬이 공식 기록보다 먼저 아드리안을 발견해 몸을 움직임",
+      "id": "isabel-return",
+      "time": "22:54",
+      "summary": "이사벨이 푸른 망토를 입고 뒤편 계단으로 서재에 다시 들어간다.",
       "cardIds": [
-        "memory.rowen-second-visit"
+        "rumor.secret-letter",
+        "evidence.mud-print",
+        "memory.isabel-alive"
       ]
     },
     {
-      "id": "2305",
-      "time": "23:05",
-      "summary": "하르트가 서재 경비 복귀 중 시신을 발견해 공식 경보를 울림",
+      "id": "murder",
+      "time": "22:56–22:58",
+      "summary": "이사벨이 녹색 벨벳 쿠션으로 아드리안의 숨을 막는다.",
       "cardIds": [
+        "evidence.broken-seal",
+        "testimony.head-examination"
+      ]
+    },
+    {
+      "id": "rowen-discovery",
+      "time": "23:02",
+      "summary": "로웬이 시신을 먼저 발견해 쿠션을 감추고 발견 시각을 23시 05분으로 고쳐 쓴다.",
+      "cardIds": [
+        "memory.rowen-alive",
+        "rumor.rowen-second-visit",
         "testimony.body-discovery"
-      ]
-    },
-    {
-      "id": "after-discovery",
-      "time": "발견 이후",
-      "summary": "현장·약물·상처와 방문 흔적을 조사",
-      "cardIds": [
-        "evidence.gilt-glass",
-        "evidence.second-glass",
-        "evidence.wine-bottle",
-        "testimony.residue-examination",
-        "testimony.head-examination",
-        "memory.cassian-sedative",
-        "evidence.physician-log",
-        "evidence.sedative-prescription",
-        "evidence.black-cloth",
-        "evidence.repaired-coat",
-        "evidence.uniform-samples",
-        "testimony.wardrobe-keeper",
-        "testimony.physician-limits"
-      ]
-    },
-    {
-      "id": "undated",
-      "time": "시각 미상",
-      "summary": "정확한 시각 없이 사건 전후 정황을 보강하는 정보",
-      "cardIds": [
-        "testimony.foreign-envoy",
-        "testimony.old-midwife"
       ]
     }
   ],
@@ -288,12 +123,12 @@
     "memory.benedict-birth-dates": "benedict",
     "memory.rowen-order": "rowen",
     "memory.rowen-alive": "rowen",
-    "memory.queen-old-letter": "queen",
-    "memory.cassian-isabel-truth": "cassian",
-    "memory.isabel-annulment": "isabel",
-    "memory.seraphine-copy": "seraphine",
-    "memory.benedict-edmund-letter": "benedict",
-    "memory.rowen-second-visit": "rowen",
+    "rumor.queen-old-letter": "queen",
+    "rumor.cassian-isabel-truth": "cassian",
+    "rumor.isabel-annulment": "isabel",
+    "rumor.seraphine-copy": "seraphine",
+    "rumor.benedict-edmund-letter": "benedict",
+    "rumor.rowen-second-visit": "rowen",
     "testimony.marta-order": "queen",
     "testimony.marta-recall": "queen",
     "testimony.recall-messenger": "queen",

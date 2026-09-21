@@ -1,5 +1,5 @@
 {
-  "description": "로웬이 한 장의 결정적 카드가 아니라 알리바이와 사망 원인의 독립된 조각을 교차해 범인을 특정할 수 있는지 검사한다.",
+  "description": "이사벨의 두 번째 방문과 22시 52분 생존 신호를 결합하면, 베네딕트의 비치명적 공격 이후 벌어진 최종 질식을 특정할 수 있다.",
   "alibis": [
     {
       "characterId": "queen",
@@ -14,14 +14,13 @@
     },
     {
       "characterId": "cassian",
-      "label": "답신 작성의 두 시각",
+      "label": "폐예배실의 기다림",
       "cardIds": [
-        "testimony.page-sighting",
-        "rumor.secret-letter",
-        "memory.cassian-isabel-truth"
+        "rumor.cassian-isabel-truth",
+        "memory.cassian-sedative"
       ],
       "minimumRequired": 2,
-      "note": "카시안의 방에 있었다는 개인 진실은 22시 40분 받아쓰기나 22시 51분 답신 중 하나 이상이 맞아야 성립한다."
+      "note": "카시안은 이사벨을 기다렸지만 만나지 못했다. 이 동선은 카시안의 알리바이일 뿐 이사벨을 보호하지 않는다."
     },
     {
       "characterId": "rowen",
@@ -35,174 +34,114 @@
       "note": "로웬은 22시 40분과 22시 48분 서쪽 외문 점검에 참여했다. 서재까지 편도 7분 이상이므로 베네딕트가 머문 구간에 왕복할 수 없다."
     },
     {
-      "characterId": "isabel",
-      "label": "공개 알리바이 없음 · 카시안의 공개가 필요",
-      "cardIds": [
-        "memory.cassian-isabel-truth",
-        "evidence.isabel-letter",
-        "rumor.secret-letter"
-      ],
-      "requiredCardIds": [
-        "memory.cassian-isabel-truth"
-      ],
-      "minimumRequired": 2,
-      "conditional": true,
-      "note": "이사벨 자신의 22시 33분 기억은 알리바이가 아니다. 카시안이 22시 39~52분의 만남을 공개하고 편지나 22시 51분 답신 조각이 관계와 시각을 뒷받침해야 한다."
-    },
-    {
       "characterId": "seraphine",
       "label": "서고의 두 시각",
       "cardIds": [
         "testimony.archive-copyist",
         "rumor.princess-pages",
-        "memory.seraphine-copy"
+        "rumor.seraphine-copy"
       ],
       "minimumRequired": 2,
       "note": "세라핀 자신의 연속 동선은 22시 40분 목격과 22시 50분 전언 중 하나 이상이 맞아야 성립한다."
     }
   ],
   "culprit": {
-    "characterId": "benedict",
-    "conclusion": "베네딕트가 의식이 흐린 아드리안을 제압하는 동안 호흡을 막아 사망하게 했다.",
+    "characterId": "isabel",
+    "conclusion": "이사벨이 22시 54분 서재로 돌아와 녹색 벨벳 쿠션으로 아드리안을 질식시켰다.",
     "axes": [
       {
-        "id": "death-window",
-        "label": "사망 구간",
+        "id": "survival-after-benedict",
+        "label": "베네딕트의 공격 뒤 생존",
         "cardIds": [
-          "memory.rowen-alive",
-          "testimony.night-attendant",
-          "memory.rowen-second-visit",
-          "memory.isabel-alive",
-          "testimony.head-examination",
-          "testimony.body-discovery"
+          "evidence.bell-register",
+          "testimony.bell-attendant",
+          "evidence.bell-repair"
         ],
         "paths": [
           [
-            "memory.rowen-alive",
-            "testimony.night-attendant",
-            "memory.rowen-second-visit"
+            "evidence.bell-register",
+            "testimony.bell-attendant"
           ],
           [
-            "memory.isabel-alive",
-            "testimony.night-attendant",
-            "memory.rowen-second-visit"
-          ],
-          [
-            "memory.isabel-alive",
-            "testimony.head-examination",
-            "memory.rowen-second-visit"
-          ],
-          [
-            "memory.rowen-alive",
-            "testimony.night-attendant",
-            "testimony.body-discovery"
-          ],
-          [
-            "memory.isabel-alive",
-            "testimony.head-examination",
-            "testimony.body-discovery"
-          ],
-          [
-            "memory.rowen-alive",
-            "memory.isabel-alive",
-            "memory.rowen-second-visit"
+            "evidence.bell-register",
+            "evidence.bell-repair"
           ]
         ]
       },
       {
-        "id": "other-causes",
-        "label": "다른 위해의 비치명성",
+        "id": "fatal-method",
+        "label": "최종 사인과 녹색 쿠션",
         "cardIds": [
+          "evidence.broken-seal",
           "testimony.head-examination",
-          "testimony.residue-examination",
-          "evidence.physician-log"
+          "testimony.residue-examination"
         ],
         "paths": [
           [
-            "testimony.head-examination",
+            "evidence.broken-seal",
+            "testimony.head-examination"
+          ],
+          [
+            "evidence.broken-seal",
             "testimony.residue-examination"
-          ],
-          [
-            "testimony.head-examination",
-            "evidence.physician-log"
-          ],
-          [
-            "testimony.residue-examination",
-            "evidence.physician-log"
           ]
         ]
       },
       {
-        "id": "study-window",
-        "label": "서재 출입과 귀환",
+        "id": "isabel-return",
+        "label": "이사벨의 부인한 두 번째 방문",
         "cardIds": [
-          "testimony.night-attendant",
-          "rumor.multiple-footsteps",
-          "testimony.tailor",
-          "evidence.repaired-coat"
+          "rumor.secret-letter",
+          "evidence.mud-print",
+          "memory.isabel-alive"
         ],
         "paths": [
           [
-            "testimony.night-attendant",
-            "rumor.multiple-footsteps"
+            "rumor.secret-letter",
+            "evidence.mud-print"
           ],
           [
-            "rumor.multiple-footsteps",
-            "testimony.tailor",
-            "evidence.repaired-coat"
-          ],
-          [
-            "testimony.night-attendant",
-            "evidence.repaired-coat"
+            "rumor.secret-letter",
+            "memory.isabel-alive"
           ]
         ]
       },
       {
-        "id": "physical-trace",
-        "label": "소파와 정복의 흔적",
+        "id": "isabel-motive",
+        "label": "혼인 무효와 아이의 배제",
         "cardIds": [
+          "evidence.annulment-draft",
+          "memory.isabel-draught",
+          "evidence.isabel-petition"
+        ],
+        "paths": [
+          [
+            "evidence.annulment-draft",
+            "memory.isabel-draught"
+          ],
+          [
+            "evidence.annulment-draft",
+            "evidence.isabel-petition"
+          ]
+        ]
+      },
+      {
+        "id": "false-confession-shape",
+        "label": "베네딕트가 진범처럼 보이는 이유",
+        "cardIds": [
+          "memory.benedict-birth-dates",
           "evidence.black-cloth",
           "evidence.repaired-coat",
-          "testimony.wardrobe-keeper",
-          "testimony.tailor"
+          "testimony.night-attendant"
         ],
         "paths": [
           [
-            "evidence.black-cloth",
-            "evidence.repaired-coat"
-          ],
-          [
-            "evidence.black-cloth",
-            "testimony.wardrobe-keeper",
-            "testimony.tailor"
+            "memory.benedict-birth-dates",
+            "evidence.black-cloth"
           ],
           [
             "evidence.repaired-coat",
-            "testimony.wardrobe-keeper",
-            "testimony.tailor"
-          ]
-        ]
-      },
-      {
-        "id": "false-alibi",
-        "label": "22시 43분 문서 알리바이의 붕괴",
-        "cardIds": [
-          "evidence.minister-dispatch",
-          "testimony.minister-clerk",
-          "rumor.night-sewing"
-        ],
-        "paths": [
-          [
-            "evidence.minister-dispatch",
-            "testimony.minister-clerk"
-          ],
-          [
-            "evidence.minister-dispatch",
-            "rumor.night-sewing"
-          ],
-          [
-            "testimony.minister-clerk",
-            "rumor.night-sewing"
+            "testimony.night-attendant"
           ]
         ]
       }

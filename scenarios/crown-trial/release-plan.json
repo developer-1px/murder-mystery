@@ -3,22 +3,28 @@
   "description": "제작자 수동 시험용 배포안. 현재 워크벤치는 이 파일로 자동 해금하지 않는다.",
   "initialHands": {
     "queen": [
-      "memory.queen-poison"
+      "memory.queen-poison",
+      "memory.queen-recall"
     ],
     "cassian": [
-      "memory.cassian-assault"
+      "memory.cassian-assault",
+      "memory.cassian-sedative"
     ],
     "isabel": [
-      "memory.isabel-draught"
+      "memory.isabel-draught",
+      "memory.isabel-alive"
     ],
     "seraphine": [
-      "memory.seraphine-archive"
+      "memory.seraphine-archive",
+      "memory.seraphine-marriage"
     ],
     "benedict": [
-      "memory.benedict-will-clause"
+      "memory.benedict-will-clause",
+      "memory.benedict-birth-dates"
     ],
     "rowen": [
-      "memory.rowen-order"
+      "memory.rowen-order",
+      "memory.rowen-alive"
     ]
   },
   "rounds": [
@@ -49,7 +55,9 @@
         "testimony.apothecary-counter",
         "testimony.dinner-steward",
         "testimony.guard-withdrawal",
-        "testimony.page-sighting"
+        "testimony.page-sighting",
+        "rumor.queen-old-letter",
+        "rumor.seraphine-copy"
       ]
     },
     {
@@ -79,7 +87,9 @@
         "testimony.bell-attendant",
         "testimony.clock-keeper",
         "testimony.night-attendant",
-        "testimony.head-examination"
+        "testimony.head-examination",
+        "rumor.cassian-isabel-truth",
+        "rumor.benedict-edmund-letter"
       ]
     },
     {
@@ -109,22 +119,16 @@
         "testimony.isabel-attendant",
         "testimony.archive-copyist",
         "testimony.foreign-envoy",
-        "testimony.old-midwife"
+        "testimony.old-midwife",
+        "rumor.isabel-annulment",
+        "rumor.rowen-second-visit"
       ]
     }
   ],
   "privateTruthSchedule": [
     {
-      "timing": "첫 조사 전",
-      "stageId": "truth-1"
-    },
-    {
-      "timing": "첫 번째 재판 종료 후",
-      "stageId": "truth-2"
-    },
-    {
-      "timing": "두 번째 재판 종료 후",
-      "stageId": "truth-3"
+      "timing": "게임 시작 시",
+      "stageId": "buried-truths"
     }
   ]
 }

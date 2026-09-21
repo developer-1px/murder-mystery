@@ -64,7 +64,8 @@ export function CharacterSettings({ settings }: CharacterSettingsProps) {
           </div>
         </section>
         <section className="character-setting__actions" id="final-actions">
-          <header><span>→</span><h3><SectionLink id="final-actions">마지막에 할 수 있는 것</SectionLink></h3></header>
+          <header><span>→</span><h3><SectionLink id="final-actions">마지막 진실 결정</SectionLink></h3></header>
+          <p>최종 기소 직전, 가진 타인의 진실 중 하나는 세상에 밝히고 하나는 끝까지 묻습니다. 자신의 진실을 되돌려 받았거나 기소되면 보호하려던 진실은 모두 밝혀집니다.</p>
           <p>최종 재판이 끝나면 아래 행동 중 하나를 언제든 선택해 뒷면으로 냅니다. 모두가 선택한 뒤 동시에 공개하며, 기소와 진실이 이 행동을 어디로 이끄는지는 선택하기 전에 설명하지 않습니다.</p>
           <div>
             {selected.finalActions.map((action) => <article key={action.title}>

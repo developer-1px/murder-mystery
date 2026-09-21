@@ -1,156 +1,159 @@
 [
   {
     "id": "memory.queen-poison",
-    "title": "마르타에게 건넨 약병",
+    "title": "젊은 베네딕트의 편지",
     "kind": "memory",
-    "text": "아드리안은 즉위하고 나면 당신과 카시안을 궁에서 내보내겠다고 말했다. 그날 밤, 당신은 준비해 둔 벨라도나 약병을 시녀 마르타에게 건넸다. 왕세자의 술에 넣으라는 말도 당신이 직접 했다. 당신은 그 술이 서재에 도착했는지, 그가 실제로 마셨는지 보지 못했다.",
+    "text": "왕실 혼인을 앞둔 엘레노라에게 베네딕트가 보낸 편지다. ‘아이의 소식을 들었습니다. 그날 밤의 일을 당신 혼자 짊어지게 하지는 않겠습니다.’ 끝에 베네딕트의 서명이 있다.",
     "tags": [
-      "엘레노라",
-      "마르타",
-      "약병"
+      "편지",
+      "친생",
+      "베네딕트"
+    ],
+    "initialOwnerId": "queen",
+    "claimId": "claim.benedict-cassian-parentage"
+  },
+  {
+    "id": "memory.queen-recall",
+    "title": "마르타에게 준 지시",
+    "kind": "memory",
+    "text": "엘레노라의 필체로 ‘이 병의 내용물을 오늘 밤 아드리안의 두 번째 술에 넣어라. 아무에게도 병을 보이지 마라’라고 쓰여 있다. 아래에는 19시 20분이 적혀 있다.",
+    "tags": [
+      "필체",
+      "약병",
+      "19시20분"
     ],
     "initialOwnerId": "queen",
     "claimId": "claim.queen-poison"
   },
   {
-    "id": "memory.queen-recall",
-    "title": "다시 불러들인 시녀",
-    "kind": "memory",
-    "text": "마르타를 보낸 뒤, 당신은 사람을 시켜 그녀를 다시 불렀다. 앞선 명령을 거두겠다고 분명히 말했지만, 이미 술에 손을 댔는지는 듣지 못했다. 22시 40분부터는 왕비전에서 오래된 궤짝을 정리했고 시신 발견 소식이 올 때까지 방을 나가지 않았다.",
-    "tags": [
-      "엘레노라",
-      "마르타",
-      "22시40분"
-    ],
-    "initialOwnerId": "queen"
-  },
-  {
     "id": "memory.cassian-assault",
-    "title": "서재에서 나눈 마지막 말",
+    "title": "피가 밴 왕자 반지",
     "kind": "memory",
-    "text": "아드리안은 이사벨의 아이 이야기를 꺼냈고, 당신은 주먹을 휘둘렀다. 책상 모서리에 머리를 부딪친 형은 피를 흘렸지만, 당신이 나갈 때 “꺼져”라고 말했다. 그 순간 살아 있었다는 것은 확실하다. 다만 부상이 뒤늦게 죽음에 영향을 주었는지는 모른다. 떨어진 회중시계는 9시 52분을 가리켰다.",
+    "text": "카시안의 문장이 새겨진 무거운 반지다. 모서리의 홈에 마른 피와 머리카락이 끼어 있다. 안쪽에는 사건 밤 날짜와 ‘형과의 마지막 담판’이라는 글이 새겨져 있다.",
     "tags": [
-      "카시안",
-      "아드리안",
-      "서재"
+      "왕자 반지",
+      "마른 피",
+      "폭행"
     ],
     "initialOwnerId": "cassian",
     "claimId": "claim.cassian-assault"
   },
   {
     "id": "memory.cassian-sedative",
-    "title": "죽음에 이르기 어려운 약",
+    "title": "푸른 밀랍의 편지",
     "kind": "memory",
-    "text": "당신은 이사벨의 이름을 숨긴 채 주치의에게 수면제의 위험성을 물었다. 그 약만으로 곧바로 죽을 가능성은 낮지만, 실제 섭취량과 머리 부상, 다른 약물의 영향을 모르면 사망과 무관하다고 할 수는 없다는 답을 들었다. 이사벨이 범인이라는 믿음에 처음으로 틈이 생겼다.",
+    "text": "‘당신과 아이를 모두 잃느니 형과 왕관을 버리겠습니다. 오늘 밤 폐예배실에서 기다리겠습니다.’ 끝에 카시안의 이름이 적혀 있고 봉투에는 이사벨이 쓰는 푸른 밀랍이 묻어 있다.",
     "tags": [
-      "카시안",
-      "수면제",
-      "주치의"
+      "편지",
+      "푸른 밀랍",
+      "폐예배실"
     ],
-    "initialOwnerId": "cassian"
+    "initialOwnerId": "cassian",
+    "claimId": "claim.cassian-isabel-letters"
   },
   {
     "id": "memory.isabel-draught",
-    "title": "첫 번째 술",
+    "title": "찢어 둔 수면제 처방전",
     "kind": "memory",
-    "text": "아드리안이 혼인을 무효로 만들 서류를 준비한다는 말을 들었다. 당신에게 처방된 수면제를 첫 번째 술잔에 넣었다. 그 잔이 아드리안에게 전달되는 것은 보았지만, 끝까지 곁에 있지는 않았다. 죽었다는 소식을 들은 순간, 약제실에 남아 있을 당신 이름의 처방전이 떠올랐다.",
+    "text": "이사벨 명의의 수면제 처방전 원본이다. 복용자 칸의 ‘이사벨’ 위에 ‘아드리안의 첫 번째 술’이라는 문장이 같은 필체로 적혔다가 거칠게 찢겨 있다.",
     "tags": [
-      "이사벨",
+      "처방전",
       "수면제",
-      "술잔"
+      "첫 번째 술"
     ],
     "initialOwnerId": "isabel",
     "claimId": "claim.isabel-sedative"
   },
   {
     "id": "memory.isabel-alive",
-    "title": "22시 33분, 소파 곁에서",
+    "title": "부러진 푸른 망토 고리",
     "kind": "memory",
-    "text": "22시 33분경, 혼인 서류를 찾으러 서재에 들어갔다. 소파의 아드리안은 이름을 부르자 입술과 가슴이 움직인 듯했지만 확신할 수 없다. 문서를 찾지 못하고 22시 39분경 카시안의 방으로 갔다. 22시 52분까지 함께 있었으나 밝히면 관계도 드러난다.",
+    "text": "이사벨의 겨울 망토에서 떨어진 은제 고리다. 한쪽 걸쇠가 부러졌고 홈 사이에는 짙은 녹색 실 몇 가닥이 끼어 있다. 망토 안감에는 ‘I’가 수놓여 있다.",
     "tags": [
-      "이사벨",
-      "카시안",
-      "22시39분"
+      "은제 고리",
+      "녹색 실",
+      "망토"
     ],
     "initialOwnerId": "isabel",
-    "claimId": "claim.alive-2236"
+    "claimId": "claim.isabel-return"
   },
   {
     "id": "memory.seraphine-archive",
-    "title": "혼인 문서 옆의 기록",
+    "title": "북부 사절에게 보낸 밀서",
     "kind": "memory",
-    "text": "20시 20분경 혼인조약을 보려고 왕실서고에 들어가 출입부에 이름을 적었다. 직계 왕녀를 언급한 계승법을 발견했지만 앞뒤 조항은 읽지 못했다. 나올 때 서명을 칼등으로 긁고 젖은 천으로 문질렀다. 글자는 흐려졌지만 종이의 상처는 남았다.",
+    "text": "세라핀이 북부 사절에게 보낸 밀서다. ‘아드리안의 즉위가 멈추면 혼인도 멈춘다. 나의 계승권을 지지하면 국경 요새 두 곳을 넘기겠다.’ 끝에 세라핀의 개인 인장이 찍혀 있다.",
     "tags": [
-      "세라핀",
-      "왕실서고",
-      "문서"
-    ],
-    "initialOwnerId": "seraphine"
-  },
-  {
-    "id": "memory.seraphine-marriage",
-    "title": "서재에 남은 혼인 봉인",
-    "kind": "memory",
-    "text": "20시 55분경 아드리안의 서재에서 혼인조약을 돌려달라고 요구했다. 그가 거절하자 문서를 잡아당겼고 붉은 봉인끈이 끊어졌다. 당신은 문서를 들고 나왔으며 아드리안은 살아 있었다. “그 전에 당신이 없어지면 되겠군”이라고 한 말과 방문은 기록하지 않았다.",
-    "tags": [
-      "세라핀",
-      "혼인",
-      "서명"
+      "밀서",
+      "계승권",
+      "국경 요새"
     ],
     "initialOwnerId": "seraphine",
     "claimId": "claim.marriage-condition"
   },
   {
-    "id": "memory.benedict-will-clause",
-    "title": "이상한 유언",
+    "id": "memory.seraphine-marriage",
+    "title": "금서고에서 베낀 계승법",
     "kind": "memory",
-    "text": "아드리안이 죽은 뒤, 당신은 마침내 선왕의 봉인을 열었다. 계승 절차에 관한 문장 사이에 뜻밖의 구절이 있다. ‘카시안은 출생에 관한 어떠한 의혹에도 불구하고 나의 적법한 아들이다.’ 출생에 관한 의혹이라니. 당신은 그 말이 무엇을 가리키는지 알지 못한다.",
+    "text": "왕실 금서고의 계승법 한 장을 손으로 베낀 문서다. ‘적법한 직계 왕녀는 왕위계승 심의에서 배제되지 아니한다.’ 아래에는 금서고 문을 여는 열쇠의 밀랍 본이 눌려 있다.",
     "tags": [
-      "베네딕트",
-      "에드먼드",
-      "유언장"
+      "필사본",
+      "계승법",
+      "열쇠 본"
+    ],
+    "initialOwnerId": "seraphine",
+    "claimId": "claim.seraphine-archive-visit"
+  },
+  {
+    "id": "memory.benedict-will-clause",
+    "title": "유언 낭독 보류 명령",
+    "kind": "memory",
+    "text": "베네딕트가 기록관에게 내린 비공개 명령이다. ‘선왕의 최종 유언은 내가 허락하기 전까지 목록에서 빼고 누구에게도 낭독하지 마라.’ 사건 사흘 전 날짜와 재상 인장이 찍혀 있다.",
+    "tags": [
+      "유언 은폐",
+      "비공개 명령",
+      "재상 인장"
     ],
     "initialOwnerId": "benedict",
     "claimId": "claim.will-exists"
   },
   {
     "id": "memory.benedict-birth-dates",
-    "title": "숨겨진 날짜",
+    "title": "휘어진 재상 목걸이",
     "kind": "memory",
-    "text": "봉인된 산파 기록에는 카시안의 실제 출생일이 공식 등록일보다 이르다고 적혀 있다. 수태 시기를 역산하면 엘레노라가 왕비가 되기 전, 당신과 마지막으로 만난 때와 겹친다. 이제 선왕의 ‘출생에 관한 의혹’이 무엇인지 짐작할 수 있다. 하지만 날짜만으로 친부를 확정할 수는 없다.",
+    "text": "재상 인장이 달린 검은 은사슬이다. 고리 두 개가 길게 늘어났고 인장 가장자리에는 마른 피가 얇게 남아 있다. 사슬 틈에는 아드리안의 셔츠와 같은 흰 실이 끼어 있다.",
     "tags": [
-      "베네딕트",
-      "출생기록",
-      "날짜"
+      "은사슬",
+      "재상 인장",
+      "흰 실"
     ],
     "initialOwnerId": "benedict",
-    "claimId": "claim.benedict-cassian-parentage"
+    "claimId": "claim.benedict-attack"
   },
   {
     "id": "memory.rowen-order",
-    "title": "비워 둔 서재 앞",
+    "title": "왕세자비에게 보낸 경비 약속",
     "kind": "memory",
-    "text": "아드리안은 22시부터 서재 앞 경비를 물리라고 직접 명령했다. 당신은 즉시 근무 원장에 “왕세자 구두 명령 수령 — 로웬”이라고 적었다. 사망 뒤 그 원본 쪽을 공개 묶음에서 빼 지휘관 봉투에 넣고, 제출용 상황보고에는 “서쪽 초소 재배치”만 남겼다. 원본을 없애지는 않았다.",
+    "text": "로웬의 필체로 ‘22시부터 서재 앞을 비워 두겠습니다. 뒤편 계단은 순찰하지 않겠습니다. 문서를 찾는 동안 누구도 전하를 보지 못할 것입니다’라고 적혀 있다. 수신인은 이사벨이다.",
     "tags": [
-      "로웬",
-      "경비",
-      "근무일지"
+      "경비 공백",
+      "이사벨",
+      "뒤편 계단"
     ],
     "initialOwnerId": "rowen",
     "claimId": "claim.guard-withdrawn"
   },
   {
     "id": "memory.rowen-alive",
-    "title": "22시 15분의 보고",
+    "title": "고쳐 쓴 경비일지 원본",
     "kind": "memory",
-    "text": "22시 15분경, 당신은 경비 철수를 보고하러 서재에 들어갔다. 아드리안은 보고를 듣고 “좋다”고 대답했다. 짧은 대화였지만 목소리를 잘못 들을 만큼 멀리 있지는 않았다.\n당신은 보고를 마치고 나왔다. 그때 아드리안은 살아 있었다.\n나중에 당신이 고쳐 쓴 근무일지에는 이 방문이 남아 있지 않다.",
+    "text": "처음 기록에는 ‘22:00 서재 경비 철수, 23:02 대장 단독 입실’이라고 적혀 있다. ‘23:02’는 붉은 잉크로 지워졌고 그 위에 ‘23:05 경보와 함께 입실’이 덧쓰여 있다.",
     "tags": [
-      "로웬",
-      "22시15분",
-      "서재"
+      "경비일지",
+      "붉은 잉크",
+      "23시02분"
     ],
     "initialOwnerId": "rowen",
-    "claimId": "claim.alive-2218"
+    "claimId": "claim.rowen-late-visit"
   },
   {
     "id": "rumor.apothecary-visit",
@@ -190,15 +193,16 @@
   },
   {
     "id": "rumor.secret-letter",
-    "title": "22시 51분의 봉인된 답신",
+    "title": "뒤편 계단의 붓꽃 향",
     "kind": "rumor",
-    "text": "왕자전 전달원들 사이에서 도는 말이다. “22시 51분쯤 카시안 전하가 막 봉인한 답신을 직접 건넸대.” “받은 사람이 시각을 잘못 기억한 것 아니야?” 전달 장부에는 수신인만 적혀 있다고 한다.",
+    "text": "부엌 시녀가 22시 54분쯤 서재 뒤편 계단에서 푸른 옷자락과 붓꽃 향을 느꼈다고 한다. 얼굴은 보지 못했고 왕세자비라고 맹세할 수는 없다고 했다.",
     "tags": [
       "소문",
-      "카시안",
-      "22시51분"
+      "푸른 옷자락",
+      "22시54분"
     ],
-    "locationId": "west-corridor"
+    "locationId": "west-corridor",
+    "claimId": "claim.isabel-return"
   },
   {
     "id": "rumor.missing-document",
@@ -239,16 +243,16 @@
   },
   {
     "id": "evidence.broken-seal",
-    "title": "책상 아래의 붉은 봉인끈",
+    "title": "소파 아래의 녹색 쿠션",
     "kind": "evidence",
-    "text": "서재 책상 아래에 끊어진 붉은 끈과 서부 왕국 문장이 찍힌 금속 장식이 있다. 왕실서고의 세라핀 혼인조약에는 같은 폭의 붉은 끈이 잘린 채 남아 있다.",
+    "text": "녹색 벨벳 쿠션이 소파 아래 깊숙이 밀려 있다. 한쪽 모서리가 안쪽으로 젖어 있고 표면의 눌린 자국 사이에 작은 은제 고리 조각이 걸려 있다.",
     "tags": [
-      "혼인조약",
-      "봉인끈",
-      "서재"
+      "녹색 벨벳",
+      "은제 조각",
+      "소파"
     ],
     "locationId": "study",
-    "claimId": "claim.will-exists"
+    "claimId": "claim.fatal-restraint"
   },
   {
     "id": "evidence.second-glass",
@@ -290,16 +294,16 @@
   },
   {
     "id": "evidence.mud-print",
-    "title": "회랑 창가의 진흙 자국",
+    "title": "회랑 난간의 푸른 실",
     "kind": "rumor",
-    "text": "서쪽 회랑 창가에 네모난 뒤꿈치의 진흙 자국이 있었다는 말이 있다. 누구의 신발과 맞는지 확인했다는 사람은 없다.",
+    "text": "서재로 꺾이는 회랑 난간에 푸른 양모실이 걸려 있었다고 한다. 난간의 느슨한 못에는 새 긁힘이 있고 바닥에는 작은 은 조각이 떨어져 있었다.",
     "tags": [
       "소문",
-      "진흙",
-      "밑창무늬"
+      "푸른 양모",
+      "은 조각"
     ],
     "locationId": "west-corridor",
-    "claimId": "claim.late-visitor"
+    "claimId": "claim.isabel-return"
   },
   {
     "id": "evidence.stopped-watch",
@@ -455,81 +459,81 @@
     "claimId": "claim.will-exists"
   },
   {
-    "id": "memory.queen-old-letter",
-    "title": "젊은 베네딕트의 편지",
-    "kind": "memory",
-    "text": "카시안이 태어나기 전, 당신과 베네딕트는 남들에게 읽힐 수 없는 편지를 주고받았다. 당신은 편지 대부분을 없앴지만 한 장은 그러지 못했다. 아드리안이 출생 기록을 들먹였을 때, 당신이 떠올린 것은 스캔들보다 아들이 처음 그 이야기를 듣게 될 순간이었다.",
+    "id": "rumor.queen-old-letter",
+    "title": "낭독인을 찾는 왕비전",
+    "kind": "rumor",
+    "text": "왕비전에서 선왕의 증서를 평의회 앞에서 대신 읽어 줄 사람을 찾는다는 말이 돈다. 증서에 누구의 이름이 적혀 있는지, 왕비가 왜 직접 읽지 않는지는 알려지지 않았다.",
     "tags": [
-      "엘레노라",
-      "베네딕트",
-      "편지"
+      "소문",
+      "왕비전",
+      "낭독인"
     ],
-    "initialOwnerId": "queen",
-    "claimId": "claim.benedict-cassian-parentage"
+    "claimId": "claim.cassian-royal-recognition",
+    "locationId": "royal-archive"
   },
   {
-    "id": "memory.cassian-isabel-truth",
-    "title": "숨겨야 했던 열세 분",
-    "kind": "memory",
-    "text": "이사벨은 22시 39분경 당신의 방에 들어와 22시 52분까지 함께 있었다. 그녀는 서재에서 문서를 찾지 못했다고 말했지만 수면제 이야기는 숨겼다. 당신은 두 사람이 함께 있었다는 사실을 밝히면 관계와 아이의 친부 의혹까지 공식 기록에 남을까 두려워 침묵했다.",
+    "id": "rumor.cassian-isabel-truth",
+    "title": "폐예배실에 혼자 남은 왕자",
+    "kind": "rumor",
+    "text": "예배당지기가 22시 36분부터 22시 58분까지 폐예배실 안에서 카시안의 목소리를 여러 번 들었다고 한다. 왕자는 누군가를 기다렸지만 문이 열리는 소리는 없었다.",
     "tags": [
+      "소문",
       "카시안",
-      "이사벨",
-      "22시39분"
+      "22시36분"
     ],
-    "initialOwnerId": "cassian"
+    "locationId": "west-corridor"
   },
   {
-    "id": "memory.isabel-annulment",
-    "title": "돌려받지 못할 이름",
-    "kind": "memory",
-    "text": "아드리안은 당신에게 혼인을 무효로 만드는 절차를 알아보고 있다고 말했다. 아이를 낳은 뒤의 일도 자신이 정하겠다고 했다. 당신은 카시안에게 이 일을 적어 보냈다. 그러나 편지를 읽는 사람이 당신의 마음까지 그대로 읽어 줄 리는 없다. 서재에서 찾지 못한 서류가 아직 궁 안에 있다.",
+    "id": "rumor.isabel-annulment",
+    "title": "두 번 지나간 푸른 망토",
+    "kind": "rumor",
+    "text": "서재 쪽 회랑에서 푸른 망토가 두 번 보였다는 말이 있다. 22시 28분에는 얼굴을 보았다는 시녀가 있지만 22시 54분에는 뒤편 계단에서 옷자락만 보았다는 사람뿐이다.",
     "tags": [
-      "이사벨",
-      "혼인",
-      "편지"
+      "소문",
+      "푸른 망토",
+      "22시54분"
     ],
-    "initialOwnerId": "isabel",
-    "claimId": "claim.isabel-annulment-draft"
+    "claimId": "claim.isabel-return",
+    "locationId": "west-corridor"
   },
   {
-    "id": "memory.seraphine-copy",
-    "title": "베껴 온 한 문장",
-    "kind": "memory",
-    "text": "서고에서 베낀 문장에는 “적법한 직계 왕녀”라는 말이 있었다. 그 법이 지금도 적용되는지, 뒤에 예외가 있는지는 읽지 못했다. 당신은 22시 40분부터 22시 50분이 지나도록 같은 열람대에서 이어지는 조항을 베꼈고, 시신 발견 소식을 들은 뒤 종이를 방의 책 속에 숨겼다.",
+    "id": "rumor.seraphine-copy",
+    "title": "밤새 켜진 서고의 촛불",
+    "kind": "rumor",
+    "text": "서고 필경사가 22시 35분부터 23시 종이 울릴 때까지 세라핀과 같은 열람대에서 문구를 대조했다고 한다. 출입부에는 공주의 이름이 없었다.",
     "tags": [
+      "소문",
       "세라핀",
-      "계승법",
-      "22시40분"
+      "22시35분"
     ],
-    "initialOwnerId": "seraphine",
-    "claimId": "claim.seraphine-archive-visit"
+    "claimId": "claim.seraphine-archive-visit",
+    "locationId": "royal-archive"
   },
   {
-    "id": "memory.benedict-edmund-letter",
-    "title": "에드먼드의 마지막 편지",
-    "kind": "memory",
-    "text": "봉인 문서 안쪽에서 에드먼드가 당신에게 남긴 편지를 찾았다. 카시안은 당신의 피를 이은 아들이었다.  엘레노라의 고백 뒤에도 에드먼드는 그를 자기 아들로 선택했다고 적었다. 마지막 문장은 이렇다. “그 아이가 자네의 피라는 이유만으로 자네의 것이 되는 것은 아니네.”",
+    "id": "rumor.benedict-edmund-letter",
+    "title": "22시 52분의 떨리는 손",
+    "kind": "rumor",
+    "text": "재상실 시종이 22시 52분 무렵 돌아온 베네딕트의 손이 떨리고 있었다고 말했다는 소문이 돈다. 재상은 곧바로 찢어진 소매를 수선함에 맡겼다.",
     "tags": [
+      "소문",
       "베네딕트",
-      "에드먼드",
-      "친생"
+      "22시52분"
     ],
-    "initialOwnerId": "benedict",
-    "claimId": "claim.benedict-cassian-parentage"
+    "claimId": "claim.benedict-attack",
+    "locationId": "west-corridor"
   },
   {
-    "id": "memory.rowen-second-visit",
-    "title": "공식 기록보다 이른 발견",
-    "kind": "memory",
-    "text": "22시 55분경 서재에서 아드리안을 먼저 발견했다. 몸을 바로 눕히고 옷깃을 풀어 맥박을 확인했지만 반응은 없었다. 다른 사람이 조사할 것이라 생각해 방문을 숨겼다. 출입문을 봉쇄하고 하르트를 서재로 보냈으며, 23시 5분 그의 경보를 공식 발견으로 기록했다. 뒤늦게 당신이 수사 책임자가 되었다.",
+    "id": "rumor.rowen-second-visit",
+    "title": "경보보다 먼저 돌아온 대장",
+    "kind": "rumor",
+    "text": "순찰병이 23시 2분쯤 로웬이 서재 뒤편에서 나오는 모습을 봤다는 말이 돈다. 공식 경보는 23시 5분이었고 로웬은 그 전에 들어간 적이 없다고 보고했다.",
     "tags": [
+      "소문",
       "로웬",
-      "22시55분",
-      "서재"
+      "23시02분"
     ],
-    "initialOwnerId": "rowen",
-    "claimId": "claim.rowen-late-visit"
+    "claimId": "claim.rowen-late-visit",
+    "locationId": "west-corridor"
   },
   {
     "id": "rumor.queen-luggage",
@@ -654,15 +658,16 @@
   },
   {
     "id": "evidence.bell-register",
-    "title": "시종실 호출 기록",
+    "title": "22시 52분의 마지막 호출",
     "kind": "evidence",
-    "text": "시종실 호출 기록에 “22:08 — 서재”, 용무에는 “술”이라고 적혀 있다. 귀환 시각 칸은 비어 있다.",
+    "text": "시종실 기록에 ‘22:52 — 서재, 한 차례. 담당 시종 출발’이라고 적혀 있다. 귀환 칸에는 ‘문 안에서 거친 기침, 응답 없음’이라는 메모가 남아 있다.",
     "tags": [
       "호출기록",
       "서재",
-      "22시8분"
+      "22시52분"
     ],
-    "locationId": "west-corridor"
+    "locationId": "west-corridor",
+    "claimId": "claim.alive-2236"
   },
   {
     "id": "evidence.bell-repair",
@@ -750,15 +755,16 @@
   },
   {
     "id": "evidence.annulment-draft",
-    "title": "혼인 심의 청원 초안",
+    "title": "혼인 무효와 태아 배제 초안",
     "kind": "evidence",
-    "text": "“혼인 심의 청원 — 초안”에 청원인 아드리안과 상대방 이사벨의 이름이 있다. 서명란과 접수 번호란은 비어 있다.",
+    "text": "아드리안 명의의 미완성 청원서다. ‘이사벨과의 혼인을 무효로 심의하고 태아를 계승 심의에서 배제한다.’ 여백에는 ‘오늘 자정 전 베네딕트에게 봉인’이라고 적혀 있다.",
     "tags": [
       "청원서",
-      "혼인",
-      "초안"
+      "혼인 무효",
+      "태아 배제"
     ],
-    "locationId": "study"
+    "locationId": "study",
+    "claimId": "claim.isabel-annulment-draft"
   },
   {
     "id": "evidence.isabel-letter",
@@ -948,15 +954,16 @@
   },
   {
     "id": "testimony.bell-attendant",
-    "title": "시종 니콜 · 22시 8분의 호출",
+    "title": "시종 니콜 · 마지막 호출",
     "kind": "testimony",
-    "text": "“시종실 시계를 보고 22시 8분이라고 호출 기록에 적었습니다. 서재 담당으로 제가 술을 가져갔습니다.” “누가 종줄을 당겼는지는 시종실에서 볼 수 없었습니다.”",
+    "text": "“22시 52분에 서재 종이 한 번 울렸습니다. 문으로 갔을 때 안에서 거친 기침과 ‘이사…’ 같은 한마디를 들었습니다.” “문을 열라는 대답은 없었습니다.”",
     "tags": [
       "증언",
       "니콜",
-      "호출"
+      "22시52분"
     ],
-    "locationId": "west-corridor"
+    "locationId": "west-corridor",
+    "claimId": "claim.alive-2236"
   },
   {
     "id": "testimony.clock-keeper",
@@ -1045,13 +1052,13 @@
   },
   {
     "id": "testimony.head-examination",
-    "title": "주치의 루시엔 · 상처와 눌린 흔적",
+    "title": "주치의 루시엔 · 상처의 순서",
     "kind": "testimony",
-    "text": "“뒤통수 상처 뒤에도 심장은 뛰었고, 이런 부상은 즉시가 아니라 나중에 상태를 악화시킬 수도 있습니다.” “보이는 출혈량만으로 치사를 확정할 수 없고, 입가와 코의 눌린 흔적이 언제 생겼는지도 함께 봐야 합니다.”",
+    "text": "“머리의 상처 뒤에도 대화할 수 있었습니다. 목의 좁은 압박은 의식을 잃게 했을 수 있으나 22시 52분에 직접 종을 당겼다면 그때도 살아 있었습니다.” “입과 코 주변의 녹색 섬유는 마지막 호흡을 막은 물건과 맞습니다.”",
     "tags": [
       "증언",
       "주치의",
-      "외상"
+      "상처 순서"
     ],
     "locationId": "apothecary",
     "claimId": "claim.fatal-restraint"

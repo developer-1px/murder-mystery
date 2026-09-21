@@ -14,8 +14,9 @@ export function getCardGroups(scenario: Scenario, npcGroups: NpcGroupsDocument, 
   const stageByCard = new Map(memoryStages.stages.flatMap((stage, index) => stage.cardIds.map((id) => [id, index] as const)))
   return [
     ...scenario.characters.map((character) => ({
-      id: `memory-${character.id}`, kind: 'memory' as const, label: `${character.name} · 개인 진실`,
-      description: `${character.name}만 정해진 시점에 I·II·III를 차례로 확인합니다.`, backTitle: character.name,
+      id: `memory-${character.id}`, kind: 'memory' as const, label: `${character.name} · 묻어야 하는 진실`,
+      description: `${character.name}에게 시작할 때 주는 두 장입니다. 교환 전에는 뒷면만 보여 주며 내용은 교환이 끝난 뒤 확인합니다.`,
+      backTitle: '왕관재판', backSubtitle: '묻어야 하는 진실',
       cards: scenario.cards.filter((card) => card.kind === 'memory' && card.initialOwnerId === character.id)
         .sort((a, b) => (stageByCard.get(a.id) ?? Infinity) - (stageByCard.get(b.id) ?? Infinity)),
     })),
