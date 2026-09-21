@@ -1,7 +1,7 @@
 import type { Card, MemoryStagesDocument, Scenario } from './types'
 import type { CardGroup } from '../scenario/cardGroups'
 
-export type PlayPhase = 'ready' | 'inspection' | 'rumor' | 'testimony' | 'investigation' | 'discussion' | 'court' | 'accusation' | 'defense' | 'indictment' | 'complete'
+export type PlayPhase = 'ready' | 'inspection' | 'rumor' | 'testimony' | 'investigation' | 'discussion' | 'court' | 'truth_exchange' | 'truth_choice' | 'accusation' | 'defense' | 'indictment' | 'complete'
 
 export interface PlaySession {
   id: string
@@ -24,6 +24,9 @@ export interface PlaySession {
   publicCards: Array<{ cardId: string; actorId: string; round: number; source: 'court' | 'inspection'; targetId?: string }>
   courtTurn?: { cardId: string; targetId: string }
   accusations: Record<string, string>
+  truthTrades: Array<{ round: number; fromId: string; toId: string; offeredId: string; receivedId: string }>
+  truthChoices: Record<string, { revealId: string; buryId: string }>
+  truthOutcomes: Record<string, 'revealed' | 'buried'>
   indictment?: string
   log: Array<{ text: string; round: number }>
 }
@@ -46,6 +49,9 @@ export type PlayAction =
   | { type: 'end-discussion' }
   | { type: 'submit-evidence'; cardId: string; targetId: string }
   | { type: 'end-question' }
+  | { type: 'trade-truth'; offeredId: string; targetId: string; requestedId: string }
+  | { type: 'skip-truth-trade' }
+  | { type: 'choose-truth'; revealId: string }
   | { type: 'accuse'; targetId: string }
   | { type: 'end-defense' }
   | { type: 'indict'; targetId: string }
@@ -102,7 +108,7 @@ export function createPlaySession(assets: PlayAssets): PlaySession {
     ])),
     locationChoices: {}, visitedNpcs: Object.fromEntries(ids.map((id) => [id, []])),
     inspectionStage: 'select', investigationStage: 'locations', investigationQueue: [],
-    inspections: [], publicCards: [], accusations: {}, log: [],
+    inspections: [], publicCards: [], accusations: {}, truthTrades: [], truthChoices: {}, truthOutcomes: {}, log: [],
   }
   session.decks[inspectionDeckId] = assets.inspectionCards.map((card) => card.id)
   dealMemories(session, assets)
@@ -164,7 +170,7 @@ function leavesNpcChoices(session: PlaySession, selectedDeckId: string, assets: 
 
 export function getDeckBlockReason(session: PlaySession, group: CardGroup, assets: PlayAssets): string | undefined {
   if (session.choice) return '먼저 펼친 카드에서 한 장을 선택하세요.'
-  if (group.kind === 'memory') return '개인 진실은 정해진 재판 종료 후 자동으로 배분됩니다.'
+  if (group.kind === 'memory') return '묻어야 할 진실 두 장은 게임 시작 시 자동으로 배분됩니다.'
   const matching = (session.phase === 'rumor' && group.kind === 'rumor')
     || (session.phase === 'testimony' && group.kind === 'testimony')
     || (session.phase === 'investigation' && session.investigationStage === 'locations' && group.kind === 'evidence')
@@ -198,6 +204,7 @@ export function randomPlayerAction(session: PlaySession, assets: PlayAssets): Pl
   if (!session.playerId || session.actorId === session.playerId) return undefined
   const pick = <T,>(items: T[]): T | undefined => items[Math.floor(Math.random() * items.length)]
   const other = () => pick(playerIds(assets).filter(id => id !== session.actorId))
+  const suspect = () => pick(playerIds(assets).filter(id => id !== session.actorId && id !== rowenId(assets)))
   switch (session.phase) {
     case 'inspection': {
       if (session.inspectionStage === 'result') return { type: 'finish-inspection' }
@@ -221,10 +228,32 @@ export function randomPlayerAction(session: PlaySession, assets: PlayAssets): Pl
       return card && targetId ? { type: 'submit-evidence', cardId: card.id, targetId } : undefined
     }
     case 'accusation': {
-      const targetId = other()
+      const targetId = suspect()
       return targetId ? { type: 'accuse', targetId } : undefined
     }
     case 'defense': return { type: 'end-defense' }
+    case 'truth_exchange': {
+      const ownTruths = session.hands[session.actorId].filter((id) => {
+        const card = memoryCard(id, assets)
+        return card && (session.actorId !== rowenId(assets) || card.initialOwnerId === session.actorId)
+      })
+      const targetId = pick(playerIds(assets).filter((id) => id !== session.actorId && session.hands[id].some((cardId) => {
+        const card = memoryCard(cardId, assets)
+        return card && (id !== rowenId(assets) || card.initialOwnerId === id)
+      })))
+      const offeredId = pick(ownTruths)
+      const requestedId = targetId ? pick(session.hands[targetId].filter((id) => {
+        const card = memoryCard(id, assets)
+        return card && (targetId !== rowenId(assets) || card.initialOwnerId === targetId)
+      })) : undefined
+      return offeredId && targetId && requestedId && Math.random() > .2
+        ? { type: 'trade-truth', offeredId, targetId, requestedId }
+        : { type: 'skip-truth-trade' }
+    }
+    case 'truth_choice': {
+      const revealId = pick(session.hands[session.actorId].filter((id) => memoryCard(id, assets)))
+      return revealId ? { type: 'choose-truth', revealId } : undefined
+    }
     case 'indictment': {
       const targetId = other()
       return targetId ? { type: 'indict', targetId } : undefined
@@ -262,6 +291,33 @@ function validOther(session: PlaySession, targetId: string, assets: PlayAssets):
 function defenseOrder(assets: PlayAssets): string[] {
   const rowen = rowenId(assets)
   return [...playerIds(assets).filter((id) => id !== rowen), rowen]
+}
+
+function memoryCard(id: string, assets: PlayAssets): Card | undefined {
+  const card = assets.scenario.cards.find((entry) => entry.id === id)
+  return card?.kind === 'memory' ? card : undefined
+}
+
+function finishTruthTradeTurn(session: PlaySession, assets: PlayAssets): void {
+  if (session.turnIndex + 1 < playerIds(assets).length) {
+    nextPlayer(session, 'truth_exchange', assets)
+  } else if (session.round < 3) {
+    nextRound(session, assets)
+  } else {
+    setPhase(session, 'truth_choice', assets)
+    record(session, '모든 진실 교환이 끝났습니다. 기소 결과를 보기 전에 밝힐 진실 하나를 결정합니다.')
+  }
+}
+
+function resolveTruthOutcomes(session: PlaySession, assets: PlayAssets): void {
+  const indicted = session.indictment
+  for (const holderId of playerIds(assets)) {
+    for (const cardId of session.hands[holderId].filter((id) => memoryCard(id, assets))) {
+      const originalOwnerId = memoryCard(cardId, assets)?.initialOwnerId
+      session.truthOutcomes[cardId] = holderId === indicted || originalOwnerId === holderId || session.truthChoices[holderId]?.revealId === cardId
+        ? 'revealed' : 'buried'
+    }
+  }
 }
 
 export function transitionPlay(session: PlaySession, action: PlayAction, assets: PlayAssets): PlaySession {
@@ -378,7 +434,7 @@ export function transitionPlay(session: PlaySession, action: PlayAction, assets:
         next.courtTurn = { cardId: action.cardId, targetId: action.targetId }
         record(next, `${nameOf(next.actorId, assets)} → ${nameOf(action.targetId, assets)}: ${next.round === 1 ? '관련 사실에 대한 질문' : '혐의 주장과 질문'}을 진행합니다.`)
       } else {
-        nextPlayer(next, 'accusation', assets)
+        nextPlayer(next, 'truth_exchange', assets)
       }
       return next
     }
@@ -387,11 +443,46 @@ export function transitionPlay(session: PlaySession, action: PlayAction, assets:
       record(next, `${nameOf(next.actorId, assets)}의 질문과 응답을 마쳤습니다.`)
       delete next.courtTurn
       if (next.turnIndex + 1 < playerIds(assets).length) nextPlayer(next, 'inspection', assets)
-      else nextRound(next, assets)
+      else {
+        setPhase(next, 'truth_exchange', assets)
+        record(next, `${next.round}번째 재판이 끝났습니다. 뒷면 상태로 진실 한 장씩을 교환할 수 있습니다.`)
+      }
+      return next
+    }
+    case 'trade-truth': {
+      if (session.phase !== 'truth_exchange' || !validOther(session, action.targetId, assets)) return session
+      if (!session.hands[session.actorId].includes(action.offeredId) || !session.hands[action.targetId]?.includes(action.requestedId)) return session
+      const offered = memoryCard(action.offeredId, assets)
+      const requested = memoryCard(action.requestedId, assets)
+      if (!offered || !requested) return session
+      if (session.actorId === rowenId(assets) && offered.initialOwnerId !== session.actorId) return session
+      if (action.targetId === rowenId(assets) && requested.initialOwnerId !== action.targetId) return session
+      next.hands[session.actorId] = next.hands[session.actorId].filter((id) => id !== action.offeredId)
+      next.hands[action.targetId] = next.hands[action.targetId].filter((id) => id !== action.requestedId)
+      next.hands[session.actorId].push(action.requestedId)
+      next.hands[action.targetId].push(action.offeredId)
+      next.truthTrades.push({ round: next.round, fromId: session.actorId, toId: action.targetId, offeredId: action.offeredId, receivedId: action.requestedId })
+      record(next, `${nameOf(session.actorId, assets)}과 ${nameOf(action.targetId, assets)}이 뒷면으로 진실 한 장씩을 교환했습니다.`)
+      finishTruthTradeTurn(next, assets)
+      return next
+    }
+    case 'skip-truth-trade': {
+      if (session.phase !== 'truth_exchange') return session
+      record(next, `${nameOf(session.actorId, assets)}이 이번 교환 기회를 넘겼습니다.`)
+      finishTruthTradeTurn(next, assets)
+      return next
+    }
+    case 'choose-truth': {
+      if (session.phase !== 'truth_choice' || session.truthChoices[session.actorId]) return session
+      const held = session.hands[session.actorId].filter((id) => memoryCard(id, assets))
+      if (held.length !== 2 || !held.includes(action.revealId)) return session
+      next.truthChoices[session.actorId] = { revealId: action.revealId, buryId: held.find((id) => id !== action.revealId)! }
+      record(next, `${nameOf(session.actorId, assets)}이 밝힐 진실과 묻을 진실을 비공개로 결정했습니다.`)
+      nextPlayer(next, 'accusation', assets)
       return next
     }
     case 'accuse': {
-      if (session.phase !== 'accusation' || session.accusations[session.actorId] || !validOther(session, action.targetId, assets)) return session
+      if (session.phase !== 'accusation' || session.accusations[session.actorId] || action.targetId === rowenId(assets) || !validOther(session, action.targetId, assets)) return session
       next.accusations[next.actorId] = action.targetId
       record(next, `${nameOf(next.actorId, assets)}이 범인 지목을 비공개로 확정했습니다.`)
       nextPlayer(next, 'defense', assets)
@@ -417,6 +508,7 @@ export function transitionPlay(session: PlaySession, action: PlayAction, assets:
       if (session.phase !== 'indictment' || session.actorId !== rowenId(assets) || !validOther(session, action.targetId, assets)) return session
       next.indictment = action.targetId
       record(next, `${nameOf(next.actorId, assets)}이 ${nameOf(action.targetId, assets)}을 최종 기소했습니다. 세 번의 재판을 마쳤습니다.`)
+      resolveTruthOutcomes(next, assets)
       setPhase(next, 'complete', assets)
       return next
     }
