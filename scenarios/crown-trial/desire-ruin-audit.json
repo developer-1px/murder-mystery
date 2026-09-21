@@ -1,0 +1,82 @@
+{
+  "description": "공개 조사 카드만으로 상대의 실제 목표를 확정할 수 없게 하되, 인물마다 욕망 2장과 파멸 2장을 연결하면 우선순위를 추정할 수 있도록 한 분배표다.",
+  "rule": {
+    "desirePerCharacter": 2,
+    "ruinPerCharacter": 2,
+    "distribution": "각 축은 이른 단서 1장과 늦은 단서 1장으로 구성한다. 단일 카드는 결론이 아니라 행동이나 반응만 보여 준다."
+  },
+  "characters": [
+    {
+      "characterId": "queen",
+      "desire": [
+        "rumor.queen-old-letter",
+        "evidence.coronation-book"
+      ],
+      "ruin": [
+        "evidence.belladonna-ledger",
+        "testimony.marta-order"
+      ],
+      "inference": "자신의 지위보다 카시안의 군권과 즉위를 우선하며, 이를 위해 독살 명령까지 내렸다."
+    },
+    {
+      "characterId": "cassian",
+      "desire": [
+        "testimony.page-sighting",
+        "rumor.cassian-isabel-truth"
+      ],
+      "ruin": [
+        "rumor.cassian-quarrel",
+        "evidence.royal-birth-register"
+      ],
+      "inference": "대관보다 비밀 약속을 우선하며, 폭행과 혈통 논란 때문에 그 이유를 공개하기 어렵다."
+    },
+    {
+      "characterId": "isabel",
+      "desire": [
+        "evidence.annulment-draft",
+        "evidence.isabel-petition"
+      ],
+      "ruin": [
+        "evidence.sedative-prescription",
+        "rumor.isabel-annulment"
+      ],
+      "inference": "아이의 권리를 지키는 수준을 넘어 성인 후보 C가 제외된 뒤의 단독 후견을 준비했으며, 첫 방문 뒤의 행적을 숨긴다."
+    },
+    {
+      "characterId": "seraphine",
+      "desire": [
+        "evidence.marriage-treaty",
+        "evidence.succession-leaf"
+      ],
+      "ruin": [
+        "rumor.seraphine-copy",
+        "testimony.isabel-attendant"
+      ],
+      "inference": "강요된 혼인을 피하는 데서 나아가 직접 계승 심의에 들어가려 했고, 그 준비의 출입 기록을 지웠다."
+    },
+    {
+      "characterId": "benedict",
+      "desire": [
+        "testimony.dinner-steward",
+        "evidence.archive-register"
+      ],
+      "ruin": [
+        "rumor.multiple-footsteps",
+        "evidence.repaired-coat"
+      ],
+      "inference": "미성년 섭정보다 새벽 전 성인 군주 확정을 원하며, 자신이 아드리안을 공격한 흔적을 감춘다."
+    },
+    {
+      "characterId": "rowen",
+      "desire": [
+        "evidence.watch-roster",
+        "evidence.guard-charter"
+      ],
+      "ruin": [
+        "testimony.guard-withdrawal",
+        "rumor.rowen-second-visit"
+      ],
+      "inference": "근위대가 새 왕의 사병으로 편입되는 것을 막으려 하며, 그 조직을 지키려고 경비 공백과 선행 입실을 숨긴다."
+    }
+  ]
+}
