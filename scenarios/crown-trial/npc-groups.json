@@ -1,0 +1,77 @@
+{
+  "description": "플레이어 캐릭터와 1:1로 대응하는 탐문 NPC. 매회 여섯 NPC를 한 번씩만 선택한다. 각 NPC에서 두 장을 함께 읽고 한 장을 획득하며, 선택하지 않은 카드는 덱에 남긴다. 다음 회차에는 같은 NPC를 다시 탐문할 수 있다.",
+  "npcs": [
+    {
+      "id": "npc.marta",
+      "name": "마르타",
+      "role": "왕비전 시녀",
+      "pairedCharacterId": "queen",
+      "cardIds": [
+        "testimony.marta-order",
+        "testimony.marta-recall",
+        "testimony.recall-messenger",
+        "testimony.apothecary-counter"
+      ]
+    },
+    {
+      "id": "npc.nicol",
+      "name": "니콜",
+      "role": "왕실 시종",
+      "pairedCharacterId": "cassian",
+      "cardIds": [
+        "testimony.dinner-steward",
+        "testimony.page-sighting",
+        "testimony.study-servant",
+        "testimony.bell-attendant"
+      ]
+    },
+    {
+      "id": "npc.lucien",
+      "name": "루시엔",
+      "role": "왕실 주치의",
+      "pairedCharacterId": "isabel",
+      "cardIds": [
+        "testimony.physician-limits",
+        "testimony.head-examination",
+        "testimony.residue-examination",
+        "testimony.old-midwife"
+      ]
+    },
+    {
+      "id": "npc.elian",
+      "name": "엘리안",
+      "role": "왕실서고지기",
+      "pairedCharacterId": "seraphine",
+      "cardIds": [
+        "testimony.archivist",
+        "testimony.archive-copyist",
+        "testimony.foreign-envoy",
+        "testimony.isabel-attendant"
+      ]
+    },
+    {
+      "id": "npc.oswin",
+      "name": "오스윈",
+      "role": "재상실 시종",
+      "pairedCharacterId": "benedict",
+      "cardIds": [
+        "testimony.minister-clerk",
+        "testimony.tailor",
+        "testimony.wardrobe-keeper",
+        "testimony.night-attendant"
+      ]
+    },
+    {
+      "id": "npc.hart",
+      "name": "하르트",
+      "role": "서쪽 초소 근위병",
+      "pairedCharacterId": "rowen",
+      "cardIds": [
+        "testimony.guard-withdrawal",
+        "testimony.late-patrol",
+        "testimony.body-discovery",
+        "testimony.clock-keeper"
+      ]
+    }
+  ]
+}

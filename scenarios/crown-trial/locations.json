@@ -7,11 +7,14 @@
       "rumor.cassian-quarrel",
       "evidence.guard-log",
       "evidence.broken-seal",
-      "evidence.second-glass",
       "evidence.stopped-watch",
-      "evidence.black-cloth",
       "evidence.burnt-will",
-      "testimony.study-servant"
+      "testimony.study-servant",
+      "evidence.ink-blotter",
+      "evidence.annulment-draft",
+      "evidence.isabel-letter",
+      "testimony.dinner-steward",
+      "testimony.body-discovery"
     ]
   },
   {
@@ -20,11 +23,23 @@
     "description": "독과 수면제의 반출 기록. 관계자들의 설명을 처방과 대조한다.",
     "cardIds": [
       "rumor.apothecary-visit",
+      "evidence.second-glass",
       "evidence.physician-log",
       "evidence.belladonna-ledger",
+      "evidence.black-cloth",
       "evidence.sedative-prescription",
       "testimony.physician-limits",
-      "testimony.marta-recall"
+      "testimony.marta-recall",
+      "rumor.heir-calendar",
+      "evidence.gilt-glass",
+      "evidence.wine-bottle",
+      "evidence.dispensing-counterfoil",
+      "evidence.pregnancy-notes",
+      "testimony.marta-order",
+      "testimony.apothecary-counter",
+      "testimony.head-examination",
+      "testimony.residue-examination",
+      "testimony.old-midwife"
     ]
   },
   {
@@ -36,7 +51,24 @@
       "rumor.secret-letter",
       "evidence.mud-print",
       "testimony.page-sighting",
-      "testimony.guard-withdrawal"
+      "testimony.guard-withdrawal",
+      "rumor.queen-luggage",
+      "rumor.night-sewing",
+      "rumor.guard-return",
+      "evidence.recall-slip",
+      "evidence.bell-register",
+      "evidence.bell-repair",
+      "evidence.repaired-coat",
+      "evidence.minister-dispatch",
+      "evidence.watch-roster",
+      "evidence.guard-charter",
+      "testimony.recall-messenger",
+      "testimony.bell-attendant",
+      "testimony.clock-keeper",
+      "testimony.tailor",
+      "testimony.night-attendant",
+      "testimony.late-patrol",
+      "testimony.isabel-attendant"
     ]
   },
   {
@@ -48,7 +80,23 @@
       "rumor.marriage",
       "evidence.marriage-treaty",
       "evidence.archive-register",
-      "testimony.archivist"
+      "testimony.archivist",
+      "rumor.old-portrait",
+      "rumor.princess-pages",
+      "evidence.uniform-samples",
+      "evidence.corridor-plan",
+      "evidence.marriage-annex",
+      "evidence.succession-leaf",
+      "evidence.royal-birth-register",
+      "evidence.last-will",
+      "evidence.coronation-book",
+      "evidence.young-benedict-letter",
+      "evidence.royal-recognition",
+      "evidence.isabel-petition",
+      "testimony.wardrobe-keeper",
+      "testimony.minister-clerk",
+      "testimony.archive-copyist",
+      "testimony.foreign-envoy"
     ]
   }
 ]

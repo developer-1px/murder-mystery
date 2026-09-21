@@ -12,8 +12,10 @@
   "dependencies": {
     "@vitejs/plugin-react": "latest",
     "ajv": "latest",
+    "motion": "^13.4.0",
     "react": "latest",
     "react-dom": "latest",
+    "react-router": "^8.4.0",
     "vite": "latest"
   },
   "devDependencies": {

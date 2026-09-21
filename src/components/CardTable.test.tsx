@@ -222,6 +222,9 @@ describe('테이블 실제 입력 경로', () => {
   })
 
   it('실제 앱 기록에서 가져오기를 한 번에 되돌리고 다시 할 수 있다', async () => {
+    window.history.replaceState({}, '', '/')
+    localStorage.clear()
+    vi.stubGlobal('scrollTo', vi.fn())
     await act(() => root.render(<App />))
     Object.assign(query('.table-surface'), { hasPointerCapture: () => false })
     const total = () => [...host.querySelectorAll('.table-piece__label b')].reduce((sum, item) => sum + parseInt(item.textContent!), 0)

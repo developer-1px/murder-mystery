@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["designerOnly", "description", "groups"],
+  "additionalProperties": false,
+  "properties": {
+    "designerOnly": { "const": true },
+    "description": { "type": "string", "minLength": 1 },
+    "groups": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "question", "fragments", "auditNote"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^issue\\." },
+          "title": { "type": "string", "minLength": 1 },
+          "question": { "type": "string", "minLength": 1 },
+          "auditNote": { "type": "string", "minLength": 1 },
+          "fragments": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "object",
+              "required": ["id", "label", "cardIds"],
+              "additionalProperties": false,
+              "properties": {
+                "id": { "type": "string", "minLength": 1 },
+                "label": { "type": "string", "minLength": 1 },
+                "status": { "enum": ["covered", "thin", "missing"] },
+                "note": { "type": "string", "minLength": 1 },
+                "cardIds": {
+                  "type": "array",
+                  "minItems": 0,
+                  "uniqueItems": true,
+                  "items": { "type": "string", "minLength": 1 }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
