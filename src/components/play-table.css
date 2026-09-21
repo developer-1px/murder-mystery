@@ -123,7 +123,7 @@
 .play-complete { text-align: center; display: flex; flex-direction: column; align-items: center; }
 .play-complete > span { font-size: 43px; color: #cbb78c; }
 .play-complete h4 { font: 700 30px 'Gowun Batang', serif; margin: 10px 0; }
-.play-complete p { font: 14px/1.9 'Gowun Batang', serif; color: #c9d0b8; margin: 5px 0 20px; }
+.play-complete > p { font: 14px/1.9 'Gowun Batang', serif; color: #c9d0b8; margin: 5px 0 20px; }
 .play-complete > div { display: flex; gap: 8px; align-items: baseline; font-size: 11px; color: #a9b899; }
 .play-complete > div b { font: 23px 'Gowun Batang', serif; color: #e3c58c; }
 .play-complete > div i { margin: 0 10px; }
