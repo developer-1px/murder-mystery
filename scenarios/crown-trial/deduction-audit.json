@@ -79,10 +79,10 @@
         "paths": [
           [
             "evidence.broken-seal",
-            "testimony.head-examination"
+            "testimony.residue-examination"
           ],
           [
-            "evidence.broken-seal",
+            "testimony.head-examination",
             "testimony.residue-examination"
           ]
         ]
@@ -93,6 +93,7 @@
         "cardIds": [
           "rumor.secret-letter",
           "evidence.mud-print",
+          "rumor.isabel-annulment",
           "memory.isabel-alive"
         ],
         "paths": [
@@ -101,7 +102,7 @@
             "evidence.mud-print"
           ],
           [
-            "rumor.secret-letter",
+            "rumor.isabel-annulment",
             "memory.isabel-alive"
           ]
         ]

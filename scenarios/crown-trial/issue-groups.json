@@ -1,6 +1,6 @@
 {
   "designerOnly": true,
-  "description": "다섯 용의자에게 핵심 의혹 카드 8장씩을 배정한다. 이사벨의 묶음은 수면제 의혹과 숨은 계승 계획이 대부분이며 실제 살해 단서는 공통 사인과 간접 연결로 분리한다.",
+  "description": "다섯 용의자에게 핵심 의혹 카드 8장씩을 배정한다. 각 묶음은 동기·기회·행동·반증 또는 은폐를 두 장씩 맡아, 같은 배경을 반복하지 않고 하나의 범행 가설을 완성한다.",
   "groups": [
     {
       "id": "suspicion.queen",
@@ -8,21 +8,39 @@
       "question": "독을 구하고 술에 넣으라고 명령한 뒤 취소한 왕비가 실제 살해까지 이어 갔는가?",
       "fragments": [
         {
-          "id": "suspicion.queen.cards",
-          "label": "핵심 의혹 카드 8장",
+          "id": "suspicion.queen.motive",
+          "label": "동기 2장",
           "cardIds": [
             "memory.queen-recall",
-            "evidence.dispensing-counterfoil",
-            "evidence.belladonna-ledger",
-            "testimony.apothecary-counter",
+            "rumor.queen-old-letter"
+          ]
+        },
+        {
+          "id": "suspicion.queen.opportunity",
+          "label": "기회·동선 2장",
+          "cardIds": [
+            "testimony.recall-messenger",
+            "rumor.queen-luggage"
+          ]
+        },
+        {
+          "id": "suspicion.queen.action",
+          "label": "독살 행동 2장",
+          "cardIds": [
             "testimony.marta-order",
+            "evidence.belladonna-ledger"
+          ]
+        },
+        {
+          "id": "suspicion.queen.rebuttal",
+          "label": "취소와 남은 약병 2장",
+          "cardIds": [
             "evidence.recall-slip",
-            "testimony.marta-recall",
-            "evidence.gilt-glass"
+            "testimony.marta-recall"
           ]
         }
       ],
-      "auditNote": "반출·명령·취소·잔류물을 나누어 둔다. 독살 시도는 분명하지만 치사량과 실제 음용은 별도로 증명해야 한다."
+      "auditNote": "동기·기회·행동·반증 또는 은폐가 각각 두 장이다. 일부만 공개되어도 인물을 지목할 질문이 생기고, 네 역할이 모이면 범행설의 성립 여부를 판단할 수 있다."
     },
     {
       "id": "suspicion.cassian",
@@ -30,21 +48,39 @@
       "question": "아드리안을 직접 폭행하고 왕위와 연인을 얻을 수 있었던 카시안이 마지막 숨까지 끊었는가?",
       "fragments": [
         {
-          "id": "suspicion.cassian.cards",
-          "label": "핵심 의혹 카드 8장",
+          "id": "suspicion.cassian.motive",
+          "label": "동기 2장",
+          "cardIds": [
+            "memory.cassian-sedative",
+            "evidence.isabel-letter"
+          ]
+        },
+        {
+          "id": "suspicion.cassian.opportunity",
+          "label": "기회·동선 2장",
+          "cardIds": [
+            "testimony.page-sighting",
+            "rumor.cassian-isabel-truth"
+          ]
+        },
+        {
+          "id": "suspicion.cassian.action",
+          "label": "형제간 폭행 2장",
           "cardIds": [
             "memory.cassian-assault",
-            "rumor.cassian-quarrel",
+            "rumor.cassian-quarrel"
+          ]
+        },
+        {
+          "id": "suspicion.cassian.trace",
+          "label": "폭행 시각의 물증 2장",
+          "cardIds": [
             "evidence.stopped-watch",
-            "testimony.page-sighting",
-            "memory.cassian-sedative",
-            "evidence.isabel-letter",
-            "rumor.cassian-isabel-truth",
-            "evidence.coronation-book"
+            "evidence.royal-recognition"
           ]
         }
       ],
-      "auditNote": "폭행·동기·계승 이익이 강하지만 폐예배실의 기다림과 뒤의 생존 신호가 최종 살해 여부를 갈라야 한다."
+      "auditNote": "동기·기회·행동·반증 또는 은폐가 각각 두 장이다. 일부만 공개되어도 인물을 지목할 질문이 생기고, 네 역할이 모이면 범행설의 성립 여부를 판단할 수 있다."
     },
     {
       "id": "suspicion.seraphine",
@@ -52,21 +88,39 @@
       "question": "혼인을 거부하고 왕위를 준비한 세라핀이 아드리안의 죽음을 앞당겼는가?",
       "fragments": [
         {
-          "id": "suspicion.seraphine.cards",
-          "label": "핵심 의혹 카드 8장",
+          "id": "suspicion.seraphine.motive",
+          "label": "동기 2장",
           "cardIds": [
             "memory.seraphine-archive",
+            "rumor.marriage"
+          ]
+        },
+        {
+          "id": "suspicion.seraphine.opportunity",
+          "label": "기회·동선 2장",
+          "cardIds": [
+            "rumor.seraphine-copy",
+            "evidence.corridor-plan"
+          ]
+        },
+        {
+          "id": "suspicion.seraphine.action",
+          "label": "금서고 은폐 2장",
+          "cardIds": [
             "memory.seraphine-ledger",
-            "evidence.marriage-treaty",
-            "rumor.marriage",
-            "evidence.marriage-annex",
-            "testimony.isabel-attendant",
-            "testimony.foreign-envoy",
-            "evidence.succession-leaf"
+            "testimony.isabel-attendant"
+          ]
+        },
+        {
+          "id": "suspicion.seraphine.rebuttal",
+          "label": "마지막 종 알리바이 2장",
+          "cardIds": [
+            "testimony.archive-copyist",
+            "rumor.princess-pages"
           ]
         }
       ],
-      "auditNote": "밀약·금서고 침입·계승 동기는 충분하지만 서고 체류와 직접 살해 행위는 분리한다."
+      "auditNote": "동기·기회·행동·반증 또는 은폐가 각각 두 장이다. 일부만 공개되어도 인물을 지목할 질문이 생기고, 네 역할이 모이면 범행설의 성립 여부를 판단할 수 있다."
     },
     {
       "id": "suspicion.benedict",
@@ -74,21 +128,39 @@
       "question": "아드리안의 입을 막고 몸을 눌러 움직이지 않게 만든 베네딕트가 그 자리에서 죽였는가?",
       "fragments": [
         {
-          "id": "suspicion.benedict.cards",
-          "label": "핵심 의혹 카드 8장",
+          "id": "suspicion.benedict.motive",
+          "label": "동기 2장",
+          "cardIds": [
+            "memory.benedict-will-clause",
+            "rumor.missing-document"
+          ]
+        },
+        {
+          "id": "suspicion.benedict.opportunity",
+          "label": "서재 진입 2장",
+          "cardIds": [
+            "rumor.multiple-footsteps",
+            "testimony.night-attendant"
+          ]
+        },
+        {
+          "id": "suspicion.benedict.action",
+          "label": "제압 흔적 2장",
           "cardIds": [
             "memory.benedict-birth-dates",
-            "memory.benedict-will-clause",
-            "rumor.multiple-footsteps",
-            "evidence.black-cloth",
-            "evidence.repaired-coat",
+            "evidence.black-cloth"
+          ]
+        },
+        {
+          "id": "suspicion.benedict.rebuttal",
+          "label": "마지막 종 알리바이 2장",
+          "cardIds": [
             "testimony.tailor",
-            "testimony.night-attendant",
             "rumor.benedict-edmund-letter"
           ]
         }
       ],
-      "auditNote": "현장 접근과 입가의 손가락 멍은 베네딕트를 가장 직접적으로 가리킨다. 22시 52분 생존 신호와 뒤에 겹친 넓은 압박을 연결해야 선행 제압과 최종 살해를 분리할 수 있다."
+      "auditNote": "동기·기회·행동·반증 또는 은폐가 각각 두 장이다. 일부만 공개되어도 인물을 지목할 질문이 생기고, 네 역할이 모이면 범행설의 성립 여부를 판단할 수 있다."
     },
     {
       "id": "suspicion.isabel",
@@ -96,21 +168,39 @@
       "question": "아드리안에게 수면제를 먹이고 아이의 독립된 계승을 준비한 이사벨이 약물 이상의 행위를 했는가?",
       "fragments": [
         {
-          "id": "suspicion.isabel.cards",
-          "label": "핵심 의혹 카드 8장",
+          "id": "suspicion.isabel.motive",
+          "label": "동기 2장",
           "cardIds": [
             "memory.isabel-petition",
-            "evidence.sedative-prescription",
-            "evidence.second-glass",
-            "evidence.physician-log",
-            "evidence.wine-bottle",
-            "testimony.physician-limits",
+            "evidence.annulment-draft"
+          ]
+        },
+        {
+          "id": "suspicion.isabel.opportunity",
+          "label": "두 번째 동선 2장",
+          "cardIds": [
             "rumor.secret-letter",
-            "memory.isabel-alive"
+            "rumor.isabel-annulment"
+          ]
+        },
+        {
+          "id": "suspicion.isabel.action",
+          "label": "수면제 투여 2장",
+          "cardIds": [
+            "testimony.study-servant",
+            "evidence.second-glass"
+          ]
+        },
+        {
+          "id": "suspicion.isabel.trace",
+          "label": "질식 도구 연결 2장",
+          "cardIds": [
+            "memory.isabel-alive",
+            "testimony.residue-examination"
           ]
         }
       ],
-      "auditNote": "핵심 카드 중 5장은 수면제의 확보·투여·효과, 1장은 아이를 앞세운 숨은 계승 계획에 관한 것이다. 실제 살해와 연결되는 나머지 2장은 익명 방문자와 출처 불명의 망토 고리여서 단독으로 이사벨을 지목하지 못한다."
+      "auditNote": "동기·기회·행동·반증 또는 은폐가 각각 두 장이다. 일부만 공개되어도 인물을 지목할 질문이 생기고, 네 역할이 모이면 범행설의 성립 여부를 판단할 수 있다."
     },
     {
       "id": "reconstruction.final-act",
