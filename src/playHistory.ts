@@ -6,16 +6,16 @@ export interface PlayBranch {
   snapshots: PlaySession[]
 }
 export interface PlayHistory {
-  version: 2
+  version: 3
   branches: PlayBranch[]
   last: { branchId: string; step: number }
 }
-export const playStorageKey = (scenarioId: string) => `murder-mystery:play:${scenarioId}:v2`
+export const playStorageKey = (scenarioId: string) => `murder-mystery:play:${scenarioId}:v3`
 export const playPath = (branchId: string, step: number) => `/table/play/${encodeURIComponent(branchId)}/steps/${step}`
 
 export function createPlayHistory(assets: PlayAssets): PlayHistory {
   const session = createPlaySession(assets)
-  return { version: 2, branches: [{ id: session.id, name: '첫 번째 재판', snapshots: [session] }], last: { branchId: session.id, step: 0 } }
+  return { version: 3, branches: [{ id: session.id, name: '첫 번째 재판', snapshots: [session] }], last: { branchId: session.id, step: 0 } }
 }
 
 export function readPlayHistory(assets: PlayAssets): { history: PlayHistory; error?: string; warning?: string } {
@@ -28,7 +28,7 @@ export function readPlayHistory(assets: PlayAssets): { history: PlayHistory; err
     const phases = new Set(['ready', 'inspection', 'rumor', 'testimony', 'investigation', 'discussion', 'court', 'truth_exchange', 'truth_choice', 'accusation', 'defense', 'indictment', 'complete'])
     const cardIds = new Set([...assets.scenario.cards, ...assets.inspectionCards].map(card => card.id))
     const characterIds = new Set(assets.scenario.characters.map(character => character.id))
-    if (history.version !== 2 || !Array.isArray(history.branches) || !history.branches.length) throw new Error('format')
+    if (history.version !== 3 || !Array.isArray(history.branches) || !history.branches.length) throw new Error('format')
     const branchIds = new Set<string>()
     for (const branch of history.branches) {
       if (typeof branch.id !== 'string' || !branch.id || branchIds.has(branch.id) || typeof branch.name !== 'string' || !Array.isArray(branch.snapshots) || !branch.snapshots.length) throw new Error('branch')
