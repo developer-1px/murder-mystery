@@ -10,9 +10,11 @@ const card: Card = { id: 'secret-id', title: '숨긴 제목', kind: 'memory', te
 
 describe('카드 앞뒤', () => {
   it('뒷면은 제목·본문·태그·ID를 마크업과 접근성 이름에 남기지 않는다', () => {
-    const html = renderToStaticMarkup(<CardView card={card} faceDown backLabel="기억 카드 1 펼치기" />)
+    const html = renderToStaticMarkup(<CardView card={card} faceDown backTitle="개인 진실 I" backSubtitle="정해진 시점에 확인" backLabel="기억 카드 1 펼치기" />)
     for (const secret of [card.id, card.title, card.text, ...card.tags]) expect(html).not.toContain(secret)
     expect(html).toContain('기억 카드 1 펼치기')
+    expect(html).toContain('개인 진실 I')
+    expect(html).toContain('정해진 시점에 확인')
     expect(html).toContain('card--back')
   })
 

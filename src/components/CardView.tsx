@@ -1,6 +1,8 @@
 import { useEffect, useLayoutEffect, useRef, type MouseEventHandler, type ReactNode } from 'react'
 import type { Card } from '../domain/types'
 import { cardKinds } from './cardKinds'
+import { Link } from 'react-router'
+import { CopyLinkButton } from '../routing'
 
 interface Props {
   card: Card
@@ -8,9 +10,14 @@ interface Props {
   selected?: boolean
   faceDown?: boolean
   backLabel?: string
+  backTitle?: string
+  backSubtitle?: string
+  to?: string
+  disabled?: boolean
+  tabIndex?: number
 }
 
-export function CardView({ card, onClick, selected, faceDown, backLabel }: Props) {
+export function CardView({ card, onClick, selected, faceDown, backLabel, backTitle, backSubtitle, to, disabled, tabIndex }: Props) {
   const ref = useRef<HTMLElement>(null)
   useLayoutEffect(() => {
     const root = ref.current
@@ -40,15 +47,13 @@ export function CardView({ card, onClick, selected, faceDown, backLabel }: Props
     return () => { active = false; observer?.disconnect(); document.fonts?.removeEventListener('loadingdone', fit) }
   }, [card, faceDown])
 
-  const Surface = onClick ? 'button' : 'article'
-  return (
-    <Surface ref={(element) => { ref.current = element }} className={`card card--${faceDown ? 'back' : card.kind}`}
-      onClick={onClick} aria-pressed={selected} aria-label={faceDown ? backLabel ?? '뒷면 카드' : undefined}>
-      <div className="card__face">
+  const content = <div className="card__face">
         {faceDown ? <>
-          <span className="card-back__edition">CROWN TRIAL</span>
+          <span className="card-back__category">{cardKinds[card.kind].backLabel}</span>
           <span className="card-back__seal" aria-hidden="true">♛</span>
-          <span className="card-back__caption">왕관재판</span>
+          <span className="card-back__caption">{backTitle ?? '왕관재판'}</span>
+          {backSubtitle && <span className="card-back__subtitle">{backSubtitle}</span>}
+          <span className="card-back__edition">CROWN TRIAL</span>
         </> : <>
           <span className="card__kind">{cardKinds[card.kind].label}</span>
           <h3>{card.title}</h3>
@@ -56,8 +61,10 @@ export function CardView({ card, onClick, selected, faceDown, backLabel }: Props
           <div className="card__tags">{card.tags.map((tag) => <span key={tag}>#{tag}</span>)}</div>
         </>}
       </div>
-    </Surface>
-  )
+  const props = { ref: (element: HTMLElement | null) => { ref.current = element }, tabIndex, className: `card card--${faceDown ? `back card--back-${card.kind}` : card.kind}`, 'aria-label': faceDown ? backLabel ?? '뒷면 카드' : undefined }
+  if (to) return <Link {...props} to={to}>{content}</Link>
+  const Surface = onClick ? 'button' : 'article'
+  return <Surface {...props} onClick={onClick} aria-pressed={selected} disabled={onClick ? disabled : undefined}>{content}</Surface>
 }
 
 export function CardReader({ card, faceDown = false, onClose, children }: { card?: Card; faceDown?: boolean; onClose: () => void; children?: ReactNode }) {
@@ -67,8 +74,9 @@ export function CardReader({ card, faceDown = false, onClose, children }: { card
     else dialogRef.current?.close()
   }, [card])
 
-  return <dialog ref={dialogRef} className="card-reader" aria-label={faceDown ? '뒷면 카드 크게 보기' : card ? `${card.title} 크게 보기` : '카드 크게 보기'} onClose={onClose} onClick={(event) => { if (event.target === event.currentTarget) onClose() }}>
+  return <dialog ref={dialogRef} className="card-reader" aria-label={faceDown ? '뒷면 카드 크게 보기' : card ? `${card.title} 크게 보기` : '카드 크게 보기'} onClose={() => { if (card) onClose() }} onClick={(event) => { if (event.target === event.currentTarget) onClose() }}>
     {card && <div className="card-reader__sheet">
+      <CopyLinkButton />
       <button type="button" className="card-reader__close" onClick={onClose} aria-label="카드 닫기">닫기 ×</button>
       <CardView card={card} faceDown={faceDown} />
       {!faceDown && children}

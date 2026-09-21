@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["description", "npcs"],
+  "additionalProperties": false,
+  "properties": {
+    "description": { "type": "string", "minLength": 1 },
+    "npcs": {
+      "type": "array", "minItems": 6, "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "role", "pairedCharacterId", "cardIds"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^npc\\." },
+          "name": { "type": "string", "minLength": 1 },
+          "role": { "type": "string", "minLength": 1 },
+          "pairedCharacterId": { "type": "string", "minLength": 1 },
+          "cardIds": { "type": "array", "minItems": 4, "maxItems": 4, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+        }
+      }
+    }
+  }
+}

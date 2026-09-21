@@ -1,0 +1,971 @@
+{
+  "designerOnly": true,
+  "description": "핵심 쟁점을 관측 가능한 정보 조각으로 나누고 관련 카드를 연결한 제작자용 분류표다. 한 카드는 여러 쟁점에 중복 연결될 수 있으며, 이 연결은 플레이어에게 공개하지 않는다.",
+  "groups": [
+    {
+      "id": "issue.poison-chain",
+      "title": "독과 술병의 이동",
+      "question": "독의 확보부터 명령, 취소, 술병 배치, 음주까지 각 단계가 서로 독립된 정보로 나뉘어 있는가?",
+      "fragments": [
+        {
+          "id": "poison-acquired",
+          "label": "약제가 반출되었다",
+          "cardIds": [
+            "rumor.apothecary-visit",
+            "evidence.belladonna-ledger",
+            "evidence.dispensing-counterfoil",
+            "testimony.apothecary-counter"
+          ]
+        },
+        {
+          "id": "poison-order-given",
+          "label": "왕비가 마르타에게 처음 명령했다",
+          "cardIds": [
+            "memory.queen-poison",
+            "testimony.marta-order"
+          ]
+        },
+        {
+          "id": "recall-sent",
+          "label": "왕비전에서 취소 연락이 출발했다",
+          "cardIds": [
+            "memory.queen-recall",
+            "evidence.recall-slip",
+            "testimony.recall-messenger"
+          ]
+        },
+        {
+          "id": "recall-received",
+          "label": "마르타가 취소를 언제 알았는지는 별도 문제다",
+          "cardIds": [
+            "testimony.marta-recall",
+            "testimony.recall-messenger"
+          ]
+        },
+        {
+          "id": "bottle-placed",
+          "label": "약이 든 술병이 소파 곁에 놓였다",
+          "cardIds": [
+            "evidence.wine-bottle",
+            "testimony.marta-recall"
+          ]
+        },
+        {
+          "id": "drink-not-observed",
+          "label": "어느 잔에서 무엇을 얼마나 마셨는지는 직접 관측되지 않았다",
+          "cardIds": [
+            "evidence.gilt-glass",
+            "evidence.second-glass",
+            "testimony.study-servant",
+            "testimony.residue-examination",
+            "testimony.physician-limits"
+          ]
+        }
+      ],
+      "auditNote": "반출, 살해 지시, 취소, 술병 배치, 실제 섭취를 한 줄의 인과로 합치지 않는다."
+    },
+    {
+      "id": "issue.sedative-and-two-glasses",
+      "title": "수면제와 두 개의 술잔",
+      "question": "첫 술과 뒤의 술병, 두 잔의 잔여물이 구분되어 있는가?",
+      "fragments": [
+        {
+          "id": "sedative-available",
+          "label": "이사벨 명의의 수면제 기록이 있다",
+          "cardIds": [
+            "evidence.sedative-prescription"
+          ]
+        },
+        {
+          "id": "first-drink-tampered",
+          "label": "이사벨은 첫 번째 술에 수면제를 넣었다",
+          "cardIds": [
+            "memory.isabel-draught"
+          ]
+        },
+        {
+          "id": "two-vessels-remain",
+          "label": "현장에는 서로 다른 술잔과 술병이 남았다",
+          "cardIds": [
+            "evidence.gilt-glass",
+            "evidence.second-glass",
+            "evidence.wine-bottle"
+          ]
+        },
+        {
+          "id": "residue-limited",
+          "label": "잔여물 검사는 섭취량과 사인을 확정하지 않는다",
+          "cardIds": [
+            "testimony.residue-examination",
+            "testimony.physician-limits"
+          ]
+        }
+      ],
+      "auditNote": "용기에서 검출된 성분과 아드리안이 실제로 섭취한 성분을 구분한다."
+    },
+    {
+      "id": "issue.death-window",
+      "title": "사망 가능 시간대",
+      "question": "폭행 이후의 생존 관측과 늦은 방문들을 한 사람의 진술에 의존하지 않고 재구성할 수 있는가?",
+      "fragments": [
+        {
+          "id": "dinner-baseline",
+          "label": "만찬 때의 자리와 일정",
+          "cardIds": [
+            "testimony.dinner-steward"
+          ]
+        },
+        {
+          "id": "assault-2152",
+          "label": "21시 52분경 다툼과 폭행이 있었다",
+          "cardIds": [
+            "memory.cassian-assault",
+            "rumor.cassian-quarrel",
+            "evidence.stopped-watch"
+          ]
+        },
+        {
+          "id": "bell-2208",
+          "label": "22시 8분 호출 기록이 남았다",
+          "cardIds": [
+            "evidence.bell-register",
+            "testimony.bell-attendant"
+          ]
+        },
+        {
+          "id": "bell-reliability",
+          "label": "호출 설비와 기록의 신뢰도에는 한계가 있다",
+          "cardIds": [
+            "evidence.bell-repair",
+            "testimony.clock-keeper",
+            "testimony.bell-attendant"
+          ]
+        },
+        {
+          "id": "alive-2215",
+          "label": "22시 15분에는 대화 반응이 있었다",
+          "cardIds": [
+            "memory.rowen-alive",
+            "testimony.page-sighting",
+            "testimony.study-servant"
+          ]
+        },
+        {
+          "id": "uncertain-2233",
+          "label": "22시 33분의 반응은 확신되지 않는다",
+          "cardIds": [
+            "memory.isabel-alive"
+          ]
+        },
+        {
+          "id": "alive-2241",
+          "label": "22시 41분경 아드리안의 목소리가 복도에서 들렸다",
+          "cardIds": [
+            "testimony.night-attendant"
+          ]
+        },
+        {
+          "id": "late-movements",
+          "label": "그 뒤 복도와 서재에 여러 움직임이 있었다",
+          "cardIds": [
+            "rumor.multiple-footsteps",
+            "memory.rowen-second-visit"
+          ]
+        },
+        {
+          "id": "body-found-2305",
+          "label": "23시 5분에 시신이 발견되었다",
+          "cardIds": [
+            "testimony.body-discovery"
+          ]
+        },
+        {
+          "id": "injury-observed",
+          "label": "시신에서 뒤통수 상처가 관찰되었다",
+          "cardIds": [
+            "testimony.head-examination",
+            "testimony.physician-limits"
+          ]
+        }
+      ],
+      "auditNote": "회중시계 정지, 호출 기록, 사람의 반응, 시신 발견을 각각 다른 종류의 시간 표지로 본다."
+    },
+    {
+      "id": "issue.benedict-visit",
+      "title": "베네딕트의 늦은 방문",
+      "question": "방문 사실, 방문 시각, 검은 옷의 정체, 소매 수선이 서로 다른 조각으로 남아 있는가?",
+      "fragments": [
+        {
+          "id": "visit-admitted",
+          "label": "베네딕트가 22시 38분 서재에 들어가 22시 49분 돌아왔다",
+          "cardIds": [
+            "testimony.night-attendant"
+          ]
+        },
+        {
+          "id": "arrival-traces",
+          "label": "회랑과 창가에 방문자의 흔적이 있다",
+          "cardIds": [
+            "evidence.mud-print",
+            "rumor.multiple-footsteps",
+            "testimony.night-attendant"
+          ]
+        },
+        {
+          "id": "dispatch-time",
+          "label": "재상실 문서에는 발송·접수 시각이 남았다",
+          "cardIds": [
+            "evidence.minister-dispatch",
+            "testimony.minister-clerk",
+            "rumor.night-sewing"
+          ]
+        },
+        {
+          "id": "black-fabric",
+          "label": "소파 아래 천 조각과 재상 정복의 찢어진 자리가 이어진다",
+          "cardIds": [
+            "evidence.black-cloth",
+            "evidence.repaired-coat",
+            "testimony.wardrobe-keeper"
+          ]
+        },
+        {
+          "id": "sleeve-repaired",
+          "label": "재상실 정복의 왼쪽 소매가 수선되었다",
+          "cardIds": [
+            "evidence.repaired-coat",
+            "testimony.tailor"
+          ]
+        }
+      ],
+      "auditNote": "접수 도장 시각을 서명 시각으로 바꾸지 않고, 공용 직물을 한 사람의 옷으로 단정하지 않는다."
+    },
+    {
+      "id": "issue.rowen-and-guards",
+      "title": "로웬과 비워진 경비",
+      "question": "경비 철수, 로웬의 위치, 기록 수정, 두 번째 방문이 각각 검증되는가?",
+      "fragments": [
+        {
+          "id": "guards-withdrawn",
+          "label": "22시부터 서재 앞 경비가 철수했다",
+          "cardIds": [
+            "memory.rowen-order",
+            "testimony.guard-withdrawal",
+            "evidence.guard-log"
+          ]
+        },
+        {
+          "id": "log-altered",
+          "label": "서재 근무일지에는 덧쓴 흔적이 있다",
+          "cardIds": [
+            "evidence.guard-log",
+            "evidence.ink-blotter"
+          ]
+        },
+        {
+          "id": "second-visit",
+          "label": "로웬은 시신 발견 전에 다시 서재에 들어갔다",
+          "cardIds": [
+            "memory.rowen-second-visit",
+            "testimony.body-discovery"
+          ]
+        },
+        {
+          "id": "movement-boundary",
+          "label": "서쪽 외문 체류와 서재 재방문 사이 이동 시간이 맞는다",
+          "cardIds": [
+            "evidence.watch-roster",
+            "testimony.late-patrol",
+            "rumor.guard-return",
+            "evidence.corridor-plan"
+          ]
+        },
+        {
+          "id": "guard-future",
+          "label": "근위대의 제도적 지위는 개인의 행위와 별개다",
+          "cardIds": [
+            "evidence.guard-charter"
+          ]
+        }
+      ],
+      "auditNote": "부하의 초소 위치를 로웬의 위치로 대체하지 않는다. 개인 책임과 조직의 존속도 나누어 본다."
+    },
+    {
+      "id": "issue.isabel-marriage",
+      "title": "이사벨의 혼인과 독자 권한",
+      "question": "연인 관계, 혼인 심의 초안, 태아, 이사벨 자신의 정치적 요구가 분리되어 있는가?",
+      "fragments": [
+        {
+          "id": "private-relationship",
+          "label": "카시안과 이사벨은 사적인 편지를 주고받았다",
+          "cardIds": [
+            "memory.cassian-isabel-truth",
+            "rumor.secret-letter",
+            "evidence.isabel-letter"
+          ]
+        },
+        {
+          "id": "annulment-sought",
+          "label": "아드리안은 혼인 심의 청원을 준비했다",
+          "cardIds": [
+            "memory.isabel-annulment",
+            "evidence.annulment-draft"
+          ]
+        },
+        {
+          "id": "pregnancy-dated",
+          "label": "임신 경과에 관한 기록과 소문이 있다",
+          "cardIds": [
+            "rumor.heir-calendar",
+            "evidence.pregnancy-notes"
+          ]
+        },
+        {
+          "id": "paternity-open",
+          "label": "연인 관계와 진료 날짜만으로 태아의 친부는 정해지지 않는다",
+          "cardIds": [
+            "evidence.isabel-letter",
+            "evidence.pregnancy-notes"
+          ]
+        },
+        {
+          "id": "isabel-own-claim",
+          "label": "이사벨은 자신의 이름으로 심의 참여를 요구했다",
+          "cardIds": [
+            "evidence.isabel-petition"
+          ]
+        }
+      ],
+      "auditNote": "청원 초안을 이미 성립한 혼인 무효로 읽지 않으며, 태아의 지위와 이사벨 본인의 권한을 합치지 않는다."
+    },
+    {
+      "id": "issue.seraphine-marriage",
+      "title": "세라핀의 혼인조약",
+      "question": "조약의 정치적 효력과 서재 방문·살해 동기로 보이는 흔적이 함께 작동하는가?",
+      "fragments": [
+        {
+          "id": "marriage-expected",
+          "label": "왕실 안에는 혼인을 예정된 일로 여기는 말이 돈다",
+          "cardIds": [
+            "rumor.marriage"
+          ]
+        },
+        {
+          "id": "treaty-condition",
+          "label": "조약은 아드리안의 즉위를 조건으로 삼는다",
+          "cardIds": [
+            "memory.seraphine-marriage",
+            "evidence.marriage-treaty"
+          ]
+        },
+        {
+          "id": "signature-missing",
+          "label": "세라핀의 당사자 서명란은 비어 있다",
+          "cardIds": [
+            "evidence.marriage-annex",
+            "testimony.foreign-envoy"
+          ]
+        },
+        {
+          "id": "revision-not-settled",
+          "label": "외국 사절의 변경 언급은 합의 완료가 아니다",
+          "cardIds": [
+            "testimony.foreign-envoy",
+            "evidence.marriage-annex"
+          ]
+        },
+        {
+          "id": "treaty-struggle",
+          "label": "세라핀은 사건 당일 서재에서 혼인조약을 두고 실랑이했다",
+          "cardIds": [
+            "memory.seraphine-marriage",
+            "evidence.broken-seal",
+            "testimony.isabel-attendant"
+          ]
+        }
+      ],
+      "auditNote": "조약 문서, 서명, 조건 성취, 변경 협상을 각각 독립된 단계로 본다."
+    },
+    {
+      "id": "issue.seraphine-succession",
+      "title": "세라핀의 서고 조사와 계승 자격",
+      "question": "서고에 간 행위와 찾아낸 법 조항, 심의 자격, 실제 즉위가 구분되는가?",
+      "fragments": [
+        {
+          "id": "archive-visit",
+          "label": "세라핀은 밤에 서고를 이용했다",
+          "cardIds": [
+            "memory.seraphine-archive",
+            "evidence.archive-register",
+            "testimony.archive-copyist"
+          ]
+        },
+        {
+          "id": "text-copied",
+          "label": "계승법 문장이 옷 안에 숨겨져 나왔다",
+          "cardIds": [
+            "memory.seraphine-copy",
+            "rumor.princess-pages",
+            "testimony.archive-copyist"
+          ]
+        },
+        {
+          "id": "eligibility-clause",
+          "label": "법전에는 왕녀의 심의 참여 가능 조항이 있다",
+          "cardIds": [
+            "evidence.succession-leaf",
+            "evidence.royal-birth-register"
+          ]
+        },
+        {
+          "id": "coronation-separate",
+          "label": "심의 자격과 대관 절차는 별개다",
+          "cardIds": [
+            "evidence.coronation-book",
+            "evidence.succession-leaf"
+          ]
+        }
+      ],
+      "auditNote": "조사 행위, 자격 조항 발견, 후보 인정, 즉위를 한 단계로 압축하지 않는다."
+    },
+    {
+      "id": "issue.will-and-succession",
+      "title": "선왕의 문서와 계승 심의",
+      "question": "문서의 존재와 보관 경로, 훼손된 흔적, 실제 효력 판단이 분리되어 있는가?",
+      "fragments": [
+        {
+          "id": "will-rumored",
+          "label": "열리지 않은 낭독회와 사라진 문서 이야기가 돈다",
+          "cardIds": [
+            "rumor.missing-document"
+          ]
+        },
+        {
+          "id": "will-known-privately",
+          "label": "베네딕트는 봉인을 열고 출생 의혹을 언급한 구절을 처음 읽는다",
+          "cardIds": [
+            "memory.benedict-will-clause",
+            "evidence.last-will"
+          ]
+        },
+        {
+          "id": "archive-trail",
+          "label": "서고 기록에는 문서 이동 경로가 남았다",
+          "cardIds": [
+            "evidence.archive-register",
+            "testimony.archivist"
+          ]
+        },
+        {
+          "id": "burned-paper",
+          "label": "서재에는 봉인과 문서의 훼손 흔적이 있다",
+          "cardIds": [
+            "evidence.burnt-will"
+          ]
+        },
+        {
+          "id": "effect-undecided",
+          "label": "문서의 존재만으로 후계자와 즉위가 자동 결정되지는 않는다",
+          "cardIds": [
+            "evidence.last-will",
+            "evidence.coronation-book",
+            "evidence.succession-leaf"
+          ]
+        }
+      ],
+      "auditNote": "봉인 문서의 존재, 진위, 공개 여부, 정치적 효력은 서로 다른 판단이다."
+    },
+    {
+      "id": "issue.cassian-lineage",
+      "title": "카시안의 친생과 적법한 지위",
+      "question": "생물학적 친부 문제와 선왕의 법적 인정이 별도 증거망으로 구성되어 있는가?",
+      "fragments": [
+        {
+          "id": "past-relationship",
+          "label": "왕비와 젊은 베네딕트 사이의 과거를 가리키는 자료가 있다",
+          "cardIds": [
+            "memory.queen-old-letter",
+            "evidence.young-benedict-letter",
+            "rumor.old-portrait"
+          ]
+        },
+        {
+          "id": "birth-observed",
+          "label": "출산 당시 기록과 산파의 기억이 있다",
+          "cardIds": [
+            "memory.benedict-birth-dates",
+            "evidence.royal-birth-register",
+            "testimony.old-midwife"
+          ]
+        },
+        {
+          "id": "biological-parentage",
+          "label": "과거 관계와 출산 기록은 친부 주장을 둘러싼 조각이다",
+          "cardIds": [
+            "memory.queen-old-letter",
+            "memory.benedict-birth-dates",
+            "memory.benedict-edmund-letter",
+            "evidence.young-benedict-letter",
+            "testimony.old-midwife"
+          ]
+        },
+        {
+          "id": "royal-recognition",
+          "label": "선왕은 친생 여부와 별개로 카시안을 적법한 아들로 인정했다",
+          "cardIds": [
+            "evidence.royal-birth-register",
+            "evidence.royal-recognition",
+            "evidence.last-will"
+          ]
+        }
+      ],
+      "auditNote": "산파는 수태를 목격하지 않았다. 친생 관계와 법적 왕자 지위를 같은 결론으로 묶지 않는다."
+    },
+    {
+      "id": "issue.private-futures",
+      "title": "사건 이후를 준비한 움직임",
+      "question": "살인 혐의와 직접 연결되지 않는 정치적 대비가 별도 조각으로 남아 있는가?",
+      "fragments": [
+        {
+          "id": "queen-departure",
+          "label": "왕비전에서 빈 궤짝과 짐 이야기가 나왔다",
+          "cardIds": [
+            "rumor.queen-luggage"
+          ]
+        },
+        {
+          "id": "guard-institution",
+          "label": "근위대의 독립 지위를 요구하는 선왕의 지시가 있다",
+          "cardIds": [
+            "evidence.guard-charter"
+          ]
+        },
+        {
+          "id": "isabel-standing",
+          "label": "이사벨은 자신의 정치적 지위를 문서로 요구했다",
+          "cardIds": [
+            "evidence.isabel-petition"
+          ]
+        },
+        {
+          "id": "candidate-procedure",
+          "label": "계승 자격과 대관 절차를 다루는 문서가 있다",
+          "cardIds": [
+            "evidence.succession-leaf",
+            "evidence.coronation-book",
+            "evidence.royal-recognition"
+          ]
+        }
+      ],
+      "auditNote": "도피 준비, 제도 보존, 정치적 요구를 곧바로 살해 동기나 유죄의 증거로 사용하지 않는다."
+    },
+    {
+      "id": "issue.alibi-cross-check",
+      "title": "사망 시간대의 알리바이 검증",
+      "question": "로웬이 이사벨의 공개 공백을 제외한 동선을 교차검증하고, 카시안의 선택으로 마지막 알리바이를 완성할 수 있는가?",
+      "fragments": [
+        {
+          "id": "alibi-queen",
+          "label": "엘레노라는 22시 40분과 22시 50분 왕비전에서 확인된다",
+          "cardIds": [
+            "testimony.recall-messenger",
+            "rumor.queen-luggage",
+            "memory.queen-recall"
+          ]
+        },
+        {
+          "id": "alibi-cassian",
+          "label": "카시안은 22시 40분과 22시 51분 왕자전에서 확인된다",
+          "cardIds": [
+            "testimony.page-sighting",
+            "rumor.secret-letter",
+            "memory.cassian-isabel-truth"
+          ]
+        },
+        {
+          "id": "alibi-rowen",
+          "label": "로웬은 22시 40분과 22시 48분 서쪽 외문에서 확인된다",
+          "cardIds": [
+            "evidence.watch-roster",
+            "testimony.late-patrol",
+            "rumor.guard-return"
+          ]
+        },
+        {
+          "id": "alibi-isabel-gap",
+          "label": "이사벨은 공개 정보만으로 22시 33분 이후 알리바이가 없다",
+          "cardIds": [
+            "memory.isabel-alive"
+          ]
+        },
+        {
+          "id": "alibi-isabel-cassian",
+          "label": "카시안이 비밀 만남을 공개해야 이사벨의 22시 39~52분이 증명된다",
+          "cardIds": [
+            "memory.cassian-isabel-truth",
+            "evidence.isabel-letter",
+            "rumor.secret-letter"
+          ]
+        },
+        {
+          "id": "alibi-seraphine",
+          "label": "세라핀은 22시 40분과 22시 50분 왕실서고에서 확인된다",
+          "cardIds": [
+            "testimony.archive-copyist",
+            "rumor.princess-pages",
+            "memory.seraphine-copy"
+          ]
+        },
+        {
+          "id": "alibi-benedict",
+          "label": "베네딕트의 문서 도장은 알리바이가 아니며 서재 출입과 귀환 흔적이 남는다",
+          "cardIds": [
+            "evidence.minister-dispatch",
+            "testimony.minister-clerk",
+            "testimony.night-attendant",
+            "testimony.tailor"
+          ]
+        }
+      ],
+      "auditNote": "각 알리바이는 서로 다른 두 시각 조각과 공개된 8분 이동 규칙을 함께 써야 한다. 이사벨만은 카시안이 비밀 만남을 공개해야 완성된다."
+    },
+    {
+      "id": "issue.competing-causes",
+      "title": "경쟁하는 사망 원인",
+      "question": "서로 다른 위해 행위와 신체 흔적이 하나의 정답으로 성급히 합쳐지지 않는가?",
+      "fragments": [
+        {
+          "id": "cause-head-impact",
+          "label": "21시 52분의 가격과 뒤통수 상처",
+          "cardIds": [
+            "memory.cassian-assault",
+            "evidence.stopped-watch",
+            "testimony.head-examination"
+          ]
+        },
+        {
+          "id": "cause-restraint",
+          "label": "22시 35~50분의 외부 압박에 의한 질식",
+          "cardIds": [
+            "testimony.head-examination",
+            "testimony.residue-examination"
+          ]
+        },
+        {
+          "id": "cause-sedative",
+          "label": "첫 술의 수면제와 실제 섭취 범위",
+          "cardIds": [
+            "memory.isabel-draught",
+            "memory.cassian-sedative",
+            "evidence.sedative-prescription",
+            "testimony.study-servant",
+            "testimony.residue-examination",
+            "evidence.physician-log"
+          ]
+        },
+        {
+          "id": "cause-belladonna",
+          "label": "뒤의 술병에 든 벨라도나와 실제 음주 여부",
+          "cardIds": [
+            "memory.queen-poison",
+            "evidence.wine-bottle",
+            "testimony.marta-recall",
+            "testimony.residue-examination"
+          ]
+        },
+        {
+          "id": "cause-medical-limit",
+          "label": "정밀 검시가 외상·약물과 직접 사인을 구분한다",
+          "cardIds": [
+            "testimony.head-examination",
+            "testimony.residue-examination"
+          ]
+        }
+      ],
+      "auditNote": "행위가 있었다는 사실, 상처나 약물이 남았다는 사실, 그것이 치명적이었다는 판단을 세 단계로 나눈다."
+    },
+    {
+      "id": "issue.scene-contamination",
+      "title": "시신 이동과 현장 변화",
+      "question": "최초 상태와 로웬의 재방문 뒤 상태를 구분할 수 있는가?",
+      "fragments": [
+        {
+          "id": "scene-before-return",
+          "label": "22시 33분까지의 소파 주변 상태",
+          "cardIds": [
+            "memory.isabel-alive",
+            "evidence.wine-bottle",
+            "evidence.second-glass"
+          ]
+        },
+        {
+          "id": "scene-body-moved",
+          "label": "로웬이 어깨와 몸, 옷깃을 만져 자세를 바꿨다",
+          "cardIds": [
+            "memory.rowen-second-visit"
+          ]
+        },
+        {
+          "id": "scene-after-return",
+          "label": "23시 5분 발견자가 본 현장",
+          "cardIds": [
+            "testimony.body-discovery"
+          ]
+        },
+        {
+          "id": "scene-loose-traces",
+          "label": "천 조각과 잔, 술병의 위치는 발견 시점의 상태다",
+          "cardIds": [
+            "evidence.black-cloth",
+            "evidence.gilt-glass",
+            "evidence.second-glass",
+            "evidence.wine-bottle"
+          ]
+        }
+      ],
+      "auditNote": "시신 발견 때 보인 상태를 사망 순간의 상태로 곧바로 소급하지 않는다."
+    },
+    {
+      "id": "issue.source-independence",
+      "title": "증거 출처의 독립성",
+      "question": "카드 수가 많아 보여도 실제로는 같은 사건·기록에서 파생된 정보가 아닌가?",
+      "fragments": [
+        {
+          "id": "source-pharmacy-transaction",
+          "label": "장부·수령표·약제사 증언은 같은 반출 거래에서 나왔다",
+          "cardIds": [
+            "evidence.belladonna-ledger",
+            "evidence.dispensing-counterfoil",
+            "testimony.apothecary-counter"
+          ]
+        },
+        {
+          "id": "source-bell-chain",
+          "label": "호출 기록과 기록원 증언은 같은 종소리와 시종 보고에 의존한다",
+          "cardIds": [
+            "evidence.bell-register",
+            "testimony.bell-attendant",
+            "testimony.study-servant"
+          ]
+        },
+        {
+          "id": "source-fabric-register",
+          "label": "직물 견본과 의복 담당자 증언은 같은 의복 장부에서 나왔다",
+          "cardIds": [
+            "evidence.uniform-samples",
+            "testimony.wardrobe-keeper"
+          ]
+        },
+        {
+          "id": "source-guard-record",
+          "label": "근무일지와 흡묵지는 같은 기록 작성 과정의 흔적이다",
+          "cardIds": [
+            "evidence.guard-log",
+            "evidence.ink-blotter"
+          ]
+        },
+        {
+          "id": "source-hearsay",
+          "label": "소문은 독립 목격이 아니라 전달 경로가 불명확하다",
+          "cardIds": [
+            "rumor.apothecary-visit",
+            "rumor.cassian-quarrel",
+            "rumor.multiple-footsteps",
+            "rumor.guard-return"
+          ]
+        }
+      ],
+      "auditNote": "서로 다른 카드 두 장을 곧바로 두 개의 독립된 증거로 세지 않는다."
+    },
+    {
+      "id": "issue.secrets-and-leverage",
+      "title": "개인 비밀과 협상 압력",
+      "question": "각 인물이 숨길 정보와 공개해서 얻을 정치적 이익이 모두 존재하는가?",
+      "fragments": [
+        {
+          "id": "leverage-queen",
+          "label": "엘레노라: 독살 명령과 취소, 카시안의 친생",
+          "cardIds": [
+            "memory.queen-poison",
+            "memory.queen-recall",
+            "memory.queen-old-letter",
+            "evidence.young-benedict-letter"
+          ]
+        },
+        {
+          "id": "leverage-cassian",
+          "label": "카시안: 폭행, 이사벨에 대한 의심과 보호",
+          "cardIds": [
+            "memory.cassian-assault",
+            "memory.cassian-sedative",
+            "memory.cassian-isabel-truth",
+            "evidence.isabel-letter"
+          ]
+        },
+        {
+          "id": "leverage-isabel",
+          "label": "이사벨: 수면제, 문서 수색, 독자 권한",
+          "cardIds": [
+            "memory.isabel-draught",
+            "memory.isabel-annulment",
+            "evidence.isabel-petition"
+          ]
+        },
+        {
+          "id": "leverage-seraphine",
+          "label": "세라핀: 무단 서고 조사와 계승 자격",
+          "cardIds": [
+            "memory.seraphine-archive",
+            "memory.seraphine-copy",
+            "evidence.succession-leaf"
+          ]
+        },
+        {
+          "id": "leverage-benedict",
+          "label": "베네딕트: 늦은 면담, 선왕 문서, 뒤늦게 밝혀지는 친부 관계",
+          "cardIds": [
+            "memory.benedict-will-clause",
+            "memory.benedict-birth-dates",
+            "memory.benedict-edmund-letter",
+            "evidence.last-will"
+          ]
+        },
+        {
+          "id": "leverage-rowen",
+          "label": "로웬: 경비 철수, 재방문, 기록 수정",
+          "cardIds": [
+            "memory.rowen-order",
+            "memory.rowen-second-visit",
+            "evidence.guard-log"
+          ]
+        }
+      ],
+      "auditNote": "각 비밀이 유죄 증명인지, 신뢰 훼손인지, 정치적 거래 재료인지를 구분한다."
+    },
+    {
+      "id": "issue.truth-and-verdict",
+      "title": "실제 사건과 법정의 공식 사실",
+      "question": "카드가 보여 주는 관측과 법정이 채택할 주장, 최종 책임 판단이 분리되어 있는가?",
+      "fragments": [
+        {
+          "id": "verdict-observation",
+          "label": "물증과 증언은 관측 범위까지만 제공한다",
+          "cardIds": [
+            "evidence.stopped-watch",
+            "evidence.guard-log",
+            "testimony.physician-limits",
+            "testimony.late-patrol"
+          ]
+        },
+        {
+          "id": "verdict-disputed-alive",
+          "label": "22시 15분 생존과 22시 33분 반응의 확실성이 다르다",
+          "cardIds": [
+            "memory.rowen-alive",
+            "testimony.page-sighting",
+            "memory.isabel-alive"
+          ]
+        },
+        {
+          "id": "verdict-act-vs-result",
+          "label": "위해 행위 인정과 사망 책임 인정은 별도다",
+          "cardIds": [
+            "memory.cassian-assault",
+            "memory.queen-poison",
+            "memory.isabel-draught",
+            "testimony.physician-limits"
+          ]
+        },
+        {
+          "id": "verdict-official-history",
+          "label": "누구의 어떤 행위를 공식 기록에 남길지는 별도 선택이다",
+          "cardIds": [
+            "evidence.coronation-book",
+            "evidence.last-will",
+            "evidence.guard-charter"
+          ],
+          "note": "앞선 두 재판의 잠정 주장과 최종 책임 판결을 구분해 기록한다."
+        },
+        {
+          "id": "verdict-chain",
+          "label": "최종 고발은 다섯 추리 축의 서로 다른 카드와 세 종류 이상의 획득 경로를 요구한다",
+          "cardIds": [],
+          "note": "공통 설정의 재판 절차로 구현했다. 동수일 때는 로웬이 공개 정보만으로 결선 판단한다."
+        }
+      ],
+      "auditNote": "플레이어가 알아낸 진상과 왕실이 공표하는 역사가 같아야 한다고 가정하지 않는다."
+    },
+    {
+      "id": "issue.case-variants",
+      "title": "정본 진상과 범인 특정",
+      "question": "로웬이 알리바이, 사망 시각, 직접 사인, 현장 흔적을 독립된 출처로 교차검증해 베네딕트를 특정할 수 있는가?",
+      "fragments": [
+        {
+          "id": "solution-window",
+          "label": "아드리안은 22시 15분 생존했고 22시 35~50분 사이 사망했다",
+          "cardIds": [
+            "memory.rowen-alive",
+            "memory.isabel-alive",
+            "testimony.night-attendant",
+            "memory.rowen-second-visit",
+            "testimony.body-discovery"
+          ]
+        },
+        {
+          "id": "solution-alibis",
+          "label": "이사벨만 공개 알리바이가 없고 카시안의 비밀 공개로 공백이 메워진다",
+          "cardIds": [
+            "testimony.recall-messenger",
+            "testimony.page-sighting",
+            "testimony.archive-copyist",
+            "evidence.watch-roster",
+            "testimony.late-patrol",
+            "memory.cassian-isabel-truth"
+          ]
+        },
+        {
+          "id": "solution-benedict-window",
+          "label": "베네딕트는 사망 시간대에 서재에 들어갔다가 돌아왔다",
+          "cardIds": [
+            "testimony.night-attendant",
+            "evidence.minister-dispatch",
+            "testimony.minister-clerk",
+            "testimony.tailor",
+            "rumor.multiple-footsteps",
+            "rumor.night-sewing"
+          ]
+        },
+        {
+          "id": "solution-cause",
+          "label": "직접 사인은 약물이나 머리 부상이 아닌 외부 압박에 의한 질식이다",
+          "cardIds": [
+            "testimony.head-examination",
+            "testimony.residue-examination",
+            "evidence.physician-log"
+          ]
+        },
+        {
+          "id": "solution-trace",
+          "label": "소파 아래 천 조각은 재상 정복의 찢어진 소매와 이어진다",
+          "cardIds": [
+            "evidence.black-cloth",
+            "evidence.repaired-coat",
+            "testimony.tailor",
+            "testimony.wardrobe-keeper"
+          ]
+        },
+        {
+          "id": "solution-conclusion",
+          "label": "베네딕트의 제압 행위가 사망 시각·사인·현장 흔적을 모두 설명한다",
+          "cardIds": [
+            "testimony.night-attendant",
+            "testimony.head-examination",
+            "evidence.black-cloth",
+            "evidence.repaired-coat"
+          ]
+        }
+      ],
+      "auditNote": "동기나 한 사람의 자백에 기대지 않고 시간·의학·동선·물증의 네 축이 같은 인물을 가리켜야 한다."
+    }
+  ]
+}

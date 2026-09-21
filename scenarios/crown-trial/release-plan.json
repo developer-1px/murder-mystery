@@ -1,0 +1,130 @@
+{
+  "status": "manual-playtest-draft",
+  "description": "제작자 수동 시험용 배포안. 현재 워크벤치는 이 파일로 자동 해금하지 않는다.",
+  "initialHands": {
+    "queen": [
+      "memory.queen-poison"
+    ],
+    "cassian": [
+      "memory.cassian-assault"
+    ],
+    "isabel": [
+      "memory.isabel-draught"
+    ],
+    "seraphine": [
+      "memory.seraphine-archive"
+    ],
+    "benedict": [
+      "memory.benedict-will-clause"
+    ],
+    "rowen": [
+      "memory.rowen-order"
+    ]
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "title": "밤의 행위",
+      "cardIds": [
+        "rumor.apothecary-visit",
+        "rumor.cassian-quarrel",
+        "rumor.multiple-footsteps",
+        "rumor.secret-letter",
+        "rumor.missing-document",
+        "rumor.marriage",
+        "evidence.guard-log",
+        "evidence.stopped-watch",
+        "evidence.physician-log",
+        "evidence.belladonna-ledger",
+        "evidence.sedative-prescription",
+        "evidence.marriage-treaty",
+        "evidence.gilt-glass",
+        "evidence.wine-bottle",
+        "evidence.bell-register",
+        "evidence.watch-roster",
+        "evidence.annulment-draft",
+        "evidence.corridor-plan",
+        "testimony.study-servant",
+        "testimony.body-discovery",
+        "testimony.apothecary-counter",
+        "testimony.dinner-steward",
+        "testimony.guard-withdrawal",
+        "testimony.page-sighting"
+      ]
+    },
+    {
+      "round": 2,
+      "title": "기록의 빈자리",
+      "cardIds": [
+        "evidence.second-glass",
+        "evidence.broken-seal",
+        "evidence.mud-print",
+        "evidence.black-cloth",
+        "evidence.burnt-will",
+        "evidence.archive-register",
+        "testimony.physician-limits",
+        "testimony.marta-recall",
+        "testimony.archivist",
+        "rumor.queen-luggage",
+        "rumor.princess-pages",
+        "rumor.night-sewing",
+        "rumor.guard-return",
+        "evidence.recall-slip",
+        "evidence.dispensing-counterfoil",
+        "evidence.bell-repair",
+        "evidence.uniform-samples",
+        "evidence.minister-dispatch",
+        "evidence.ink-blotter",
+        "testimony.recall-messenger",
+        "testimony.bell-attendant",
+        "testimony.clock-keeper",
+        "testimony.night-attendant",
+        "testimony.head-examination"
+      ]
+    },
+    {
+      "round": 3,
+      "title": "왕실이 남길 이름",
+      "cardIds": [
+        "rumor.old-portrait",
+        "rumor.heir-calendar",
+        "evidence.repaired-coat",
+        "evidence.isabel-letter",
+        "evidence.pregnancy-notes",
+        "evidence.marriage-annex",
+        "evidence.succession-leaf",
+        "evidence.royal-birth-register",
+        "evidence.last-will",
+        "evidence.coronation-book",
+        "evidence.young-benedict-letter",
+        "evidence.royal-recognition",
+        "evidence.isabel-petition",
+        "evidence.guard-charter",
+        "testimony.marta-order",
+        "testimony.tailor",
+        "testimony.wardrobe-keeper",
+        "testimony.minister-clerk",
+        "testimony.late-patrol",
+        "testimony.residue-examination",
+        "testimony.isabel-attendant",
+        "testimony.archive-copyist",
+        "testimony.foreign-envoy",
+        "testimony.old-midwife"
+      ]
+    }
+  ],
+  "privateTruthSchedule": [
+    {
+      "timing": "첫 조사 전",
+      "stageId": "truth-1"
+    },
+    {
+      "timing": "첫 번째 재판 종료 후",
+      "stageId": "truth-2"
+    },
+    {
+      "timing": "두 번째 재판 종료 후",
+      "stageId": "truth-3"
+    }
+  ]
+}

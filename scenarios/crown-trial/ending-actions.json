@@ -1,0 +1,185 @@
+{
+  "note": "진행자·설계자 전용. 모든 행동은 항상 선택할 수 있다. 기소는 행동을 해금하지 않고, 선택 뒤 결과를 바꾸는 숨은 분기로만 사용한다.",
+  "actions": [
+    {
+      "id": "queen.shield",
+      "characterId": "queen",
+      "alwaysSelectable": true,
+      "branches": [
+        {
+          "when": "카시안이 기소되지 않았다",
+          "resolution": "카시안의 보호와 계승 지위를 함께 요구한다."
+        },
+        {
+          "when": "카시안이 기소되었다",
+          "resolution": "왕실의 권위로 기소를 막으려 하며, 왕비 자신의 비밀도 함께 심의 대상이 된다."
+        }
+      ]
+    },
+    {
+      "id": "queen.thorn",
+      "characterId": "queen",
+      "alwaysSelectable": true,
+      "branches": [
+        {
+          "when": "지목한 사람이 기소되었다",
+          "resolution": "그 사람을 왕실의 보호 밖으로 밀어낼 명분을 얻는다."
+        },
+        {
+          "when": "지목한 사람이 기소되지 않았다",
+          "resolution": "정치적 제거를 시도했다는 반발이 왕비와 카시안에게 돌아간다."
+        }
+      ]
+    },
+    {
+      "id": "cassian.crown",
+      "characterId": "cassian",
+      "alwaysSelectable": true,
+      "branches": [
+        {
+          "when": "카시안이 기소되지 않았다",
+          "resolution": "계승 자격을 바탕으로 즉위 절차에 들어간다."
+        },
+        {
+          "when": "카시안이 기소되었다",
+          "resolution": "기소에 맞서 왕위를 요구하며 군권과 왕실의 충돌을 부른다."
+        }
+      ]
+    },
+    {
+      "id": "cassian.door",
+      "characterId": "cassian",
+      "alwaysSelectable": true,
+      "branches": [
+        {
+          "when": "이사벨이 기소되었다",
+          "resolution": "비밀 만남을 증언해 이사벨의 알리바이를 세우지만 관계와 아이 문제도 공식화한다."
+        },
+        {
+          "when": "이사벨이 기소되지 않았다",
+          "resolution": "이사벨을 공개적으로 선택하고 두 사람과 아이의 지위를 왕실 판단에 맡긴다."
+        }
+      ]
+    },
+    {
+      "id": "isabel.hand",
+      "characterId": "isabel",
+      "alwaysSelectable": true,
+      "branches": [
+        {
+          "when": "카시안이 기소되지 않았다",
+          "resolution": "카시안에게 자신과 아이의 공개적인 보호를 요구한다."
+        },
+        {
+          "when": "카시안이 기소되었다",
+          "resolution": "몰락할 수 있는 카시안과 운명을 묶고 함께 심의를 받는다."
+        }
+      ]
+    },
+    {
+      "id": "isabel.name",
+      "characterId": "isabel",
+      "alwaysSelectable": true,
+      "branches": [
+        {
+          "when": "카시안이 기소되었다",
+          "resolution": "아이를 새로운 계승 후보로 올릴 길이 열린다."
+        },
+        {
+          "when": "카시안이 기소되지 않았다",
+          "resolution": "카시안의 계승과 별개의 권리를 요구하여 친부와 정통성 논쟁을 부른다."
+        }
+      ]
+    },
+    {
+      "id": "seraphine.vow",
+      "characterId": "seraphine",
+      "alwaysSelectable": true,
+      "branches": [
+        {
+          "when": "세라핀이 기소되지 않았다",
+          "resolution": "자신의 동의가 없었던 혼인 절차를 정면으로 다툰다."
+        },
+        {
+          "when": "세라핀이 기소되었다",
+          "resolution": "혼인 거부가 살해 동기로 해석되며 자유와 무죄를 함께 걸게 된다."
+        }
+      ]
+    },
+    {
+      "id": "seraphine.seat",
+      "characterId": "seraphine",
+      "alwaysSelectable": true,
+      "branches": [
+        {
+          "when": "카시안이 기소되었다",
+          "resolution": "직계 왕녀의 자격으로 유력한 계승 후보가 된다."
+        },
+        {
+          "when": "카시안이 기소되지 않았다",
+          "resolution": "카시안과 공개적인 계승 경쟁을 시작한다."
+        }
+      ]
+    },
+    {
+      "id": "benedict.bell",
+      "characterId": "benedict",
+      "alwaysSelectable": true,
+      "branches": [
+        {
+          "when": "지명한 후보가 기소되지 않았다",
+          "resolution": "성인 후보의 즉위 절차를 밀어붙인다."
+        },
+        {
+          "when": "지명한 후보가 기소되었다",
+          "resolution": "기소된 후보를 세우려 한 책임과 공모 의혹을 함께 감수한다."
+        }
+      ]
+    },
+    {
+      "id": "benedict.seal",
+      "characterId": "benedict",
+      "alwaysSelectable": true,
+      "branches": [
+        {
+          "when": "베네딕트가 기소되지 않았다",
+          "resolution": "봉인 문서를 적법한 계승 재심의의 근거로 삼는다."
+        },
+        {
+          "when": "베네딕트가 기소되었다",
+          "resolution": "문서의 진위와 공개 동기가 의심받아 계승 심의 전체가 흔들린다."
+        }
+      ]
+    },
+    {
+      "id": "rowen.name",
+      "characterId": "rowen",
+      "alwaysSelectable": true,
+      "branches": [
+        {
+          "when": "지목한 사람이 치명적 행위자다",
+          "resolution": "실제 책임자를 공식 기소한다."
+        },
+        {
+          "when": "지목한 사람이 치명적 행위자가 아니다",
+          "resolution": "정치적으로 만들어진 오기소가 확정된다."
+        }
+      ]
+    },
+    {
+      "id": "rowen.ledger",
+      "characterId": "rowen",
+      "alwaysSelectable": true,
+      "branches": [
+        {
+          "when": "기록과 진실이 방문 순서를 뒷받침한다",
+          "resolution": "생존 시각과 방문 순서를 확정하고 수사를 바로잡는다."
+        },
+        {
+          "when": "기록과 공개 진실이 충돌한다",
+          "resolution": "일지 조작으로 근위대와 수사 전체의 신뢰가 무너진다."
+        }
+      ]
+    }
+  ]
+}

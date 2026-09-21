@@ -1,0 +1,8 @@
+{
+  "description": "각 캐릭터가 정해진 시점에 확인하는 개인 진실 I·II·III 묶음이다.",
+  "stages": [
+    { "id": "truth-1", "label": "개인 진실 I", "cardIds": ["memory.queen-poison", "memory.cassian-assault", "memory.isabel-draught", "memory.seraphine-archive", "memory.benedict-will-clause", "memory.rowen-order"] },
+    { "id": "truth-2", "label": "개인 진실 II", "cardIds": ["memory.queen-recall", "memory.cassian-sedative", "memory.isabel-alive", "memory.seraphine-marriage", "memory.benedict-birth-dates", "memory.rowen-alive"] },
+    { "id": "truth-3", "label": "개인 진실 III", "cardIds": ["memory.queen-old-letter", "memory.cassian-isabel-truth", "memory.isabel-annulment", "memory.seraphine-copy", "memory.benedict-edmund-letter", "memory.rowen-second-visit"] }
+  ]
+}
