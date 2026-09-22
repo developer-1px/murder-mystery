@@ -224,7 +224,7 @@ button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-v
 .issue-board__overview-link { display: inline-block; margin-top: 14px; color: var(--ui-gold); font-size: 12px; }
 .issue-person-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .issue-person { display: flex; flex-direction: column; min-width: 0; padding: 22px; border: 1px solid var(--ui-border); background: var(--ui-surface); color: var(--ui-text); text-decoration: none; }
-.issue-person:hover, .issue-person:focus-visible { border-color: var(--ui-gold-muted); background: var(--ui-surface-soft); }
+.issue-person:focus-within { border-color: var(--ui-gold-muted); background: var(--ui-surface-soft); }
 .issue-person > header { display: flex; justify-content: space-between; gap: 12px; color: var(--ui-gold-muted); font-size: 10px; }
 .issue-person > header strong { color: var(--ui-gold); font: 700 17px 'Gowun Batang', serif; }
 .issue-person h3 { margin: 12px 0 7px; font: 700 21px 'Gowun Batang', serif; }

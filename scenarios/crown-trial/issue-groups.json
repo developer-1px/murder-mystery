@@ -264,7 +264,7 @@
       "fragments": [
         {
           "id": "investigator.rowen.hidden-reason",
-          "label": "01 · 알려진 갈등과 숨긴 이유",
+          "label": "01 · 근위대와 왕세자의 갈등",
           "cardIds": [
             "rumor.multiple-footsteps",
             "rumor.rowen-second-visit",
@@ -273,7 +273,7 @@
         },
         {
           "id": "investigator.rowen.possible-act",
-          "label": "02 · 수상한 행적",
+          "label": "02 · 비어 있던 경비",
           "cardIds": [
             "rumor.guard-return",
             "rumor.anonymous-gate-bolt",
@@ -282,7 +282,7 @@
         },
         {
           "id": "investigator.rowen.death-hypothesis",
-          "label": "03 · 실제 행동과 빈틈",
+          "label": "03 · 숨긴 선행 입실",
           "cardIds": [
             "memory.rowen-alive",
             "evidence.ink-blotter",
@@ -291,7 +291,7 @@
         },
         {
           "id": "investigator.rowen.execution-check",
-          "label": "04 · 확인과 반증",
+          "label": "04 · 수사 조력과 독립성",
           "cardIds": [
             "testimony.physician-limits",
             "testimony.head-examination",
@@ -299,7 +299,7 @@
           ]
         }
       ],
-      "auditNote": "카더라는 공개된 갈등만, 수소문은 신원이 드러나지 않은 행동과 대략의 시간만 말한다. 탐문은 측근의 관찰과 편향을 담고, 진실과 증거를 함께 놓아야 행적을 검증할 수 있다."
+      "auditNote": "로웬은 기소 대상이 아닌 수사관이다. 같은 12장 구성으로 경비 공백과 선행 입실의 신뢰 문제를 비교하되, 루시엔의 의료 소견은 로웬의 사건 전 동선을 증명하지 않는다."
     }
   ]
 }
