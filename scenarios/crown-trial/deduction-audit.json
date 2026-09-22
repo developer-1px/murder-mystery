@@ -220,13 +220,13 @@
       "insufficientFinding": "위 내용물에서 벨라도나와 수면제에 가까운 반응은 나왔지만, 당시 검사로는 언제 얼마나 들어갔는지 알 수 없고 약만으로 죽었다고 확정할 수도 없다.",
       "plusAlpha": "마지막 종 뒤 붉은 끈 병을 되찾아 직접 먹였다면, 알레르기와 술·수면제의 중첩으로 발작이나 호흡 정지에 이를 수 있었다. 다만 시신에는 특징적인 알레르기 반응이 없다.",
       "apparentSmokingGunIds": [
-        "memory.queen-recall",
+        "testimony.marta-order",
         "evidence.belladonna-ledger",
         "evidence.wine-bottle"
       ],
       "plusAlphaSupportIds": [
         "testimony.physician-limits",
-        "rumor.queen-luggage"
+        "rumor.anonymous-west-curtain"
       ],
       "verificationIds": [
         "memory.queen-recall",
@@ -249,7 +249,7 @@
       ],
       "plusAlphaSupportIds": [
         "testimony.head-examination",
-        "rumor.cassian-quarrel"
+        "rumor.old-portrait"
       ],
       "verificationIds": [
         "memory.cassian-sedative",
@@ -267,18 +267,18 @@
       "plusAlpha": "약효가 오른 뒤 밀폐된 서재에서 향분에 계속 노출시켰다면 호흡 정지에 이를 수 있다.",
       "apparentSmokingGunIds": [
         "evidence.marriage-treaty",
-        "rumor.seraphine-copy",
-        "memory.seraphine-archive"
+        "evidence.succession-leaf",
+        "testimony.isabel-attendant"
       ],
       "plusAlphaSupportIds": [
         "testimony.residue-examination",
-        "evidence.corridor-plan"
+        "evidence.physician-log"
       ],
       "verificationIds": [
         "memory.seraphine-ledger",
         "testimony.foreign-envoy",
         "evidence.corridor-plan",
-        "rumor.princess-pages"
+        "rumor.anonymous-archive-knock"
       ],
       "actual": "+α 미실행. 22시 54분부터 58분까지 북쪽 탑 봉인실에서 훔친 문서를 감췄다."
     },
@@ -325,7 +325,8 @@
         "memory.isabel-alive",
         "testimony.page-sighting",
         "testimony.study-servant",
-        "rumor.secret-letter",
+        "testimony.agnes-unanswered-calls",
+        "testimony.agnes-blue-cloak",
         "evidence.mud-print",
         "evidence.broken-seal"
       ],
