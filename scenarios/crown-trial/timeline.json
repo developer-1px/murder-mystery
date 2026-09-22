@@ -1,6 +1,6 @@
 {
-  "description": "아드리안이 여러 번 위해를 당한 밤. 22시 52분의 생존을 확인해야 베네딕트의 공격과 이사벨의 살해를 구분할 수 있다.",
-  "designerOnly": "진범은 이사벨이다. 베네딕트는 자신이 죽였다고 믿지만 아드리안은 그 뒤 종을 울렸다.",
+  "description": "22시 55분부터 59분 사이, 모든 용의자에게 살해를 완성할 수 있는 +α 가설이 생긴다. 비범인은 숨기고 싶은 다른 죄를 밝히면 그 시간의 위치가 설명되고, 이사벨만 약속 장소에도 없으며 현장 흔적과 이어진다.",
+  "designerOnly": "진범은 이사벨이다. 검시는 위해의 결과를 확정하고 주치의는 가능한 치명 조건만 제시한다. 다른 인물의 +α는 실행되지 않았으며, 각자의 묻어야 하는 진실이 그 시간의 간접 알리바이를 완성한다.",
   "rows": [
     {
       "id": "isabel-petition",
@@ -60,11 +60,11 @@
     },
     {
       "id": "cassian-alibi",
-      "time": "22:36–22:48",
-      "summary": "카시안이 폐예배실에서 이사벨을 기다리며 두 차례 답신을 보낸다.",
+      "time": "22:36–22:58",
+      "summary": "카시안이 폐예배실 안에서 이사벨을 기다린다. 22시 56분에도 시종에게 직접 답하지만 이사벨은 끝내 오지 않는다.",
       "cardIds": [
-        "rumor.cassian-isabel-truth",
         "memory.cassian-sedative",
+        "evidence.isabel-letter",
         "testimony.page-sighting"
       ]
     },
@@ -92,10 +92,10 @@
     },
     {
       "id": "gap.seraphine",
-      "time": "22:49–22:59",
-      "summary": "세라핀이 서고를 비우고 북쪽 탑 방향 시종 회랑으로 문서와 봉투를 옮긴다.",
+      "time": "22:54–22:58",
+      "summary": "세라핀이 북쪽 탑 봉인실에서 훔친 계승법과 북부 밀서를 감추고 붉은 봉인끈을 태운다.",
       "cardIds": [
-        "testimony.archive-copyist",
+        "testimony.foreign-envoy",
         "rumor.princess-pages",
         "memory.seraphine-archive",
         "memory.seraphine-ledger"
@@ -104,20 +104,20 @@
     {
       "id": "gap.queen",
       "time": "22:50–22:58",
-      "summary": "엘레노라가 왕비전을 비우고 뒤편 시종 통로에서 사라진 약병을 찾는다.",
+      "summary": "엘레노라가 약제실 지하 폐기 화로에서 남은 벨라도나 병을 태운다. 독살 시도를 인정해야만 이 시간의 위치를 설명할 수 있다.",
       "cardIds": [
         "testimony.recall-messenger",
-        "rumor.queen-luggage",
+        "evidence.coronation-book",
         "memory.queen-recall"
       ]
     },
     {
       "id": "gap.cassian",
       "time": "22:50–22:58",
-      "summary": "카시안이 폐예배실을 비우고 이사벨을 찾아 서쪽 회랑으로 나간다.",
+      "summary": "카시안은 폐예배실 안에서 약속 상대를 기다린다. 관계를 숨기기 위해 이 알리바이를 스스로 말하지 못한다.",
       "cardIds": [
         "testimony.page-sighting",
-        "rumor.cassian-isabel-truth",
+        "evidence.isabel-letter",
         "memory.cassian-sedative"
       ]
     },
@@ -134,19 +134,21 @@
     {
       "id": "gap.benedict",
       "time": "22:53–22:59",
-      "summary": "베네딕트가 늘어난 인장 사슬과 선왕의 문서함을 들고 재상실을 비운다.",
+      "summary": "베네딕트가 동쪽 기록고에 선왕의 문서함을 맡기고 유언 일부를 태운다. 제압과 유언 은폐를 인정해야 위치가 설명된다.",
       "cardIds": [
         "testimony.tailor",
-        "rumor.benedict-edmund-letter",
-        "memory.benedict-birth-dates",
+        "evidence.minister-dispatch",
+        "evidence.burnt-will",
         "memory.benedict-will-clause"
       ]
     },
     {
       "id": "isabel-return",
       "time": "22:54",
-      "summary": "이사벨이 푸른 망토를 입고 뒤편 계단으로 서재에 다시 들어간다.",
+      "summary": "이사벨은 카시안에게 반드시 가겠다고 했지만 폐예배실에는 나타나지 않고, 푸른 망토를 입은 채 뒤편 계단으로 서재에 돌아간다.",
       "cardIds": [
+        "memory.cassian-sedative",
+        "evidence.isabel-letter",
         "rumor.secret-letter",
         "evidence.mud-print",
         "memory.isabel-alive"
@@ -155,10 +157,11 @@
     {
       "id": "murder",
       "time": "22:56–22:58",
-      "summary": "이사벨이 녹색 벨벳 쿠션으로 아드리안의 숨을 막는다.",
+      "summary": "이사벨이 녹색 벨벳 쿠션으로 아드리안의 코와 입을 막는다. 다른 용의자의 +α와 달리 현장 직물·계단 자국·망토 고리가 실제 실행을 연결한다.",
       "cardIds": [
         "evidence.broken-seal",
-        "testimony.head-examination"
+        "evidence.mud-print",
+        "memory.isabel-alive"
       ]
     },
     {

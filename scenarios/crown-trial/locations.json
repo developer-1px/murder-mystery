@@ -8,11 +8,9 @@
       "evidence.guard-log",
       "evidence.broken-seal",
       "evidence.stopped-watch",
-      "evidence.burnt-will",
       "testimony.study-servant",
       "evidence.ink-blotter",
       "evidence.annulment-draft",
-      "evidence.isabel-letter",
       "testimony.dinner-steward",
       "testimony.body-discovery"
     ]
@@ -39,7 +37,8 @@
       "testimony.apothecary-counter",
       "testimony.head-examination",
       "testimony.residue-examination",
-      "testimony.old-midwife"
+      "testimony.old-midwife",
+      "evidence.coronation-book"
     ]
   },
   {
@@ -59,7 +58,6 @@
       "evidence.bell-register",
       "evidence.bell-repair",
       "evidence.repaired-coat",
-      "evidence.minister-dispatch",
       "evidence.watch-roster",
       "evidence.guard-charter",
       "testimony.recall-messenger",
@@ -68,7 +66,8 @@
       "testimony.tailor",
       "testimony.night-attendant",
       "testimony.late-patrol",
-      "testimony.isabel-attendant"
+      "testimony.isabel-attendant",
+      "evidence.isabel-letter"
     ]
   },
   {
@@ -89,14 +88,15 @@
       "evidence.succession-leaf",
       "evidence.royal-birth-register",
       "evidence.last-will",
-      "evidence.coronation-book",
       "evidence.young-benedict-letter",
       "evidence.royal-recognition",
       "evidence.isabel-petition",
       "testimony.wardrobe-keeper",
       "testimony.minister-clerk",
       "testimony.archive-copyist",
-      "testimony.foreign-envoy"
+      "testimony.foreign-envoy",
+      "evidence.minister-dispatch",
+      "evidence.burnt-will"
     ]
   }
 ]

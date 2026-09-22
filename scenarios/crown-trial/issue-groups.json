@@ -1,11 +1,11 @@
 {
   "designerOnly": true,
-  "description": "다섯 용의자에게 핵심 의혹 카드 8장씩을 배정한다. 각 묶음은 동기·기회·행동·반증 또는 은폐를 두 장씩 맡아, 같은 배경을 반복하지 않고 하나의 범행 가설을 완성한다.",
+  "description": "다섯 용의자에게 핵심 의혹 카드 8장씩을 배정한다. 각 묶음은 실제 위해, 단독으로 부족한 검시, 죽일 수 있었던 +α, 그 +α의 실행 여부를 검증하는 동선을 결합한다.",
   "groups": [
     {
       "id": "suspicion.queen",
       "title": "엘레노라 · 독살 명령",
-      "question": "독을 구하고 술에 넣으라고 명령한 뒤 취소한 왕비가 실제 살해까지 이어 갔는가?",
+      "question": "벨라도나를 실제로 먹인 엘레노라가 마지막 종 뒤 남은 약까지 추가로 투약했는가?",
       "fragments": [
         {
           "id": "suspicion.queen.motive",
@@ -17,7 +17,7 @@
         },
         {
           "id": "suspicion.queen.opportunity",
-          "label": "기회·동선 2장",
+          "label": "추가 투약처럼 보이는 공백 2장",
           "cardIds": [
             "testimony.recall-messenger",
             "rumor.queen-luggage"
@@ -33,19 +33,19 @@
         },
         {
           "id": "suspicion.queen.rebuttal",
-          "label": "취소와 남은 약병 2장",
+          "label": "취소와 남은 약의 행방 2장",
           "cardIds": [
-            "evidence.recall-slip",
-            "testimony.marta-recall"
+            "testimony.marta-recall",
+            "evidence.coronation-book"
           ]
         }
       ],
-      "auditNote": "동기·기회·행동·반증 또는 은폐가 각각 두 장이다. 일부만 공개되어도 인물을 지목할 질문이 생기고, 네 역할이 모이면 범행설의 성립 여부를 판단할 수 있다."
+      "auditNote": "실제 위해와 가짜 스모킹 건은 범행 가설을 세우고, 검시는 단독 치사를 막으며, 주치의 소견은 +α를 열어 둔다. 마지막에는 숨은 동선으로 +α의 실행 여부를 검증한다."
     },
     {
       "id": "suspicion.cassian",
       "title": "카시안 · 형제간 폭행",
-      "question": "아드리안을 직접 폭행하고 왕위와 연인을 얻을 수 있었던 카시안이 마지막 숨까지 끊었는가?",
+      "question": "아드리안을 가격한 카시안이 사망 시간에 돌아와 같은 부위를 다시 때렸는가?",
       "fragments": [
         {
           "id": "suspicion.cassian.motive",
@@ -57,10 +57,10 @@
         },
         {
           "id": "suspicion.cassian.opportunity",
-          "label": "기회·동선 2장",
+          "label": "약속 장소의 숨은 알리바이 2장",
           "cardIds": [
             "testimony.page-sighting",
-            "rumor.cassian-isabel-truth"
+            "evidence.isabel-letter"
           ]
         },
         {
@@ -80,12 +80,12 @@
           ]
         }
       ],
-      "auditNote": "동기·기회·행동·반증 또는 은폐가 각각 두 장이다. 일부만 공개되어도 인물을 지목할 질문이 생기고, 네 역할이 모이면 범행설의 성립 여부를 판단할 수 있다."
+      "auditNote": "실제 위해와 가짜 스모킹 건은 범행 가설을 세우고, 검시는 단독 치사를 막으며, 주치의 소견은 +α를 열어 둔다. 마지막에는 숨은 동선으로 +α의 실행 여부를 검증한다."
     },
     {
       "id": "suspicion.seraphine",
       "title": "세라핀 · 계승과 혼인",
-      "question": "혼인을 거부하고 왕위를 준비한 세라핀이 아드리안의 죽음을 앞당겼는가?",
+      "question": "알레르기 유발 문서를 펼친 세라핀이 약효가 오른 뒤 밀폐 노출까지 이어 갔는가?",
       "fragments": [
         {
           "id": "suspicion.seraphine.motive",
@@ -105,27 +105,27 @@
         },
         {
           "id": "suspicion.seraphine.action",
-          "label": "금서고 은폐 2장",
+          "label": "알레르기와 문서 절도 2장",
           "cardIds": [
-            "memory.seraphine-ledger",
-            "testimony.isabel-attendant"
+            "evidence.marriage-treaty",
+            "memory.seraphine-ledger"
           ]
         },
         {
           "id": "suspicion.seraphine.rebuttal",
-          "label": "서고 이탈 공백 2장",
+          "label": "북쪽 탑의 숨은 알리바이 2장",
           "cardIds": [
-            "testimony.archive-copyist",
+            "testimony.foreign-envoy",
             "rumor.princess-pages"
           ]
         }
       ],
-      "auditNote": "동기·기회·행동·반증 또는 은폐가 각각 두 장이다. 일부만 공개되어도 인물을 지목할 질문이 생기고, 네 역할이 모이면 범행설의 성립 여부를 판단할 수 있다."
+      "auditNote": "실제 위해와 가짜 스모킹 건은 범행 가설을 세우고, 검시는 단독 치사를 막으며, 주치의 소견은 +α를 열어 둔다. 마지막에는 숨은 동선으로 +α의 실행 여부를 검증한다."
     },
     {
       "id": "suspicion.benedict",
       "title": "베네딕트 · 입을 막은 제압과 유언",
-      "question": "아드리안의 입을 막고 몸을 눌러 움직이지 않게 만든 베네딕트가 그 자리에서 죽였는가?",
+      "question": "아드리안의 입을 막은 베네딕트가 사망 시간까지 압박을 계속하거나 다시 돌아왔는가?",
       "fragments": [
         {
           "id": "suspicion.benedict.motive",
@@ -153,19 +153,19 @@
         },
         {
           "id": "suspicion.benedict.rebuttal",
-          "label": "종 이후 이탈 공백 2장",
+          "label": "동쪽 기록고의 숨은 알리바이 2장",
           "cardIds": [
-            "testimony.tailor",
-            "rumor.benedict-edmund-letter"
+            "evidence.minister-dispatch",
+            "evidence.burnt-will"
           ]
         }
       ],
-      "auditNote": "동기·기회·행동·반증 또는 은폐가 각각 두 장이다. 일부만 공개되어도 인물을 지목할 질문이 생기고, 네 역할이 모이면 범행설의 성립 여부를 판단할 수 있다."
+      "auditNote": "실제 위해와 가짜 스모킹 건은 범행 가설을 세우고, 검시는 단독 치사를 막으며, 주치의 소견은 +α를 열어 둔다. 마지막에는 숨은 동선으로 +α의 실행 여부를 검증한다."
     },
     {
       "id": "suspicion.isabel",
       "title": "이사벨 · 수면제와 아이의 계승",
-      "question": "아드리안에게 수면제를 먹이고 아이의 독립된 계승을 준비한 이사벨이 약물 이상의 행위를 했는가?",
+      "question": "수면제를 먹인 이사벨이 약속 장소 대신 서재로 돌아가 넓은 물건으로 호흡까지 막았는가?",
       "fragments": [
         {
           "id": "suspicion.isabel.motive",
@@ -196,16 +196,16 @@
           "label": "질식 도구 연결 2장",
           "cardIds": [
             "memory.isabel-alive",
-            "testimony.residue-examination"
+            "evidence.broken-seal"
           ]
         }
       ],
-      "auditNote": "동기·기회·행동·반증 또는 은폐가 각각 두 장이다. 일부만 공개되어도 인물을 지목할 질문이 생기고, 네 역할이 모이면 범행설의 성립 여부를 판단할 수 있다."
+      "auditNote": "실제 위해와 가짜 스모킹 건은 범행 가설을 세우고, 검시는 단독 치사를 막으며, 주치의 소견은 +α를 열어 둔다. 마지막에는 숨은 동선으로 +α의 실행 여부를 검증한다."
     },
     {
       "id": "reconstruction.final-act",
       "title": "공통 사인 · 마지막 행위",
-      "question": "다섯 사람의 위해와 별개로 실제 숨을 끊은 시간과 방법을 복원할 수 있는가?",
+      "question": "실제로 확인된 위해와 주치의가 제시한 +α 가설을 구분하고, 누가 마지막 행위까지 실행했는가?",
       "fragments": [
         {
           "id": "survival",
@@ -218,11 +218,11 @@
         },
         {
           "id": "method",
-          "label": "손으로 막은 입과 뒤의 넓은 압박",
+          "label": "검시가 확정한 호흡 차단",
           "cardIds": [
+            "inspection.neck",
             "evidence.broken-seal",
-            "testimony.head-examination",
-            "testimony.residue-examination"
+            "evidence.mud-print"
           ]
         },
         {
@@ -235,7 +235,7 @@
           ]
         }
       ],
-      "auditNote": "공통 사인 카드는 특정 용의자의 묶음으로 세지 않는다. 시간·방법·접근을 결합한 뒤에야 각 용의자의 의혹 카드와 대조한다."
+      "auditNote": "검시는 신체에서 확인된 사실만 고정하고 주치의는 가능한 치명 조건만 제시한다. +α의 실행 여부는 시간·동선·현장 물증을 결합해 판단한다."
     },
     {
       "id": "investigator.rowen",

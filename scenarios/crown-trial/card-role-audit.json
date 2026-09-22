@@ -9,7 +9,8 @@
     "ruin": "그 인물이 무엇을 피하려 거짓말하고 거래하는지 추정하게 한다",
     "secret_hint": "비공개 관계나 숨은 계획을 다른 단서와 연결하게 한다",
     "timeline": "시각·동선·생존 여부·알리바이를 고정한다",
-    "rebuttal": "그럴듯하지만 잘못된 단독 결론 하나를 명시적으로 제거한다"
+    "rebuttal": "그럴듯하지만 잘못된 단독 결론 하나를 명시적으로 제거한다",
+    "medical_hypothesis": "주치의가 병력을 근거로 +α가 있었다면 치명적일 수 있었다는 가능성과 함정을 제시한다"
   },
   "cardsByPrimaryRole": {
     "buried_truth": [
@@ -28,7 +29,6 @@
     ],
     "motive": [
       "evidence.annulment-draft",
-      "evidence.marriage-treaty",
       "rumor.apothecary-visit",
       "rumor.missing-document",
       "testimony.dinner-steward"
@@ -49,20 +49,18 @@
       "evidence.royal-recognition",
       "evidence.second-glass",
       "evidence.wine-bottle",
-      "testimony.residue-examination"
+      "evidence.coronation-book",
+      "evidence.marriage-treaty"
     ],
     "desire": [
       "evidence.archive-register",
-      "evidence.coronation-book",
       "evidence.guard-charter",
       "evidence.isabel-petition",
       "evidence.marriage-annex",
       "evidence.succession-leaf",
       "evidence.watch-roster",
-      "rumor.cassian-isabel-truth",
       "rumor.marriage",
       "rumor.queen-old-letter",
-      "testimony.foreign-envoy",
       "testimony.page-sighting"
     ],
     "ruin": [
@@ -80,7 +78,6 @@
       "testimony.marta-order"
     ],
     "secret_hint": [
-      "evidence.isabel-letter",
       "evidence.pregnancy-notes",
       "evidence.royal-birth-register",
       "evidence.young-benedict-letter",
@@ -103,21 +100,27 @@
       "testimony.bell-attendant",
       "testimony.body-discovery",
       "testimony.clock-keeper",
-      "testimony.head-examination",
       "testimony.late-patrol",
       "testimony.minister-clerk",
       "testimony.night-attendant",
       "testimony.recall-messenger",
       "testimony.study-servant",
       "testimony.tailor",
-      "testimony.wardrobe-keeper"
+      "testimony.wardrobe-keeper",
+      "testimony.foreign-envoy",
+      "evidence.isabel-letter",
+      "rumor.cassian-isabel-truth"
     ],
     "rebuttal": [
       "evidence.recall-slip",
       "evidence.uniform-samples",
       "testimony.marta-recall",
-      "testimony.old-midwife",
-      "testimony.physician-limits"
+      "testimony.old-midwife"
+    ],
+    "medical_hypothesis": [
+      "testimony.physician-limits",
+      "testimony.head-examination",
+      "testimony.residue-examination"
     ]
   }
 }

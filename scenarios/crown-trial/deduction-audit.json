@@ -1,60 +1,65 @@
 {
-  "description": "모든 인물은 마지막 종 전후에 설명하지 못하는 동선을 가진다. 비범인은 묻어야 하는 진실 때문에 이유를 숨기고, 이사벨만 그 공백에서 최종 질식의 현장 흔적까지 이어진다.",
+  "description": "각 용의자는 실제 위해 또는 살해 시도, 그것만으로는 죽지 않았다는 검시, +α가 있었다면 죽을 수 있다는 주치의 소견을 가진다. 비범인은 숨기고 싶은 진실을 공개해야 +α를 실행하지 않은 동선이 완성되고, 이사벨만 약속 장소의 부재와 현장 물증이 +α 실행으로 이어진다.",
   "alibis": [
     {
       "characterId": "queen",
-      "label": "사라진 약병을 찾은 시종 통로",
+      "label": "남은 독을 태운 약제실 지하",
       "cardIds": [
         "testimony.recall-messenger",
-        "rumor.queen-luggage",
+        "evidence.coronation-book",
         "memory.queen-recall"
       ],
-      "minimumRequired": 2,
-      "note": "22시 50분부터 58분까지 서재 접근 통로에 있었다. 독살 명령을 인정해야만 이유를 설명할 수 있다."
+      "minimumRequired": 3,
+      "note": "22시 56분 폐기 화로를 연 사실은 추가 투약을 반증하지만, 독살 명령과 증거 인멸을 함께 드러낸다."
     },
     {
       "characterId": "cassian",
-      "label": "예배실을 비운 여덟 분",
+      "label": "닫힌 폐예배실 안의 왕자",
       "cardIds": [
         "testimony.page-sighting",
-        "rumor.cassian-isabel-truth",
+        "evidence.isabel-letter",
         "memory.cassian-sedative"
       ],
-      "minimumRequired": 2,
-      "note": "22시 50분부터 58분까지 서쪽 회랑에 있었다. 이사벨과의 약속을 인정해야만 이유를 설명할 수 있다."
+      "minimumRequired": 3,
+      "note": "22시 56분 카시안은 폐예배실 안에서 답했다. 연애와 도주 약속을 인정해야 알리바이가 되고, 오지 않은 이사벨의 공백이 생긴다."
     },
     {
       "characterId": "isabel",
-      "label": "비어 있던 왕세자비의 방",
+      "label": "약속 장소에도 방에도 없던 왕세자비",
       "cardIds": [
         "testimony.study-servant",
-        "rumor.isabel-annulment",
+        "testimony.page-sighting",
+        "memory.cassian-sedative",
+        "rumor.secret-letter",
+        "evidence.mud-print",
         "memory.isabel-alive"
       ],
-      "minimumRequired": 2,
-      "note": "22시 51분부터 58분까지 방에 없었다. 이 공백만 최종 질식 도구와 푸른 망토 흔적으로 이어진다."
+      "minimumRequired": 4,
+      "note": "이사벨은 방에도 폐예배실에도 없었다. 푸른 망토, 뒤편 계단, 녹색 섬유와 은제 고리가 그 공백을 최종 압박 현장으로 연결한다."
     },
     {
       "characterId": "seraphine",
-      "label": "서고를 비운 열 분",
+      "label": "북쪽 탑 봉인실에 감춘 밀서",
       "cardIds": [
-        "testimony.archive-copyist",
+        "testimony.foreign-envoy",
         "rumor.princess-pages",
+        "memory.seraphine-archive",
         "memory.seraphine-ledger"
       ],
-      "minimumRequired": 2,
-      "note": "22시 49분부터 59분까지 북쪽 탑 방향 회랑에 있었다. 훔친 계승법과 밀서를 인정해야만 이유를 설명할 수 있다."
+      "minimumRequired": 3,
+      "note": "22시 54분부터 58분까지 봉인실에 있었다. 계승법 절도와 영토를 건 왕위 거래를 인정해야 밀폐 노출의 +α를 실행하지 않았음이 드러난다."
     },
     {
       "characterId": "benedict",
-      "label": "종 뒤 재상실을 비운 여섯 분",
+      "label": "동쪽 기록고에 감춘 유언",
       "cardIds": [
         "testimony.tailor",
-        "rumor.benedict-edmund-letter",
-        "memory.benedict-birth-dates"
+        "evidence.minister-dispatch",
+        "evidence.burnt-will",
+        "memory.benedict-will-clause"
       ],
-      "minimumRequired": 2,
-      "note": "22시 53분부터 59분까지 동선이 없다. 앞선 제압과 숨긴 유언을 인정해야만 이유를 설명할 수 있다."
+      "minimumRequired": 3,
+      "note": "22시 56분 동쪽 기록고에서 유언을 숨겼다. 아드리안 제압과 계승 기록 조작을 인정해야 압박을 계속하지 않았음이 드러난다."
     },
     {
       "characterId": "rowen",
@@ -70,7 +75,7 @@
   ],
   "culprit": {
     "characterId": "isabel",
-    "conclusion": "이사벨이 22시 54분 서재로 돌아와 녹색 벨벳 쿠션으로 아드리안을 질식시켰다.",
+    "conclusion": "이사벨은 카시안에게 가겠다고 했지만 폐예배실에도 자기 방에도 없었다. 22시 56분부터 58분 사이 서재로 돌아와 녹색 벨벳 쿠션으로 아드리안의 호흡을 막았다.",
     "axes": [
       {
         "id": "survival-after-benedict",
@@ -93,40 +98,44 @@
       },
       {
         "id": "fatal-method",
-        "label": "최종 사인과 녹색 쿠션",
+        "label": "검시가 확정한 호흡 차단과 현장 직물",
         "cardIds": [
+          "inspection.neck",
           "evidence.broken-seal",
-          "testimony.head-examination",
-          "testimony.residue-examination"
+          "evidence.mud-print",
+          "memory.isabel-alive"
         ],
         "paths": [
           [
-            "evidence.broken-seal",
-            "testimony.residue-examination"
+            "inspection.neck",
+            "evidence.broken-seal"
           ],
           [
-            "testimony.head-examination",
-            "testimony.residue-examination"
+            "evidence.broken-seal",
+            "evidence.mud-print",
+            "memory.isabel-alive"
           ]
         ]
       },
       {
         "id": "isabel-return",
-        "label": "이사벨의 부인한 두 번째 방문",
+        "label": "약속 장소에도 방에도 없던 이사벨",
         "cardIds": [
+          "memory.cassian-sedative",
+          "testimony.page-sighting",
+          "testimony.study-servant",
           "rumor.secret-letter",
-          "evidence.mud-print",
-          "rumor.isabel-annulment",
-          "memory.isabel-alive"
+          "evidence.mud-print"
         ],
         "paths": [
           [
-            "rumor.secret-letter",
-            "evidence.mud-print"
+            "memory.cassian-sedative",
+            "testimony.page-sighting"
           ],
           [
-            "rumor.isabel-annulment",
-            "memory.isabel-alive"
+            "testimony.study-servant",
+            "rumor.secret-letter",
+            "evidence.mud-print"
           ]
         ]
       },
@@ -172,8 +181,124 @@
     ]
   },
   "sourceOverrides": {
-    "testimony.head-examination": "exam:anatomy",
-    "testimony.residue-examination": "exam:toxicology",
-    "evidence.physician-log": "record:autopsy"
-  }
+    "testimony.physician-limits": "opinion:physician",
+    "testimony.head-examination": "opinion:physician",
+    "testimony.residue-examination": "opinion:physician",
+    "evidence.physician-log": "record:medical-history"
+  },
+  "hypotheses": [
+    {
+      "characterId": "queen",
+      "label": "독살 뒤 추가 투약",
+      "confirmedAct": "엘레노라는 벨라도나를 구해 두 번째 술에 모두 넣으라고 명령했다.",
+      "insufficientFinding": "검출된 벨라도나는 통상적인 단독 치사량 아래이고, 아드리안은 22시 52분까지 살아 있었다.",
+      "plusAlpha": "남은 약을 마지막 종 뒤 한 번 더 먹였다면 수면제와 겹쳐 호흡 정지에 이를 수 있다.",
+      "apparentSmokingGunIds": [
+        "memory.queen-recall",
+        "evidence.belladonna-ledger",
+        "evidence.wine-bottle"
+      ],
+      "plusAlphaSupportIds": [
+        "testimony.physician-limits",
+        "rumor.queen-luggage"
+      ],
+      "verificationIds": [
+        "testimony.recall-messenger",
+        "evidence.coronation-book"
+      ],
+      "actual": "+α 미실행. 남은 약은 22시 56분 폐기 화로에서 태웠다."
+    },
+    {
+      "characterId": "cassian",
+      "label": "첫 폭행 뒤 두 번째 가격",
+      "confirmedAct": "카시안은 인장 반지로 아드리안의 뒤통수를 다치게 했다.",
+      "insufficientFinding": "골절은 없었고 아드리안은 폭행 뒤 22시 52분 종을 울릴 수 있었다.",
+      "plusAlpha": "과거 다친 같은 부위를 다시 가격하거나 약해진 상태에서 호흡을 막았다면 죽을 수 있다.",
+      "apparentSmokingGunIds": [
+        "memory.cassian-assault",
+        "evidence.stopped-watch",
+        "evidence.royal-recognition"
+      ],
+      "plusAlphaSupportIds": [
+        "testimony.head-examination",
+        "rumor.cassian-quarrel"
+      ],
+      "verificationIds": [
+        "testimony.page-sighting",
+        "evidence.isabel-letter",
+        "memory.cassian-sedative"
+      ],
+      "actual": "+α 미실행. 22시 56분에도 폐예배실 안에서 오지 않은 이사벨을 기다렸다."
+    },
+    {
+      "characterId": "seraphine",
+      "label": "알레르기 유발 뒤 밀폐 노출",
+      "confirmedAct": "세라핀은 붓꽃 향분이 밴 혼인조약서를 서재에서 펼치며 아드리안과 다퉜다.",
+      "insufficientFinding": "평소의 붓꽃 향분 반응은 치료 없이도 가라앉았고 단독으로 사망을 확정하지 못한다.",
+      "plusAlpha": "약효가 오른 뒤 밀폐된 서재에서 향분에 계속 노출시켰다면 호흡 정지에 이를 수 있다.",
+      "apparentSmokingGunIds": [
+        "evidence.marriage-treaty",
+        "rumor.seraphine-copy",
+        "memory.seraphine-archive"
+      ],
+      "plusAlphaSupportIds": [
+        "testimony.residue-examination",
+        "evidence.corridor-plan"
+      ],
+      "verificationIds": [
+        "testimony.foreign-envoy",
+        "rumor.princess-pages",
+        "memory.seraphine-ledger"
+      ],
+      "actual": "+α 미실행. 22시 54분부터 58분까지 북쪽 탑 봉인실에서 훔친 문서를 감췄다."
+    },
+    {
+      "characterId": "benedict",
+      "label": "입막음 뒤 지속 압박",
+      "confirmedAct": "베네딕트는 손으로 아드리안의 입을 막고 몸을 눌러 축 늘어지게 했다.",
+      "insufficientFinding": "그가 떠난 뒤 22시 52분 서재 종이 정상적으로 작동했고 안에서 기침과 움직임이 이어졌다.",
+      "plusAlpha": "약물로 저항이 약해진 아드리안의 코와 입을 계속 막았거나 다시 돌아와 넓게 눌렀다면 죽을 수 있다.",
+      "apparentSmokingGunIds": [
+        "memory.benedict-birth-dates",
+        "evidence.black-cloth",
+        "evidence.repaired-coat"
+      ],
+      "plusAlphaSupportIds": [
+        "testimony.head-examination",
+        "rumor.benedict-edmund-letter"
+      ],
+      "verificationIds": [
+        "evidence.bell-register",
+        "testimony.bell-attendant",
+        "evidence.minister-dispatch",
+        "memory.benedict-will-clause"
+      ],
+      "actual": "+α 미실행. 종 뒤 동쪽 기록고에서 선왕의 유언을 숨기고 태웠다."
+    },
+    {
+      "characterId": "isabel",
+      "label": "수면제 뒤 넓은 호흡 차단",
+      "confirmedAct": "이사벨은 아드리안에게 수면제를 탄 술을 건넸다.",
+      "insufficientFinding": "수면제는 단독 치사량 아래이고 아드리안은 이후 종을 울렸다.",
+      "plusAlpha": "약효로 저항하지 못하는 동안 코와 입을 넓은 물건으로 계속 막으면 죽을 수 있다.",
+      "apparentSmokingGunIds": [
+        "evidence.sedative-prescription",
+        "evidence.gilt-glass",
+        "evidence.second-glass"
+      ],
+      "plusAlphaSupportIds": [
+        "testimony.physician-limits",
+        "inspection.neck"
+      ],
+      "verificationIds": [
+        "testimony.study-servant",
+        "testimony.page-sighting",
+        "rumor.secret-letter",
+        "evidence.mud-print",
+        "evidence.broken-seal",
+        "memory.isabel-alive"
+      ],
+      "actual": "+α 실행. 약속 장소에 가지 않고 서재로 돌아와 녹색 벨벳 쿠션으로 호흡을 막았다."
+    }
+  ]
 }
