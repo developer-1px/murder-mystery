@@ -111,7 +111,7 @@ function simulate(seed: number, scenario: Scenario, npcGroups: NpcGroupsDocument
   return { rounds, remainingHands: Object.fromEntries(scenario.characters.map(character => [character.id, hands[character.id].length])) }
 }
 
-const roleLabels: Record<string, string> = { buried_truth: '묻어야 하는 진실', motive: '동기', psychological_evidence: '심증', physical_evidence: '물증', desire: '욕망', ruin: '파멸', secret_hint: '비밀 암시', timeline: '시간·동선', rebuttal: '반증' }
+const roleLabels: Record<string, string> = { buried_truth: '묻어야 하는 진실', motive: '동기', psychological_evidence: '심증', physical_evidence: '증거', desire: '욕망', ruin: '파멸', secret_hint: '비밀 암시', timeline: '시간·동선', rebuttal: '반증' }
 
 export function CourtSimulator({ scenario, npcGroups, memoryStages, inspectionCards, roleAudit }: { scenario: Scenario; npcGroups: NpcGroupsDocument; memoryStages: MemoryStagesDocument; inspectionCards: Card[]; roleAudit: CardRoleAuditDocument }) {
   const [seed, setSeed] = useState(() => Math.floor(Math.random() * 2 ** 31))

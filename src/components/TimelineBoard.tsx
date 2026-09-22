@@ -25,7 +25,7 @@ export function TimelineBoard({ scenario, document }: { scenario: Scenario; docu
     </header>
     <div className="timeline-balance" aria-label="인물별 카드 비중">{columns.map((column) => {
       const cards = scenario.cards.filter((card) => document.characterIdByCardId[card.id] === column.id)
-      return <div key={column.id}><strong>{column.label}</strong><b>{cards.length}장</b><small>진실 {cards.filter((card) => card.kind === 'memory').length} · 증언 {cards.filter((card) => card.kind === 'testimony').length} · 소문 {cards.filter((card) => card.kind === 'rumor').length} · 물증 {cards.filter((card) => card.kind === 'evidence').length}</small></div>
+      return <div key={column.id}><strong>{column.label}</strong><b>{cards.length}장</b><small>진실 {cards.filter((card) => card.kind === 'memory').length} · 탐문 {cards.filter((card) => card.kind === 'testimony').length} · 소문 {cards.filter((card) => card.kind === 'rumor').length} · 증거 {cards.filter((card) => card.kind === 'evidence').length}</small></div>
     })}</div>
     <p className="timeline-board__guide">각 카드는 이야기에서 가장 직접적인 주요 관점 한 곳에 배치합니다. 여러 인물과 연관되더라도 중복 배치하지 않아 실제 정보 비중을 비교할 수 있습니다.</p>
     <div className="timeline-matrix" role="table" aria-label="시간대와 관련 인물별 카드 분류">

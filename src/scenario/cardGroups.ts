@@ -30,7 +30,7 @@ export function getCardGroups(scenario: Scenario, npcGroups: NpcGroupsDocument, 
     ...scenario.locations.map((location) => ({
       id: `location-${location.id}`, kind: 'evidence' as const, label: location.name,
       description: '혼자면 두 장, N명이 함께 조사하면 N+1장을 확인하고 각자 한 장씩 획득합니다.',
-      backTitle: location.name, backSubtitle: '조사 / 물증',
+      backTitle: location.name, backSubtitle: '조사 / 증거',
       cards: scenario.cards.filter((card) => card.kind === 'evidence' && card.locationId === location.id),
     })),
   ]
