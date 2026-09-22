@@ -11,7 +11,7 @@
     "timeline": "시각·동선·생존 여부의 경계를 고정한다. 공개 카드만으로 특정 인물의 알리바이를 완성하지 않는다",
     "rebuttal": "그럴듯하지만 잘못된 단독 결론 하나를 명시적으로 제거한다",
     "medical_hypothesis": "주치의가 병력을 근거로 +α가 있었다면 치명적일 수 있었다는 가능성과 함정을 제시한다",
-    "movement_rumor": "정확한 목격이 아니라 공개석상에서 사라진 뒤의 행적을 두고 사람들이 내놓은 여러 추측을 제시한다"
+    "movement_rumor": "사건 흐름 속 특정 장소의 이상한 일이나 목격담을 전하되, 인물·신분·성별·복장·이니셜을 드러내지 않아 누구의 동선인지 확정할 수 없게 한다"
   },
   "cardsByPrimaryRole": {
     "buried_truth": [
@@ -116,7 +116,13 @@
       "rumor.heir-calendar",
       "rumor.princess-pages",
       "rumor.night-sewing",
-      "rumor.guard-return"
+      "rumor.guard-return",
+      "rumor.anonymous-west-curtain",
+      "rumor.anonymous-saddled-horse",
+      "rumor.anonymous-family-corridor",
+      "rumor.anonymous-archive-knock",
+      "rumor.anonymous-council-room",
+      "rumor.anonymous-gate-bolt"
     ]
   }
 }

@@ -12,7 +12,9 @@
       "evidence.ink-blotter",
       "evidence.annulment-draft",
       "testimony.dinner-steward",
-      "testimony.agnes-blue-cloak"
+      "testimony.agnes-blue-cloak",
+      "rumor.anonymous-family-corridor",
+      "rumor.anonymous-gate-bolt"
     ]
   },
   {
@@ -28,14 +30,15 @@
       "evidence.sedative-prescription",
       "testimony.physician-limits",
       "testimony.marta-recall",
-      "rumor.heir-calendar",
       "evidence.wine-bottle",
       "testimony.marta-order",
       "testimony.apothecary-counter",
       "testimony.head-examination",
       "testimony.residue-examination",
       "testimony.old-midwife",
-      "evidence.coronation-book"
+      "evidence.coronation-book",
+      "rumor.queen-luggage",
+      "rumor.anonymous-west-curtain"
     ]
   },
   {
@@ -48,9 +51,6 @@
       "evidence.mud-print",
       "testimony.page-sighting",
       "testimony.agnes-locked-door",
-      "rumor.queen-luggage",
-      "rumor.night-sewing",
-      "rumor.guard-return",
       "evidence.recall-slip",
       "evidence.bell-register",
       "evidence.repaired-coat",
@@ -63,7 +63,11 @@
       "testimony.night-attendant",
       "testimony.agnes-unanswered-calls",
       "testimony.isabel-attendant",
-      "evidence.isabel-letter"
+      "evidence.isabel-letter",
+      "rumor.heir-calendar",
+      "rumor.guard-return",
+      "rumor.old-portrait",
+      "rumor.anonymous-saddled-horse"
     ]
   },
   {
@@ -75,8 +79,6 @@
       "rumor.marriage",
       "evidence.marriage-treaty",
       "testimony.archivist",
-      "rumor.old-portrait",
-      "rumor.princess-pages",
       "evidence.corridor-plan",
       "evidence.succession-leaf",
       "evidence.royal-birth-register",
@@ -88,7 +90,11 @@
       "testimony.archive-copyist",
       "testimony.foreign-envoy",
       "evidence.minister-dispatch",
-      "evidence.burnt-will"
+      "evidence.burnt-will",
+      "rumor.anonymous-council-room",
+      "rumor.night-sewing",
+      "rumor.anonymous-archive-knock",
+      "rumor.princess-pages"
     ]
   }
 ]

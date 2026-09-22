@@ -249,6 +249,12 @@
     "testimony.agnes-locked-door": "isabel",
     "testimony.agnes-unanswered-calls": "isabel",
     "testimony.agnes-blue-cloak": "isabel",
-    "testimony.agnes-wet-sleeve": "isabel"
+    "testimony.agnes-wet-sleeve": "isabel",
+    "rumor.anonymous-west-curtain": "queen",
+    "rumor.anonymous-saddled-horse": "cassian",
+    "rumor.anonymous-family-corridor": "isabel",
+    "rumor.anonymous-archive-knock": "seraphine",
+    "rumor.anonymous-council-room": "benedict",
+    "rumor.anonymous-gate-bolt": "rowen"
   }
 }
