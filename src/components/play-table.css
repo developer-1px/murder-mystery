@@ -1,7 +1,7 @@
-.play { --play-gold: #dbc393; --play-ink: #e8dfce; --play-muted: #a6aca0; --table-card-width: clamp(100px, min(calc((100dvh - 180px) / 2.9), calc((100vw - 150px) / 7)), 230px); position: relative; height: 100dvh; color: var(--play-ink); }
+.play { --play-gold: var(--ui-gold); --play-ink: var(--ui-text); --play-muted: var(--ui-muted); --table-card-width: clamp(100px, min(calc((100dvh - 180px) / 2.9), calc((100vw - 150px) / 7)), 230px); position: relative; height: 100dvh; color: var(--play-ink); }
 .play button { font: inherit; cursor: pointer; }
 .play button:disabled { cursor: not-allowed; }
-.play-toolbar, .play-phase-control > button, .play-my-hand, .play-auto-tools, .workbench-launcher { border: 1px solid #68715a80; background: #14271feb; color: #e5d7bb; box-shadow: 0 4px 16px #0003; backdrop-filter: blur(16px); }
+.play-toolbar, .play-phase-control > button, .play-my-hand, .play-auto-tools { border: 1px solid #68715a80; background: #14271feb; color: #e5d7bb; box-shadow: 0 4px 16px #0003; backdrop-filter: blur(16px); }
 .play-toolbar { position: fixed; top: 12px; right: 12px; z-index: 20; height: 42px; display: flex; align-items: center; gap: 7px; padding: 4px; border-radius: 9px; }
 .play-tabs { display: flex; gap: 2px; }
 .play-tabs button { padding: 8px 11px; background: transparent; border: 0; color: #a4a698; border-radius: 5px; font-size: 11px; }

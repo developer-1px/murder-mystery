@@ -25,18 +25,15 @@ export function WorkbenchRoutes() {
           <NavLink to="/deduction">추리 검증</NavLink>
           <NavLink to="/court-simulator">재판 시뮬레이터</NavLink>
         </nav>
-  return <main className={`app-shell${playing ? ' app-shell--play' : ''}`}>
-    {playing ? <div className="workbench-float">
+  return <main className={`app-shell app-shell--workbench${playing ? ' app-shell--play' : ''}`}>
+    <div className="workbench-float">
       <h1 className="sr-only">{scenario.meta.title}</h1>
       <button className="workbench-launcher" popoverTarget="workbench-menu" aria-label="작업 공간 메뉴"><span aria-hidden="true">♛</span>{scenario.meta.title}<span aria-hidden="true">⌄</span></button>
       <div id="workbench-menu" className="workbench-menu" popover="auto">
         <header><span className="eyebrow">WORKBENCH</span>{health}</header>
         {navigation}<RouteTools />
       </div>
-    </div> : <header className="topbar">
-      <div><span className="eyebrow">MURDER MYSTERY WORKBENCH</span><h1>{scenario.meta.title}</h1></div>
-      <div className="topbar__actions">{health}{navigation}<RouteTools /></div>
-    </header>}
+    </div>
     <Routes>
       <Route path="/" element={<Navigate replace to="/table" />} />
       <Route path="/setting" element={<CommonSetting document={commonSetting} />} />
