@@ -280,10 +280,10 @@
         },
         {
           "id": "investigator.rowen.testimonies",
-          "label": "경비 철수와 봉쇄 탐문 2장",
+          "label": "수사 조력자의 생전 소견 2장",
           "cardIds": [
-            "testimony.guard-withdrawal",
-            "testimony.body-discovery"
+            "testimony.physician-limits",
+            "testimony.head-examination"
           ]
         },
         {

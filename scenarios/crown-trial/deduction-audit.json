@@ -92,7 +92,7 @@
       "characterId": "rowen",
       "label": "교대 뒤 공식 기록에서 사라진 시간",
       "cardIds": [
-        "testimony.late-patrol",
+        "evidence.watch-roster",
         "rumor.guard-return",
         "memory.rowen-alive"
       ],

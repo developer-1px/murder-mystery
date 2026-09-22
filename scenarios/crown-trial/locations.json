@@ -12,7 +12,7 @@
       "evidence.ink-blotter",
       "evidence.annulment-draft",
       "testimony.dinner-steward",
-      "testimony.body-discovery"
+      "testimony.agnes-blue-cloak"
     ]
   },
   {
@@ -50,7 +50,7 @@
       "rumor.secret-letter",
       "evidence.mud-print",
       "testimony.page-sighting",
-      "testimony.guard-withdrawal",
+      "testimony.agnes-locked-door",
       "rumor.queen-luggage",
       "rumor.night-sewing",
       "rumor.guard-return",
@@ -62,10 +62,10 @@
       "evidence.guard-charter",
       "testimony.recall-messenger",
       "testimony.bell-attendant",
-      "testimony.clock-keeper",
+      "testimony.agnes-wet-sleeve",
       "testimony.tailor",
       "testimony.night-attendant",
-      "testimony.late-patrol",
+      "testimony.agnes-unanswered-calls",
       "testimony.isabel-attendant",
       "evidence.isabel-letter"
     ]

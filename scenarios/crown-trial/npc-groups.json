@@ -1,10 +1,10 @@
 {
-  "description": "플레이어 캐릭터와 1:1로 대응하는 탐문 NPC. 매회 여섯 NPC를 한 번씩만 선택한다. 각 NPC에서 두 장을 함께 읽고 한 장을 획득하며, 선택하지 않은 카드는 덱에 남긴다. 다음 회차에는 같은 NPC를 다시 탐문할 수 있다.",
+  "description": "각 인물과 가까운 측근 여섯 명을 탐문한다. 카드 앞뒷면에 누구의 측근인지 표시한다. 플레이어 한 명은 같은 NPC를 게임 중 한 번만 탐문할 수 있으며, 두 장을 함께 읽고 한 장을 획득한다.",
   "npcs": [
     {
       "id": "npc.marta",
-      "name": "마르타",
-      "role": "왕비전 수석 시녀 · 왕비의 오랜 측근",
+      "name": "엘레노라의 시녀 마르타",
+      "role": "왕비전 수석 시녀",
       "pairedCharacterId": "queen",
       "cardIds": [
         "testimony.marta-order",
@@ -15,8 +15,8 @@
     },
     {
       "id": "npc.nicol",
-      "name": "니콜",
-      "role": "왕실 시종",
+      "name": "카시안의 시종 니콜",
+      "role": "왕자궁 시종",
       "pairedCharacterId": "cassian",
       "cardIds": [
         "testimony.dinner-steward",
@@ -27,9 +27,9 @@
     },
     {
       "id": "npc.lucien",
-      "name": "루시엔",
+      "name": "로웬의 수사 조력자 루시엔",
       "role": "왕실 주치의",
-      "pairedCharacterId": "isabel",
+      "pairedCharacterId": "rowen",
       "cardIds": [
         "testimony.physician-limits",
         "testimony.head-examination",
@@ -39,7 +39,7 @@
     },
     {
       "id": "npc.elian",
-      "name": "엘리안",
+      "name": "세라핀의 조력자 엘리안",
       "role": "왕실서고지기",
       "pairedCharacterId": "seraphine",
       "cardIds": [
@@ -51,7 +51,7 @@
     },
     {
       "id": "npc.oswin",
-      "name": "오스윈",
+      "name": "베네딕트의 시종 오스윈",
       "role": "재상실 시종",
       "pairedCharacterId": "benedict",
       "cardIds": [
@@ -62,15 +62,15 @@
       ]
     },
     {
-      "id": "npc.hart",
-      "name": "하르트",
-      "role": "서쪽 초소 근위병",
-      "pairedCharacterId": "rowen",
+      "id": "npc.agnes",
+      "name": "이사벨의 시녀 아녜스",
+      "role": "왕세자비의 전속 시녀",
+      "pairedCharacterId": "isabel",
       "cardIds": [
-        "testimony.guard-withdrawal",
-        "testimony.late-patrol",
-        "testimony.body-discovery",
-        "testimony.clock-keeper"
+        "testimony.agnes-locked-door",
+        "testimony.agnes-unanswered-calls",
+        "testimony.agnes-blue-cloak",
+        "testimony.agnes-wet-sleeve"
       ]
     }
   ]

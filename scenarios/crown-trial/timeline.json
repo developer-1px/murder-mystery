@@ -45,8 +45,7 @@
       "summary": "로웬이 왕세자실의 봉인만 믿고 무기명 통행패를 발급한 뒤 서재 앞과 뒤편 계단의 경비를 비운다.",
       "cardIds": [
         "memory.rowen-order",
-        "evidence.guard-log",
-        "testimony.guard-withdrawal"
+        "evidence.guard-log"
       ]
     },
     {
@@ -84,7 +83,7 @@
       "time": "22:48–23:02",
       "summary": "로웬이 통행패 소지자를 찾겠다며 초소를 떠난 뒤 공식 기록에서 동선을 지운다.",
       "cardIds": [
-        "testimony.late-patrol",
+        "evidence.watch-roster",
         "rumor.guard-return",
         "memory.rowen-order",
         "evidence.ink-blotter"
@@ -171,7 +170,7 @@
       "cardIds": [
         "memory.rowen-alive",
         "rumor.rowen-second-visit",
-        "testimony.body-discovery"
+        "evidence.guard-log"
       ]
     }
   ],
@@ -202,10 +201,10 @@
     "testimony.page-sighting": "cassian",
     "testimony.study-servant": "cassian",
     "testimony.bell-attendant": "cassian",
-    "testimony.physician-limits": "isabel",
-    "testimony.head-examination": "isabel",
-    "testimony.residue-examination": "isabel",
-    "testimony.old-midwife": "isabel",
+    "testimony.physician-limits": "rowen",
+    "testimony.head-examination": "rowen",
+    "testimony.residue-examination": "rowen",
+    "testimony.old-midwife": "rowen",
     "testimony.archivist": "seraphine",
     "testimony.archive-copyist": "seraphine",
     "testimony.foreign-envoy": "seraphine",
@@ -214,10 +213,6 @@
     "testimony.tailor": "benedict",
     "testimony.wardrobe-keeper": "benedict",
     "testimony.night-attendant": "benedict",
-    "testimony.guard-withdrawal": "rowen",
-    "testimony.late-patrol": "rowen",
-    "testimony.body-discovery": "rowen",
-    "testimony.clock-keeper": "rowen",
     "rumor.apothecary-visit": "queen",
     "rumor.queen-luggage": "queen",
     "rumor.old-portrait": "queen",
@@ -265,6 +260,10 @@
     "evidence.guard-log": "rowen",
     "evidence.watch-roster": "rowen",
     "evidence.ink-blotter": "rowen",
-    "evidence.guard-charter": "rowen"
+    "evidence.guard-charter": "rowen",
+    "testimony.agnes-locked-door": "isabel",
+    "testimony.agnes-unanswered-calls": "isabel",
+    "testimony.agnes-blue-cloak": "isabel",
+    "testimony.agnes-wet-sleeve": "isabel"
   }
 }
