@@ -1,6 +1,6 @@
 {
   "designerOnly": true,
-  "description": "다섯 용의자의 쟁점은 12장을 세 장씩 묶은 네 단계로 구성한다. 감춰진 이유는 동기·심증·파멸의 진실을, 범행 가능성은 동선·선행 위해·도구를, 사망 가설은 연결 물증·단독 반증·+α를, 실행 여부는 행적의 진실과 두 검증 카드를 연결한다. 어느 한 그룹만으로는 용의자도 범행도 확정되지 않는다.",
+  "description": "인물마다 카더라 2장·수소문 2장·묻어야 하는 진실 2장·탐문 2장·증거 4장을 연결한다. 네 조각에 세 장씩 배치해 알려진 갈등, 수상한 행적, 실제 행동, 확인과 반증을 비교한다. 카드 한 장이나 소문만으로 인물의 동선과 살해 여부를 확정하지 않는다.",
   "groups": [
     {
       "id": "suspicion.queen",
@@ -9,42 +9,42 @@
       "fragments": [
         {
           "id": "suspicion.queen.hidden-reason",
-          "label": "01 · 표면의 살해 동기",
+          "label": "01 · 알려진 갈등과 숨긴 이유",
           "cardIds": [
+            "rumor.apothecary-visit",
             "rumor.queen-old-letter",
-            "rumor.queen-luggage",
             "memory.queen-poison"
           ]
         },
         {
           "id": "suspicion.queen.possible-act",
-          "label": "02 · 범행 가능성",
+          "label": "02 · 수상한 행적",
           "cardIds": [
-            "testimony.recall-messenger",
-            "testimony.marta-order",
-            "evidence.belladonna-ledger"
+            "rumor.queen-luggage",
+            "rumor.anonymous-west-curtain",
+            "testimony.recall-messenger"
           ]
         },
         {
           "id": "suspicion.queen.death-hypothesis",
-          "label": "03 · 사망 가설",
+          "label": "03 · 실제 행동과 빈틈",
           "cardIds": [
-            "evidence.wine-bottle",
-            "inspection.toxicology",
-            "testimony.physician-limits"
+            "memory.queen-recall",
+            "testimony.marta-recall",
+            "evidence.belladonna-ledger"
           ]
         },
         {
           "id": "suspicion.queen.execution-check",
-          "label": "04 · 실행 여부",
+          "label": "04 · 확인과 반증",
           "cardIds": [
-            "memory.queen-recall",
+            "evidence.wine-bottle",
             "evidence.coronation-book",
             "evidence.corridor-plan"
           ]
         }
       ],
-      "auditNote": "각 그룹은 세 장을 모두 연결해야 한 단계의 가설이 된다. 1은 거짓말의 이유, 2는 범행 가능성, 3은 단독 범행의 한계와 +α, 4는 실제 행적을 판별한다. 앞 단계의 표식은 뒤 단계에서만 신원이나 의미가 완성된다."
+      "auditNote": "카더라는 공개된 갈등만, 수소문은 신원이 드러나지 않은 행동과 대략의 시간만 말한다. 탐문은 측근의 관찰과 편향을 담고, 진실과 증거를 함께 놓아야 행적을 검증할 수 있다."
     },
     {
       "id": "suspicion.cassian",
@@ -53,42 +53,42 @@
       "fragments": [
         {
           "id": "suspicion.cassian.hidden-reason",
-          "label": "01 · 표면의 살해 동기",
+          "label": "01 · 알려진 갈등과 숨긴 이유",
           "cardIds": [
-            "rumor.cassian-isabel-truth",
             "rumor.cassian-quarrel",
+            "rumor.cassian-isabel-truth",
             "memory.cassian-assault"
           ]
         },
         {
           "id": "suspicion.cassian.possible-act",
-          "label": "02 · 범행 가능성",
+          "label": "02 · 수상한 행적",
           "cardIds": [
-            "testimony.page-sighting",
-            "evidence.stopped-watch",
-            "evidence.royal-recognition"
+            "rumor.old-portrait",
+            "rumor.anonymous-saddled-horse",
+            "testimony.page-sighting"
           ]
         },
         {
           "id": "suspicion.cassian.death-hypothesis",
-          "label": "03 · 사망 가설",
+          "label": "03 · 실제 행동과 빈틈",
           "cardIds": [
-            "inspection.external",
-            "evidence.bell-register",
-            "testimony.head-examination"
+            "memory.cassian-sedative",
+            "testimony.dinner-steward",
+            "evidence.stopped-watch"
           ]
         },
         {
           "id": "suspicion.cassian.execution-check",
-          "label": "04 · 실행 여부",
+          "label": "04 · 확인과 반증",
           "cardIds": [
-            "memory.cassian-sedative",
+            "evidence.royal-recognition",
             "evidence.isabel-letter",
             "evidence.corridor-plan"
           ]
         }
       ],
-      "auditNote": "각 그룹은 세 장을 모두 연결해야 한 단계의 가설이 된다. 1은 거짓말의 이유, 2는 범행 가능성, 3은 단독 범행의 한계와 +α, 4는 실제 행적을 판별한다. 앞 단계의 표식은 뒤 단계에서만 신원이나 의미가 완성된다."
+      "auditNote": "카더라는 공개된 갈등만, 수소문은 신원이 드러나지 않은 행동과 대략의 시간만 말한다. 탐문은 측근의 관찰과 편향을 담고, 진실과 증거를 함께 놓아야 행적을 검증할 수 있다."
     },
     {
       "id": "suspicion.seraphine",
@@ -97,42 +97,42 @@
       "fragments": [
         {
           "id": "suspicion.seraphine.hidden-reason",
-          "label": "01 · 표면의 살해 동기",
+          "label": "01 · 알려진 갈등과 숨긴 이유",
           "cardIds": [
             "rumor.marriage",
             "rumor.seraphine-copy",
-            "rumor.princess-pages"
+            "memory.seraphine-archive"
           ]
         },
         {
           "id": "suspicion.seraphine.possible-act",
-          "label": "02 · 범행 가능성",
+          "label": "02 · 수상한 행적",
           "cardIds": [
-            "testimony.foreign-envoy",
+            "rumor.princess-pages",
+            "rumor.anonymous-archive-knock",
+            "testimony.foreign-envoy"
+          ]
+        },
+        {
+          "id": "suspicion.seraphine.death-hypothesis",
+          "label": "03 · 실제 행동과 빈틈",
+          "cardIds": [
+            "memory.seraphine-ledger",
             "testimony.isabel-attendant",
             "evidence.marriage-treaty"
           ]
         },
         {
-          "id": "suspicion.seraphine.death-hypothesis",
-          "label": "03 · 사망 가설",
+          "id": "suspicion.seraphine.execution-check",
+          "label": "04 · 확인과 반증",
           "cardIds": [
             "evidence.succession-leaf",
             "evidence.physician-log",
-            "testimony.residue-examination"
-          ]
-        },
-        {
-          "id": "suspicion.seraphine.execution-check",
-          "label": "04 · 실행 여부",
-          "cardIds": [
-            "memory.seraphine-archive",
-            "memory.seraphine-ledger",
             "evidence.corridor-plan"
           ]
         }
       ],
-      "auditNote": "각 그룹은 세 장을 모두 연결해야 한 단계의 가설이 된다. 1은 거짓말의 이유, 2는 범행 가능성, 3은 단독 범행의 한계와 +α, 4는 실제 행적을 판별한다. 앞 단계의 표식은 뒤 단계에서만 신원이나 의미가 완성된다."
+      "auditNote": "카더라는 공개된 갈등만, 수소문은 신원이 드러나지 않은 행동과 대략의 시간만 말한다. 탐문은 측근의 관찰과 편향을 담고, 진실과 증거를 함께 놓아야 행적을 검증할 수 있다."
     },
     {
       "id": "suspicion.benedict",
@@ -141,42 +141,42 @@
       "fragments": [
         {
           "id": "suspicion.benedict.hidden-reason",
-          "label": "01 · 표면의 살해 동기",
+          "label": "01 · 알려진 갈등과 숨긴 이유",
           "cardIds": [
             "rumor.missing-document",
-            "rumor.multiple-footsteps",
-            "rumor.benedict-edmund-letter"
+            "rumor.benedict-edmund-letter",
+            "memory.benedict-will-clause"
           ]
         },
         {
           "id": "suspicion.benedict.possible-act",
-          "label": "02 · 범행 가능성",
+          "label": "02 · 수상한 행적",
           "cardIds": [
-            "memory.benedict-birth-dates",
-            "testimony.night-attendant",
-            "inspection.neck"
+            "rumor.night-sewing",
+            "rumor.anonymous-council-room",
+            "testimony.night-attendant"
           ]
         },
         {
           "id": "suspicion.benedict.death-hypothesis",
-          "label": "03 · 사망 가설",
+          "label": "03 · 실제 행동과 빈틈",
           "cardIds": [
-            "evidence.black-cloth",
-            "evidence.bell-register",
-            "testimony.head-examination"
+            "memory.benedict-birth-dates",
+            "testimony.tailor",
+            "evidence.black-cloth"
           ]
         },
         {
           "id": "suspicion.benedict.execution-check",
-          "label": "04 · 실행 여부",
+          "label": "04 · 확인과 반증",
           "cardIds": [
-            "memory.benedict-will-clause",
-            "evidence.minister-dispatch",
-            "evidence.corridor-plan"
+            "evidence.repaired-coat",
+            "evidence.bell-register",
+            "evidence.minister-dispatch"
           ]
         }
       ],
-      "auditNote": "각 그룹은 세 장을 모두 연결해야 한 단계의 가설이 된다. 1은 거짓말의 이유, 2는 범행 가능성, 3은 단독 범행의 한계와 +α, 4는 실제 행적을 판별한다. 앞 단계의 표식은 뒤 단계에서만 신원이나 의미가 완성된다."
+      "auditNote": "카더라는 공개된 갈등만, 수소문은 신원이 드러나지 않은 행동과 대략의 시간만 말한다. 탐문은 측근의 관찰과 편향을 담고, 진실과 증거를 함께 놓아야 행적을 검증할 수 있다."
     },
     {
       "id": "suspicion.isabel",
@@ -185,42 +185,42 @@
       "fragments": [
         {
           "id": "suspicion.isabel.hidden-reason",
-          "label": "01 · 표면의 살해 동기",
+          "label": "01 · 알려진 갈등과 숨긴 이유",
           "cardIds": [
             "rumor.secret-letter",
-            "evidence.annulment-draft",
+            "rumor.isabel-annulment",
             "memory.isabel-petition"
           ]
         },
         {
           "id": "suspicion.isabel.possible-act",
-          "label": "02 · 범행 가능성",
+          "label": "02 · 수상한 행적",
           "cardIds": [
-            "testimony.study-servant",
-            "evidence.second-glass",
-            "inspection.neck"
+            "rumor.heir-calendar",
+            "rumor.anonymous-family-corridor",
+            "testimony.agnes-unanswered-calls"
           ]
         },
         {
           "id": "suspicion.isabel.death-hypothesis",
-          "label": "03 · 사망 가설",
+          "label": "03 · 실제 행동과 빈틈",
           "cardIds": [
-            "evidence.broken-seal",
-            "inspection.toxicology",
-            "testimony.head-examination"
+            "memory.isabel-alive",
+            "testimony.agnes-blue-cloak",
+            "evidence.second-glass"
           ]
         },
         {
           "id": "suspicion.isabel.execution-check",
-          "label": "04 · 실행 여부",
+          "label": "04 · 확인과 반증",
           "cardIds": [
-            "memory.isabel-alive",
-            "evidence.mud-print",
-            "testimony.page-sighting"
+            "evidence.annulment-draft",
+            "evidence.broken-seal",
+            "evidence.mud-print"
           ]
         }
       ],
-      "auditNote": "각 그룹은 세 장을 모두 연결해야 한 단계의 가설이 된다. 1은 거짓말의 이유, 2는 범행 가능성, 3은 단독 범행의 한계와 +α, 4는 실제 행적을 판별한다. 앞 단계의 표식은 뒤 단계에서만 신원이나 의미가 완성된다."
+      "auditNote": "카더라는 공개된 갈등만, 수소문은 신원이 드러나지 않은 행동과 대략의 시간만 말한다. 탐문은 측근의 관찰과 편향을 담고, 진실과 증거를 함께 놓아야 행적을 검증할 수 있다."
     },
     {
       "id": "reconstruction.final-act",
@@ -263,39 +263,43 @@
       "question": "살해범이 아닌 로웬의 경비 공백과 기록 조작이 수사 결과를 얼마나 흔드는가?",
       "fragments": [
         {
-          "id": "investigator.rowen.truths",
-          "label": "묻어야 하는 진실 2장",
+          "id": "investigator.rowen.hidden-reason",
+          "label": "01 · 알려진 갈등과 숨긴 이유",
           "cardIds": [
-            "memory.rowen-order",
-            "memory.rowen-alive"
-          ]
-        },
-        {
-          "id": "investigator.rowen.rumors",
-          "label": "선행 입실과 공백 소문 2장",
-          "cardIds": [
+            "rumor.multiple-footsteps",
             "rumor.rowen-second-visit",
-            "rumor.guard-return"
+            "memory.rowen-order"
           ]
         },
         {
-          "id": "investigator.rowen.testimonies",
-          "label": "수사 조력자의 생전 소견 2장",
+          "id": "investigator.rowen.possible-act",
+          "label": "02 · 수상한 행적",
+          "cardIds": [
+            "rumor.guard-return",
+            "rumor.anonymous-gate-bolt",
+            "evidence.guard-log"
+          ]
+        },
+        {
+          "id": "investigator.rowen.death-hypothesis",
+          "label": "03 · 실제 행동과 빈틈",
+          "cardIds": [
+            "memory.rowen-alive",
+            "evidence.ink-blotter",
+            "evidence.watch-roster"
+          ]
+        },
+        {
+          "id": "investigator.rowen.execution-check",
+          "label": "04 · 확인과 반증",
           "cardIds": [
             "testimony.physician-limits",
-            "testimony.head-examination"
-          ]
-        },
-        {
-          "id": "investigator.rowen.evidence",
-          "label": "근무일지 조작 물증 2장",
-          "cardIds": [
-            "evidence.guard-log",
-            "evidence.ink-blotter"
+            "testimony.head-examination",
+            "evidence.guard-charter"
           ]
         }
       ],
-      "auditNote": "두 진실 가운데 하나가 사망 시간의 숨은 행동을 담는다. 소문·탐문·물증만으로는 신원이 고정되지 않으며, 해당 진실과 공식 사망 시간·이동 소요표를 함께 연결해야 한다."
+      "auditNote": "카더라는 공개된 갈등만, 수소문은 신원이 드러나지 않은 행동과 대략의 시간만 말한다. 탐문은 측근의 관찰과 편향을 담고, 진실과 증거를 함께 놓아야 행적을 검증할 수 있다."
     }
   ]
 }

@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Link, Navigate, useLocation, useNavigate, useParams } from 'react-router'
+import { Link, useLocation, useNavigate, useParams } from 'react-router'
 import type { Card, DeductionAuditDocument, IssueGroupsDocument, Scenario } from '../domain/types'
 import { CardReader, CardView } from './CardView'
 import { cardKinds } from './cardKinds'
@@ -17,11 +17,55 @@ export function IssueBoard({ scenario, document, deduction, inspectionCards = []
   const navigate = useNavigate()
   const location = useLocation()
   const cardsById = useMemo(() => new Map([...scenario.cards, ...inspectionCards].map((card) => [card.id, card])), [scenario.cards, inspectionCards])
-  const group = selectedGroupId ? document.groups.find((item) => item.id === selectedGroupId) : document.groups[0]
+  const group = selectedGroupId ? document.groups.find((item) => item.id === selectedGroupId) : undefined
   const selectedCard = selectedCardId ? cardsById.get(selectedCardId) : undefined
 
+  if (!selectedGroupId) {
+    const compositionOf = (cardIds: string[]) => {
+      const counts = new Map<string, number>()
+      for (const cardId of new Set(cardIds)) {
+        const card = cardsById.get(cardId)
+        if (!card) continue
+        const label = card.kind === 'rumor'
+          ? card.tags.includes('카더라') ? '카더라' : card.tags.includes('수소문') ? '수소문' : '소문'
+          : card.kind === 'memory' ? '묻어야 하는 진실'
+          : card.kind === 'testimony' ? '탐문'
+          : cardKinds[card.kind].label
+        counts.set(label, (counts.get(label) ?? 0) + 1)
+      }
+      return [...counts]
+    }
+    const characterGroups = scenario.characters
+      .map((character) => document.groups.find((item) => item.id === `suspicion.${character.id}` || item.id === `investigator.${character.id}`))
+      .filter((item): item is IssueGroupsDocument['groups'][number] => Boolean(item))
+    const sharedGroups = document.groups.filter((item) => !characterGroups.includes(item))
+    const renderOverviewCard = (item: IssueGroupsDocument['groups'][number]) => {
+      const cardIds = item.fragments.flatMap((fragment) => fragment.cardIds)
+      const uniqueCount = new Set(cardIds).size
+      return <article className="issue-person" key={item.id}>
+        <header><span>{item.id.startsWith('suspicion.') || item.id.startsWith('investigator.') ? '인물 쟁점' : '공통 쟁점'}</span><strong>{uniqueCount}장</strong></header>
+        <h3>{item.title}</h3>
+        <p>{item.question}</p>
+        <div className="issue-person__composition" aria-label="카드 구성">
+          {compositionOf(cardIds).map(([label, count]) => <span key={label}>{label} <b>{count}</b></span>)}
+        </div>
+        <div className="issue-person__fragments">{item.fragments.map((fragment) => <section key={fragment.id}>
+          <header><strong>{fragment.label}</strong><span>{fragment.cardIds.length}장</span></header>
+          <ul>{fragment.cardIds.map((cardId) => <li key={cardId}>{cardsById.get(cardId)?.title ?? cardId}</li>)}</ul>
+        </section>)}</div>
+        <footer><Link to={`/issues/${segment(item.id)}`}>쟁점 카드 자세히 보기 <span aria-hidden="true">→</span></Link></footer>
+      </article>
+    }
+    return <section className="issue-board issue-board--overview">
+      <header className="issue-board__header">
+        <div><span className="eyebrow">DESIGNER ONLY · 쟁점 연결</span><h2>인물별 쟁점 카드</h2><p>인물마다 연결된 카드의 장수와 역할 구성을 나란히 비교합니다. 카드를 선택하면 기존의 핵심 쟁점과 정보 조각을 자세히 볼 수 있습니다.</p></div>
+        <div className="issue-board__totals" aria-label="분류 현황"><strong>{characterGroups.length}</strong><span>인물</span><strong>{document.groups.reduce((sum, item) => sum + new Set(item.fragments.flatMap((fragment) => fragment.cardIds)).size, 0)}</strong><span>카드 연결</span></div>
+      </header>
+      <div className="issue-person-grid">{characterGroups.map(renderOverviewCard)}</div>
+      {sharedGroups.length > 0 && <section className="issue-shared"><header><span>SHARED AXIS</span><h2>공통 추리 축</h2></header><div className="issue-person-grid">{sharedGroups.map(renderOverviewCard)}</div></section>}
+    </section>
+  }
   if (!group) return <MissingRoute message="해당 쟁점을 찾을 수 없습니다." to="/issues" label="쟁점 목록으로" />
-  if (!selectedGroupId) return <Navigate replace to={`/issues/${segment(group.id)}${location.search}${location.hash}`} />
   if (selectedCardId && (!selectedCard || !group.fragments.some((fragment) => fragment.cardIds.includes(selectedCardId)))) return <MissingRoute message="이 쟁점에 연결된 카드가 아닙니다." to={`/issues/${segment(group.id)}`} label="쟁점으로 돌아가기" />
 
   const references = group.fragments.flatMap((fragment) => fragment.cardIds)
@@ -39,6 +83,7 @@ export function IssueBoard({ scenario, document, deduction, inspectionCards = []
           <span className="eyebrow">DESIGNER ONLY · 쟁점 연결</span>
           <h2>핵심 쟁점의 정보 조각</h2>
           <p>{document.description}</p>
+          <Link className="issue-board__overview-link" to="/issues">← 인물별 구성 비교</Link>
         </div>
         <div className="issue-board__totals" aria-label="분류 현황">
           <strong>{document.groups.length}</strong><span>핵심 쟁점</span>

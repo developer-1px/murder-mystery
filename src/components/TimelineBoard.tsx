@@ -30,7 +30,7 @@ export function TimelineBoard({ scenario, document }: { scenario: Scenario; docu
     <p className="timeline-board__guide">각 카드는 이야기에서 가장 직접적인 주요 관점 한 곳에 배치합니다. 여러 인물과 연관되더라도 중복 배치하지 않아 실제 정보 비중을 비교할 수 있습니다.</p>
     <div className="timeline-matrix" role="table" aria-label="시간대와 관련 인물별 카드 분류">
       <div className="timeline-matrix__row timeline-matrix__head" role="row">
-        <div role="columnheader">시간대</div><div role="columnheader">사건</div>{columns.map((column) => <div role="columnheader" key={column.id}>{column.label}<small>15장</small></div>)}
+        <div role="columnheader">시간대</div><div role="columnheader">사건</div>{columns.map((column) => <div role="columnheader" key={column.id}>{column.label}<small>{scenario.cards.filter((card) => document.characterIdByCardId[card.id] === column.id).length}장</small></div>)}
       </div>
       {document.rows.map((row) => <div className="timeline-matrix__row" role="row" key={row.id}>
         <div className="timeline-matrix__time" role="rowheader">{row.time}</div>

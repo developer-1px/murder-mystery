@@ -14,7 +14,9 @@
       "testimony.dinner-steward",
       "testimony.agnes-blue-cloak",
       "rumor.anonymous-family-corridor",
-      "rumor.anonymous-gate-bolt"
+      "rumor.anonymous-gate-bolt",
+      "rumor.night-sewing",
+      "rumor.old-portrait"
     ]
   },
   {
@@ -64,10 +66,9 @@
       "testimony.agnes-unanswered-calls",
       "testimony.isabel-attendant",
       "evidence.isabel-letter",
-      "rumor.heir-calendar",
       "rumor.guard-return",
-      "rumor.old-portrait",
-      "rumor.anonymous-saddled-horse"
+      "rumor.anonymous-saddled-horse",
+      "rumor.heir-calendar"
     ]
   },
   {
@@ -92,7 +93,6 @@
       "evidence.minister-dispatch",
       "evidence.burnt-will",
       "rumor.anonymous-council-room",
-      "rumor.night-sewing",
       "rumor.anonymous-archive-knock",
       "rumor.princess-pages"
     ]
