@@ -7,8 +7,7 @@
       "time": "사건 사흘 전",
       "summary": "이사벨이 카시안의 계승 자격 정지와 태아의 우선 심의를 전제로 한 후견 청원서 초안을 준비한다.",
       "cardIds": [
-        "memory.isabel-petition",
-        "evidence.isabel-petition"
+        "memory.isabel-petition"
       ]
     },
     {
@@ -35,8 +34,7 @@
       "time": "21:52",
       "summary": "카시안이 아드리안과 몸싸움을 벌인 뒤 떠난다.",
       "cardIds": [
-        "memory.cassian-assault",
-        "rumor.cassian-quarrel"
+        "memory.cassian-assault"
       ]
     },
     {
@@ -84,7 +82,6 @@
       "summary": "로웬이 통행패 소지자를 찾겠다며 초소를 떠난 뒤 공식 기록에서 동선을 지운다.",
       "cardIds": [
         "evidence.watch-roster",
-        "rumor.guard-return",
         "memory.rowen-order",
         "evidence.ink-blotter"
       ]
@@ -95,7 +92,6 @@
       "summary": "세라핀이 북쪽 탑 봉인실에서 훔친 계승법과 북부 밀서를 감추고 붉은 봉인끈을 태운다.",
       "cardIds": [
         "testimony.foreign-envoy",
-        "rumor.princess-pages",
         "memory.seraphine-archive",
         "memory.seraphine-ledger"
       ]
@@ -126,8 +122,7 @@
       "summary": "서재 종이 한 번 울리고 안에서 기침과 가구가 스치는 소리가 들린다. 누가 종을 울렸는지는 다른 기록과 맞춰야 한다.",
       "cardIds": [
         "evidence.bell-register",
-        "testimony.bell-attendant",
-        "evidence.bell-repair"
+        "testimony.bell-attendant"
       ]
     },
     {
@@ -148,7 +143,6 @@
       "cardIds": [
         "memory.isabel-alive",
         "testimony.page-sighting",
-        "rumor.secret-letter",
         "evidence.mud-print",
         "testimony.study-servant"
       ]
@@ -169,7 +163,6 @@
       "summary": "로웬이 시신을 먼저 발견해 자세를 바꾸고, 자신의 입실을 숨긴 채 발견 시각을 23시 05분으로 고쳐 쓴다.",
       "cardIds": [
         "memory.rowen-alive",
-        "rumor.rowen-second-visit",
         "evidence.guard-log"
       ]
     }
@@ -253,7 +246,7 @@
     "evidence.repaired-coat": "benedict",
     "evidence.minister-dispatch": "benedict",
     "evidence.young-benedict-letter": "benedict",
-    "rumor.multiple-footsteps": "rowen",
+    "rumor.multiple-footsteps": "benedict",
     "rumor.guard-return": "rowen",
     "evidence.bell-repair": "rowen",
     "evidence.corridor-plan": "rowen",

@@ -42,7 +42,7 @@
         "testimony.study-servant",
         "testimony.page-sighting",
         "memory.cassian-sedative",
-        "rumor.secret-letter",
+        "testimony.agnes-unanswered-calls",
         "evidence.mud-print",
         "memory.isabel-alive"
       ],
@@ -57,7 +57,6 @@
       "label": "북쪽 탑 봉인실에 감춘 밀서",
       "cardIds": [
         "testimony.foreign-envoy",
-        "rumor.princess-pages",
         "memory.seraphine-archive",
         "memory.seraphine-ledger",
         "evidence.corridor-plan"
@@ -93,7 +92,6 @@
       "label": "교대 뒤 공식 기록에서 사라진 시간",
       "cardIds": [
         "evidence.watch-roster",
-        "rumor.guard-return",
         "memory.rowen-alive"
       ],
       "minimumRequired": 2,
@@ -112,17 +110,12 @@
         "label": "베네딕트의 공격 뒤 생존",
         "cardIds": [
           "evidence.bell-register",
-          "testimony.bell-attendant",
-          "evidence.bell-repair"
+          "testimony.bell-attendant"
         ],
         "paths": [
           [
             "evidence.bell-register",
             "testimony.bell-attendant"
-          ],
-          [
-            "evidence.bell-register",
-            "evidence.bell-repair"
           ]
         ]
       },
@@ -157,7 +150,7 @@
           "memory.isabel-alive",
           "testimony.page-sighting",
           "testimony.study-servant",
-          "rumor.secret-letter",
+          "testimony.agnes-unanswered-calls",
           "evidence.mud-print"
         ],
         "paths": [
@@ -167,7 +160,7 @@
           ],
           [
             "testimony.study-servant",
-            "rumor.secret-letter",
+            "testimony.agnes-unanswered-calls",
             "evidence.mud-print"
           ]
         ]

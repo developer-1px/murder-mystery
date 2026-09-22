@@ -9,10 +9,10 @@
       "fragments": [
         {
           "id": "suspicion.queen.hidden-reason",
-          "label": "01 · 감춰진 이유",
+          "label": "01 · 표면의 살해 동기",
           "cardIds": [
             "rumor.queen-old-letter",
-            "testimony.recall-messenger",
+            "rumor.queen-luggage",
             "memory.queen-poison"
           ]
         },
@@ -20,7 +20,7 @@
           "id": "suspicion.queen.possible-act",
           "label": "02 · 범행 가능성",
           "cardIds": [
-            "rumor.queen-luggage",
+            "testimony.recall-messenger",
             "testimony.marta-order",
             "evidence.belladonna-ledger"
           ]
@@ -53,7 +53,7 @@
       "fragments": [
         {
           "id": "suspicion.cassian.hidden-reason",
-          "label": "01 · 감춰진 이유",
+          "label": "01 · 표면의 살해 동기",
           "cardIds": [
             "rumor.cassian-isabel-truth",
             "rumor.cassian-quarrel",
@@ -97,11 +97,11 @@
       "fragments": [
         {
           "id": "suspicion.seraphine.hidden-reason",
-          "label": "01 · 감춰진 이유",
+          "label": "01 · 표면의 살해 동기",
           "cardIds": [
             "rumor.marriage",
             "rumor.seraphine-copy",
-            "memory.seraphine-archive"
+            "rumor.princess-pages"
           ]
         },
         {
@@ -126,8 +126,8 @@
           "id": "suspicion.seraphine.execution-check",
           "label": "04 · 실행 여부",
           "cardIds": [
+            "memory.seraphine-archive",
             "memory.seraphine-ledger",
-            "rumor.princess-pages",
             "evidence.corridor-plan"
           ]
         }
@@ -141,18 +141,18 @@
       "fragments": [
         {
           "id": "suspicion.benedict.hidden-reason",
-          "label": "01 · 감춰진 이유",
+          "label": "01 · 표면의 살해 동기",
           "cardIds": [
             "rumor.missing-document",
             "rumor.multiple-footsteps",
-            "memory.benedict-birth-dates"
+            "rumor.benedict-edmund-letter"
           ]
         },
         {
           "id": "suspicion.benedict.possible-act",
           "label": "02 · 범행 가능성",
           "cardIds": [
-            "rumor.benedict-edmund-letter",
+            "memory.benedict-birth-dates",
             "testimony.night-attendant",
             "inspection.neck"
           ]
@@ -185,10 +185,10 @@
       "fragments": [
         {
           "id": "suspicion.isabel.hidden-reason",
-          "label": "01 · 감춰진 이유",
+          "label": "01 · 표면의 살해 동기",
           "cardIds": [
+            "rumor.secret-letter",
             "evidence.annulment-draft",
-            "testimony.study-servant",
             "memory.isabel-petition"
           ]
         },
@@ -196,7 +196,7 @@
           "id": "suspicion.isabel.possible-act",
           "label": "02 · 범행 가능성",
           "cardIds": [
-            "rumor.secret-letter",
+            "testimony.study-servant",
             "evidence.gilt-glass",
             "inspection.neck"
           ]
@@ -233,7 +233,7 @@
           "cardIds": [
             "evidence.bell-register",
             "testimony.bell-attendant",
-            "evidence.bell-repair"
+            "inspection.time"
           ]
         },
         {
@@ -250,7 +250,7 @@
           "label": "22시 54분의 익명 접근",
           "cardIds": [
             "evidence.mud-print",
-            "rumor.isabel-annulment",
+            "testimony.agnes-unanswered-calls",
             "evidence.corridor-plan"
           ]
         }
