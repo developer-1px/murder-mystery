@@ -224,7 +224,7 @@
       "characterId": "queen",
       "label": "취소한 혼절 계획 뒤 추가 투약",
       "confirmedAct": "엘레노라는 아드리안의 약물 알레르기와 치명적 위험을 알고도 몇 시간 혼절시켜 즉위식을 미루라고 명령했지만, 겁이 나 마르타가 잔에 붓기 전에 취소했다.",
-      "insufficientFinding": "혈중 벨라도나는 평소 위장약의 처방 범위이며, 왕비전의 붉은 끈 병을 먹였다고 볼 농도가 아니다.",
+      "insufficientFinding": "위 내용물에서 벨라도나와 수면제에 가까운 반응은 나왔지만, 당시 검사로는 언제 얼마나 들어갔는지 알 수 없고 약만으로 죽었다고 확정할 수도 없다.",
       "plusAlpha": "마지막 종 뒤 붉은 끈 병을 되찾아 직접 먹였다면, 알레르기와 술·수면제의 중첩으로 발작이나 호흡 정지에 이를 수 있었다. 다만 시신에는 특징적인 알레르기 반응이 없다.",
       "apparentSmokingGunIds": [
         "memory.queen-recall",
@@ -317,7 +317,7 @@
       "characterId": "isabel",
       "label": "수면제 뒤 넓은 호흡 차단",
       "confirmedAct": "이사벨은 아드리안에게 수면제를 탄 술을 건넸다.",
-      "insufficientFinding": "수면제는 단독 치사량 아래이고 아드리안은 이후 종을 울렸다.",
+      "insufficientFinding": "위 내용물에서 수면제 반응은 나왔지만 양과 복용 시각을 가릴 수 없으며, 수면제만으로 죽었는지도 확정할 수 없다.",
       "plusAlpha": "약효로 저항하지 못하는 동안 코와 입을 넓은 물건으로 계속 막으면 죽을 수 있다.",
       "apparentSmokingGunIds": [
         "evidence.sedative-prescription",
