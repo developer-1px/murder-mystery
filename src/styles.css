@@ -286,3 +286,33 @@ kbd { font-family: inherit; font-size: .9em; opacity: .7; white-space: nowrap; }
 .table-hand-area > span { display: flex; gap: 14px; align-items: center; padding: 10px 20px; font-size: 11px; color: #c4b087; }
 .table-hand-area small { color: #abb1a280; font-size: 10px; }
 @media (max-width: 1050px) { .table-reveal-tools button span { display: none; } .table-tools { gap: 8px; } }
+
+.court-simulator { max-width: 1800px; margin: auto; padding: 38px 42px 80px; }
+.court-simulator__header { display: flex; align-items: center; justify-content: space-between; gap: 40px; margin-bottom: 24px; }
+.court-simulator__header h2 { margin: 8px 0 7px; font: 700 30px 'Gowun Batang', serif; }
+.court-simulator__header p { max-width: 850px; margin: 0; color: #aaa094; font-size: 13px; line-height: 1.7; }
+.court-simulator__header button { flex: 0 0 auto; padding: 12px 18px; border: 1px solid #b29460; background: #c4a971; color: #201a14; font-weight: 700; cursor: pointer; }
+.court-simulator__controls { display: flex; align-items: stretch; margin-bottom: 30px; border: 1px solid #51473d; background: #1d1916; }
+.court-simulator__controls > button { display: grid; gap: 5px; min-width: 150px; padding: 13px 20px; border: 0; border-right: 1px solid #51473d; background: transparent; text-align: left; cursor: pointer; }
+.court-simulator__controls > button b { color: #d2c3a8; font: 700 15px 'Gowun Batang', serif; }
+.court-simulator__controls > button span { color: #83796c; font-size: 9px; }
+.court-simulator__controls > button[aria-pressed='true'] { background: #3a3023; box-shadow: inset 0 -3px #c4a971; }
+.court-simulator__controls > button[aria-pressed='true'] b { color: #e7cf99; }
+.court-simulator__controls > div { display: flex; align-items: center; gap: 12px; margin-left: auto; padding: 10px 16px; }
+.court-simulator__controls > div > span { color: #82796d; font-size: 9px; }.court-simulator__controls > div > b { color: #d2b778; font: 700 18px 'Gowun Batang', serif; }
+.court-simulator__controls small { padding: 4px 7px; border: 1px solid #494038; color: #aa9e8c; font-size: 9px; }
+.court-simulator__rounds { display: grid; gap: 34px; }
+.court-simulator__rounds > section { padding-top: 20px; border-top: 1px solid #494038; opacity: .72; }
+.court-simulator__rounds > section.is-current { opacity: 1; }
+.court-simulator__rounds > section > header { display: flex; align-items: end; justify-content: space-between; margin-bottom: 16px; }
+.court-simulator__rounds > section > header span { color: #8e744b; font-size: 9px; letter-spacing: .18em; }
+.court-simulator__rounds > section > header h3 { margin: 5px 0 0; color: #d6c19b; font: 700 20px 'Gowun Batang', serif; }
+.court-simulator__rounds > section > header > b { color: #9a8a70; font-size: 11px; }
+.court-simulator__cards { display: grid; grid-template-columns: repeat(7, minmax(150px, 1fr)); gap: 14px; }
+.court-simulator__cards article { min-width: 0; }
+.court-simulator__cards article > p { height: 28px; margin: 0; color: #867c6e; font-size: 9px; line-height: 1.4; }
+.court-simulator__cards article > p strong { color: #c9b58e; font-size: 10px; }
+.court-simulator__cards .card { border-radius: 4px; }
+.court-simulator > footer { display: flex; justify-content: space-between; gap: 24px; margin-top: 28px; padding-top: 15px; border-top: 1px solid #494038; color: #80766a; font-size: 9px; }
+@media (max-width: 1250px) { .court-simulator__cards { grid-template-columns: repeat(4, minmax(160px, 1fr)); }.court-simulator__controls > div { display: none; } }
+@media (max-width: 900px) { .court-simulator { padding: 24px 18px 60px; }.court-simulator__header { align-items: stretch; flex-direction: column; }.court-simulator__header button { align-self: start; }.court-simulator__cards { grid-template-columns: repeat(2, minmax(180px, 1fr)); }.court-simulator__controls > button { min-width: 0; flex: 1; }.court-simulator > footer { align-items: start; flex-direction: column; } }

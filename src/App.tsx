@@ -7,8 +7,9 @@ import { TablePage } from './components/TablePage'
 import { PlayTablePage } from './components/PlayTablePage'
 import { TimelineBoard } from './components/TimelineBoard'
 import { DeductionAudit } from './components/DeductionAudit'
+import { CourtSimulator } from './components/CourtSimulator'
 import { MissingRoute, RouteTools } from './routing'
-import { characterSettings, commonSetting, deductionAudit, issueGroups, memoryStages, npcGroups, releasePlan, scenario, timeline, validationIssues } from './scenario/load'
+import { characterSettings, commonSetting, deductionAudit, inspectionCards, issueGroups, memoryStages, npcGroups, releasePlan, scenario, timeline, validationIssues } from './scenario/load'
 
 export function WorkbenchRoutes() {
   const { pathname } = useLocation()
@@ -22,6 +23,7 @@ export function WorkbenchRoutes() {
           <NavLink to="/issues">쟁점 연결</NavLink>
           <NavLink to="/timeline">타임라인</NavLink>
           <NavLink to="/deduction">추리 검증</NavLink>
+          <NavLink to="/court-simulator">재판 시뮬레이터</NavLink>
         </nav>
   return <main className={`app-shell${playing ? ' app-shell--play' : ''}`}>
     {playing ? <div className="workbench-float">
@@ -46,6 +48,7 @@ export function WorkbenchRoutes() {
       <Route path="/timeline" element={<TimelineBoard scenario={scenario} document={timeline} />} />
       <Route path="/timeline/cards/:cardId" element={<TimelineBoard scenario={scenario} document={timeline} />} />
       <Route path="/deduction" element={<DeductionAudit scenario={scenario} document={deductionAudit} npcGroups={npcGroups} releasePlan={releasePlan} memoryStages={memoryStages} />} />
+      <Route path="/court-simulator" element={<CourtSimulator scenario={scenario} npcGroups={npcGroups} memoryStages={memoryStages} inspectionCards={inspectionCards} />} />
       <Route path="/table" element={<PlayTablePage />} />
       <Route path="/table/play/:branchId/steps/:step" element={<PlayTablePage />} />
       <Route path="/table/play/:branchId" element={<PlayTablePage />} />
