@@ -10,7 +10,8 @@
     "secret_hint": "비공개 관계나 숨은 계획을 다른 단서와 연결하게 한다",
     "timeline": "시각·동선·생존 여부의 경계를 고정한다. 공개 카드만으로 특정 인물의 알리바이를 완성하지 않는다",
     "rebuttal": "그럴듯하지만 잘못된 단독 결론 하나를 명시적으로 제거한다",
-    "medical_hypothesis": "주치의가 병력을 근거로 +α가 있었다면 치명적일 수 있었다는 가능성과 함정을 제시한다"
+    "medical_hypothesis": "주치의가 병력을 근거로 +α가 있었다면 치명적일 수 있었다는 가능성과 함정을 제시한다",
+    "movement_rumor": "정확한 목격이 아니라 공개석상에서 사라진 뒤의 행적을 두고 사람들이 내놓은 여러 추측을 제시한다"
   },
   "cardsByPrimaryRole": {
     "buried_truth": [
@@ -32,28 +33,14 @@
       "testimony.dinner-steward"
     ],
     "psychological_evidence": [
-      "evidence.archive-register",
-      "evidence.bell-repair",
-      "evidence.dispensing-counterfoil",
-      "evidence.gilt-glass",
-      "evidence.isabel-petition",
-      "evidence.marriage-annex",
-      "evidence.pregnancy-notes",
-      "evidence.uniform-samples",
       "rumor.apothecary-visit",
       "rumor.benedict-edmund-letter",
       "rumor.cassian-isabel-truth",
       "rumor.cassian-quarrel",
-      "rumor.guard-return",
-      "rumor.heir-calendar",
       "rumor.isabel-annulment",
       "rumor.marriage",
       "rumor.missing-document",
       "rumor.multiple-footsteps",
-      "rumor.night-sewing",
-      "rumor.old-portrait",
-      "rumor.princess-pages",
-      "rumor.queen-luggage",
       "rumor.queen-old-letter",
       "rumor.rowen-second-visit",
       "rumor.secret-letter",
@@ -122,6 +109,14 @@
       "testimony.physician-limits",
       "testimony.head-examination",
       "testimony.residue-examination"
+    ],
+    "movement_rumor": [
+      "rumor.queen-luggage",
+      "rumor.old-portrait",
+      "rumor.heir-calendar",
+      "rumor.princess-pages",
+      "rumor.night-sewing",
+      "rumor.guard-return"
     ]
   }
 }

@@ -164,7 +164,8 @@
     "tags": [
       "소문",
       "엘레노라",
-      "둘째 아들"
+      "둘째 아들",
+      "표면 동기"
     ],
     "locationId": "apothecary"
   },
@@ -176,19 +177,21 @@
     "tags": [
       "소문",
       "카시안",
-      "형제의 다툼"
+      "형제의 다툼",
+      "표면 동기"
     ],
     "locationId": "study"
   },
   {
     "id": "rumor.multiple-footsteps",
-    "title": "왕세자와 재상의 오래된 불화",
+    "title": "왕실 사병이 될 거라는 근위대",
     "kind": "rumor",
-    "text": "“아드리안 전하는 즉위하면 가장 먼저 재상을 바꾸겠다고 공공연히 말했다지.” “베네딕트가 선왕의 사람이라며 면전에서도 무시했다더군.” “자리에서 쫓겨날 사람이 먼저 왕을 바꾸려 했다는 말이 나올 만해.”",
+    "text": "“아드리안 전하가 즉위하면 근위대도 왕의 명령만 따르게 될 거라더군.” “독립된 군대를 지켜 온 대장이 순순히 받아들였겠어?” “왕이 바뀌기 전에 막으려 했다는 말이 나올 만하지.”",
     "tags": [
       "소문",
-      "베네딕트",
-      "재상 교체"
+      "로웬",
+      "근위대 개편",
+      "표면 동기"
     ],
     "locationId": "west-corridor"
   },
@@ -200,10 +203,10 @@
     "tags": [
       "소문",
       "이사벨",
-      "태아의 계승"
+      "태아의 계승",
+      "표면 동기"
     ],
-    "locationId": "west-corridor",
-    "claimId": "claim.isabel-return"
+    "locationId": "west-corridor"
   },
   {
     "id": "rumor.missing-document",
@@ -213,7 +216,8 @@
     "tags": [
       "소문",
       "베네딕트",
-      "국새와 후계"
+      "국새와 후계",
+      "표면 동기"
     ],
     "locationId": "royal-archive"
   },
@@ -225,7 +229,8 @@
     "tags": [
       "소문",
       "세라핀",
-      "혼인 중단"
+      "혼인 중단",
+      "표면 동기"
     ],
     "locationId": "royal-archive"
   },
@@ -371,19 +376,6 @@
     "claimId": "claim.marriage-condition"
   },
   {
-    "id": "evidence.archive-register",
-    "title": "재상이 고르는 다음 왕",
-    "kind": "rumor",
-    "text": "“후계 명단은 왕족보다 재상실이 먼저 본다더군.” “이름을 어떤 순서로 올리느냐에 따라 평의원들의 마음도 달라지지.” “왕자가 죽은 밤에 가장 먼저 다음 이름을 세었을 사람도 베네딕트일 거야.”",
-    "tags": [
-      "소문",
-      "베네딕트",
-      "후계 명단"
-    ],
-    "locationId": "royal-archive",
-    "claimId": "claim.will-exists"
-  },
-  {
     "id": "testimony.page-sighting",
     "title": "카시안의 시종 니콜 · 닫힌 예배실의 목소리",
     "kind": "testimony",
@@ -466,9 +458,9 @@
     "tags": [
       "소문",
       "엘레노라",
-      "카시안의 군권"
+      "카시안의 군권",
+      "표면 동기"
     ],
-    "claimId": "claim.cassian-royal-recognition",
     "locationId": "royal-archive"
   },
   {
@@ -479,7 +471,8 @@
     "tags": [
       "소문",
       "카시안",
-      "왕위 부정"
+      "왕위 부정",
+      "표면 동기"
     ],
     "locationId": "west-corridor"
   },
@@ -491,9 +484,9 @@
     "tags": [
       "소문",
       "이사벨",
-      "후견권"
+      "후견권",
+      "표면 동기"
     ],
-    "claimId": "claim.isabel-return",
     "locationId": "west-corridor"
   },
   {
@@ -504,9 +497,9 @@
     "tags": [
       "소문",
       "세라핀",
-      "세 번째 계승자"
+      "세 번째 계승자",
+      "표면 동기"
     ],
-    "claimId": "claim.seraphine-archive-visit",
     "locationId": "royal-archive"
   },
   {
@@ -517,107 +510,95 @@
     "tags": [
       "소문",
       "베네딕트",
-      "섭정 야심"
+      "섭정 야심",
+      "표면 동기"
     ],
-    "claimId": "claim.benedict-attack",
     "locationId": "west-corridor"
   },
   {
     "id": "rumor.rowen-second-visit",
-    "title": "범인을 찾겠다는 최초 발견자",
+    "title": "왕세자와 근위대장의 공개 충돌",
     "kind": "rumor",
-    "text": "“시신을 처음 발견하고 궁문을 닫은 사람도, 이제 범인을 찾겠다는 사람도 로웬 대장이잖아.” “현장을 본 사람이 수사를 맡으면 자기에게 불리한 것은 얼마든지 감출 수 있지.” “도둑에게 열쇠를 맡긴 셈이라는 말이 괜히 나오겠어?”",
+    "text": "“아드리안 전하는 경비가 지나치다며 로웬 대장을 사람들 앞에서 여러 번 세웠다지.” “즉위 뒤에는 대장부터 바꾸겠다는 말까지 했대.” “평생 지킨 자리에서 쫓겨날 사람이 왕세자를 반겼겠어?”",
     "tags": [
       "소문",
       "로웬",
-      "수사의 신뢰"
+      "대장 교체",
+      "표면 동기"
     ],
-    "claimId": "claim.rowen-late-visit",
     "locationId": "west-corridor"
   },
   {
     "id": "rumor.queen-luggage",
-    "title": "장남의 즉위를 기뻐하지 않은 어머니",
+    "title": "소란 속에서 자리를 비운 왕비",
     "kind": "rumor",
-    "text": "“즉위식 예행에서 모두가 축하할 때 왕비 전하만 웃지 않으셨다지.” “카시안 전하가 왕좌에서 멀어지는 날이니 기쁠 리가 있겠어?” “결국 즉위식은 열리지도 못하게 됐군.”",
+    "text": "“경보가 울릴 무렵 왕비 전하를 알현실에서도 예배실에서도 못 봤다더군.” “둘째 왕자를 찾아간 것 아니겠어?” “아니면 평의회보다 먼저 자기 사람들을 모으러 갔겠지.”",
     "tags": [
       "소문",
       "엘레노라",
-      "즉위식"
+      "동선 추측"
     ],
     "locationId": "west-corridor"
   },
   {
     "id": "rumor.old-portrait",
-    "title": "선왕을 닮지 않은 둘째 왕자",
+    "title": "만찬 뒤 사라진 둘째 왕자",
     "kind": "rumor",
-    "text": "“카시안 전하는 선왕의 젊은 초상과 영 닮지 않았어.” “왕비 전하 쪽을 닮은 것뿐인데도 혈통을 의심하는 자들이 있더군.” “아드리안 전하가 사라지면 그 이야기도 다시 나오겠지.”",
+    "text": "“만찬에서 형과 언성을 높인 뒤 둘째 왕자가 한동안 보이지 않았다더군.” “화가 나 무기고로 갔다는 사람도 있고, 성문으로 갔다는 사람도 있어.” “어디에 있었는지 본 사람은 없고 말만 제각각이지.”",
     "tags": [
       "소문",
       "카시안",
-      "혈통 시비"
+      "동선 추측"
     ],
     "locationId": "royal-archive"
   },
   {
     "id": "rumor.heir-calendar",
-    "title": "왕세자의 부재와 아이의 혈통",
+    "title": "방으로 돌아갔다는 왕세자비",
     "kind": "rumor",
-    "text": "“왕세자 전하가 지방에 오래 머문 뒤 왕세자비의 회임 소식이 전해졌지.” “날짜가 맞지 않는다는 말을 누가 처음 꺼냈는지는 몰라도 다들 셈을 해보더군.” “아드리안 전하도 그 소문을 들었다면 가만있었을까?”",
+    "text": "“왕세자비는 만찬 뒤 몸이 좋지 않다며 먼저 물러났다지.” “그런데 유모실에 갔다는 말도, 왕비를 만나러 갔다는 말도 있더군.” “모두 그럴듯하게 말하지만 직접 본 사람은 없다더라.”",
     "tags": [
       "소문",
       "이사벨",
-      "태아의 혈통"
+      "동선 추측"
     ],
     "locationId": "apothecary"
   },
   {
     "id": "rumor.princess-pages",
-    "title": "북부 귀족들이 치켜세운 공주",
+    "title": "북쪽 탑의 늦은 불빛",
     "kind": "rumor",
-    "text": "“북부 귀족들은 세라핀 전하라면 왕보다도 강한 군주가 될 거라고 떠든다더군.” “외국으로 시집보내기엔 아까운 분이라는 거지.” “그자들이 벌써 공주의 왕관을 재고 있다는 말도 있어.”",
+    "text": "“소란이 나기 전 북쪽 탑에 늦도록 불이 켜져 있었다더군.” “혼인 사절을 피하려 공주가 올라갔다는 사람도 있고, 북부에서 온 답을 기다렸다는 사람도 있어.” “불빛 하나로 다들 이야기를 만들고 있지.”",
     "tags": [
       "소문",
       "세라핀",
-      "북부의 지지"
+      "동선 추측"
     ],
     "locationId": "royal-archive"
   },
   {
     "id": "rumor.night-sewing",
-    "title": "새 왕보다 바쁜 재상실",
+    "title": "만찬 뒤 닫힌 재상실",
     "kind": "rumor",
-    "text": "“재상실에서는 아드리안 전하의 즉위보다 그다음 계승 순서를 더 자주 따졌다더라.” “누가 왕이 되든 문서를 쥔 사람이 이기는 거지.” “재상은 장례보다 새 국새를 먼저 준비할 사람이라는 말도 돌아.”",
+    "text": "“만찬 뒤 재상실 문이 닫힌 채 한동안 사람을 받지 않았다더군.” “새 왕의 문서를 챙겼다는 말도 있고, 평의회 사람들을 따로 불렀다는 말도 있어.” “정작 재상을 안에서 봤다는 사람은 없대.”",
     "tags": [
       "소문",
       "베네딕트",
-      "후계 절차"
+      "동선 추측"
     ],
     "locationId": "west-corridor"
   },
   {
     "id": "rumor.guard-return",
-    "title": "그날따라 비어 있던 경비",
+    "title": "경보 전 회랑을 오간 근위대장",
     "kind": "rumor",
-    "text": "“왕세자의 즉위식을 앞둔 밤인데 서재 근처 경비가 평소보다 적었다더라.” “근위대장이 모르게 병사들이 자리를 비웠을 리는 없지.” “누군가 들어갈 길을 열어준 것 아니냐는 말이 돌아.”",
+    "text": "“근위대장이 경보 전부터 초소와 회랑을 여러 번 오갔다더군.” “누군가를 찾았다는 말도 있고, 병사들 입을 맞췄다는 말도 있어.” “명령을 받은 병사마다 이야기가 다르니 어느 쪽인지 알 수가 있나.”",
     "tags": [
       "소문",
       "로웬",
-      "경비 공백"
+      "동선 추측"
     ],
     "locationId": "west-corridor"
-  },
-  {
-    "id": "evidence.gilt-glass",
-    "title": "남편의 술을 직접 챙긴 왕세자비",
-    "kind": "rumor",
-    "text": "“이사벨 전하는 요즘 왕세자의 술을 다른 시종에게 맡기지 않았다더군.” “부부 사이가 나빠졌다는데 그래도 직접 챙겼다고?” “졸지 말아야 할 남편인지, 스스로 잔을 들게 해야 할 남편인지는 모르지.”",
-    "tags": [
-      "소문",
-      "이사벨",
-      "왕세자의 술"
-    ],
-    "locationId": "apothecary"
   },
   {
     "id": "evidence.wine-bottle",
@@ -645,18 +626,6 @@
     "claimId": "claim.queen-recalled-order"
   },
   {
-    "id": "evidence.dispensing-counterfoil",
-    "title": "왕비와 얽혀진 오래된 병들",
-    "kind": "rumor",
-    "text": "“왕비 전하와 맞선 뒤 병을 얻은 사람이 한둘이 아니라더군.” “궁에서는 우연이 두 번만 겹쳐도 독이라고 부르지.” “이번에도 왕비의 아들이 왕위에 가까워졌으니 또 그 이야기가 돌겠군.”",
-    "tags": [
-      "소문",
-      "엘레노라",
-      "독살 괴소문"
-    ],
-    "locationId": "apothecary"
-  },
-  {
     "id": "evidence.bell-register",
     "title": "22시 52분의 마지막 호출",
     "kind": "evidence",
@@ -670,18 +639,6 @@
     "claimId": "claim.alive-2236"
   },
   {
-    "id": "evidence.bell-repair",
-    "title": "경보를 울린 사람",
-    "kind": "rumor",
-    "text": "“궁문을 닫자고 먼저 외친 건 로웬 대장이었지?” “시신을 보고 놀랐다기엔 명령이 너무 빨랐다는 사람도 있어.” “범인을 가두려는 건지, 자신이 본 걸 감추려는 건지 알 수 있나.”",
-    "tags": [
-      "소문",
-      "로웬",
-      "빠른 봉쇄"
-    ],
-    "locationId": "west-corridor"
-  },
-  {
     "id": "evidence.repaired-coat",
     "title": "수선함의 검은 정복",
     "kind": "evidence",
@@ -692,18 +649,6 @@
       "수선함"
     ],
     "locationId": "west-corridor"
-  },
-  {
-    "id": "evidence.uniform-samples",
-    "title": "검은 정복의 사람들",
-    "kind": "rumor",
-    "text": "“선왕 때부터 자리를 지킨 사람들은 아드리안 전하의 즉위를 달가워하지 않았다더군.” “새 왕이 오면 검은 정복부터 벗어야 할 판이었지.” “이제는 오히려 누구가 새 왕을 고를지 모르겠군.”",
-    "tags": [
-      "소문",
-      "베네딕트",
-      "선왕의 사람들"
-    ],
-    "locationId": "royal-archive"
   },
   {
     "id": "evidence.minister-dispatch",
@@ -780,31 +725,6 @@
     "claimId": "claim.cassian-isabel-letters"
   },
   {
-    "id": "evidence.pregnancy-notes",
-    "title": "너무 빨리 시작된 태아의 계승 논의",
-    "kind": "rumor",
-    "text": "“아이가 아직 태어나지도 않았는데 평의원들은 벌써 계승 서류를 따진다더군.” “왕세자비가 아들을 낳기만 하면 카시안 전하는 어떻게 되는 거지?” “남편의 장례와 아이의 왕관 중 무엇을 먼저 챙길지 보자고.”",
-    "tags": [
-      "소문",
-      "이사벨",
-      "태아의 계승"
-    ],
-    "locationId": "apothecary"
-  },
-  {
-    "id": "evidence.marriage-annex",
-    "title": "혼인을 거부한 공주",
-    "kind": "rumor",
-    "text": "“세라핀 전하는 사절단 앞에서도 그 혼인에 동의한 적 없다고 했다지.” “아드리안 전하가 즉위하면 거절할 길이 사라지는데 말이야.” “오라비를 막을 방법이 없으면 즉위를 막을 방법을 찾았을지도 모르지.”",
-    "tags": [
-      "소문",
-      "세라핀",
-      "혼인 거부"
-    ],
-    "locationId": "royal-archive",
-    "claimId": "claim.marriage-unsigned"
-  },
-  {
     "id": "evidence.succession-leaf",
     "title": "서재 탁자에 남은 붓꽃 향분",
     "kind": "evidence",
@@ -877,19 +797,6 @@
     ],
     "locationId": "royal-archive",
     "claimId": "claim.cassian-royal-recognition"
-  },
-  {
-    "id": "evidence.isabel-petition",
-    "title": "미망인과 태아 사이의 왕좌",
-    "kind": "rumor",
-    "text": "“왕세자비의 아이가 아들이면 카시안 전하보다 먼저일 수도 있다더군.” “그러면 아이가 자랄 때까지 누가 국정을 결정하겠어?” “왕세자비가 남편의 빈자리를 아이의 자리로 바꾸려 한다는 말이 그래서 나오는 거야.”",
-    "tags": [
-      "소문",
-      "이사벨",
-      "미성년 후계"
-    ],
-    "locationId": "royal-archive",
-    "claimId": "claim.isabel-political-request"
   },
   {
     "id": "evidence.guard-charter",

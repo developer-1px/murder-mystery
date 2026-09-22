@@ -34,7 +34,7 @@
       "characterId": "isabel",
       "desire": [
         "evidence.annulment-draft",
-        "evidence.isabel-petition"
+        "rumor.secret-letter"
       ],
       "ruin": [
         "evidence.sedative-prescription",
@@ -58,7 +58,7 @@
       "characterId": "benedict",
       "desire": [
         "testimony.dinner-steward",
-        "evidence.archive-register"
+        "rumor.benedict-edmund-letter"
       ],
       "ruin": [
         "rumor.multiple-footsteps",

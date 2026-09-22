@@ -171,7 +171,7 @@
         "cardIds": [
           "evidence.annulment-draft",
           "memory.isabel-petition",
-          "evidence.isabel-petition"
+          "rumor.secret-letter"
         ],
         "paths": [
           [
@@ -180,7 +180,7 @@
           ],
           [
             "evidence.annulment-draft",
-            "evidence.isabel-petition"
+            "rumor.secret-letter"
           ]
         ]
       },
@@ -314,7 +314,7 @@
       "plusAlpha": "약효로 저항하지 못하는 동안 코와 입을 넓은 물건으로 계속 막으면 죽을 수 있다.",
       "apparentSmokingGunIds": [
         "evidence.sedative-prescription",
-        "evidence.gilt-glass",
+        "evidence.wine-bottle",
         "evidence.second-glass"
       ],
       "plusAlphaSupportIds": [
