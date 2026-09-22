@@ -4,7 +4,7 @@
     {
       "id": "npc.marta",
       "name": "마르타",
-      "role": "왕비전 시녀",
+      "role": "왕비전 수석 시녀 · 왕비의 오랜 측근",
       "pairedCharacterId": "queen",
       "cardIds": [
         "testimony.marta-order",

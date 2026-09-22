@@ -14,7 +14,7 @@
     {
       "id": "poison-order",
       "time": "19:20",
-      "summary": "엘레노라가 아드리안을 몇 시간 혼절시켜 즉위식을 미루기 위해 18번 병의 약 세 방울을 술에 넣으라고 명령한다.",
+      "summary": "엘레노라가 아드리안을 몇 시간 혼절시켜 즉위식을 미루기 위해 18번 병의 약 세 방울을 술에 넣으라고 명령한다. 직후 그의 약물 알레르기 때문에 같은 양도 치명적일 수 있다는 주치의의 경고를 떠올린다.",
       "cardIds": [
         "memory.queen-recall",
         "testimony.marta-order"
@@ -23,7 +23,7 @@
     {
       "id": "poison-recall",
       "time": "19:35",
-      "summary": "엘레노라가 투약 전에 명령을 취소한다. 병은 열렸지만 술에는 한 방울도 들어가지 않았다.",
+      "summary": "엘레노라가 죽을 수도 있다는 두려움에 투약 전에 명령을 취소한다. 병은 열렸지만 술에는 한 방울도 들어가지 않았다.",
       "cardIds": [
         "evidence.recall-slip",
         "memory.queen-recall",
