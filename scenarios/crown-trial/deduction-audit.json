@@ -10,7 +10,7 @@
         "memory.queen-recall"
       ],
       "minimumRequired": 3,
-      "note": "22시 56분 폐기 화로를 연 사실은 추가 투약을 반증하지만, 독살 명령과 증거 인멸을 함께 드러낸다."
+      "note": "22시 56분 사용하지 않은 18번 병을 폐기 화로에서 태웠다. 추가 투약은 반증되지만 혼절 및 즉위 방해 계획과 증거 인멸이 함께 드러난다."
     },
     {
       "characterId": "cassian",
@@ -189,10 +189,10 @@
   "hypotheses": [
     {
       "characterId": "queen",
-      "label": "독살 뒤 추가 투약",
-      "confirmedAct": "엘레노라는 벨라도나를 구해 두 번째 술에 모두 넣으라고 명령했다.",
-      "insufficientFinding": "검출된 벨라도나는 통상적인 단독 치사량 아래이고, 아드리안은 22시 52분까지 살아 있었다.",
-      "plusAlpha": "남은 약을 마지막 종 뒤 한 번 더 먹였다면 수면제와 겹쳐 호흡 정지에 이를 수 있다.",
+      "label": "취소한 혼절 계획 뒤 추가 투약",
+      "confirmedAct": "엘레노라는 아드리안을 몇 시간 혼절시켜 즉위식을 미루라고 명령했지만, 마르타가 한 방울도 붓기 전에 취소했다.",
+      "insufficientFinding": "혈중 벨라도나는 평소 위장약의 처방 범위이며, 왕비전의 18번 병을 먹였다고 볼 농도가 아니다.",
+      "plusAlpha": "마지막 종 뒤 18번 병을 되찾아 세 방울 이상 직접 먹였다면 수면제와 겹쳐 호흡 정지에 이를 수 있었다.",
       "apparentSmokingGunIds": [
         "memory.queen-recall",
         "evidence.belladonna-ledger",
@@ -206,7 +206,7 @@
         "testimony.recall-messenger",
         "evidence.coronation-book"
       ],
-      "actual": "+α 미실행. 남은 약은 22시 56분 폐기 화로에서 태웠다."
+      "actual": "+α 미실행. 18번 병은 거의 처음 양 그대로였고 22시 56분 폐기 화로에서 태웠다."
     },
     {
       "characterId": "cassian",

@@ -71,7 +71,7 @@ export function IssueBoard({ scenario, document, deduction, inspectionCards = []
           {hypothesis && <section className="issue-hypothesis" aria-labelledby="issue-hypothesis-title">
             <header><span>살해 가설</span><h4 id="issue-hypothesis-title">{hypothesis.label}</h4></header>
             <div className="issue-hypothesis__flow">
-              <article><span>01 · 확인된 위해</span><p>{hypothesis.confirmedAct}</p></article>
+              <article><span>01 · 확인된 시도·위해</span><p>{hypothesis.confirmedAct}</p></article>
               <i aria-hidden="true">→</i>
               <article><span>02 · 검시의 제동</span><p>{hypothesis.insufficientFinding}</p></article>
               <i aria-hidden="true">→</i>

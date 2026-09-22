@@ -14,7 +14,7 @@
     {
       "id": "poison-order",
       "time": "19:20",
-      "summary": "엘레노라가 마르타에게 독을 넣으라고 명령한다.",
+      "summary": "엘레노라가 아드리안을 몇 시간 혼절시켜 즉위식을 미루기 위해 18번 병의 약 세 방울을 술에 넣으라고 명령한다.",
       "cardIds": [
         "memory.queen-recall",
         "testimony.marta-order"
@@ -23,7 +23,7 @@
     {
       "id": "poison-recall",
       "time": "19:35",
-      "summary": "엘레노라가 명령을 취소하지만 약병의 행방은 이미 불분명하다.",
+      "summary": "엘레노라가 투약 전에 명령을 취소한다. 병은 열렸지만 술에는 한 방울도 들어가지 않았다.",
       "cardIds": [
         "evidence.recall-slip",
         "memory.queen-recall",
@@ -104,7 +104,7 @@
     {
       "id": "gap.queen",
       "time": "22:50–22:58",
-      "summary": "엘레노라가 약제실 지하 폐기 화로에서 남은 벨라도나 병을 태운다. 독살 시도를 인정해야만 이 시간의 위치를 설명할 수 있다.",
+      "summary": "엘레노라가 약제실 지하 폐기 화로에서 사용하지 않은 18번 병을 태운다. 혼절 및 즉위 방해 계획을 인정해야만 이 시간의 위치를 설명할 수 있다.",
       "cardIds": [
         "testimony.recall-messenger",
         "evidence.coronation-book",
