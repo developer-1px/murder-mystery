@@ -35,7 +35,7 @@ export const scenario: Scenario = {
   claims: rulesDocument.claims,
 }
 
-export const validationIssues = [...validateDocuments(documents), ...validateMeaning(scenario), ...validateDesignerMeaning(scenario, npcGroupsDocument as NpcGroupsDocument, deductionAuditDocument as DeductionAuditDocument)]
+export const validationIssues = [...validateDocuments(documents), ...validateMeaning(scenario), ...validateDesignerMeaning(scenario, npcGroupsDocument as NpcGroupsDocument, deductionAuditDocument as DeductionAuditDocument, inspectionsDocument as Card[])]
 
 export const issueGroups = issueGroupsDocument as IssueGroupsDocument
 export const npcGroups = npcGroupsDocument as NpcGroupsDocument

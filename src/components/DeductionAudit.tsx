@@ -66,9 +66,9 @@ export function findDistinctAxisAssignment(document: DeductionAuditDocument, sce
   return best
 }
 
-export function DeductionAudit({ scenario, document, npcGroups, releasePlan, memoryStages }: { scenario: Scenario; document: DeductionAuditDocument; npcGroups: NpcGroupsDocument; releasePlan: ReleasePlanDocument; memoryStages: MemoryStagesDocument }) {
+export function DeductionAudit({ scenario, document, npcGroups, releasePlan, memoryStages, inspectionCards = [] }: { scenario: Scenario; document: DeductionAuditDocument; npcGroups: NpcGroupsDocument; releasePlan: ReleasePlanDocument; memoryStages: MemoryStagesDocument; inspectionCards?: Scenario['cards'] }) {
   const [omittedId, setOmittedId] = useState('')
-  const byId = new Map(scenario.cards.map((card) => [card.id, card]))
+  const byId = new Map([...scenario.cards, ...inspectionCards].map((card) => [card.id, card]))
   const available = (ids: string[]) => ids.filter((id) => id !== omittedId)
   const passes = (set: { cardIds: string[]; minimumRequired?: number; requiredCardIds?: string[]; paths?: string[][] }) => {
     if (set.paths) return set.paths.some((path) => path.every((id) => id !== omittedId))

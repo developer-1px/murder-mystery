@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["description", "alibis", "culprit"],
+  "required": ["description", "alibis", "hypotheses", "culprit"],
   "additionalProperties": false,
   "properties": {
     "description": { "type": "string", "minLength": 1 },
@@ -21,6 +21,26 @@
           "minimumRequired": { "type": "integer", "minimum": 2 },
           "conditional": { "type": "boolean" },
           "note": { "type": "string" }
+        }
+      }
+    },
+    "hypotheses": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["characterId", "label", "confirmedAct", "insufficientFinding", "plusAlpha", "apparentSmokingGunIds", "plusAlphaSupportIds", "verificationIds", "actual"],
+        "additionalProperties": false,
+        "properties": {
+          "characterId": { "type": "string", "minLength": 1 },
+          "label": { "type": "string", "minLength": 1 },
+          "confirmedAct": { "type": "string", "minLength": 1 },
+          "insufficientFinding": { "type": "string", "minLength": 1 },
+          "plusAlpha": { "type": "string", "minLength": 1 },
+          "apparentSmokingGunIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+          "plusAlphaSupportIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+          "verificationIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+          "actual": { "type": "string", "minLength": 1 }
         }
       }
     },

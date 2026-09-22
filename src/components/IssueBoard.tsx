@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { Link, Navigate, useLocation, useNavigate, useParams } from 'react-router'
-import type { Card, IssueGroupsDocument, Scenario } from '../domain/types'
+import type { Card, DeductionAuditDocument, IssueGroupsDocument, Scenario } from '../domain/types'
 import { CardReader, CardView } from './CardView'
 import { cardKinds } from './cardKinds'
 import { MissingRoute, SectionLink, segment } from '../routing'
@@ -8,13 +8,15 @@ import { MissingRoute, SectionLink, segment } from '../routing'
 interface Props {
   scenario: Scenario
   document: IssueGroupsDocument
+  deduction?: DeductionAuditDocument
+  inspectionCards?: Card[]
 }
 
-export function IssueBoard({ scenario, document }: Props) {
+export function IssueBoard({ scenario, document, deduction, inspectionCards = [] }: Props) {
   const { groupId: selectedGroupId, cardId: selectedCardId } = useParams()
   const navigate = useNavigate()
   const location = useLocation()
-  const cardsById = useMemo(() => new Map(scenario.cards.map((card) => [card.id, card])), [scenario.cards])
+  const cardsById = useMemo(() => new Map([...scenario.cards, ...inspectionCards].map((card) => [card.id, card])), [scenario.cards, inspectionCards])
   const group = selectedGroupId ? document.groups.find((item) => item.id === selectedGroupId) : document.groups[0]
   const selectedCard = selectedCardId ? cardsById.get(selectedCardId) : undefined
 
@@ -24,10 +26,11 @@ export function IssueBoard({ scenario, document }: Props) {
 
   const references = group.fragments.flatMap((fragment) => fragment.cardIds)
   const uniqueCards = new Set(references).size
+  const hypothesis = deduction?.hypotheses.find((item) => group.id === `suspicion.${item.characterId}`)
 
   const locationOf = (card: Card) => card.initialOwnerId
     ? `${scenario.characters.find((character) => character.id === card.initialOwnerId)?.name ?? card.initialOwnerId}의 손패`
-    : scenario.locations.find((location) => location.id === card.locationId)?.name ?? '배치되지 않음'
+    : scenario.locations.find((location) => location.id === card.locationId)?.name ?? (inspectionCards.some((item) => item.id === card.id) ? '공식 검시' : '배치되지 않음')
 
   return (
     <section className="issue-board">
@@ -64,6 +67,20 @@ export function IssueBoard({ scenario, document }: Props) {
           </header>
 
           <aside className="issue-audit"><strong>분리 기준</strong><p>{group.auditNote}</p></aside>
+
+          {hypothesis && <section className="issue-hypothesis" aria-labelledby="issue-hypothesis-title">
+            <header><span>살해 가설</span><h4 id="issue-hypothesis-title">{hypothesis.label}</h4></header>
+            <div className="issue-hypothesis__flow">
+              <article><span>01 · 확인된 위해</span><p>{hypothesis.confirmedAct}</p></article>
+              <i aria-hidden="true">→</i>
+              <article><span>02 · 검시의 제동</span><p>{hypothesis.insufficientFinding}</p></article>
+              <i aria-hidden="true">→</i>
+              <article className="issue-hypothesis__alpha"><span>03 · 가능했던 +α</span><p>{hypothesis.plusAlpha}</p></article>
+              <i aria-hidden="true">→</i>
+              <article><span>04 · 실행 여부</span><p>{hypothesis.actual}</p></article>
+            </div>
+            <p className="issue-hypothesis__rule">앞의 세 단계는 살해가 가능했다는 가설을 세우고, 마지막 단계의 카드 연결만 실제 실행 여부를 가릅니다.</p>
+          </section>}
 
           <div className="fragment-list">
             {group.fragments.map((fragment, index) => (

@@ -14,7 +14,7 @@
         "required": ["id", "title", "question", "fragments", "auditNote"],
         "additionalProperties": false,
         "properties": {
-          "id": { "type": "string", "pattern": "^issue\\." },
+          "id": { "type": "string", "pattern": "^(issue|suspicion|reconstruction|investigator)\\." },
           "title": { "type": "string", "minLength": 1 },
           "question": { "type": "string", "minLength": 1 },
           "auditNote": { "type": "string", "minLength": 1 },

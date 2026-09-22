@@ -115,11 +115,24 @@ export interface DeductionAuditDocument {
   description: string
   sourceOverrides?: Record<string, string>
   alibis: DeductionSet[]
+  hypotheses: MurderHypothesis[]
   culprit: {
     characterId: string
     conclusion: string
     axes: Array<{ id: string; label: string; cardIds: string[]; paths: string[][] }>
   }
+}
+
+export interface MurderHypothesis {
+  characterId: string
+  label: string
+  confirmedAct: string
+  insufficientFinding: string
+  plusAlpha: string
+  apparentSmokingGunIds: string[]
+  plusAlphaSupportIds: string[]
+  verificationIds: string[]
+  actual: string
 }
 
 export interface CardRoleAuditDocument {

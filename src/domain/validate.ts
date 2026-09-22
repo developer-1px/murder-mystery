@@ -53,9 +53,9 @@ export function validateMeaning(scenario: Scenario): ValidationIssue[] {
   return issues
 }
 
-export function validateDesignerMeaning(scenario: Scenario, npcGroups: NpcGroupsDocument, deduction: DeductionAuditDocument): ValidationIssue[] {
+export function validateDesignerMeaning(scenario: Scenario, npcGroups: NpcGroupsDocument, deduction: DeductionAuditDocument, officialCards: Scenario['cards'] = []): ValidationIssue[] {
   const issues: ValidationIssue[] = []
-  const cardIds = new Set(scenario.cards.map((card) => card.id))
+  const cardIds = new Set([...scenario.cards, ...officialCards].map((card) => card.id))
   const characterIds = new Set(scenario.characters.map((character) => character.id))
   const testimonyIds = new Set(scenario.cards.filter((card) => card.kind === 'testimony').map((card) => card.id))
   const groupedTestimony = npcGroups.npcs.flatMap((npc) => npc.cardIds)
@@ -65,7 +65,15 @@ export function validateDesignerMeaning(scenario: Scenario, npcGroups: NpcGroups
   }
   for (const id of testimonyIds) if (!groupedTestimony.includes(id)) issues.push({ path: 'npc-groups.json/npcs', message: `NPC 덱에 없는 증언 ${id}`, severity: 'error' })
 
-  const references = [...deduction.alibis.flatMap((item) => item.cardIds), ...deduction.culprit.axes.flatMap((axis) => axis.paths.flat())]
+  const references = [
+    ...deduction.alibis.flatMap((item) => item.cardIds),
+    ...deduction.culprit.axes.flatMap((axis) => axis.paths.flat()),
+    ...deduction.hypotheses.flatMap((hypothesis) => [
+      ...hypothesis.apparentSmokingGunIds,
+      ...hypothesis.plusAlphaSupportIds,
+      ...hypothesis.verificationIds,
+    ]),
+  ]
   for (const id of references) if (!cardIds.has(id)) issues.push({ path: 'deduction-audit.json', message: `존재하지 않는 카드 ${id}`, severity: 'error' })
   for (const alibi of deduction.alibis) if (!characterIds.has(alibi.characterId)) issues.push({ path: `deduction-audit.json/alibis/${alibi.characterId}`, message: `존재하지 않는 인물 ${alibi.characterId}`, severity: 'error' })
   if (!characterIds.has(deduction.culprit.characterId)) issues.push({ path: 'deduction-audit.json/culprit/characterId', message: `존재하지 않는 인물 ${deduction.culprit.characterId}`, severity: 'error' })
