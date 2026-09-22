@@ -1,4 +1,4 @@
-export type CardKind = 'memory' | 'rumor' | 'evidence' | 'testimony'
+export type CardKind = 'memory' | 'rumor' | 'evidence' | 'testimony' | 'inspection'
 export type CardZone = 'location' | 'hand' | 'public' | 'court' | 'official'
 export type Verdict = 'accepted' | 'rejected' | 'reserved'
 

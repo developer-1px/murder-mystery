@@ -5,4 +5,5 @@ export const cardKinds = {
   rumor: { label: '소문', backLabel: '공용 소문', description: '궁정에 떠도는 이야기. 사람과 장소를 조사할 실마리가 됩니다.' },
   evidence: { label: '물증', backLabel: '장소 조사', description: '현장에서 확보하는 문서와 흔적. 다른 단서와 맞춰 해석합니다.' },
   testimony: { label: '증언', backLabel: 'NPC 탐문', description: '목격자가 직접 보거나 들은 내용. 관찰 범위와 시간을 확인하세요.' },
+  inspection: { label: '검시', backLabel: '검시 카드', description: '시신에서 확인한 공식 결과. 별도의 검시 카드 덱에서 공개됩니다.' },
 } satisfies Record<CardKind, { label: string; backLabel: string; description: string }>

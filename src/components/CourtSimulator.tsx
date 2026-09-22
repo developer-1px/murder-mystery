@@ -128,7 +128,7 @@ export function CourtSimulator({ scenario, npcGroups, memoryStages, inspectionCa
     </header>
     <div className="court-simulator__controls">
       {[1, 2, 3].map(round => <button type="button" key={round} aria-pressed={court === round} onClick={() => setCourt(round)}><b>제{round}재판</b><span>{round * 7}장 누적</span></button>)}
-      <div><span>현재 공개</span><b>{visible.length}장</b>{kindCounts.map(item => <small key={item.kind}>{item.kind === 'rumor' ? '소문' : item.kind === 'testimony' ? '탐문' : '조사·검시'} {item.count}</small>)}</div>
+      <div><span>현재 공개</span><b>{visible.length}장</b>{kindCounts.map(item => <small key={item.kind}>{item.kind === 'rumor' ? '소문' : item.kind === 'testimony' ? '탐문' : item.kind === 'inspection' ? '검시' : '조사'} {item.count}</small>)}</div>
     </div>
     <div className="court-simulator__rounds">
       {result.rounds.slice(0, court).map((entries, roundIndex) => <section key={roundIndex} className={roundIndex + 1 === court ? 'is-current' : ''}>

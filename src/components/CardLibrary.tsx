@@ -12,7 +12,7 @@ interface Props {
   memoryStages: MemoryStagesDocument
 }
 
-const kinds = Object.keys(cardKinds) as CardKind[]
+const kinds = (Object.keys(cardKinds) as CardKind[]).filter((kind) => kind !== 'inspection')
 
 export function CardLibrary({ scenario, issues, npcGroups, memoryStages }: Props) {
   const { cardId: selectedId } = useParams()
