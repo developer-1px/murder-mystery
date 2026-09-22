@@ -25,10 +25,10 @@
         },
         {
           "id": "suspicion.queen.testimonies",
-          "label": "명령과 외출의 탐문 2장",
+          "label": "명령과 치명 조건의 탐문 2장",
           "cardIds": [
             "testimony.marta-order",
-            "testimony.recall-messenger"
+            "testimony.physician-limits"
           ]
         },
         {
