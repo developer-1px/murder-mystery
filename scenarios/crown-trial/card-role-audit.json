@@ -1,5 +1,5 @@
 {
-  "description": "맥거핀을 막기 위한 카드 주 역할 감사표. 모든 카드는 플레이어가 사실을 확정하거나, 의심·거래·최종 선택을 바꾸는 한 가지 주 역할을 가진다.",
+  "description": "맥거핀을 막기 위한 카드 주 역할 감사표. 용의자 쟁점은 동기, 동선과 기회, 선행 위해, 가능한 범행 도구, 심증, 연결 물증, 단독 범행 반증, +α 치명 조건, 묻어야 하는 진실 A와 B의 열 역할을 모두 가져야 한다. 이 표는 전체 카드가 그중 어떤 기능을 보조하는지 기록한다.",
   "roles": {
     "buried_truth": "원래 주인의 행동·욕망·파멸을 결정적으로 연결하고 마지막에 밝히거나 묻는 대상",
     "motive": "범행이나 정치적 행동을 선택할 이유를 세운다",
@@ -50,14 +50,14 @@
       "evidence.second-glass",
       "evidence.wine-bottle",
       "evidence.coronation-book",
-      "evidence.marriage-treaty"
+      "evidence.marriage-treaty",
+      "evidence.succession-leaf"
     ],
     "desire": [
       "evidence.archive-register",
       "evidence.guard-charter",
       "evidence.isabel-petition",
       "evidence.marriage-annex",
-      "evidence.succession-leaf",
       "evidence.watch-roster",
       "rumor.marriage",
       "rumor.queen-old-letter",
