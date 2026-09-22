@@ -35,7 +35,7 @@
         "memory.isabel-alive"
       ],
       "minimumRequired": 4,
-      "note": "이사벨은 방에도 폐예배실에도 없었다. 푸른 망토, 뒤편 계단, 녹색 섬유와 은제 고리가 그 공백을 최종 압박 현장으로 연결한다."
+      "note": "이사벨은 방에도 약속한 폐예배실에도 없었다. 묻어야 하는 밀회 답신이 그 약속을 밝히고, 푸른 망토·뒤편 계단·은제 고리와 녹색 직물이 공백을 최종 압박 현장으로 연결한다."
     },
     {
       "characterId": "seraphine",
@@ -103,7 +103,7 @@
           "inspection.neck",
           "evidence.broken-seal",
           "evidence.mud-print",
-          "memory.isabel-alive"
+          "testimony.study-servant"
         ],
         "paths": [
           [
@@ -112,8 +112,11 @@
           ],
           [
             "evidence.broken-seal",
-            "evidence.mud-print",
-            "memory.isabel-alive"
+            "testimony.study-servant"
+          ],
+          [
+            "evidence.broken-seal",
+            "evidence.mud-print"
           ]
         ]
       },
@@ -121,7 +124,7 @@
         "id": "isabel-return",
         "label": "약속 장소에도 방에도 없던 이사벨",
         "cardIds": [
-          "memory.cassian-sedative",
+          "memory.isabel-alive",
           "testimony.page-sighting",
           "testimony.study-servant",
           "rumor.secret-letter",
@@ -129,7 +132,7 @@
         ],
         "paths": [
           [
-            "memory.cassian-sedative",
+            "memory.isabel-alive",
             "testimony.page-sighting"
           ],
           [
@@ -291,12 +294,12 @@
         "inspection.neck"
       ],
       "verificationIds": [
-        "testimony.study-servant",
+        "memory.isabel-alive",
         "testimony.page-sighting",
+        "testimony.study-servant",
         "rumor.secret-letter",
         "evidence.mud-print",
-        "evidence.broken-seal",
-        "memory.isabel-alive"
+        "evidence.broken-seal"
       ],
       "actual": "+α 실행. 약속 장소에 가지 않고 서재로 돌아와 녹색 벨벳 쿠션으로 호흡을 막았다."
     }

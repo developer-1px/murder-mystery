@@ -64,7 +64,7 @@
       "summary": "카시안이 폐예배실 안에서 이사벨을 기다린다. 22시 56분에도 시종에게 직접 답하지만 이사벨은 끝내 오지 않는다.",
       "cardIds": [
         "memory.cassian-sedative",
-        "evidence.isabel-letter",
+        "memory.isabel-alive",
         "testimony.page-sighting"
       ]
     },
@@ -147,11 +147,11 @@
       "time": "22:54",
       "summary": "이사벨은 카시안에게 반드시 가겠다고 했지만 폐예배실에는 나타나지 않고, 푸른 망토를 입은 채 뒤편 계단으로 서재에 돌아간다.",
       "cardIds": [
-        "memory.cassian-sedative",
-        "evidence.isabel-letter",
+        "memory.isabel-alive",
+        "testimony.page-sighting",
         "rumor.secret-letter",
         "evidence.mud-print",
-        "memory.isabel-alive"
+        "testimony.study-servant"
       ]
     },
     {
@@ -161,7 +161,7 @@
       "cardIds": [
         "evidence.broken-seal",
         "evidence.mud-print",
-        "memory.isabel-alive"
+        "testimony.study-servant"
       ]
     },
     {
