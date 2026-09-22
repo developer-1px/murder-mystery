@@ -7,10 +7,15 @@
       "cardIds": [
         "testimony.recall-messenger",
         "evidence.coronation-book",
-        "memory.queen-recall"
+        "memory.queen-recall",
+        "evidence.corridor-plan"
       ],
       "minimumRequired": 3,
-      "note": "22시 56분 사용하지 않은 18번 병을 폐기 화로에서 태웠다. 추가 투약은 반증되지만 혼절 및 즉위 방해 계획과 증거 인멸이 함께 드러난다."
+      "note": "22시 56분 사용하지 않은 18번 병을 폐기 화로에서 태웠다. 추가 투약은 반증되지만 혼절 및 즉위 방해 계획과 증거 인멸이 함께 드러난다.",
+      "requiredCardIds": [
+        "evidence.coronation-book",
+        "evidence.corridor-plan"
+      ]
     },
     {
       "characterId": "cassian",
@@ -18,10 +23,15 @@
       "cardIds": [
         "testimony.page-sighting",
         "evidence.isabel-letter",
-        "memory.cassian-sedative"
+        "memory.cassian-sedative",
+        "evidence.corridor-plan"
       ],
       "minimumRequired": 3,
-      "note": "22시 56분 카시안은 폐예배실 안에서 답했다. 연애와 도주 약속을 인정해야 알리바이가 되고, 오지 않은 이사벨의 공백이 생긴다."
+      "note": "22시 56분 카시안은 폐예배실 안에서 답했다. 연애와 도주 약속을 인정해야 알리바이가 되고, 오지 않은 이사벨의 공백이 생긴다.",
+      "requiredCardIds": [
+        "testimony.page-sighting",
+        "evidence.corridor-plan"
+      ]
     },
     {
       "characterId": "isabel",
@@ -44,10 +54,15 @@
         "testimony.foreign-envoy",
         "rumor.princess-pages",
         "memory.seraphine-archive",
-        "memory.seraphine-ledger"
+        "memory.seraphine-ledger",
+        "evidence.corridor-plan"
       ],
       "minimumRequired": 3,
-      "note": "22시 54분부터 58분까지 봉인실에 있었다. 계승법 절도와 영토를 건 왕위 거래를 인정해야 밀폐 노출의 +α를 실행하지 않았음이 드러난다."
+      "note": "22시 54분부터 58분까지 봉인실에 있었다. 계승법 절도와 영토를 건 왕위 거래를 인정해야 밀폐 노출의 +α를 실행하지 않았음이 드러난다.",
+      "requiredCardIds": [
+        "testimony.foreign-envoy",
+        "evidence.corridor-plan"
+      ]
     },
     {
       "characterId": "benedict",
@@ -56,10 +71,15 @@
         "testimony.tailor",
         "evidence.minister-dispatch",
         "evidence.burnt-will",
-        "memory.benedict-will-clause"
+        "memory.benedict-will-clause",
+        "evidence.corridor-plan"
       ],
       "minimumRequired": 3,
-      "note": "22시 56분 동쪽 기록고에서 유언을 숨겼다. 아드리안 제압과 계승 기록 조작을 인정해야 압박을 계속하지 않았음이 드러난다."
+      "note": "22시 56분 동쪽 기록고에서 유언을 숨겼다. 아드리안 제압과 계승 기록 조작을 인정해야 압박을 계속하지 않았음이 드러난다.",
+      "requiredCardIds": [
+        "evidence.minister-dispatch",
+        "evidence.corridor-plan"
+      ]
     },
     {
       "characterId": "rowen",
@@ -207,7 +227,8 @@
       ],
       "verificationIds": [
         "testimony.recall-messenger",
-        "evidence.coronation-book"
+        "evidence.coronation-book",
+        "evidence.corridor-plan"
       ],
       "actual": "+α 미실행. 18번 병은 거의 처음 양 그대로였고 22시 56분 폐기 화로에서 태웠다."
     },
@@ -229,7 +250,8 @@
       "verificationIds": [
         "testimony.page-sighting",
         "evidence.isabel-letter",
-        "memory.cassian-sedative"
+        "memory.cassian-sedative",
+        "evidence.corridor-plan"
       ],
       "actual": "+α 미실행. 22시 56분에도 폐예배실 안에서 오지 않은 이사벨을 기다렸다."
     },
@@ -251,7 +273,8 @@
       "verificationIds": [
         "testimony.foreign-envoy",
         "rumor.princess-pages",
-        "memory.seraphine-ledger"
+        "memory.seraphine-ledger",
+        "evidence.corridor-plan"
       ],
       "actual": "+α 미실행. 22시 54분부터 58분까지 북쪽 탑 봉인실에서 훔친 문서를 감췄다."
     },
@@ -274,7 +297,8 @@
         "evidence.bell-register",
         "testimony.bell-attendant",
         "evidence.minister-dispatch",
-        "memory.benedict-will-clause"
+        "memory.benedict-will-clause",
+        "evidence.corridor-plan"
       ],
       "actual": "+α 미실행. 종 뒤 동쪽 기록고에서 선왕의 유언을 숨기고 태웠다."
     },
