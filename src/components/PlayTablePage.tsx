@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState, type CSSProperties } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { Link, Navigate, useNavigate, useParams } from 'react-router'
 import type { Card, Character } from '../domain/types'
-import { availableEvidence, createPlaySession, getDeckBlockReason, randomPlayerAction, transitionPlay, type PlayAction, type PlayAssets, type PlayPhase, type PlaySession } from '../domain/playSession'
+import { availableEvidence, createPlaySession, getDeckBlockReason, getInspectionBlockReason, randomPlayerAction, transitionPlay, type PlayAction, type PlayAssets, type PlayPhase, type PlaySession } from '../domain/playSession'
 import { characterSettings, memoryStages, npcGroups, scenario } from '../scenario/load'
 import { getCardGroups } from '../scenario/cardGroups'
 import inspectionDocument from '../../scenarios/crown-trial/inspections.json'
@@ -142,7 +142,7 @@ function PlayTable({ session, act, newGame, cursor, lastStep, onUndo, onRedo, au
     label: '게임 플레이 카드 테이블', handLabel: viewer ? `${viewer.name}의 손패` : '내 손패',
     hint: viewer ? '내 시점 고정 · 손패에 올려서 읽기 · 드래그로 정렬 · 클릭/Space로 확대' : '플레이할 인물을 선택하세요.',
     deckActions: Object.fromEntries(session.phase === 'inspection' ? assets.inspectionCards.map(card => [card.id, {
-      label: card.title, backTitle: card.title, backSubtitle: '검시 카드', disabled: !ownTurn ? '다른 인물의 차례입니다.' : session.inspections.some(entry => entry.cardId === card.id) ? '이미 선택한 검시' : undefined,
+      label: card.title, backTitle: '검시 요청', backSubtitle: card.title, disabled: !ownTurn ? '다른 인물의 차례입니다.' : getInspectionBlockReason(session, card.id),
       run: () => act({ type: 'inspect', cardId: card.id }),
     }]) : groups.filter(group => group.kind !== 'memory').map(group => [group.id, {
       label: group.backTitle, disabled: !ownTurn ? '다른 인물의 차례입니다.' : getDeckBlockReason(session, group, assets),
@@ -290,5 +290,5 @@ function CharacterSheet({ actor, session, onRead }: { actor: Character; session:
 
 function stageHint(session: PlaySession) {
   if (session.choice) return `${groups.find(group => group.id === session.choice!.deckId)?.backTitle ?? '선택한 덱'}에서 확인한 카드입니다. 한 장을 손패로 가져갑니다.`
-  return ({ ready: '묻어야 할 진실 두 장을 받고 조사와 재판을 시작합니다.', inspection: '별도 검시 카드 덱 네 장 중 매 라운드 하나. 한 번 선택한 검시는 다시 선택할 수 없습니다.', rumor: '공용 소문 덱을 눌러 세 장을 읽고 한 장을 가져옵니다.', testimony: '탐문할 NPC를 선택하세요. 같은 인물로 이미 탐문한 NPC는 다시 선택할 수 없습니다.', investigation: '모두 장소를 고르면 같은 장소의 인원 + 1장을 함께 확인합니다. 남은 카드가 적으면 남은 만큼 확인합니다.', discussion: '재판이 열리기 전, 마지막으로 이야기를 맞출 시간입니다.', court: `제${session.round}재판 · 각자 한 장씩 공개 증거를 제출합니다.`, truth_exchange: '상대와 합의해 뒷면 상태의 진실 한 장씩을 교환합니다.', truth_choice: '기소 결과를 보기 전에 하나를 밝히고 하나를 묻기로 결정합니다.', accusation: '로웬을 제외한 다섯 사람 중 진범이라고 생각하는 사람을 지목합니다.', defense: '범인 지목이 공개되었습니다. 로웬은 마지막에 수사 결론을 정리합니다.', indictment: '로웬은 공개 증거와 가진 모든 카드로 한 사람을 기소합니다.', complete: '기소된 사람의 진실은 모두 밝혀졌고, 나머지는 결정한 운명을 따릅니다.' } as Record<PlayPhase, string>)[session.phase]
+  return ({ ready: '묻어야 할 진실 두 장을 받고 조사와 재판을 시작합니다.', inspection: session.round === 1 ? '첫 라운드에는 시신 전반에 관한 소견을 요청합니다.' : '검시관에게 자세히 살펴볼 항목 하나를 요청합니다.', rumor: '공용 소문 덱을 눌러 세 장을 읽고 한 장을 가져옵니다.', testimony: '탐문할 NPC를 선택하세요. 같은 인물로 이미 탐문한 NPC는 다시 선택할 수 없습니다.', investigation: '모두 장소를 고르면 같은 장소의 인원 + 1장을 함께 확인합니다. 남은 카드가 적으면 남은 만큼 확인합니다.', discussion: '재판이 열리기 전, 마지막으로 이야기를 맞출 시간입니다.', court: `제${session.round}재판 · 각자 한 장씩 공개 증거를 제출합니다.`, truth_exchange: '상대와 합의해 뒷면 상태의 진실 한 장씩을 교환합니다.', truth_choice: '기소 결과를 보기 전에 하나를 밝히고 하나를 묻기로 결정합니다.', accusation: '로웬을 제외한 다섯 사람 중 진범이라고 생각하는 사람을 지목합니다.', defense: '범인 지목이 공개되었습니다. 로웬은 마지막에 수사 결론을 정리합니다.', indictment: '로웬은 공개 증거와 가진 모든 카드로 한 사람을 기소합니다.', complete: '기소된 사람의 진실은 모두 밝혀졌고, 나머지는 결정한 운명을 따릅니다.' } as Record<PlayPhase, string>)[session.phase]
 }

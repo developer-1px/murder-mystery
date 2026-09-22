@@ -62,7 +62,8 @@ function simulate(seed: number, scenario: Scenario, npcGroups: NpcGroupsDocument
   const rumor = groups.find(group => group.kind === 'rumor')!
   const testimonies = groups.filter(group => group.kind === 'testimony')
   const locations = groups.filter(group => group.kind === 'evidence')
-  const inspections = shuffle(inspectionCards, random)
+  const overview = inspectionCards.find(card => card.id === 'inspection.overview')
+  const inspections = [...(overview ? [overview] : []), ...shuffle(inspectionCards.filter(card => card.id !== 'inspection.overview'), random)]
   const rounds: CourtEntry[][] = []
 
   for (let round = 1; round <= 3; round += 1) {

@@ -58,6 +58,17 @@ export type PlayAction =
   | { type: 'reorder-hand'; cardIds: string[] }
 
 const inspectionDeckId = 'inspections'
+const overviewInspectionId = 'inspection.overview'
+
+export function getInspectionBlockReason(session: PlaySession, cardId: string): string | undefined {
+  if (session.phase !== 'inspection' || session.inspectionStage !== 'select') return '현재 검시 요청 단계가 아닙니다.'
+  const deck = session.decks[inspectionDeckId] ?? []
+  if (!deck.includes(cardId)) return '이미 받은 검시 소견입니다.'
+  const usesOverviewRequest = deck.includes(overviewInspectionId) || session.inspections.some(({ cardId: receivedId }) => receivedId === overviewInspectionId)
+  if (usesOverviewRequest && session.round === 1 && cardId !== overviewInspectionId) return '첫 요청에서는 시신 전반에 관한 소견을 먼저 받아야 합니다.'
+  if (session.round > 1 && cardId === overviewInspectionId) return '첫 소견은 1라운드에만 요청할 수 있습니다.'
+  return undefined
+}
 
 function shuffled(cardIds: string[]): string[] {
   const result = [...cardIds]
@@ -208,7 +219,7 @@ export function randomPlayerAction(session: PlaySession, assets: PlayAssets): Pl
   switch (session.phase) {
     case 'inspection': {
       if (session.inspectionStage === 'result') return { type: 'finish-inspection' }
-      const cardId = pick(session.decks[inspectionDeckId] ?? [])
+      const cardId = pick((session.decks[inspectionDeckId] ?? []).filter((id) => !getInspectionBlockReason(session, id)))
       return cardId ? { type: 'inspect', cardId } : undefined
     }
     case 'rumor':
@@ -330,7 +341,7 @@ export function transitionPlay(session: PlaySession, action: PlayAction, assets:
       record(next, `${nameOf(action.playerId, assets)}의 1인칭 플레이테스트를 시작합니다. 나머지 인물은 무작위로 진행합니다.`)
       if (next.phase === 'ready') {
         setPhase(next, 'inspection', assets)
-        record(next, '1라운드가 시작되었습니다. 로웬이 검사 항목을 선택합니다.')
+        record(next, '1라운드가 시작되었습니다. 로웬이 검시관에게 첫 소견을 요청합니다.')
       }
       return next
     }
@@ -345,18 +356,19 @@ export function transitionPlay(session: PlaySession, action: PlayAction, assets:
     case 'start': {
       if (session.phase !== 'ready') return session
       setPhase(next, 'inspection', assets)
-      record(next, '1라운드가 시작되었습니다. 로웬이 검사 항목을 선택합니다.')
+      record(next, '1라운드가 시작되었습니다. 로웬이 검시관에게 첫 소견을 요청합니다.')
       return next
     }
     case 'inspect': {
       if (session.phase !== 'inspection' || session.inspectionStage !== 'select' || session.actorId !== rowenId(assets)) return session
       if (!session.decks[inspectionDeckId]?.includes(action.cardId)) return session
+      if (getInspectionBlockReason(session, action.cardId)) return session
       const card = assets.inspectionCards.find((entry) => entry.id === action.cardId)
       if (!card) return session
       next.decks[inspectionDeckId] = next.decks[inspectionDeckId].filter((id) => id !== card.id)
       next.inspections.push({ round: next.round, cardId: card.id, published: false })
       next.inspectionStage = 'result'
-      record(next, `${nameOf(next.actorId, assets)}이 ${card.title}를 선택했습니다. 결과는 재판 시작까지 비공개입니다.`)
+      record(next, `${nameOf(next.actorId, assets)}이 검시관에게 ${card.title} 항목의 검시를 요청했습니다. 소견은 재판 시작까지 비공개입니다.`)
       return next
     }
     case 'finish-inspection': {
