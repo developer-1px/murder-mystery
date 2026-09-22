@@ -113,7 +113,7 @@
         },
         {
           "id": "suspicion.seraphine.rebuttal",
-          "label": "마지막 종 알리바이 2장",
+          "label": "서고 이탈 공백 2장",
           "cardIds": [
             "testimony.archive-copyist",
             "rumor.princess-pages"
@@ -153,7 +153,7 @@
         },
         {
           "id": "suspicion.benedict.rebuttal",
-          "label": "마지막 종 알리바이 2장",
+          "label": "종 이후 이탈 공백 2장",
           "cardIds": [
             "testimony.tailor",
             "rumor.benedict-edmund-letter"

@@ -12,7 +12,8 @@ import commonSettingDocument from '../../scenarios/crown-trial/common-setting.js
 import characterSettingsDocument from '../../scenarios/crown-trial/character-settings.json'
 import releasePlanDocument from '../../scenarios/crown-trial/release-plan.json'
 import inspectionsDocument from '../../scenarios/crown-trial/inspections.json'
-import type { Card, CharacterSetting, CommonSettingDocument, DeductionAuditDocument, IssueGroupsDocument, MemoryStagesDocument, NpcGroupsDocument, ReleasePlanDocument, Scenario, TimelineDocument } from '../domain/types'
+import cardRoleAuditDocument from '../../scenarios/crown-trial/card-role-audit.json'
+import type { Card, CardRoleAuditDocument, CharacterSetting, CommonSettingDocument, DeductionAuditDocument, IssueGroupsDocument, MemoryStagesDocument, NpcGroupsDocument, ReleasePlanDocument, Scenario, TimelineDocument } from '../domain/types'
 import { validateDesignerMeaning, validateDocuments, validateMeaning } from '../domain/validate'
 
 export const documents = {
@@ -45,3 +46,4 @@ export const commonSetting = commonSettingDocument as CommonSettingDocument
 export const characterSettings = characterSettingsDocument as CharacterSetting[]
 export const releasePlan = releasePlanDocument as ReleasePlanDocument
 export const inspectionCards = inspectionsDocument as Card[]
+export const cardRoleAudit = cardRoleAuditDocument as CardRoleAuditDocument

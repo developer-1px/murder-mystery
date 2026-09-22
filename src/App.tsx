@@ -9,7 +9,7 @@ import { TimelineBoard } from './components/TimelineBoard'
 import { DeductionAudit } from './components/DeductionAudit'
 import { CourtSimulator } from './components/CourtSimulator'
 import { MissingRoute, RouteTools } from './routing'
-import { characterSettings, commonSetting, deductionAudit, inspectionCards, issueGroups, memoryStages, npcGroups, releasePlan, scenario, timeline, validationIssues } from './scenario/load'
+import { cardRoleAudit, characterSettings, commonSetting, deductionAudit, inspectionCards, issueGroups, memoryStages, npcGroups, releasePlan, scenario, timeline, validationIssues } from './scenario/load'
 
 export function WorkbenchRoutes() {
   const { pathname } = useLocation()
@@ -48,7 +48,7 @@ export function WorkbenchRoutes() {
       <Route path="/timeline" element={<TimelineBoard scenario={scenario} document={timeline} />} />
       <Route path="/timeline/cards/:cardId" element={<TimelineBoard scenario={scenario} document={timeline} />} />
       <Route path="/deduction" element={<DeductionAudit scenario={scenario} document={deductionAudit} npcGroups={npcGroups} releasePlan={releasePlan} memoryStages={memoryStages} />} />
-      <Route path="/court-simulator" element={<CourtSimulator scenario={scenario} npcGroups={npcGroups} memoryStages={memoryStages} inspectionCards={inspectionCards} />} />
+      <Route path="/court-simulator" element={<CourtSimulator scenario={scenario} npcGroups={npcGroups} memoryStages={memoryStages} inspectionCards={inspectionCards} roleAudit={cardRoleAudit} />} />
       <Route path="/table" element={<PlayTablePage />} />
       <Route path="/table/play/:branchId/steps/:step" element={<PlayTablePage />} />
       <Route path="/table/play/:branchId" element={<PlayTablePage />} />

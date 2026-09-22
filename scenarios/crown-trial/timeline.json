@@ -60,11 +60,12 @@
     },
     {
       "id": "cassian-alibi",
-      "time": "22:36–22:58",
-      "summary": "카시안은 폐예배실에서 이사벨을 기다리지만 그녀는 오지 않는다.",
+      "time": "22:36–22:48",
+      "summary": "카시안이 폐예배실에서 이사벨을 기다리며 두 차례 답신을 보낸다.",
       "cardIds": [
         "rumor.cassian-isabel-truth",
-        "memory.cassian-sedative"
+        "memory.cassian-sedative",
+        "testimony.page-sighting"
       ]
     },
     {
@@ -79,13 +80,66 @@
       ]
     },
     {
+      "id": "gap.rowen",
+      "time": "22:48–23:02",
+      "summary": "로웬이 통행패 소지자를 찾겠다며 초소를 떠난 뒤 공식 기록에서 동선을 지운다.",
+      "cardIds": [
+        "testimony.late-patrol",
+        "rumor.guard-return",
+        "memory.rowen-order",
+        "evidence.ink-blotter"
+      ]
+    },
+    {
+      "id": "gap.seraphine",
+      "time": "22:49–22:59",
+      "summary": "세라핀이 서고를 비우고 북쪽 탑 방향 시종 회랑으로 문서와 봉투를 옮긴다.",
+      "cardIds": [
+        "testimony.archive-copyist",
+        "rumor.princess-pages",
+        "memory.seraphine-archive",
+        "memory.seraphine-ledger"
+      ]
+    },
+    {
+      "id": "gap.queen",
+      "time": "22:50–22:58",
+      "summary": "엘레노라가 왕비전을 비우고 뒤편 시종 통로에서 사라진 약병을 찾는다.",
+      "cardIds": [
+        "testimony.recall-messenger",
+        "rumor.queen-luggage",
+        "memory.queen-recall"
+      ]
+    },
+    {
+      "id": "gap.cassian",
+      "time": "22:50–22:58",
+      "summary": "카시안이 폐예배실을 비우고 이사벨을 찾아 서쪽 회랑으로 나간다.",
+      "cardIds": [
+        "testimony.page-sighting",
+        "rumor.cassian-isabel-truth",
+        "memory.cassian-sedative"
+      ]
+    },
+    {
       "id": "last-bell",
       "time": "22:52",
-      "summary": "아드리안이 직접 종을 울리고 기침하며 “이사…”라고 말한다. 베네딕트의 공격 뒤에도 살아 있었다.",
+      "summary": "서재 종이 한 번 울리고 안에서 기침과 가구가 스치는 소리가 들린다. 누가 종을 울렸는지는 다른 기록과 맞춰야 한다.",
       "cardIds": [
         "evidence.bell-register",
         "testimony.bell-attendant",
         "evidence.bell-repair"
+      ]
+    },
+    {
+      "id": "gap.benedict",
+      "time": "22:53–22:59",
+      "summary": "베네딕트가 늘어난 인장 사슬과 선왕의 문서함을 들고 재상실을 비운다.",
+      "cardIds": [
+        "testimony.tailor",
+        "rumor.benedict-edmund-letter",
+        "memory.benedict-birth-dates",
+        "memory.benedict-will-clause"
       ]
     },
     {
@@ -110,7 +164,7 @@
     {
       "id": "rowen-discovery",
       "time": "23:02",
-      "summary": "로웬이 시신을 먼저 발견해 쿠션을 감추고 발견 시각을 23시 05분으로 고쳐 쓴다.",
+      "summary": "로웬이 시신을 먼저 발견해 자세를 바꾸고, 자신의 입실을 숨긴 채 발견 시각을 23시 05분으로 고쳐 쓴다.",
       "cardIds": [
         "memory.rowen-alive",
         "rumor.rowen-second-visit",

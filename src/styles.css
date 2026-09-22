@@ -310,8 +310,9 @@ kbd { font-family: inherit; font-size: .9em; opacity: .7; white-space: nowrap; }
 .court-simulator__rounds > section > header > b { color: #9a8a70; font-size: 11px; }
 .court-simulator__cards { display: grid; grid-template-columns: repeat(7, minmax(150px, 1fr)); gap: 14px; }
 .court-simulator__cards article { min-width: 0; }
-.court-simulator__cards article > p { height: 28px; margin: 0; color: #867c6e; font-size: 9px; line-height: 1.4; }
+.court-simulator__cards article > p { display: flex; justify-content: space-between; gap: 6px; height: 28px; margin: 0; color: #867c6e; font-size: 9px; line-height: 1.4; }
 .court-simulator__cards article > p strong { color: #c9b58e; font-size: 10px; }
+.court-simulator__cards article > p em { flex: 0 0 auto; color: #c6a969; font-style: normal; }
 .court-simulator__cards .card { border-radius: 4px; }
 .court-simulator > footer { display: flex; justify-content: space-between; gap: 24px; margin-top: 28px; padding-top: 15px; border-top: 1px solid #494038; color: #80766a; font-size: 9px; }
 @media (max-width: 1250px) { .court-simulator__cards { grid-template-columns: repeat(4, minmax(160px, 1fr)); }.court-simulator__controls > div { display: none; } }

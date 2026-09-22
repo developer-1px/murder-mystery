@@ -33,9 +33,7 @@
       "rumor.missing-document",
       "testimony.dinner-steward"
     ],
-    "psychological_evidence": [
-      "rumor.benedict-edmund-letter"
-    ],
+    "psychological_evidence": [],
     "physical_evidence": [
       "evidence.black-cloth",
       "evidence.broken-seal",
@@ -48,8 +46,10 @@
       "evidence.last-will",
       "evidence.mud-print",
       "evidence.physician-log",
+      "evidence.royal-recognition",
       "evidence.second-glass",
-      "evidence.wine-bottle"
+      "evidence.wine-bottle",
+      "testimony.residue-examination"
     ],
     "desire": [
       "evidence.archive-register",
@@ -83,7 +83,6 @@
       "evidence.isabel-letter",
       "evidence.pregnancy-notes",
       "evidence.royal-birth-register",
-      "evidence.royal-recognition",
       "evidence.young-benedict-letter",
       "rumor.heir-calendar",
       "rumor.old-portrait"
@@ -92,6 +91,7 @@
       "evidence.bell-register",
       "evidence.bell-repair",
       "evidence.minister-dispatch",
+      "rumor.benedict-edmund-letter",
       "rumor.guard-return",
       "rumor.night-sewing",
       "rumor.princess-pages",
@@ -117,8 +117,7 @@
       "evidence.uniform-samples",
       "testimony.marta-recall",
       "testimony.old-midwife",
-      "testimony.physician-limits",
-      "testimony.residue-examination"
+      "testimony.physician-limits"
     ]
   }
 }

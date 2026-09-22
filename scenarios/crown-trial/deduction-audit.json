@@ -1,48 +1,71 @@
 {
-  "description": "이사벨의 두 번째 방문과 22시 52분 생존 신호를 결합하면, 베네딕트의 비치명적 공격 이후 벌어진 최종 질식을 특정할 수 있다.",
+  "description": "모든 인물은 마지막 종 전후에 설명하지 못하는 동선을 가진다. 비범인은 묻어야 하는 진실 때문에 이유를 숨기고, 이사벨만 그 공백에서 최종 질식의 현장 흔적까지 이어진다.",
   "alibis": [
     {
       "characterId": "queen",
-      "label": "왕비전의 두 시각",
+      "label": "사라진 약병을 찾은 시종 통로",
       "cardIds": [
         "testimony.recall-messenger",
         "rumor.queen-luggage",
         "memory.queen-recall"
       ],
       "minimumRequired": 2,
-      "note": "왕비 자신의 연속 동선은 22시 40분 목격과 22시 50분 전언 중 하나 이상이 맞아야 성립한다."
+      "note": "22시 50분부터 58분까지 서재 접근 통로에 있었다. 독살 명령을 인정해야만 이유를 설명할 수 있다."
     },
     {
       "characterId": "cassian",
-      "label": "폐예배실의 기다림",
+      "label": "예배실을 비운 여덟 분",
       "cardIds": [
+        "testimony.page-sighting",
         "rumor.cassian-isabel-truth",
         "memory.cassian-sedative"
       ],
       "minimumRequired": 2,
-      "note": "카시안은 이사벨을 기다렸지만 만나지 못했다. 이 동선은 카시안의 알리바이일 뿐 이사벨을 보호하지 않는다."
+      "note": "22시 50분부터 58분까지 서쪽 회랑에 있었다. 이사벨과의 약속을 인정해야만 이유를 설명할 수 있다."
     },
     {
-      "characterId": "rowen",
-      "label": "서쪽 외문의 두 점검 시각",
+      "characterId": "isabel",
+      "label": "비어 있던 왕세자비의 방",
       "cardIds": [
-        "evidence.watch-roster",
-        "testimony.late-patrol",
-        "rumor.guard-return"
+        "testimony.study-servant",
+        "rumor.isabel-annulment",
+        "memory.isabel-alive"
       ],
       "minimumRequired": 2,
-      "note": "로웬은 22시 40분과 22시 48분 서쪽 외문 점검에 참여했다. 서재까지 편도 7분 이상이므로 베네딕트가 머문 구간에 왕복할 수 없다."
+      "note": "22시 51분부터 58분까지 방에 없었다. 이 공백만 최종 질식 도구와 푸른 망토 흔적으로 이어진다."
     },
     {
       "characterId": "seraphine",
-      "label": "서고의 두 시각",
+      "label": "서고를 비운 열 분",
       "cardIds": [
         "testimony.archive-copyist",
         "rumor.princess-pages",
-        "rumor.seraphine-copy"
+        "memory.seraphine-ledger"
       ],
       "minimumRequired": 2,
-      "note": "세라핀 자신의 연속 동선은 22시 40분 목격과 22시 50분 전언 중 하나 이상이 맞아야 성립한다."
+      "note": "22시 49분부터 59분까지 북쪽 탑 방향 회랑에 있었다. 훔친 계승법과 밀서를 인정해야만 이유를 설명할 수 있다."
+    },
+    {
+      "characterId": "benedict",
+      "label": "종 뒤 재상실을 비운 여섯 분",
+      "cardIds": [
+        "testimony.tailor",
+        "rumor.benedict-edmund-letter",
+        "memory.benedict-birth-dates"
+      ],
+      "minimumRequired": 2,
+      "note": "22시 53분부터 59분까지 동선이 없다. 앞선 제압과 숨긴 유언을 인정해야만 이유를 설명할 수 있다."
+    },
+    {
+      "characterId": "rowen",
+      "label": "교대 뒤 공식 기록에서 사라진 시간",
+      "cardIds": [
+        "testimony.late-patrol",
+        "rumor.guard-return",
+        "memory.rowen-alive"
+      ],
+      "minimumRequired": 2,
+      "note": "22시 48분부터 23시 02분까지 동선이 없다. 통행패와 선행 입실을 인정해야만 이유를 설명할 수 있다."
     }
   ],
   "culprit": {

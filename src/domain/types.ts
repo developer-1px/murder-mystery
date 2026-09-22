@@ -122,6 +122,12 @@ export interface DeductionAuditDocument {
   }
 }
 
+export interface CardRoleAuditDocument {
+  description: string
+  roles: Record<string, string>
+  cardsByPrimaryRole: Record<string, string[]>
+}
+
 export interface CommonSettingEntry {
   title: string
   subtitle: string
