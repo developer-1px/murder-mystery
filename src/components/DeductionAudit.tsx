@@ -105,7 +105,7 @@ export function DeductionAudit({ scenario, document, npcGroups, releasePlan, mem
     <section className="deduction-section"><h3>여섯 인물의 설명하지 못하는 시간</h3><div className="alibi-grid">{document.alibis.map((alibi) => {
       const character = scenario.characters.find((item) => item.id === alibi.characterId)!
       const valid = passes(alibi)
-      return <article className={valid ? 'audit-pass' : 'audit-fail'} key={alibi.characterId}><header><div><strong>{character.name}</strong><span>{alibi.label}</span></div><b>{valid ? '공백 확인' : '근거 부족'}</b></header><p>{alibi.note}</p><small>{available(alibi.cardIds).length}/{alibi.minimumRequired}개 이상 필요 · 카드 한 장만으로는 확정하지 않음</small><CardLinks ids={alibi.cardIds} /></article>
+      return <article className={valid ? 'audit-pass' : 'audit-fail'} key={alibi.characterId}><header><div><strong>{character.name}</strong><span>{alibi.label}</span></div><b>{valid ? '공백 확인' : '근거 부족'}</b></header><p>{alibi.note}</p><small>{available(alibi.cardIds).length}/{alibi.minimumRequired}개 이상 필요 · 묻어야 하는 진실 필수</small><CardLinks ids={alibi.cardIds} /></article>
     })}</div></section>
     <section className="deduction-section"><h3>{culprit.name} 특정의 다섯 축</h3><div className="deduction-axes">{document.culprit.axes.map((axis, index) => {
       const valid = passes(axis)

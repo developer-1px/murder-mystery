@@ -1,5 +1,5 @@
 {
-  "description": "각 용의자는 실제 위해 또는 살해 시도, 그것만으로는 죽지 않았다는 검시, +α가 있었다면 죽을 수 있다는 주치의 소견을 가진다. 비범인은 숨기고 싶은 진실을 공개해야 +α를 실행하지 않은 동선이 완성되고, 이사벨만 약속 장소의 부재와 현장 물증이 +α 실행으로 이어진다.",
+  "description": "공개 카드는 실제 위해, 가능한 +α, 숨은 동선의 경계까지만 만든다. 누구의 알리바이도 공개 카드만으로 완성되지 않는다. 비범인은 자신의 묻어야 하는 진실이 밝혀져야 +α를 실행하지 않은 동선이 완성되고, 이사벨의 진실은 약속 장소에도 없었던 공백을 확정한다.",
   "alibis": [
     {
       "characterId": "queen",
@@ -11,8 +11,9 @@
         "evidence.corridor-plan"
       ],
       "minimumRequired": 3,
-      "note": "22시 56분 사용하지 않은 18번 병을 폐기 화로에서 태웠다. 추가 투약은 반증되지만 혼절 및 즉위 방해 계획과 증거 인멸이 함께 드러난다.",
+      "note": "취소 명령과 화로 전표를 밝히면 22시 56분의 위치가 고정된다. 즉위 방해 계획과 증거 인멸도 함께 드러난다.",
       "requiredCardIds": [
+        "memory.queen-recall",
         "evidence.coronation-book",
         "evidence.corridor-plan"
       ]
@@ -27,8 +28,9 @@
         "evidence.corridor-plan"
       ],
       "minimumRequired": 3,
-      "note": "22시 56분 카시안은 폐예배실 안에서 답했다. 연애와 도주 약속을 인정해야 알리바이가 되고, 오지 않은 이사벨의 공백이 생긴다.",
+      "note": "도주 편지와 마지막 답신을 밝히면 22시 56분의 폐예배실 체류가 고정된다. 이사벨과의 관계도 함께 드러난다.",
       "requiredCardIds": [
+        "memory.cassian-sedative",
         "testimony.page-sighting",
         "evidence.corridor-plan"
       ]
@@ -45,7 +47,10 @@
         "memory.isabel-alive"
       ],
       "minimumRequired": 4,
-      "note": "이사벨은 방에도 약속한 폐예배실에도 없었다. 묻어야 하는 밀회 답신이 그 약속을 밝히고, 푸른 망토·뒤편 계단·은제 고리와 녹색 직물이 공백을 최종 압박 현장으로 연결한다."
+      "note": "이사벨은 방에도 약속한 폐예배실에도 없었다. 묻어야 하는 밀회 답신이 그 약속을 밝히고, 푸른 망토·뒤편 계단·은제 고리와 녹색 직물이 공백을 최종 압박 현장으로 연결한다.",
+      "requiredCardIds": [
+        "memory.isabel-alive"
+      ]
     },
     {
       "characterId": "seraphine",
@@ -58,8 +63,9 @@
         "evidence.corridor-plan"
       ],
       "minimumRequired": 3,
-      "note": "22시 54분부터 58분까지 봉인실에 있었다. 계승법 절도와 영토를 건 왕위 거래를 인정해야 밀폐 노출의 +α를 실행하지 않았음이 드러난다.",
+      "note": "긁은 출입부와 북쪽 탑 보관증을 밝히면 22시 57분의 위치가 고정된다. 계승법 절도와 밀서 은폐도 함께 드러난다.",
       "requiredCardIds": [
+        "memory.seraphine-ledger",
         "testimony.foreign-envoy",
         "evidence.corridor-plan"
       ]
@@ -75,8 +81,9 @@
         "evidence.corridor-plan"
       ],
       "minimumRequired": 3,
-      "note": "22시 56분 동쪽 기록고에서 유언을 숨겼다. 아드리안 제압과 계승 기록 조작을 인정해야 압박을 계속하지 않았음이 드러난다.",
+      "note": "유언 은폐 명령과 기록고 접수표를 밝히면 22시 56분의 위치가 고정된다. 제압과 계승 조작도 함께 드러난다.",
       "requiredCardIds": [
+        "memory.benedict-will-clause",
         "evidence.minister-dispatch",
         "evidence.corridor-plan"
       ]
@@ -90,7 +97,10 @@
         "memory.rowen-alive"
       ],
       "minimumRequired": 2,
-      "note": "22시 48분부터 23시 02분까지 동선이 없다. 통행패와 선행 입실을 인정해야만 이유를 설명할 수 있다."
+      "note": "22시 48분부터 23시 02분까지 동선이 없다. 통행패와 선행 입실을 인정해야만 이유를 설명할 수 있다.",
+      "requiredCardIds": [
+        "memory.rowen-alive"
+      ]
     }
   ],
   "culprit": {
@@ -226,9 +236,10 @@
         "rumor.queen-luggage"
       ],
       "verificationIds": [
-        "testimony.recall-messenger",
+        "memory.queen-recall",
         "evidence.coronation-book",
-        "evidence.corridor-plan"
+        "evidence.corridor-plan",
+        "testimony.recall-messenger"
       ],
       "actual": "+α 미실행. 18번 병은 거의 처음 양 그대로였고 22시 56분 폐기 화로에서 태웠다."
     },
@@ -248,10 +259,10 @@
         "rumor.cassian-quarrel"
       ],
       "verificationIds": [
-        "testimony.page-sighting",
-        "evidence.isabel-letter",
         "memory.cassian-sedative",
-        "evidence.corridor-plan"
+        "testimony.page-sighting",
+        "evidence.corridor-plan",
+        "evidence.isabel-letter"
       ],
       "actual": "+α 미실행. 22시 56분에도 폐예배실 안에서 오지 않은 이사벨을 기다렸다."
     },
@@ -271,10 +282,10 @@
         "evidence.corridor-plan"
       ],
       "verificationIds": [
-        "testimony.foreign-envoy",
-        "rumor.princess-pages",
         "memory.seraphine-ledger",
-        "evidence.corridor-plan"
+        "testimony.foreign-envoy",
+        "evidence.corridor-plan",
+        "rumor.princess-pages"
       ],
       "actual": "+α 미실행. 22시 54분부터 58분까지 북쪽 탑 봉인실에서 훔친 문서를 감췄다."
     },
@@ -294,11 +305,11 @@
         "rumor.benedict-edmund-letter"
       ],
       "verificationIds": [
-        "evidence.bell-register",
-        "testimony.bell-attendant",
-        "evidence.minister-dispatch",
         "memory.benedict-will-clause",
-        "evidence.corridor-plan"
+        "evidence.minister-dispatch",
+        "evidence.corridor-plan",
+        "evidence.bell-register",
+        "testimony.bell-attendant"
       ],
       "actual": "+α 미실행. 종 뒤 동쪽 기록고에서 선왕의 유언을 숨기고 태웠다."
     },

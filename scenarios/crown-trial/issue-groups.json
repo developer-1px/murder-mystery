@@ -1,6 +1,6 @@
 {
   "designerOnly": true,
-  "description": "다섯 용의자에게 핵심 의혹 카드 8장씩을 배정한다. 각 묶음은 실제 위해, 단독으로 부족한 검시, 죽일 수 있었던 +α, 그 +α의 실행 여부를 검증하는 동선을 결합한다.",
+  "description": "각 플레이어 쟁점은 묻어야 하는 진실 2장, 소문 2장, 탐문 2장, 물증 2장으로 맞춘다. 공개 카드 여섯 장은 살해 가설을 세우고, 진실 한 장이 숨은 행동의 신원을 확정하거나 이사벨의 공백을 더 크게 만든다.",
   "groups": [
     {
       "id": "suspicion.queen",
@@ -8,39 +8,39 @@
       "question": "즉위식을 막기 위해 혼절을 명령했다가 취소한 엘레노라가 마지막 종 뒤 18번 병을 되찾아 실제로 투약했는가?",
       "fragments": [
         {
-          "id": "suspicion.queen.motive",
-          "label": "동기 2장",
+          "id": "suspicion.queen.truths",
+          "label": "묻어야 하는 진실 2장",
           "cardIds": [
-            "memory.queen-recall",
-            "rumor.queen-old-letter"
+            "memory.queen-poison",
+            "memory.queen-recall"
           ]
         },
         {
-          "id": "suspicion.queen.opportunity",
-          "label": "추가 투약처럼 보이는 공백 2장",
+          "id": "suspicion.queen.rumors",
+          "label": "동기와 공백의 소문 2장",
           "cardIds": [
-            "testimony.recall-messenger",
+            "rumor.queen-old-letter",
             "rumor.queen-luggage"
           ]
         },
         {
-          "id": "suspicion.queen.action",
-          "label": "혼절 계획 2장",
+          "id": "suspicion.queen.testimonies",
+          "label": "명령과 외출의 탐문 2장",
           "cardIds": [
             "testimony.marta-order",
-            "evidence.belladonna-ledger"
+            "testimony.recall-messenger"
           ]
         },
         {
-          "id": "suspicion.queen.rebuttal",
-          "label": "취소와 남은 약의 행방 2장",
+          "id": "suspicion.queen.evidence",
+          "label": "약병의 물증 2장",
           "cardIds": [
-            "testimony.marta-recall",
+            "evidence.belladonna-ledger",
             "evidence.coronation-book"
           ]
         }
       ],
-      "auditNote": "실제 시도·위해와 가짜 스모킹 건은 범행 가설을 세우고, 검시는 단독 치사를 막으며, 주치의 소견은 +α를 열어 둔다. 마지막에는 숨은 동선으로 +α의 실행 여부를 검증한다."
+      "auditNote": "두 진실 가운데 하나가 사망 시간의 숨은 행동을 담는다. 소문·탐문·물증만으로는 신원이 고정되지 않으며, 해당 진실과 공식 사망 시간·이동 소요표를 함께 연결해야 한다."
     },
     {
       "id": "suspicion.cassian",
@@ -48,39 +48,39 @@
       "question": "아드리안을 가격한 카시안이 사망 시간에 돌아와 같은 부위를 다시 때렸는가?",
       "fragments": [
         {
-          "id": "suspicion.cassian.motive",
-          "label": "동기 2장",
-          "cardIds": [
-            "memory.cassian-sedative",
-            "evidence.isabel-letter"
-          ]
-        },
-        {
-          "id": "suspicion.cassian.opportunity",
-          "label": "약속 장소의 숨은 알리바이 2장",
-          "cardIds": [
-            "testimony.page-sighting",
-            "evidence.isabel-letter"
-          ]
-        },
-        {
-          "id": "suspicion.cassian.action",
-          "label": "형제간 폭행 2장",
+          "id": "suspicion.cassian.truths",
+          "label": "묻어야 하는 진실 2장",
           "cardIds": [
             "memory.cassian-assault",
-            "rumor.cassian-quarrel"
+            "memory.cassian-sedative"
           ]
         },
         {
-          "id": "suspicion.cassian.trace",
-          "label": "폭행 시각의 물증 2장",
+          "id": "suspicion.cassian.rumors",
+          "label": "폭행과 밀회의 소문 2장",
+          "cardIds": [
+            "rumor.cassian-quarrel",
+            "rumor.cassian-isabel-truth"
+          ]
+        },
+        {
+          "id": "suspicion.cassian.testimonies",
+          "label": "예배실과 마지막 호출 탐문 2장",
+          "cardIds": [
+            "testimony.page-sighting",
+            "testimony.bell-attendant"
+          ]
+        },
+        {
+          "id": "suspicion.cassian.evidence",
+          "label": "첫 충돌의 물증 2장",
           "cardIds": [
             "evidence.stopped-watch",
             "evidence.royal-recognition"
           ]
         }
       ],
-      "auditNote": "실제 시도·위해와 가짜 스모킹 건은 범행 가설을 세우고, 검시는 단독 치사를 막으며, 주치의 소견은 +α를 열어 둔다. 마지막에는 숨은 동선으로 +α의 실행 여부를 검증한다."
+      "auditNote": "두 진실 가운데 하나가 사망 시간의 숨은 행동을 담는다. 소문·탐문·물증만으로는 신원이 고정되지 않으며, 해당 진실과 공식 사망 시간·이동 소요표를 함께 연결해야 한다."
     },
     {
       "id": "suspicion.seraphine",
@@ -88,39 +88,39 @@
       "question": "알레르기 유발 문서를 펼친 세라핀이 약효가 오른 뒤 밀폐 노출까지 이어 갔는가?",
       "fragments": [
         {
-          "id": "suspicion.seraphine.motive",
-          "label": "동기 2장",
+          "id": "suspicion.seraphine.truths",
+          "label": "묻어야 하는 진실 2장",
           "cardIds": [
             "memory.seraphine-archive",
-            "rumor.marriage"
-          ]
-        },
-        {
-          "id": "suspicion.seraphine.opportunity",
-          "label": "기회·동선 2장",
-          "cardIds": [
-            "rumor.seraphine-copy",
-            "evidence.corridor-plan"
-          ]
-        },
-        {
-          "id": "suspicion.seraphine.action",
-          "label": "알레르기와 문서 절도 2장",
-          "cardIds": [
-            "evidence.marriage-treaty",
             "memory.seraphine-ledger"
           ]
         },
         {
-          "id": "suspicion.seraphine.rebuttal",
-          "label": "북쪽 탑의 숨은 알리바이 2장",
+          "id": "suspicion.seraphine.rumors",
+          "label": "계승과 북쪽 탑 소문 2장",
           "cardIds": [
-            "testimony.foreign-envoy",
+            "rumor.marriage",
             "rumor.princess-pages"
+          ]
+        },
+        {
+          "id": "suspicion.seraphine.testimonies",
+          "label": "서고와 봉인실 탐문 2장",
+          "cardIds": [
+            "testimony.isabel-attendant",
+            "testimony.foreign-envoy"
+          ]
+        },
+        {
+          "id": "suspicion.seraphine.evidence",
+          "label": "혼인과 계승의 물증 2장",
+          "cardIds": [
+            "evidence.marriage-treaty",
+            "evidence.succession-leaf"
           ]
         }
       ],
-      "auditNote": "실제 시도·위해와 가짜 스모킹 건은 범행 가설을 세우고, 검시는 단독 치사를 막으며, 주치의 소견은 +α를 열어 둔다. 마지막에는 숨은 동선으로 +α의 실행 여부를 검증한다."
+      "auditNote": "두 진실 가운데 하나가 사망 시간의 숨은 행동을 담는다. 소문·탐문·물증만으로는 신원이 고정되지 않으며, 해당 진실과 공식 사망 시간·이동 소요표를 함께 연결해야 한다."
     },
     {
       "id": "suspicion.benedict",
@@ -128,39 +128,39 @@
       "question": "아드리안의 입을 막은 베네딕트가 사망 시간까지 압박을 계속하거나 다시 돌아왔는가?",
       "fragments": [
         {
-          "id": "suspicion.benedict.motive",
-          "label": "동기 2장",
+          "id": "suspicion.benedict.truths",
+          "label": "묻어야 하는 진실 2장",
           "cardIds": [
             "memory.benedict-will-clause",
-            "rumor.missing-document"
+            "memory.benedict-birth-dates"
           ]
         },
         {
-          "id": "suspicion.benedict.opportunity",
-          "label": "서재 진입 2장",
+          "id": "suspicion.benedict.rumors",
+          "label": "유언과 기록고 소문 2장",
           "cardIds": [
-            "rumor.multiple-footsteps",
-            "testimony.night-attendant"
+            "rumor.missing-document",
+            "rumor.benedict-edmund-letter"
           ]
         },
         {
-          "id": "suspicion.benedict.action",
-          "label": "제압 흔적 2장",
+          "id": "suspicion.benedict.testimonies",
+          "label": "서재 제압과 이탈 탐문 2장",
           "cardIds": [
-            "memory.benedict-birth-dates",
-            "evidence.black-cloth"
+            "testimony.night-attendant",
+            "testimony.tailor"
           ]
         },
         {
-          "id": "suspicion.benedict.rebuttal",
-          "label": "동쪽 기록고의 숨은 알리바이 2장",
+          "id": "suspicion.benedict.evidence",
+          "label": "정복과 기록고 물증 2장",
           "cardIds": [
-            "evidence.minister-dispatch",
-            "evidence.burnt-will"
+            "evidence.black-cloth",
+            "evidence.minister-dispatch"
           ]
         }
       ],
-      "auditNote": "실제 시도·위해와 가짜 스모킹 건은 범행 가설을 세우고, 검시는 단독 치사를 막으며, 주치의 소견은 +α를 열어 둔다. 마지막에는 숨은 동선으로 +α의 실행 여부를 검증한다."
+      "auditNote": "두 진실 가운데 하나가 사망 시간의 숨은 행동을 담는다. 소문·탐문·물증만으로는 신원이 고정되지 않으며, 해당 진실과 공식 사망 시간·이동 소요표를 함께 연결해야 한다."
     },
     {
       "id": "suspicion.isabel",
@@ -168,39 +168,39 @@
       "question": "수면제를 먹인 이사벨이 약속 장소 대신 서재로 돌아가 넓은 물건으로 호흡까지 막았는가?",
       "fragments": [
         {
-          "id": "suspicion.isabel.motive",
-          "label": "동기 2장",
+          "id": "suspicion.isabel.truths",
+          "label": "묻어야 하는 진실 2장",
           "cardIds": [
             "memory.isabel-petition",
-            "evidence.annulment-draft"
+            "memory.isabel-alive"
           ]
         },
         {
-          "id": "suspicion.isabel.opportunity",
-          "label": "두 번째 동선 2장",
+          "id": "suspicion.isabel.rumors",
+          "label": "혼인 갈등과 귀환 소문 2장",
           "cardIds": [
-            "rumor.secret-letter",
-            "rumor.isabel-annulment"
+            "rumor.isabel-annulment",
+            "rumor.secret-letter"
           ]
         },
         {
-          "id": "suspicion.isabel.action",
-          "label": "수면제 투여 2장",
+          "id": "suspicion.isabel.testimonies",
+          "label": "비어 있던 두 장소 탐문 2장",
           "cardIds": [
             "testimony.study-servant",
-            "evidence.second-glass"
+            "testimony.page-sighting"
           ]
         },
         {
-          "id": "suspicion.isabel.trace",
-          "label": "가지 않은 밀회와 현장 흔적 2장",
+          "id": "suspicion.isabel.evidence",
+          "label": "수면제와 현장 흔적 2장",
           "cardIds": [
-            "memory.isabel-alive",
+            "evidence.sedative-prescription",
             "evidence.broken-seal"
           ]
         }
       ],
-      "auditNote": "실제 시도·위해와 가짜 스모킹 건은 범행 가설을 세우고, 검시는 단독 치사를 막으며, 주치의 소견은 +α를 열어 둔다. 마지막에는 숨은 동선으로 +α의 실행 여부를 검증한다."
+      "auditNote": "두 진실 가운데 하나가 사망 시간의 숨은 행동을 담는다. 소문·탐문·물증만으로는 신원이 고정되지 않으며, 해당 진실과 공식 사망 시간·이동 소요표를 함께 연결해야 한다."
     },
     {
       "id": "reconstruction.final-act",
@@ -243,26 +243,39 @@
       "question": "살해범이 아닌 로웬의 경비 공백과 기록 조작이 수사 결과를 얼마나 흔드는가?",
       "fragments": [
         {
-          "id": "blank-pass",
-          "label": "최종 소지자를 모르는 통행패",
+          "id": "investigator.rowen.truths",
+          "label": "묻어야 하는 진실 2장",
           "cardIds": [
             "memory.rowen-order",
-            "evidence.guard-log",
-            "testimony.guard-withdrawal"
+            "memory.rowen-alive"
           ]
         },
         {
-          "id": "early-discovery",
-          "label": "공식 경보 전 발견과 기록 수정",
+          "id": "investigator.rowen.rumors",
+          "label": "선행 입실과 공백 소문 2장",
           "cardIds": [
-            "memory.rowen-alive",
             "rumor.rowen-second-visit",
-            "evidence.ink-blotter",
+            "rumor.guard-return"
+          ]
+        },
+        {
+          "id": "investigator.rowen.testimonies",
+          "label": "경비 철수와 봉쇄 탐문 2장",
+          "cardIds": [
+            "testimony.guard-withdrawal",
             "testimony.body-discovery"
+          ]
+        },
+        {
+          "id": "investigator.rowen.evidence",
+          "label": "근무일지 조작 물증 2장",
+          "cardIds": [
+            "evidence.guard-log",
+            "evidence.ink-blotter"
           ]
         }
       ],
-      "auditNote": "로웬은 살해 의혹 카드 수 비교에서 제외한다. 그의 카드는 진범 특정이 아니라 수사관의 신뢰와 공모 오해를 만든다."
+      "auditNote": "두 진실 가운데 하나가 사망 시간의 숨은 행동을 담는다. 소문·탐문·물증만으로는 신원이 고정되지 않으며, 해당 진실과 공식 사망 시간·이동 소요표를 함께 연결해야 한다."
     }
   ]
 }
