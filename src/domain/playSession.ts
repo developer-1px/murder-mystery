@@ -17,6 +17,8 @@ export interface PlaySession {
   choice?: { deckId: string; cardIds: string[]; participantIds: string[] }
   locationChoices: Record<string, string>
   visitedNpcs: Record<string, string[]>
+  // Added after the first playtest format; absent in older saved sessions.
+  roundVisitedNpcs?: string[]
   inspectionStage: 'select' | 'result'
   investigationStage: 'locations' | 'cards'
   investigationQueue: string[]
@@ -117,7 +119,7 @@ export function createPlaySession(assets: PlayAssets): PlaySession {
     decks: Object.fromEntries(assets.groups.map((group) => [group.id,
       group.kind === 'memory' ? group.cards.map((card) => card.id) : shuffled(group.cards.map((card) => card.id)),
     ])),
-    locationChoices: {}, visitedNpcs: Object.fromEntries(ids.map((id) => [id, []])),
+    locationChoices: {}, visitedNpcs: Object.fromEntries(ids.map((id) => [id, []])), roundVisitedNpcs: [],
     inspectionStage: 'select', investigationStage: 'locations', investigationQueue: [],
     inspections: [], publicCards: [], accusations: {}, truthTrades: [], truthChoices: {}, truthOutcomes: {}, log: [],
   }
@@ -148,6 +150,7 @@ function nextPlayer(session: PlaySession, followingPhase: PlayPhase, assets: Pla
 function nextRound(session: PlaySession, assets: PlayAssets): void {
   session.round += 1
   session.locationChoices = {}
+  session.roundVisitedNpcs = []
   session.investigationQueue = []
   session.investigationStage = 'locations'
   session.inspectionStage = 'select'
@@ -156,13 +159,15 @@ function nextRound(session: PlaySession, assets: PlayAssets): void {
   record(session, `${session.round}라운드를 시작합니다.`)
 }
 
-// 현재 라운드의 남은 인물이 각자 방문 가능한 NPC에서 한 장씩 받을 여지를 남긴다.
-// 미래 라운드의 전략을 대신 결정하지 않으며, 전역 NPC 선점 규칙도 만들지 않는다.
+// 현재 라운드의 남은 인물도 서로 다른 NPC를 하나씩 선택할 수 있어야 한다.
+// 각 인물은 자신이 이전 라운드에 탐문한 NPC를 다시 선택할 수 없다.
 function leavesNpcChoices(session: PlaySession, selectedDeckId: string, assets: PlayAssets): boolean {
   const pending = playerIds(assets).slice(session.turnIndex + 1)
-  const slots = assets.groups.filter((group) => group.kind === 'testimony').flatMap((group) =>
-    Array.from({ length: Math.max(0, (session.decks[group.id]?.length ?? 0) - Number(group.id === selectedDeckId)) }, () => group.id),
-  )
+  const claimed = new Set(session.roundVisitedNpcs ?? [])
+  const slots = assets.groups.filter((group) => group.kind === 'testimony'
+    && group.id !== selectedDeckId
+    && !claimed.has(group.id)
+    && (session.decks[group.id]?.length ?? 0) > 0).map((group) => group.id)
   const assigned = new Map<number, string>()
   function place(actorId: string, seen: Set<number>): boolean {
     for (let index = 0; index < slots.length; index += 1) {
@@ -190,7 +195,8 @@ export function getDeckBlockReason(session: PlaySession, group: CardGroup, asset
   if (!remaining) return '이 덱에 남은 카드가 없습니다.'
   if (group.kind === 'testimony') {
     if (session.visitedNpcs[session.actorId]?.includes(group.id)) return '이 인물은 이전 라운드에 이미 탐문한 NPC입니다.'
-    if (!leavesNpcChoices(session, group.id, assets)) return '이 NPC의 마지막 카드는 이번 라운드에 아직 탐문하지 않은 다른 인물에게 필요합니다.'
+    if (session.roundVisitedNpcs?.includes(group.id)) return '이번 라운드에 다른 인물이 이미 탐문한 NPC입니다.'
+    if (!leavesNpcChoices(session, group.id, assets)) return '남은 인물들이 서로 다른 NPC를 탐문할 수 있도록 다른 NPC를 선택하세요.'
   }
   if (group.kind === 'evidence') {
     if (session.locationChoices[session.actorId]) return '이미 조사 장소를 선택했습니다.'
@@ -403,6 +409,7 @@ export function transitionPlay(session: PlaySession, action: PlayAction, assets:
       if (session.phase === 'rumor') nextPlayer(next, 'testimony', assets)
       if (session.phase === 'testimony') {
         next.visitedNpcs[next.actorId].push(choice.deckId)
+        next.roundVisitedNpcs = [...(next.roundVisitedNpcs ?? []), choice.deckId]
         nextPlayer(next, 'investigation', assets)
       }
       if (session.phase === 'investigation') nextInvestigationGroup(next, assets)
