@@ -128,13 +128,13 @@ export function CourtSimulator({ scenario, npcGroups, memoryStages, inspectionCa
     </header>
     <div className="court-simulator__controls">
       {[1, 2, 3].map(round => <button type="button" key={round} aria-pressed={court === round} onClick={() => setCourt(round)}><b>제{round}재판</b><span>{round * 7}장 누적</span></button>)}
-      <div><span>현재 공개</span><b>{visible.length}장</b>{kindCounts.map(item => <small key={item.kind}>{item.kind === 'rumor' ? '소문' : item.kind === 'testimony' ? '탐문' : '조사·검사'} {item.count}</small>)}</div>
+      <div><span>현재 공개</span><b>{visible.length}장</b>{kindCounts.map(item => <small key={item.kind}>{item.kind === 'rumor' ? '소문' : item.kind === 'testimony' ? '탐문' : '조사·검시'} {item.count}</small>)}</div>
     </div>
     <div className="court-simulator__rounds">
       {result.rounds.slice(0, court).map((entries, roundIndex) => <section key={roundIndex} className={roundIndex + 1 === court ? 'is-current' : ''}>
         <header><div><span>COURT {roundIndex + 1}</span><h3>제{roundIndex + 1}재판에 새로 공개된 카드</h3></div><b>{entries.length}장</b></header>
         <div className="court-simulator__cards">{entries.map(entry => <article key={`${entry.source}-${entry.actor.id}-${entry.card.id}`}>
-          <p>{entry.source === 'inspection' ? <><strong>로웬</strong> · 검사 결과</> : <><strong>{entry.actor.name}</strong> · 제출{entry.target && <> → {entry.target.name}</>}</>}<em>{entry.source === 'inspection' ? '검사 기준' : roleLabels[roleByCard.get(entry.card.id) ?? ''] ?? '역할 미지정'}</em></p>
+          <p>{entry.source === 'inspection' ? <><strong>로웬</strong> · 검시 결과</> : <><strong>{entry.actor.name}</strong> · 제출{entry.target && <> → {entry.target.name}</>}</>}<em>{entry.source === 'inspection' ? '검시 기준' : roleLabels[roleByCard.get(entry.card.id) ?? ''] ?? '역할 미지정'}</em></p>
           <CardView card={entry.card} onClick={() => setSelected(entry.card)} />
         </article>)}</div>
       </section>)}
