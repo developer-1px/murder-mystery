@@ -63,9 +63,9 @@ export function CardLibrary({ scenario, issues, npcGroups, memoryStages }: Props
       </div>
 
       <details className="scenario-notes" open={params.get('profiles') === '1' || !!params.get('profile')}>
-        <summary onClick={(event) => { event.preventDefault(); update({ profiles: params.get('profiles') === '1' || params.has('profile') ? null : '1', profile: null }) }}>인물 설정서</summary>
+        <summary onClick={(event) => { event.preventDefault(); update({ profiles: params.get('profiles') === '1' || params.has('profile') ? null : '1', profile: null }) }}>공개된 인물 정보</summary>
         <div>{scenario.characters.map((character) => <details className="character-profile" key={character.id} open={params.get('profile') === character.id}>
-          <summary onClick={(event) => { event.preventDefault(); update({ profiles: '1', profile: params.get('profile') === character.id ? null : character.id }) }}>{character.name} · {character.title}</summary><p>{character.publicProfile}</p><p><strong>욕망</strong> · {character.desire}</p><p><strong>파멸</strong> · {character.ruin}</p><Link to={`/characters/${segment(character.id)}`}>인물 설정서 전체 보기 ↗</Link>
+          <summary onClick={(event) => { event.preventDefault(); update({ profiles: '1', profile: params.get('profile') === character.id ? null : character.id }) }}>{character.name} · {character.title}</summary><p>{character.publicProfile}</p>
         </details>)}</div>
       </details>
 
