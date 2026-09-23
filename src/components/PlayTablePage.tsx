@@ -271,7 +271,7 @@ function Nominations({ session }: { session: PlaySession }) {
 }
 
 function PublicRecord({ session, onRead }: { session: PlaySession; onRead: (id: string) => void }) {
-  return <div className="play-record"><header><span className="eyebrow">THE COURT RECORD</span><h3>공개된 사실만 남습니다.</h3><p>재판에 제출한 증거와 공개된 검시 결과입니다. 비공개 손패와 미공개 지목은 표시하지 않습니다.</p></header>
+  return <div className="play-record"><header><span className="eyebrow">THE COURT RECORD</span><h3>재판에 제출된 기록</h3><p>재판에 제출한 증거와 공개된 검시 결과입니다. 비공개 손패와 미공개 지목은 표시하지 않습니다.</p></header>
     {!session.publicCards.length && <div className="play-empty">아직 재판이 열리지 않았습니다.<br />수집한 카드는 각자의 손패에 보관됩니다.</div>}
     {[1, 2, 3].map(round => { const entries = session.publicCards.filter(entry => entry.round === round); return entries.length ? <section key={round}><h4>제{round}재판 <span>{entries.length}장</span></h4><div className="play-record-cards">{entries.map(entry => <div key={entry.cardId}><small>{entry.source === 'inspection' ? '로웬 · 검시 결과' : `${player(entry.actorId).name} · 제출 증거`}</small><CardView card={cards.get(entry.cardId)!} onClick={() => onRead(entry.cardId)} /></div>)}</div></section> : null })}
     {['defense', 'indictment', 'complete'].includes(session.phase) && <section><h4>최종 범인 지목</h4><Nominations session={session} /></section>}
@@ -282,6 +282,7 @@ function PublicRecord({ session, onRead }: { session: PlaySession; onRead: (id: 
 function CharacterSheet({ actor, session, onRead }: { actor: Character; session: PlaySession; onRead: (id: string) => void }) {
   const setting = characterSettings.find(setting => setting.id === actor.id)
   return <div className="play-character"><header><span className="eyebrow">{actor.title} · PRIVATE</span><h3>{actor.name}</h3><p>{setting?.objective ?? actor.desire}</p></header><div className="play-character-memories">{session.hands[actor.id].filter(id => cards.get(id)?.kind === 'memory').map(id => <CardView key={id} card={cards.get(id)!} onClick={() => onRead(id)} />)}</div>
+    {setting && <section><h4>나의 채점표</h4><p>{setting.scoreGuide}</p><div className="play-character-scores">{[...setting.victoryConditions, ...setting.ruinConditions].map(condition => <div key={condition.result}><span>{condition.result}</span><strong>{condition.score > 0 ? '+' : ''}{condition.score}</strong></div>)}</div></section>}
     {setting && <section><h4>내 진실의 무게</h4><p>카드에 적힌 사실이 당신의 목표와 관계에 왜 치명적인지 확인하세요.</p>{setting.finalActions.map(truth => <div key={truth.id}><strong>{truth.title}</strong><p>{truth.intent}</p><p>{truth.omen}</p></div>)}</section>}
     {actor.id === 'rowen' && session.inspections.length > 0 && <section><h4>내 검시 결과</h4><p>아직 공개하지 않은 결과도 이곳에서 다시 읽을 수 있습니다.</p><div className="play-record-cards">{session.inspections.map(entry => <div key={entry.cardId}><small>{entry.round}라운드 · {entry.published ? '공개 완료' : '나만 아는 결과'}</small><CardView card={cards.get(entry.cardId)!} onClick={() => onRead(entry.cardId)} /></div>)}</div></section>}
     {setting?.sections.map(section => <section key={section.title}><h4>{section.title}</h4>{section.paragraphs?.map(text => <p key={text}>{text}</p>)}{section.relations?.map(relation => <p key={relation.name}><strong>{relation.name}</strong> — {relation.description}</p>)}{section.points?.map(text => <p key={text}>{text}</p>)}</section>)}

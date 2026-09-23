@@ -157,6 +157,9 @@
 .play-character > section { margin: 25px 0; max-width: 820px; }
 .play-character > section h4 { font: 700 18px 'Gowun Batang', serif; color: #ddccaa; }
 .play-character > section p { font: 13px/1.95 'Gowun Batang', serif; color: #bec9b1; }
+.play-character-scores { display: grid; gap: 7px; margin-top: 15px; }
+.play-character-scores > div { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; padding: 8px 12px; border: 1px solid #9fa98033; border-radius: 5px; background: #edf0dd0d; font: 13px/1.7 'Gowun Batang', serif; }
+.play-character-scores strong { flex: none; color: #e9d5a8; font: 700 17px 'Gowun Batang', serif; }
 .play-history { position: fixed; z-index: 50; top: 64px; right: 12px; width: 350px; max-height: calc(100dvh - 82px); overflow: auto; border: 1px solid #9b8d6e; border-radius: 8px; padding: 20px; background: #1b2b22; color: #ddd2b5; box-shadow: 0 12px 50px #0009; }
 .play-history header { display: flex; align-items: center; justify-content: space-between; }
 .play-history h3 { margin: 0; font: 700 20px 'Gowun Batang', serif; }
