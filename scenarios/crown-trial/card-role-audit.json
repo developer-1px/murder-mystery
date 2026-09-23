@@ -11,7 +11,9 @@
     "timeline": "시각·동선·생존 여부의 경계를 고정한다. 공개 카드만으로 특정 인물의 알리바이를 완성하지 않는다",
     "rebuttal": "그럴듯하지만 잘못된 단독 결론 하나를 명시적으로 제거한다",
     "medical_hypothesis": "주치의가 병력을 근거로 +α가 있었다면 치명적일 수 있었다는 가능성과 함정을 제시한다",
-    "movement_rumor": "사건 흐름 속 특정 장소의 이상한 일이나 목격담을 전하되, 인물·신분·성별·복장·이니셜을 드러내지 않아 누구의 동선인지 확정할 수 없게 한다"
+    "movement_rumor": "사건 흐름 속 특정 장소의 이상한 일이나 목격담을 전하되, 인물·신분·성별·복장·이니셜을 드러내지 않아 누구의 동선인지 확정할 수 없게 한다",
+    "rumor_identification": "익명 소문의 장면과 맞춰 그 인물이 누구인지 특정한다",
+    "movement_testimony": "출입·부재·옮겨진 물건을 장소 증거와 맞춰 행적을 추론한다"
   },
   "cardsByPrimaryRole": {
     "buried_truth": [
@@ -29,8 +31,7 @@
       "memory.seraphine-ledger"
     ],
     "motive": [
-      "evidence.annulment-draft",
-      "testimony.dinner-steward"
+      "evidence.annulment-draft"
     ],
     "psychological_evidence": [
       "rumor.apothecary-visit",
@@ -65,44 +66,30 @@
     ],
     "desire": [
       "evidence.guard-charter",
-      "evidence.watch-roster",
-      "testimony.page-sighting"
+      "evidence.watch-roster"
     ],
     "ruin": [
       "evidence.belladonna-ledger",
       "evidence.repaired-coat",
       "evidence.sedative-prescription",
-      "evidence.stopped-watch",
-      "testimony.isabel-attendant",
-      "testimony.marta-order"
+      "evidence.stopped-watch"
     ],
     "secret_hint": [
       "evidence.royal-birth-register",
-      "evidence.young-benedict-letter"
+      "evidence.young-benedict-letter",
+      "testimony.marta-order",
+      "testimony.page-sighting",
+      "testimony.archivist",
+      "testimony.minister-clerk",
+      "testimony.agnes-wet-sleeve"
     ],
     "timeline": [
       "evidence.bell-register",
       "evidence.minister-dispatch",
-      "testimony.apothecary-counter",
-      "testimony.archive-copyist",
-      "testimony.archivist",
-      "testimony.bell-attendant",
-      "testimony.minister-clerk",
-      "testimony.night-attendant",
-      "testimony.recall-messenger",
-      "testimony.study-servant",
-      "testimony.tailor",
-      "testimony.wardrobe-keeper",
-      "testimony.foreign-envoy",
-      "evidence.isabel-letter",
-      "testimony.agnes-locked-door",
-      "testimony.agnes-unanswered-calls",
-      "testimony.agnes-blue-cloak",
-      "testimony.agnes-wet-sleeve"
+      "evidence.isabel-letter"
     ],
     "rebuttal": [
       "evidence.recall-slip",
-      "testimony.marta-recall",
       "testimony.old-midwife"
     ],
     "medical_hypothesis": [
@@ -123,6 +110,25 @@
       "rumor.anonymous-archive-knock",
       "rumor.anonymous-council-room",
       "rumor.anonymous-gate-bolt"
+    ],
+    "rumor_identification": [
+      "testimony.apothecary-counter",
+      "testimony.dinner-steward",
+      "testimony.archive-copyist",
+      "testimony.night-attendant",
+      "testimony.agnes-locked-door"
+    ],
+    "movement_testimony": [
+      "testimony.marta-recall",
+      "testimony.recall-messenger",
+      "testimony.study-servant",
+      "testimony.bell-attendant",
+      "testimony.foreign-envoy",
+      "testimony.isabel-attendant",
+      "testimony.wardrobe-keeper",
+      "testimony.tailor",
+      "testimony.agnes-unanswered-calls",
+      "testimony.agnes-blue-cloak"
     ]
   }
 }

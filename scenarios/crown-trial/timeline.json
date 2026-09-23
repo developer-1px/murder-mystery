@@ -52,7 +52,8 @@
       "summary": "이사벨이 아드리안에게 혼인 무효와 아이의 배제 계획을 듣고 자기 방으로 돌아간다.",
       "cardIds": [
         "evidence.annulment-draft",
-        "testimony.isabel-attendant"
+        "testimony.agnes-locked-door",
+        "testimony.study-servant"
       ]
     },
     {
@@ -144,7 +145,7 @@
         "memory.isabel-alive",
         "testimony.page-sighting",
         "evidence.mud-print",
-        "testimony.study-servant"
+        "testimony.agnes-blue-cloak"
       ]
     },
     {
@@ -154,7 +155,7 @@
       "cardIds": [
         "evidence.broken-seal",
         "evidence.mud-print",
-        "testimony.study-servant"
+        "testimony.agnes-blue-cloak"
       ]
     },
     {
@@ -192,7 +193,7 @@
     "testimony.apothecary-counter": "queen",
     "testimony.dinner-steward": "cassian",
     "testimony.page-sighting": "cassian",
-    "testimony.study-servant": "cassian",
+    "testimony.study-servant": "isabel",
     "testimony.bell-attendant": "cassian",
     "testimony.physician-limits": "rowen",
     "testimony.head-examination": "rowen",
@@ -201,7 +202,7 @@
     "testimony.archivist": "seraphine",
     "testimony.archive-copyist": "seraphine",
     "testimony.foreign-envoy": "seraphine",
-    "testimony.isabel-attendant": "isabel",
+    "testimony.isabel-attendant": "seraphine",
     "testimony.minister-clerk": "benedict",
     "testimony.tailor": "benedict",
     "testimony.wardrobe-keeper": "benedict",

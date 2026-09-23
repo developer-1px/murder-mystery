@@ -39,7 +39,7 @@
       "characterId": "isabel",
       "label": "약속 장소에도 방에도 없던 왕세자비",
       "cardIds": [
-        "testimony.study-servant",
+        "testimony.agnes-blue-cloak",
         "testimony.page-sighting",
         "memory.cassian-sedative",
         "testimony.agnes-unanswered-calls",
@@ -126,7 +126,7 @@
           "inspection.neck",
           "evidence.broken-seal",
           "evidence.mud-print",
-          "testimony.study-servant"
+          "testimony.agnes-blue-cloak"
         ],
         "paths": [
           [
@@ -135,7 +135,7 @@
           ],
           [
             "evidence.broken-seal",
-            "testimony.study-servant"
+            "testimony.agnes-blue-cloak"
           ],
           [
             "evidence.broken-seal",
@@ -149,7 +149,7 @@
         "cardIds": [
           "memory.isabel-alive",
           "testimony.page-sighting",
-          "testimony.study-servant",
+          "testimony.agnes-blue-cloak",
           "testimony.agnes-unanswered-calls",
           "evidence.mud-print"
         ],
@@ -159,7 +159,7 @@
             "testimony.page-sighting"
           ],
           [
-            "testimony.study-servant",
+            "testimony.agnes-blue-cloak",
             "testimony.agnes-unanswered-calls",
             "evidence.mud-print"
           ]
@@ -324,9 +324,8 @@
       "verificationIds": [
         "memory.isabel-alive",
         "testimony.page-sighting",
-        "testimony.study-servant",
-        "testimony.agnes-unanswered-calls",
         "testimony.agnes-blue-cloak",
+        "testimony.agnes-unanswered-calls",
         "evidence.mud-print",
         "evidence.broken-seal"
       ],
