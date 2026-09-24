@@ -1,5 +1,5 @@
 {
-  "description": "공개 카드는 실제 위해, 가능한 +α, 숨은 동선의 경계까지만 만든다. 누구의 알리바이도 공개 카드만으로 완성되지 않는다. 비범인은 자신의 묻어야 하는 진실이 밝혀져야 +α를 실행하지 않은 동선이 완성되고, 이사벨의 진실은 약속 장소에도 없었던 공백을 확정한다.",
+  "description": "공개 카드는 실제 위해와 숨은 동선의 단서를 만든다. 진실과 현장 증거를 맞추면 기록된 순간의 위치가 드러나지만, 이동 소요표 없이 연속 알리바이까지 자동 확정하지 않는다. 최종 실행은 생존 신호·사인·재방문 흔적을 함께 대조한다.",
   "alibis": [
     {
       "characterId": "queen",
@@ -7,32 +7,30 @@
       "cardIds": [
         "testimony.recall-messenger",
         "evidence.coronation-book",
-        "memory.queen-recall",
-        "evidence.corridor-plan"
+        "memory.queen-recall"
       ],
       "minimumRequired": 3,
-      "note": "취소 명령과 화로 전표를 밝히면 22시 56분의 위치가 고정된다. 즉위 방해 계획과 증거 인멸도 함께 드러난다.",
+      "note": "취소 명령과 화로 전표를 밝히면 22시 56분의 위치가 고정된다. 즉위 방해 계획과 증거 인멸도 함께 드러난다. 이동 가능성은 별도의 이동 소요표와 생존 신호를 함께 대조한다. 이 조합은 기록된 순간의 위치를 뒷받침하며, 사망 시간 내내 머물렀다는 연속 알리바이까지 증명하지 않는다.",
       "requiredCardIds": [
         "memory.queen-recall",
         "evidence.coronation-book",
-        "evidence.corridor-plan"
+        "testimony.recall-messenger"
       ]
     },
     {
       "characterId": "cassian",
       "label": "닫힌 폐예배실 안의 왕자",
       "cardIds": [
-        "testimony.page-sighting",
+        "testimony.bell-attendant",
         "evidence.isabel-letter",
-        "memory.cassian-sedative",
-        "evidence.corridor-plan"
+        "memory.cassian-sedative"
       ],
       "minimumRequired": 3,
-      "note": "도주 편지와 마지막 답신을 밝히면 22시 56분의 폐예배실 체류가 고정된다. 이사벨과의 관계도 함께 드러난다.",
+      "note": "도주 편지와 마지막 답신을 밝히면 22시 56분의 폐예배실 체류가 고정된다. 이사벨과의 관계도 함께 드러난다. 이동 가능성은 별도의 이동 소요표와 생존 신호를 함께 대조한다. 이 조합은 기록된 순간의 위치를 뒷받침하며, 사망 시간 내내 머물렀다는 연속 알리바이까지 증명하지 않는다.",
       "requiredCardIds": [
         "memory.cassian-sedative",
-        "testimony.page-sighting",
-        "evidence.corridor-plan"
+        "testimony.bell-attendant",
+        "evidence.isabel-letter"
       ]
     },
     {
@@ -40,14 +38,14 @@
       "label": "약속 장소에도 방에도 없던 왕세자비",
       "cardIds": [
         "testimony.agnes-blue-cloak",
-        "testimony.page-sighting",
+        "testimony.bell-attendant",
         "memory.cassian-sedative",
         "testimony.agnes-unanswered-calls",
         "evidence.mud-print",
         "memory.isabel-alive"
       ],
       "minimumRequired": 4,
-      "note": "이사벨은 방에도 약속한 폐예배실에도 없었다. 묻어야 하는 밀회 답신이 그 약속을 밝히고, 푸른 망토·뒤편 계단·은제 고리와 녹색 직물이 공백을 최종 압박 현장으로 연결한다.",
+      "note": "카시안의 편지는 연정과 기다림을, 이사벨의 진실은 가지 않기로 한 선택만 밝힌다. 편지만으로 관계나 살인은 확정되지 않는다. 방의 부재와 망토·계단·현장 직물을 따로 맞춘다.",
       "requiredCardIds": [
         "memory.isabel-alive"
       ]
@@ -59,14 +57,14 @@
         "testimony.foreign-envoy",
         "memory.seraphine-archive",
         "memory.seraphine-ledger",
-        "evidence.corridor-plan"
+        "evidence.tower-seal"
       ],
       "minimumRequired": 3,
-      "note": "긁은 출입부와 북쪽 탑 보관증을 밝히면 22시 57분의 위치가 고정된다. 계승법 절도와 밀서 은폐도 함께 드러난다.",
+      "note": "긁은 출입부와 북쪽 탑 보관증을 밝히면 22시 57분의 위치가 고정된다. 계승법 절도와 밀서 은폐도 함께 드러난다. 이동 가능성은 별도의 이동 소요표와 생존 신호를 함께 대조한다. 이 조합은 기록된 순간의 위치를 뒷받침하며, 사망 시간 내내 머물렀다는 연속 알리바이까지 증명하지 않는다.",
       "requiredCardIds": [
         "memory.seraphine-ledger",
         "testimony.foreign-envoy",
-        "evidence.corridor-plan"
+        "evidence.tower-seal"
       ]
     },
     {
@@ -76,15 +74,14 @@
         "testimony.tailor",
         "evidence.minister-dispatch",
         "evidence.burnt-will",
-        "memory.benedict-will-clause",
-        "evidence.corridor-plan"
+        "memory.benedict-will-clause"
       ],
       "minimumRequired": 3,
-      "note": "유언 은폐 명령과 기록고 접수표를 밝히면 22시 56분의 위치가 고정된다. 제압과 계승 조작도 함께 드러난다.",
+      "note": "유언 은폐 명령과 기록고 접수표를 밝히면 22시 56분의 위치가 고정된다. 제압과 계승 조작도 함께 드러난다. 이동 가능성은 별도의 이동 소요표와 생존 신호를 함께 대조한다. 이 조합은 기록된 순간의 위치를 뒷받침하며, 사망 시간 내내 머물렀다는 연속 알리바이까지 증명하지 않는다.",
       "requiredCardIds": [
         "memory.benedict-will-clause",
         "evidence.minister-dispatch",
-        "evidence.corridor-plan"
+        "testimony.tailor"
       ]
     },
     {
@@ -95,7 +92,7 @@
         "memory.rowen-alive"
       ],
       "minimumRequired": 2,
-      "note": "22시 48분부터 23시 02분까지 동선이 없다. 통행패와 선행 입실을 인정해야만 이유를 설명할 수 있다.",
+      "note": "22시 48분부터 23시 02분까지 행적을 보증할 목격·공식 기록이 없다. 실제 외곽 순찰로 수색 경로는 제작자 시간표에 있으며, 통행패와 선행 입실을 인정해야 수색 이유를 설명할 수 있다. 본인의 설명만으로 알리바이를 확정하지 않는다.",
       "requiredCardIds": [
         "memory.rowen-alive"
       ]
@@ -148,7 +145,7 @@
         "label": "약속 장소에도 방에도 없던 이사벨",
         "cardIds": [
           "memory.isabel-alive",
-          "testimony.page-sighting",
+          "testimony.bell-attendant",
           "testimony.agnes-blue-cloak",
           "testimony.agnes-unanswered-calls",
           "evidence.mud-print"
@@ -156,7 +153,7 @@
         "paths": [
           [
             "memory.isabel-alive",
-            "testimony.page-sighting"
+            "testimony.bell-attendant"
           ],
           [
             "testimony.agnes-blue-cloak",
@@ -167,20 +164,21 @@
       },
       {
         "id": "isabel-motive",
-        "label": "혼인 무효와 아이의 배제",
+        "label": "관계 발각 직후의 모자 분리 지시",
         "cardIds": [
           "evidence.annulment-draft",
+          "memory.cassian-assault",
           "memory.isabel-petition",
           "rumor.secret-letter"
         ],
         "paths": [
           [
-            "evidence.annulment-draft",
-            "memory.isabel-petition"
+            "memory.cassian-assault",
+            "evidence.annulment-draft"
           ],
           [
             "evidence.annulment-draft",
-            "rumor.secret-letter"
+            "memory.isabel-petition"
           ]
         ]
       },
@@ -220,9 +218,9 @@
       "insufficientFinding": "위 내용물에서 벨라도나와 수면제에 가까운 반응은 나왔지만, 당시 검사로는 언제 얼마나 들어갔는지 알 수 없고 약만으로 죽었다고 확정할 수도 없다.",
       "plusAlpha": "마지막 종 뒤 붉은 끈 병을 되찾아 직접 먹였다면, 알레르기와 술·수면제의 중첩으로 발작이나 호흡 정지에 이를 수 있었다. 다만 시신에는 특징적인 알레르기 반응이 없다.",
       "apparentSmokingGunIds": [
-        "testimony.marta-order",
+        "testimony.apothecary-counter",
         "evidence.belladonna-ledger",
-        "evidence.wine-bottle"
+        "evidence.coronation-book"
       ],
       "plusAlphaSupportIds": [
         "testimony.physician-limits",
@@ -231,7 +229,6 @@
       "verificationIds": [
         "memory.queen-recall",
         "evidence.coronation-book",
-        "evidence.corridor-plan",
         "testimony.recall-messenger"
       ],
       "actual": "+α 미실행. 붉은 끈 병은 거의 처음 양 그대로였고 22시 56분 폐기 화로에서 태웠다."
@@ -239,7 +236,7 @@
     {
       "characterId": "cassian",
       "label": "첫 폭행 뒤 두 번째 가격",
-      "confirmedAct": "카시안은 인장 반지로 아드리안의 뒤통수를 다치게 했다.",
+      "confirmedAct": "카시안은 우발적으로 아이에 관한 말을 폭로한 뒤 붙잡는 아드리안을 뿌리쳤고, 아드리안은 책상에 머리를 부딪혔다.",
       "insufficientFinding": "골절은 없었고 아드리안은 폭행 뒤 22시 52분 종을 울릴 수 있었다.",
       "plusAlpha": "과거 다친 같은 부위를 다시 가격하거나 약해진 상태에서 호흡을 막았다면 죽을 수 있다.",
       "apparentSmokingGunIds": [
@@ -253,8 +250,7 @@
       ],
       "verificationIds": [
         "memory.cassian-sedative",
-        "testimony.page-sighting",
-        "evidence.corridor-plan",
+        "testimony.bell-attendant",
         "evidence.isabel-letter"
       ],
       "actual": "+α 미실행. 22시 56분에도 폐예배실 안에서 오지 않은 이사벨을 기다렸다."
@@ -277,7 +273,7 @@
       "verificationIds": [
         "memory.seraphine-ledger",
         "testimony.foreign-envoy",
-        "evidence.corridor-plan",
+        "evidence.tower-seal",
         "rumor.anonymous-archive-knock"
       ],
       "actual": "+α 미실행. 22시 54분부터 58분까지 북쪽 탑 봉인실에서 훔친 문서를 감췄다."
@@ -300,7 +296,7 @@
       "verificationIds": [
         "memory.benedict-will-clause",
         "evidence.minister-dispatch",
-        "evidence.corridor-plan",
+        "testimony.tailor",
         "evidence.bell-register",
         "testimony.bell-attendant"
       ],
@@ -309,21 +305,22 @@
     {
       "characterId": "isabel",
       "label": "수면제 뒤 넓은 호흡 차단",
-      "confirmedAct": "이사벨은 아드리안에게 수면제를 탄 술을 건넸다.",
-      "insufficientFinding": "위 내용물에서 수면제 반응은 나왔지만 양과 복용 시각을 가릴 수 없으며, 수면제만으로 죽었는지도 확정할 수 없다.",
+      "confirmedAct": "이사벨은 평소보다 많은 수면제를 먹이고 잠든 사이 혼인 무효화 서류를 가져와 태웠다.",
+      "insufficientFinding": "이 투약만으로는 사망하지 않았다. 처방 기록과 약갑은 수면제 단독 사망설을 약하게 하지만 이후의 질식 행위를 부정하지는 않는다.",
       "plusAlpha": "약효로 저항하지 못하는 동안 코와 입을 넓은 물건으로 계속 막으면 죽을 수 있다.",
       "apparentSmokingGunIds": [
-        "evidence.sedative-prescription",
-        "evidence.wine-bottle",
-        "evidence.second-glass"
+        "evidence.second-glass",
+        "testimony.study-servant",
+        "evidence.annulment-draft"
       ],
       "plusAlphaSupportIds": [
         "testimony.physician-limits",
-        "inspection.neck"
+        "inspection.neck",
+        "memory.isabel-petition"
       ],
       "verificationIds": [
         "memory.isabel-alive",
-        "testimony.page-sighting",
+        "testimony.bell-attendant",
         "testimony.agnes-blue-cloak",
         "testimony.agnes-unanswered-calls",
         "evidence.mud-print",

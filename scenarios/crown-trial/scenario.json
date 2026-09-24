@@ -2,5 +2,9 @@
   "id": "crown-trial",
   "title": "왕관재판",
   "version": "0.1.0",
-  "round": 1
+  "round": 1,
+  "victim": {
+    "id": "adrian",
+    "name": "아드리안"
+  }
 }

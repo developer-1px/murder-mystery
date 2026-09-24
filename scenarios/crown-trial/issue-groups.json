@@ -1,226 +1,263 @@
 {
   "designerOnly": true,
-  "description": "인물마다 카더라 2장·수소문 2장·묻어야 하는 진실 2장·탐문 2장·증거 4장을 연결한다. 네 조각에 세 장씩 배치해 알려진 갈등, 수상한 행적, 실제 행동, 확인과 반증을 비교한다. 카드 한 장이나 소문만으로 인물의 동선과 살해 여부를 확정하지 않는다.",
+  "description": "다섯 인물의 전용 14장을 이야기의 진행에 따라 묶는다. 각 장면의 설명과 실제 카드를 대조하고 마지막에 남는 의문을 읽는다. 장면별 장수는 이야기의 연결에 따라 달라진다. 로웬과 공통 구성은 별도 검토로 남긴다.",
   "groups": [
     {
       "id": "suspicion.queen",
       "title": "엘레노라 · 취소한 혼절 계획",
-      "question": "즉위식을 막으려 진정제를 준비한 엘레노라가 마지막 종 뒤 약병을 되찾아 실제로 아드리안에게 먹였는가?",
+      "question": "술을 준비한 왕비는 계획을 취소했는가, 들킬 흔적만 없앴는가?",
       "fragments": [
         {
           "id": "suspicion.queen.hidden-reason",
-          "label": "01 · 알려진 갈등과 숨긴 이유",
+          "label": "왕관을 둘째에게 주고 싶었던 어머니",
+          "note": "장남이 죽자 왕비가 가장 이득을 보았다는 말이 돈다. 카시안의 자리와 군권을 먼저 챙겼다는 이야기가 그 의심을 키운다. 하지만 아들을 편든다는 평판만으로 술에 손을 댔다고 말할 수는 없다.",
           "cardIds": [
             "rumor.apothecary-visit",
-            "rumor.queen-old-letter",
-            "memory.queen-poison"
+            "rumor.queen-old-letter"
           ]
         },
         {
           "id": "suspicion.queen.possible-act",
-          "label": "02 · 수상한 행적",
+          "label": "계단의 붉은 병은 누구에게 갔나",
+          "note": "약제실 뒤 계단에서 누군가 병을 들고 올라갔다. 마르타의 증언을 맞추면 그 사람이 엘레노라였고, 시녀의 서명으로 나온 약이 왕비에게 건너갔음을 알 수 있다. 운반만으로 투약이나 그 목적을 확정하지 않는다.",
           "cardIds": [
             "rumor.queen-luggage",
-            "rumor.anonymous-west-curtain",
-            "testimony.recall-messenger"
-          ]
-        },
-        {
-          "id": "suspicion.queen.death-hypothesis",
-          "label": "03 · 실제 행동과 빈틈",
-          "cardIds": [
-            "memory.queen-recall",
-            "testimony.marta-recall",
+            "testimony.apothecary-counter",
             "evidence.belladonna-ledger"
           ]
         },
         {
-          "id": "suspicion.queen.execution-check",
-          "label": "04 · 확인과 반증",
+          "id": "suspicion.queen.death-hypothesis",
+          "label": "열린 병, 멈춘 쟁반",
+          "note": "취소 쪽지는 투약이 멈췄음을 보여 준다. 원명령은 시녀가 누구의 지시를 받았는지 밝힌다. 이를 묻으면 왕비의 명령권이 남고 시녀의 책임 조사는 끝나지 않는다. 시녀를 보호해 달라는 설명이 실제로 누구를 보호하는지 살펴볼 것.",
           "cardIds": [
-            "evidence.wine-bottle",
-            "evidence.coronation-book",
-            "evidence.corridor-plan"
+            "testimony.marta-recall",
+            "evidence.recall-slip",
+            "memory.queen-recall"
+          ]
+        },
+        {
+          "id": "suspicion.queen.execution-check",
+          "label": "취소했다면 왜 병을 태웠을까",
+          "note": "밤이 깊어지자 병이 사라지고, 지하에서는 연기와 유리 깨지는 소리가 난다. 마르타가 본 왕비의 검은 손끝을 화로의 붉은 끈 병과 맞춰 본다. 약을 썼다는 흔적일까, 쓰지 않은 계획을 없애려 했던 흔적일까. 진실 카드의 화로 전표가 이 동선을 더 좁혀 준다.",
+          "cardIds": [
+            "rumor.anonymous-west-curtain",
+            "testimony.recall-messenger",
+            "evidence.coronation-book"
+          ]
+        },
+        {
+          "id": "suspicion.queen.hidden-letter",
+          "label": "즉위 전에 보낸 소집장",
+          "note": "약병을 설명해도 왕비의 계승 준비는 남는다. 발송철과 왕비의 소집장을 맞추면 아드리안이 죽기 전에 카시안의 계승 심의를 요구했음을 알 수 있다. 사전 준비는 정치적 동기가 되지만 살해 공모를 입증하지는 않는다.",
+          "cardIds": [
+            "testimony.marta-order",
+            "evidence.queen-summons-copy",
+            "memory.queen-summons"
           ]
         }
       ],
-      "auditNote": "카더라는 공개된 갈등만, 수소문은 신원이 드러나지 않은 행동과 대략의 시간만 말한다. 탐문은 측근의 관찰과 편향을 담고, 진실과 증거를 함께 놓아야 행적을 검증할 수 있다."
+      "auditNote": "취소 증언과 거의 쓰지 않은 약병은 추가 투약 주장에 제동을 건다. 다만 화로 전표 한 시각만으로 살해 시간 전체를 배제할 수는 없다. 사전 소집장은 카시안을 왕으로 세우려는 왕비의 의지를 드러내지만 살해 실행과 구분해야 한다."
     },
     {
       "id": "suspicion.cassian",
-      "title": "카시안 · 형제간 폭행",
-      "question": "아드리안을 가격한 카시안이 사망 시간에 돌아와 같은 부위를 다시 때렸는가?",
+      "title": "카시안 · 싸움에서 새어 나온 진실",
+      "question": "군권 다툼으로 알려진 그날 밤, 카시안은 무슨 말을 내뱉고 도망쳤는가?",
       "fragments": [
         {
           "id": "suspicion.cassian.hidden-reason",
-          "label": "01 · 알려진 갈등과 숨긴 이유",
+          "label": "왕위 다툼으로 알려진 언쟁",
+          "note": "공개된 다툼은 군권 갈등이다. 관계나 아이의 친부를 소문만으로 특정하지 않는다. 카시안은 세 번째 자녀이자 두 번째 아들이며, 왕실의 법적 인정과 생물학적 친부는 구분한다.",
           "cardIds": [
             "rumor.cassian-quarrel",
             "rumor.cassian-isabel-truth",
-            "memory.cassian-assault"
+            "evidence.royal-birth-register"
           ]
         },
         {
           "id": "suspicion.cassian.possible-act",
-          "label": "02 · 수상한 행적",
+          "label": "충돌음 뒤에 숨은 한마디",
+          "note": "회중시계와 니콜의 목격은 충돌과 도주를 보여 준다. 진실 카드를 읽으면 카시안이 먼저 아이의 친부 문제를 폭로했고, 그것이 이사벨 추궁으로 이어졌음을 알게 된다. 이 말만으로 친부가 확정되지는 않는다. 폭행의 군권 책임은 따로 남는다.",
           "cardIds": [
             "rumor.old-portrait",
-            "rumor.anonymous-saddled-horse",
-            "testimony.page-sighting"
+            "testimony.dinner-steward",
+            "evidence.stopped-watch",
+            "evidence.royal-recognition",
+            "memory.cassian-assault"
           ]
         },
         {
           "id": "suspicion.cassian.death-hypothesis",
-          "label": "03 · 실제 행동과 빈틈",
+          "label": "도망친 뒤 버리려 한 왕관",
+          "note": "니콜은 서명 원본을 보관하고 사본만 보낸 장면을 보았다. 종이의 내용을 아는 것은 아니다. 진실 카드와 맞추면 계승 사양과 도피 약속이 드러난다. 예배실의 답변 시각은 별도의 행적 증언으로 확인한다.",
           "cardIds": [
-            "memory.cassian-sedative",
-            "testimony.dinner-steward",
-            "evidence.stopped-watch"
+            "rumor.anonymous-saddled-horse",
+            "testimony.page-sighting",
+            "evidence.isabel-letter",
+            "memory.cassian-sedative"
           ]
         },
         {
           "id": "suspicion.cassian.execution-check",
-          "label": "04 · 확인과 반증",
+          "label": "왕자가 떠난 뒤의 서재",
+          "note": "니콜의 술잔 목격은 이사벨의 첫 방문이며, 마지막 종의 기침은 베네딕트가 떠난 뒤의 생존 신호다. 카시안이 예배실에서 기다린 사실은 이사벨이 그곳에 왔다는 증명이 아니다.",
           "cardIds": [
-            "evidence.royal-recognition",
-            "evidence.isabel-letter",
-            "evidence.corridor-plan"
+            "testimony.study-servant",
+            "testimony.bell-attendant"
           ]
         }
       ],
-      "auditNote": "카더라는 공개된 갈등만, 수소문은 신원이 드러나지 않은 행동과 대략의 시간만 말한다. 탐문은 측근의 관찰과 편향을 담고, 진실과 증거를 함께 놓아야 행적을 검증할 수 있다."
+      "auditNote": "카시안은 이사벨의 약물 투여·재방문·살인을 모른다. 폭로는 우발적이며 친부를 확정하지 않는다. 첫 진실의 공개는 아이의 적통 심의를, 두 번째는 본인의 계승 사양을 일으킨다. 폭행 후 생존과 예배실의 기록은 따로 대조한다."
     },
     {
       "id": "suspicion.seraphine",
       "title": "세라핀 · 계승과 혼인",
-      "question": "알레르기 유발 문서를 펼친 세라핀이 약효가 오른 뒤 밀폐 노출까지 이어 갔는가?",
+      "question": "아버지에게 인정받지 못했다고 믿은 세라핀은 왕위를 얻기 위해 무엇을 약속했는가?",
       "fragments": [
         {
           "id": "suspicion.seraphine.hidden-reason",
-          "label": "01 · 알려진 갈등과 숨긴 이유",
+          "label": "오라비의 죽음으로 풀린 혼인",
+          "note": "강요된 혼인을 피하려 했다는 소문에서 의심이 시작된다. 엘리안은 세라핀이 조약서를 들고 서재에 갔다고 말한다. 돌아온 조약서의 끊어진 끈과 붓꽃 향분은 서재에서 수거한 가루·밀랍과 이어진다. 방문은 설명되지만, 향분이 죽음을 일으켰는지는 이 카드들만으로 판단할 수 없다.",
           "cardIds": [
             "rumor.marriage",
             "rumor.seraphine-copy",
-            "memory.seraphine-archive"
+            "testimony.isabel-attendant",
+            "evidence.marriage-treaty",
+            "evidence.succession-leaf"
           ]
         },
         {
           "id": "suspicion.seraphine.possible-act",
-          "label": "02 · 수상한 행적",
+          "label": "서고에서 가져간 한 장",
+          "note": "서고지기는 사본의 아래 항이 사라졌다고 말한다. 세라핀이 숨긴 원문에는 태아의 심의 청구권이 있다. 왕녀에게 발언권을 돌려주는 이야기 아래, 다른 후보의 발언권을 지운 이야기가 겹친다.",
           "cardIds": [
             "rumor.princess-pages",
-            "rumor.anonymous-archive-knock",
-            "testimony.foreign-envoy"
+            "testimony.archive-copyist",
+            "testimony.archivist",
+            "memory.seraphine-ledger"
           ]
         },
         {
           "id": "suspicion.seraphine.death-hypothesis",
-          "label": "03 · 실제 행동과 빈틈",
+          "label": "마지막 종 뒤, 북쪽 탑의 불꽃",
+          "note": "북쪽 탑에서 보인 불꽃을 열쇠의 탄 붉은 실과 맞춰 본다. 화로에는 별 인장과 봉인함 번호가 남았다. 진실 카드의 보관증과 같은 표식인지 대조하면 탑에서 문서를 다룬 행적이 이어진다. 보관 시각은 위치의 단서이지 밤 내내 그곳에 있었다는 증명은 아니다.",
           "cardIds": [
-            "memory.seraphine-ledger",
-            "testimony.isabel-attendant",
-            "evidence.marriage-treaty"
+            "rumor.anonymous-archive-knock",
+            "testimony.foreign-envoy",
+            "evidence.tower-seal"
           ]
         },
         {
           "id": "suspicion.seraphine.execution-check",
-          "label": "04 · 확인과 반증",
+          "label": "감춰졌던 심의의 자리",
+          "note": "북부의 지지를 얻기 위해 두 요새를 약속한 세라핀은 선왕 문서의 빠진 본문을 아직 모른다. 표지의 흉년 대책과 인물 설정의 기억을 맞추고 베네딕트의 목록 7번을 찾으면, 아버지가 그녀의 계승 청구권을 보장했다는 사실이 드러난다. 이는 즉위 확정이 아니며, 묻힌 북부 약정도 사라지지 않는다.",
           "cardIds": [
-            "evidence.succession-leaf",
-            "evidence.physician-log",
-            "evidence.corridor-plan"
+            "evidence.last-will",
+            "memory.seraphine-archive"
           ]
         }
       ],
-      "auditNote": "카더라는 공개된 갈등만, 수소문은 신원이 드러나지 않은 행동과 대략의 시간만 말한다. 탐문은 측근의 관찰과 편향을 담고, 진실과 증거를 함께 놓아야 행적을 검증할 수 있다."
+      "auditNote": "세라핀의 시작 설정서에는 선왕의 심의권 보장이 없다. 표지는 누락을 알려 줄 뿐, 왕위 순서를 확정하지 않는다. 베네딕트의 진실로 청구권 보장과 은폐가 드러나면 북부 밀서의 대가를 다시 읽는다. 태아 조항은 별도의 후보 자격 분기다."
     },
     {
       "id": "suspicion.benedict",
       "title": "베네딕트 · 입을 막은 제압과 유언",
-      "question": "아드리안의 입을 막은 베네딕트가 사망 시간까지 압박을 계속하거나 다시 돌아왔는가?",
+      "question": "선왕의 뜻을 지킨다는 재상은 왜 세라핀의 심의권을 보장한 한 장을 감추었는가?",
       "fragments": [
         {
           "id": "suspicion.benedict.hidden-reason",
-          "label": "01 · 알려진 갈등과 숨긴 이유",
+          "label": "왕이 바뀌어도 문서를 쥔 사람",
+          "note": "재상이 후계를 고른다는 소문과 섭정을 노린다는 뒷말이 돈다. 오스윈에게 일곱 번째 문서를 따로 두고 낭독하지 말라고 한 지시는 그 의심에 구체적인 행동을 보탠다. 무엇을 감추려 했는지는 아직 문서함 안에 있다.",
           "cardIds": [
             "rumor.missing-document",
             "rumor.benedict-edmund-letter",
-            "memory.benedict-will-clause"
+            "testimony.minister-clerk"
           ]
         },
         {
           "id": "suspicion.benedict.possible-act",
-          "label": "02 · 수상한 행적",
+          "label": "서재에서 돌아온 재상의 소매",
+          "note": "서재를 나와 동쪽 복도로 사라진 사람은 베네딕트였다. 오스윈은 그가 옷부터 찾았다고 말한다. 소매에서 없어진 세 잎 자수와 바늘구멍을 기억하는 증언이 있으니, 옷이 찢어진 장소를 찾아볼 수 있다.",
           "cardIds": [
             "rumor.night-sewing",
-            "rumor.anonymous-council-room",
-            "testimony.night-attendant"
+            "testimony.night-attendant",
+            "testimony.wardrobe-keeper"
           ]
         },
         {
           "id": "suspicion.benedict.death-hypothesis",
-          "label": "03 · 실제 행동과 빈틈",
+          "label": "옷의 빈자리와 소파의 조각",
+          "note": "검은 정복과 소파의 천은 몸싸움을, 은사슬은 제압을 가리킨다. 정복의 배달표와 사슬에 감긴 해임장을 맞추면 재상이 무엇을 지키려 했는지 보인다. 살인범이 아니어도 재상 자리를 잃을 수 있다.",
           "cardIds": [
-            "memory.benedict-birth-dates",
-            "testimony.tailor",
-            "evidence.black-cloth"
+            "evidence.black-cloth",
+            "evidence.repaired-coat",
+            "memory.benedict-birth-dates"
           ]
         },
         {
           "id": "suspicion.benedict.execution-check",
-          "label": "04 · 확인과 반증",
+          "label": "종이 울린 뒤 감춘 문서함",
+          "note": "목록 7번은 선왕이 세라핀의 계승 심의 청구권을 보장한 본문이다. 베네딕트는 북부의 간섭을 두려워했지만, 숨긴 문서는 자신의 권한도 제한한다. 그가 본문을 감춘 뒤 세라핀은 혼인에서 벗어나려 북부에 요새를 약속했다. 재상이 막으려던 위험과 그가 지키려던 자리를 함께 읽는다.",
           "cardIds": [
-            "evidence.repaired-coat",
-            "evidence.bell-register",
-            "evidence.minister-dispatch"
+            "rumor.anonymous-council-room",
+            "testimony.tailor",
+            "evidence.minister-dispatch",
+            "evidence.burnt-will",
+            "memory.benedict-will-clause"
           ]
         }
       ],
-      "auditNote": "카더라는 공개된 갈등만, 수소문은 신원이 드러나지 않은 행동과 대략의 시간만 말한다. 탐문은 측근의 관찰과 편향을 담고, 진실과 증거를 함께 놓아야 행적을 검증할 수 있다."
+      "auditNote": "은폐는 선왕 사후부터, 두 요새의 약정은 그 뒤다. 베네딕트는 최종 밀서를 시작부터 아는 사람이 아니다. 제압의 범행 시각은 기존과 같으며, 유언 공개가 살인 유죄를 자동 확정하지 않는다. 실제 왕위는 후보 자격과 문서 공개 여부를 함께 판정한다."
     },
     {
       "id": "suspicion.isabel",
-      "title": "이사벨 · 수면제와 아이의 계승",
-      "question": "수면제를 먹인 이사벨이 약속 장소 대신 서재로 돌아가 넓은 물건으로 호흡까지 막았는가?",
+      "title": "이사벨 · 잠들게 하려던 밤",
+      "question": "수면제로는 죽지 않았다. 그렇다면 이사벨은 그 뒤 어디에 있었는가?",
       "fragments": [
         {
           "id": "suspicion.isabel.hidden-reason",
-          "label": "01 · 알려진 갈등과 숨긴 이유",
+          "label": "아이의 신분은 남고 어머니만 떠난다",
+          "note": "옛 혼인 무효화 서류는 목록에만 남고 원본은 사라졌다. 이날 밤 작성한 별궁 이송 지시는 남아 있다. 하나를 없앤다고 다른 처분도 취소되는 것은 아니다.",
           "cardIds": [
             "rumor.secret-letter",
             "rumor.isabel-annulment",
-            "memory.isabel-petition"
+            "evidence.annulment-draft"
           ]
         },
         {
           "id": "suspicion.isabel.possible-act",
-          "label": "02 · 수상한 행적",
+          "label": "밝혀져도 사인을 설명하지 못하는 약",
+          "note": "이사벨은 수면제를 의도적으로 늘리고 잠든 사이 혼인 무효화 서류를 가져와 태웠다. 진실에는 이 첫 방문의 행동만 담긴다. 투약이 단독 사인인지는 별도 조사로 판단한다.",
           "cardIds": [
             "rumor.heir-calendar",
-            "rumor.anonymous-family-corridor",
-            "testimony.agnes-unanswered-calls"
+            "testimony.agnes-locked-door",
+            "evidence.second-glass",
+            "testimony.agnes-wet-sleeve",
+            "memory.isabel-petition"
           ]
         },
         {
           "id": "suspicion.isabel.death-hypothesis",
-          "label": "03 · 실제 행동과 빈틈",
+          "label": "편지를 보낸 사람과 받은 사람",
+          "note": "편지는 카시안의 연정과 기다림을 밝히고, 이사벨은 가지 않기로 했다고만 적혀 있다. 관계나 친부의 자백은 없다. 시녀의 부재 목격과 계단 흔적이 더해져야 다른 행선지를 물을 수 있다.",
           "cardIds": [
             "memory.isabel-alive",
-            "testimony.agnes-blue-cloak",
-            "evidence.second-glass"
+            "testimony.agnes-unanswered-calls",
+            "rumor.anonymous-family-corridor",
+            "evidence.mud-print"
           ]
         },
         {
           "id": "suspicion.isabel.execution-check",
-          "label": "04 · 확인과 반증",
+          "label": "돌아온 망토에서 사라진 것",
+          "note": "창가에서 없어졌다 돌아온 푸른 망토에는 고리가 빠져 있다. 서재 소파에서는 푸른 실이 낀 은제 고리와 녹색 직물이 나왔다. 이 일치는 닫힌 방문보다 구체적으로 재방문을 가리킨다. 그 방문이 마지막 살해였는지는 생존 시점과 검시의 압박 흔적까지 맞춰야 한다.",
           "cardIds": [
-            "evidence.annulment-draft",
-            "evidence.broken-seal",
-            "evidence.mud-print"
+            "testimony.agnes-blue-cloak",
+            "evidence.broken-seal"
           ]
         }
       ],
-      "auditNote": "카더라는 공개된 갈등만, 수소문은 신원이 드러나지 않은 행동과 대략의 시간만 말한다. 탐문은 측근의 관찰과 편향을 담고, 진실과 증거를 함께 놓아야 행적을 검증할 수 있다."
+      "auditNote": "첫 방문의 수면제·서류 소각은 실제 행동이다. 예배실에 가지 않은 실제 이유는 아드리안을 살해하기 위해서이며 개인 설정서에만 명시한다. 편지 카드에는 카시안의 연정과 기다림, 이사벨의 불참만 남긴다. 재방문과 범행의 유일한 입증 여부는 별도 추리 설계 과제다."
     },
     {
       "id": "reconstruction.final-act",
@@ -292,7 +329,7 @@
         },
         {
           "id": "investigator.rowen.execution-check",
-          "label": "04 · 수사 조력과 독립성",
+          "label": "04 · 진료 소견과 수사의 독립성",
           "cardIds": [
             "testimony.physician-limits",
             "testimony.head-examination",

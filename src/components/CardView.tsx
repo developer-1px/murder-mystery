@@ -3,7 +3,7 @@ import type { Card } from '../domain/types'
 import { cardKinds } from './cardKinds'
 import { Link } from 'react-router'
 import { CopyLinkButton } from '../routing'
-import { scenario } from '../scenario/load'
+import { npcGroups, scenario } from '../scenario/load'
 
 interface Props {
   card: Card
@@ -27,9 +27,9 @@ function withSubjectParticle(name: string) {
 export function CardView({ card, onClick, selected, faceDown, backLabel, backTitle, backSubtitle, to, disabled, tabIndex }: Props) {
   const ref = useRef<HTMLElement>(null)
   const owner = card.kind === 'memory' ? scenario.characters.find(character => character.id === card.initialOwnerId) : undefined
-  const faceLabel = owner ? `${withSubjectParticle(owner.name)} 묻어야 하는 진실`
-    : card.kind === 'rumor' && card.tags.includes('카더라') ? '소문 · 카더라'
-    : card.kind === 'rumor' && card.tags.includes('수소문') ? '소문 · 수소문'
+  const witness = card.kind === 'testimony' ? npcGroups.npcs.find(npc => npc.cardIds.includes(card.id)) : undefined
+  const faceLabel = witness ? `${witness.name}의 증언`
+    : owner ? `${withSubjectParticle(owner.name)} 묻어야 하는 진실`
     : cardKinds[card.kind].label
   useLayoutEffect(() => {
     const root = ref.current

@@ -1,0 +1,75 @@
+{
+  "description": "여섯 인물에게 전용 증거를 4장씩 배정한다. 각 장소에는 각 인물의 증거가 1장씩 있다. 나머지 8장은 의료·시간·동선의 공통 증거다. 발견 장소와 조사 보관 장소는 카드 본문에서 구분한다.",
+  "players": [
+    {
+      "characterId": "queen",
+      "cardIds": [
+        "evidence.queen-summons-copy",
+        "evidence.belladonna-ledger",
+        "evidence.recall-slip",
+        "evidence.coronation-book"
+      ]
+    },
+    {
+      "characterId": "cassian",
+      "cardIds": [
+        "evidence.stopped-watch",
+        "evidence.royal-recognition",
+        "evidence.isabel-letter",
+        "evidence.royal-birth-register"
+      ]
+    },
+    {
+      "characterId": "isabel",
+      "cardIds": [
+        "evidence.broken-seal",
+        "evidence.second-glass",
+        "evidence.mud-print",
+        "evidence.annulment-draft"
+      ]
+    },
+    {
+      "characterId": "seraphine",
+      "cardIds": [
+        "evidence.succession-leaf",
+        "evidence.marriage-treaty",
+        "evidence.tower-seal",
+        "evidence.last-will"
+      ]
+    },
+    {
+      "characterId": "benedict",
+      "cardIds": [
+        "evidence.black-cloth",
+        "evidence.repaired-coat",
+        "evidence.minister-dispatch",
+        "evidence.burnt-will"
+      ]
+    },
+    {
+      "characterId": "rowen",
+      "cardIds": [
+        "evidence.ink-blotter",
+        "evidence.guard-log",
+        "evidence.watch-roster",
+        "evidence.guard-charter"
+      ]
+    }
+  ],
+  "deferredCardIds": [],
+  "deferredNote": "배정 보류 없음. 공통 증거는 commonCardIds에 명시한다.",
+  "outOfScopeCharacterIds": [
+    "rowen"
+  ],
+  "commonCardIds": [
+    "evidence.bell-register",
+    "evidence.physician-log",
+    "evidence.wine-bottle",
+    "evidence.sedative-prescription",
+    "evidence.corridor-plan",
+    "evidence.study-document-wax",
+    "evidence.medicine-wrappings",
+    "evidence.rear-door-latch"
+  ],
+  "scopeNote": "로웬도 전용 증거 배분에 포함한다. outOfScopeCharacterIds는 기존 쟁점 화면의 소문·탐문을 포함한 14장 구성 검사에만 적용한다."
+}

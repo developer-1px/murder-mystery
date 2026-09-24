@@ -3,7 +3,7 @@
   "description": "제작자 수동 시험용 배포안. 현재 워크벤치는 이 파일로 자동 해금하지 않는다.",
   "initialHands": {
     "queen": [
-      "memory.queen-poison",
+      "memory.queen-summons",
       "memory.queen-recall"
     ],
     "cassian": [
@@ -56,7 +56,8 @@
         "testimony.apothecary-counter",
         "testimony.dinner-steward",
         "testimony.agnes-locked-door",
-        "testimony.page-sighting"
+        "testimony.page-sighting",
+        "evidence.rear-door-latch"
       ]
     },
     {
@@ -86,7 +87,9 @@
         "testimony.bell-attendant",
         "testimony.agnes-unanswered-calls",
         "testimony.night-attendant",
-        "testimony.head-examination"
+        "testimony.head-examination",
+        "evidence.study-document-wax",
+        "evidence.medicine-wrappings"
       ]
     },
     {
@@ -107,7 +110,7 @@
         "evidence.royal-birth-register",
         "evidence.last-will",
         "evidence.coronation-book",
-        "evidence.young-benedict-letter",
+        "evidence.queen-summons-copy",
         "evidence.royal-recognition",
         "evidence.guard-charter",
         "testimony.marta-order",
@@ -119,7 +122,8 @@
         "testimony.isabel-attendant",
         "testimony.archive-copyist",
         "testimony.foreign-envoy",
-        "testimony.old-midwife"
+        "testimony.old-midwife",
+        "evidence.tower-seal"
       ]
     }
   ],

@@ -1,161 +1,101 @@
-import { useMemo } from 'react'
+import { TruthConsequences } from './TruthConsequences'
 import { Link, useLocation, useNavigate, useParams } from 'react-router'
-import type { Card, DeductionAuditDocument, IssueGroupsDocument, Scenario } from '../domain/types'
+import type { Card, IssueGroupsDocument, Scenario } from '../domain/types'
+import { cardRoleAudit, npcGroups, timeline, releasePlan, characterSettings } from '../scenario/load'
 import { CardReader, CardView } from './CardView'
 import { cardKinds } from './cardKinds'
-import { MissingRoute, SectionLink, segment } from '../routing'
+import { MissingRoute, segment } from '../routing'
+import { getIssueComposition } from './issueComposition'
+import './issue-composition.css'
+import evidenceAllocation from '../../scenarios/crown-trial/evidence-allocation.json'
 
 interface Props {
   scenario: Scenario
   document: IssueGroupsDocument
-  deduction?: DeductionAuditDocument
   inspectionCards?: Card[]
 }
-
-export function IssueBoard({ scenario, document, deduction, inspectionCards = [] }: Props) {
-  const { groupId: selectedGroupId, cardId: selectedCardId } = useParams()
+const columns = [
+  ['rumor', '소문', '4'], ['hearsay', '카더라', '2'], ['sighting', '수소문', '2'],
+  ['memory', '진실', '2'], ['testimony', '탐문', '4'], ['identification', '특정', '1'],
+  ['movement', '행적', '2'], ['hint', '암시', '1'], ['evidence', '전용 증거', '4'],
+  ['desire', '욕망', '2'], ['ruin', '파멸', '2'],
+]
+export function IssueBoard({ scenario, document, inspectionCards = [] }: Props) {
+  const { groupId, cardId } = useParams()
   const navigate = useNavigate()
   const location = useLocation()
-  const cardsById = useMemo(() => new Map([...scenario.cards, ...inspectionCards].map((card) => [card.id, card])), [scenario.cards, inspectionCards])
-  const group = selectedGroupId ? document.groups.find((item) => item.id === selectedGroupId) : undefined
-  const selectedCard = selectedCardId ? cardsById.get(selectedCardId) : undefined
-
-  if (!selectedGroupId) {
-    const compositionOf = (cardIds: string[]) => {
-      const counts = new Map<string, number>()
-      for (const cardId of new Set(cardIds)) {
-        const card = cardsById.get(cardId)
-        if (!card) continue
-        const label = card.kind === 'rumor'
-          ? card.tags.includes('카더라') ? '카더라' : card.tags.includes('수소문') ? '수소문' : '소문'
-          : card.kind === 'memory' ? '묻어야 하는 진실'
-          : card.kind === 'testimony' ? '탐문'
-          : cardKinds[card.kind].label
-        counts.set(label, (counts.get(label) ?? 0) + 1)
-      }
-      return [...counts]
-    }
-    const characterGroups = scenario.characters
-      .map((character) => document.groups.find((item) => item.id === `suspicion.${character.id}` || item.id === `investigator.${character.id}`))
-      .filter((item): item is IssueGroupsDocument['groups'][number] => Boolean(item))
-    const sharedGroups = document.groups.filter((item) => !characterGroups.includes(item))
-    const renderOverviewCard = (item: IssueGroupsDocument['groups'][number]) => {
-      const cardIds = item.fragments.flatMap((fragment) => fragment.cardIds)
-      const uniqueCount = new Set(cardIds).size
-      return <article className="issue-person" key={item.id}>
-        <header><span>{item.id.startsWith('suspicion.') || item.id.startsWith('investigator.') ? '인물 쟁점' : '공통 쟁점'}</span><strong>{uniqueCount}장</strong></header>
-        <h3>{item.title}</h3>
-        <p>{item.question}</p>
-        <div className="issue-person__composition" aria-label="카드 구성">
-          {compositionOf(cardIds).map(([label, count]) => <span key={label}>{label} <b>{count}</b></span>)}
-        </div>
-        <div className="issue-person__fragments">{item.fragments.map((fragment) => <section key={fragment.id}>
-          <header><strong>{fragment.label}</strong><span>{fragment.cardIds.length}장</span></header>
-          <ul>{fragment.cardIds.map((cardId) => <li key={cardId}>{cardsById.get(cardId)?.title ?? cardId}</li>)}</ul>
-        </section>)}</div>
-        <footer><Link to={`/issues/${segment(item.id)}`}>쟁점 카드 자세히 보기 <span aria-hidden="true">→</span></Link></footer>
-      </article>
-    }
-    return <section className="issue-board issue-board--overview">
-      <header className="issue-board__header">
-        <div><span className="eyebrow">DESIGNER ONLY · 쟁점 연결</span><h2>인물별 쟁점 카드</h2><p>인물마다 연결된 카드의 장수와 역할 구성을 나란히 비교합니다. 카드를 선택하면 기존의 핵심 쟁점과 정보 조각을 자세히 볼 수 있습니다.</p></div>
-        <div className="issue-board__totals" aria-label="분류 현황"><strong>{characterGroups.length}</strong><span>인물</span><strong>{document.groups.reduce((sum, item) => sum + new Set(item.fragments.flatMap((fragment) => fragment.cardIds)).size, 0)}</strong><span>카드 연결</span></div>
-      </header>
-      <div className="issue-person-grid">{characterGroups.map(renderOverviewCard)}</div>
-      {sharedGroups.length > 0 && <section className="issue-shared"><header><span>SHARED AXIS</span><h2>공통 추리 축</h2></header><div className="issue-person-grid">{sharedGroups.map(renderOverviewCard)}</div></section>}
-    </section>
+  const params = new URLSearchParams(location.search)
+  const category = params.get('category') ?? 'all'
+  const people = getIssueComposition(scenario, document, npcGroups, timeline, cardRoleAudit)
+  const active = people.find(person => person.group?.id === groupId) ?? (!groupId ? people[0] : undefined)
+  const shared = document.groups.filter(group => !people.some(person => person.group?.id === group.id))
+  const group = active?.group ?? shared.find(group => group.id === groupId)
+  const allCards = [...scenario.cards, ...inspectionCards]
+  const byId = new Map(allCards.map(card => [card.id, card]))
+  const route = `/issues/${segment(group?.id ?? '')}`
+  const path = (id?: string, bucket = category) => {
+    const query = new URLSearchParams(location.search)
+    if (bucket === 'all') query.delete('category')
+    else query.set('category', bucket)
+    return `${route}${id ? `/cards/${segment(id)}` : ''}${query.size ? `?${query}` : ''}${location.hash}`
   }
-  if (!group) return <MissingRoute message="해당 쟁점을 찾을 수 없습니다." to="/issues" label="쟁점 목록으로" />
-  if (selectedCardId && (!selectedCard || !group.fragments.some((fragment) => fragment.cardIds.includes(selectedCardId)))) return <MissingRoute message="이 쟁점에 연결된 카드가 아닙니다." to={`/issues/${segment(group.id)}`} label="쟁점으로 돌아가기" />
-
-  const references = group.fragments.flatMap((fragment) => fragment.cardIds)
-  const uniqueCards = new Set(references).size
-  const hypothesis = deduction?.hypotheses.find((item) => group.id === `suspicion.${item.characterId}`)
-
-  const locationOf = (card: Card) => card.initialOwnerId
-    ? `${scenario.characters.find((character) => character.id === card.initialOwnerId)?.name ?? card.initialOwnerId}의 손패`
-    : scenario.locations.find((location) => location.id === card.locationId)?.name ?? (inspectionCards.some((item) => item.id === card.id) ? '공식 검시' : '배치되지 않음')
-
-  return (
-    <section className="issue-board">
-      <header className="issue-board__header">
-        <div>
-          <span className="eyebrow">DESIGNER ONLY · 쟁점 연결</span>
-          <h2>핵심 쟁점의 정보 조각</h2>
-          <p>{document.description}</p>
-          <Link className="issue-board__overview-link" to="/issues">← 인물별 구성 비교</Link>
-        </div>
-        <div className="issue-board__totals" aria-label="분류 현황">
-          <strong>{document.groups.length}</strong><span>핵심 쟁점</span>
-          <strong>{document.groups.reduce((sum, item) => sum + item.fragments.length, 0)}</strong><span>정보 조각</span>
-        </div>
-      </header>
-
-      <div className="issue-board__layout">
-        <nav className="issue-nav" aria-label="핵심 쟁점">
-          {document.groups.map((item, index) => {
-            const count = new Set(item.fragments.flatMap((fragment) => fragment.cardIds)).size
-            return <Link key={item.id} aria-current={item.id === group.id ? 'page' : undefined} to={`/issues/${segment(item.id)}`}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <strong>{item.title}</strong>
-              <small>{item.fragments.length}조각 · {count}장</small>
-            </Link>
-          })}
-        </nav>
-
-        <article className="issue-detail">
-          <header className="issue-detail__header">
-            <span className="issue-detail__number">ISSUE {String(document.groups.indexOf(group) + 1).padStart(2, '0')}</span>
-            <h3>{group.title}</h3>
-            <p>{group.question}</p>
-            <div><span>{group.fragments.length}개 조각</span><span>{uniqueCards}장</span><span>{references.length}개 연결</span></div>
-          </header>
-
-          <aside className="issue-audit"><strong>분리 기준</strong><p>{group.auditNote}</p></aside>
-
-          {hypothesis && <section className="issue-hypothesis" aria-labelledby="issue-hypothesis-title">
-            <header><span>살해 가설</span><h4 id="issue-hypothesis-title">{hypothesis.label}</h4></header>
-            <div className="issue-hypothesis__flow">
-              <article><span>01 · 확인된 시도·위해</span><p>{hypothesis.confirmedAct}</p></article>
-              <i aria-hidden="true">→</i>
-              <article><span>02 · 검시의 제동</span><p>{hypothesis.insufficientFinding}</p></article>
-              <i aria-hidden="true">→</i>
-              <article className="issue-hypothesis__alpha"><span>03 · 가능했던 +α</span><p>{hypothesis.plusAlpha}</p></article>
-              <i aria-hidden="true">→</i>
-              <article><span>04 · 실행 여부</span><p>{hypothesis.actual}</p></article>
-            </div>
-            <p className="issue-hypothesis__rule">앞의 세 단계는 살해가 가능했다는 가설을 세우고, 마지막 단계의 카드 연결만 실제 실행 여부를 가릅니다.</p>
-          </section>}
-
-          <div className="fragment-list">
-            {group.fragments.map((fragment, index) => (
-              <section className={`fragment fragment--${fragment.status ?? 'covered'}`} key={fragment.id} id={`fragment-${fragment.id}`} aria-labelledby={`fragment-heading-${fragment.id}`}>
-                <header>
-                  <span>{String(index + 1).padStart(2, '0')}</span>
-                  <div><h4 id={`fragment-heading-${fragment.id}`}><SectionLink id={`fragment-${fragment.id}`}>{fragment.label}</SectionLink></h4><small>{fragment.status === 'missing' ? '미작성' : `${fragment.cardIds.length}장 연결`}{fragment.status === 'thin' && ' · 보강 필요'}</small></div>
-                </header>
-                {fragment.note && <p className="fragment__note">{fragment.note}</p>}
-                <div className="fragment__cards">
-                  {fragment.cardIds.map((cardId) => {
-                    const card = cardsById.get(cardId)
-                    return card ? <CardView key={cardId} card={card} to={`/issues/${segment(group.id)}/cards/${segment(cardId)}#${segment(`fragment-${fragment.id}`)}`} /> : <p className="fragment__missing" key={cardId}>누락된 카드 · {cardId}</p>
-                  })}
-                  {fragment.cardIds.length === 0 && <p className="fragment__empty">연결된 카드가 없습니다.</p>}
-                </div>
-              </section>
-            ))}
-          </div>
-        </article>
-      </div>
-
-      <CardReader card={selectedCard} onClose={() => { void navigate(`/issues/${segment(group.id)}${location.hash}`) }}>
-        {selectedCard && <div className="issue-card-meta">
-          <span>{cardKinds[selectedCard.kind].label}</span>
-          <span>{locationOf(selectedCard)}</span>
-          <code>{selectedCard.id}</code>
-          <Link to={`/library/cards/${segment(selectedCard.id)}`}>라이브러리에서 보기 ↗</Link>
-        </div>}
-      </CardReader>
-    </section>
-  )
+  const uniqueIds = [...new Set([...(active?.buckets.flatMap(bucket => bucket.cards.map(card => card.id)) ?? []), ...(group?.fragments.flatMap(fragment => fragment.cardIds) ?? [])])]
+  const selected = cardId ? byId.get(cardId) : undefined
+  const setting = characterSettings.find(setting => setting.id === active?.character.id)
+  const warnings = people.flatMap(person => person.messages.map(message => `${person.character.name}: ${message}`))
+  const unmapped = scenario.cards.filter(card => card.kind === 'rumor' || card.kind === 'evidence').filter(card => !scenario.characters.some(person => person.id === timeline.characterIdByCardId[card.id]))
+  if (!group) return <MissingRoute message="해당 인물 또는 공통 쟁점을 찾을 수 없습니다." to="/issues" label="카드 구성으로" />
+  if (cardId && (!selected || !uniqueIds.includes(cardId))) return <MissingRoute message="이 인물에 연결된 카드가 아닙니다." to={route} label="인물 카드로" />
+  if (category !== 'all' && !active?.buckets.some(bucket => bucket.id === category)) return <MissingRoute message="존재하지 않는 카드 범주입니다." to={route} label="전체 범주로" />
+  const displayBuckets = active && category !== 'all' ? active.buckets.filter(bucket => bucket.id === category) : []
+  const labelsFor = (card: Card) => active?.buckets.filter(bucket => !['rumor','memory','testimony','evidence','extra'].includes(bucket.id) && bucket.cards.some(item => item.id === card.id)).map(bucket => bucket.label) ?? []
+  const renderCard = (card: Card) => <div className="composition-card" key={card.id}>
+    <CardView card={card} to={path(card.id)} />
+    <div className="composition-card__labels">{labelsFor(card).map(label => <span key={label}>{label}</span>)}
+      {card.kind === 'evidence' && <span>{scenario.locations.find(place => place.id === card.locationId)?.name ?? '장소 미배정'}</span>}
+    </div>
+  </div>
+  return <section className="issue-board composition-board">
+    <header className="issue-board__header"><div><span className="eyebrow">DESIGNER ONLY · 카드 구성</span><h2>인물별 카드 구성과 연결</h2><p>인물을 고르고 이야기 순서대로 카드를 읽어 보세요. 장면마다 무엇이 이어지고 무엇이 아직 설명되지 않는지 함께 적었습니다.</p></div>
+      <div className="composition-total"><strong>{scenario.cards.length}장</strong><span>{['rumor','evidence','testimony','memory'].map(kind => `${cardKinds[kind as Card['kind']].label} ${scenario.cards.filter(card => card.kind === kind).length}`).join(' · ')}</span></div>
+    </header>
+    <details className="composition-counts"><summary>카드 장수와 유형 비교</summary><div className="composition-table-wrap"><table className="composition-table"><caption>인물별 실제 / 목표 장수 · 유형과 욕망·파멸은 상위 카드에 포함되므로 합산하지 않습니다.</caption><thead><tr><th scope="col">인물</th>{columns.map(([id,label,target]) => <th scope="col" key={id}>{label}<small>목표 {target}</small></th>)}<th scope="col">구성 상태</th></tr></thead>
+      <tbody>{people.map(person => <tr key={person.character.id} aria-selected={active?.character.id === person.character.id}><th scope="row"><Link to={`/issues/${segment(person.group?.id ?? '')}`}>{person.character.name}</Link></th>{columns.map(([id]) => {
+        const bucket = person.buckets.find(bucket => bucket.id === id)
+        return <td key={id}>{bucket ? <Link className={bucket.target === undefined ? '' : bucket.cards.length === bucket.target && !bucket.missing.length ? 'composition-ok' : 'composition-gap'} to={`/issues/${segment(person.group?.id ?? '')}?category=${id}#composition-detail`} aria-label={`${person.character.name} ${bucket.label} ${bucket.cards.length}장${bucket.target === undefined ? ' · 구성 보류' : ` 목표 ${bucket.target}장`}`}>{bucket.cards.length}{bucket.target !== undefined && <small> / {bucket.target}</small>}</Link> : <span title="이 인물에게 배정된 측근 NPC가 없습니다">—</span>}</td>
+      })}<td className={!person.inScope ? '' : person.messages.length ? 'composition-gap' : 'composition-ok'}>{!person.inScope ? '별도 검토' : person.messages.length ? `${person.messages.length}건 확인` : '장수 일치'}</td></tr>)}</tbody></table></div>
+    <p className="composition-note">소문·진실은 인물 배정, 탐문은 측근 NPC 덱, 증거는 인물별 전용 배정 기준입니다. 목표 장수는 로웬을 제외한 다섯 인물에 적용합니다. 참고 증거는 목표 4장에 포함하지 않습니다. 아드리안의 주치의 루시엔은 별도로 의료 가설 3장·반증 1장입니다. 장수 일치는 서사의 완성도를 보증하지 않습니다.</p>
+    {(warnings.length > 0 || unmapped.length > 0) && <aside className="composition-warnings"><strong>확인할 구성</strong><ul>{warnings.map((warning,index) => <li key={index}>{warning}</li>)}{unmapped.map(card => <li key={card.id}><Link to={`/library/cards/${segment(card.id)}`}>{card.title}</Link> · 인물 배정 없음</li>)}</ul></aside>}
+    <details className="composition-pending"><summary>배정 보류 증거 {evidenceAllocation.deferredCardIds.length}장 · 로웬과 공통 구성은 추후 검토</summary><p className="composition-note">원고와 현재 덱을 유지한 채 다섯 인물의 전용 장수에서 제외했습니다. 공통 카드로 확정한 목록은 아닙니다. 이동 소요표도 로웬 쪽에 남겨 두고 다섯 인물의 쟁점과 위치 확인에는 사용하지 않습니다.</p><ul>{evidenceAllocation.deferredCardIds.map(id => <li key={id}><Link to={`/library/cards/${segment(id)}`}>{byId.get(id)?.title ?? id}</Link></li>)}</ul></details>
+    </details>
+    <nav className="composition-people" aria-label="인물과 공통 쟁점">{people.map(person => <Link key={person.character.id} to={`/issues/${segment(person.group?.id ?? '')}`} aria-current={active === person ? 'page' : undefined}>{person.character.name}</Link>)}{shared.map(item => <Link key={item.id} to={`/issues/${segment(item.id)}`} aria-current={group.id === item.id ? 'page' : undefined}>공통 사인</Link>)}</nav>
+    <article className="composition-detail" id="composition-detail"><header><span className="eyebrow">{active ? 'CHARACTER CARDS' : 'SHARED CARDS'}</span><h3>{group.title}</h3><p>{group.question}</p></header>
+      {active && <>
+        <nav className="composition-filters" aria-label="카드 구성 범주"><Link to={path(undefined,'all')} aria-current={category === 'all' ? 'page' : undefined}>이야기 순서</Link>{active.buckets.map(bucket => <Link key={bucket.id} to={path(undefined,bucket.id)} aria-current={category === bucket.id ? 'page' : undefined}>{bucket.label} <b>{bucket.cards.length}{bucket.target !== undefined && `/${bucket.target}`}</b></Link>)}</nav>
+        <p className="composition-note">연결된 원본 카드 {uniqueIds.length}장 · 전용 증거 {active.assignedEvidenceCount}{active.inScope ? '/4' : ''}장 · 참고 증거 {active.buckets.find(b => b.id === 'extra')?.cards.length}장. 같은 카드는 범주가 겹쳐도 원본 장수에 한 번만 셉니다.</p>
+        {['desire','ruin'].includes(category) && <p className="composition-note">{active.motivation?.inference} 배포 차수는 제작자 수동 배포안 기준이며, 실제 게임의 자동 해금 조건은 아닙니다.</p>}
+        {displayBuckets.map(bucket => <section className="composition-bucket" key={bucket.id}><header><h4>{bucket.label}</h4><span>{bucket.cards.length}장{bucket.target !== undefined && ` / 목표 ${bucket.target}장`}</span></header>{bucket.note && <p>{bucket.note}</p>}{bucket.cards.length ? <div className="composition-cards">{bucket.cards.map(card => <div key={card.id}>{renderCard(card)}{['desire','ruin'].includes(category) && <small className="composition-round">배포안 {releasePlan.rounds.find(round => round.cardIds.includes(card.id))?.round ?? '미배정'}차</small>}</div>)}</div> : <p>이 범주에 연결된 카드가 없습니다.</p>}{bucket.missing.map(id => <p className="composition-gap" key={id}>원본 없음: {id}</p>)}</section>)}
+      </>}
+      {category === 'all' && <div className="composition-story" aria-label="이야기 순서로 읽는 카드">
+        {(!active || !active.inScope) && <p className="composition-note">로웬과 공통 구성은 추후 검토합니다. 아래는 기존 연결입니다.</p>}
+        {group.fragments.map((fragment, index) => <section className="story-scene" key={fragment.id} id={`fragment-${fragment.id}`} aria-labelledby={`story-${fragment.id}`}>
+          <header><span className="story-scene__number">{String(index + 1).padStart(2, '0')}</span><div><h4 id={`story-${fragment.id}`}>{fragment.label}</h4><span className="story-scene__count">{fragment.cardIds.length}장 함께 읽기</span></div></header>
+          {fragment.note && <p className="story-scene__narrative">{fragment.note}</p>}
+          <div className="composition-cards">{fragment.cardIds.map(id => byId.has(id) ? renderCard(byId.get(id)!) : <p className="composition-gap" key={id}>원본 없음: {id}</p>)}</div>
+        </section>)}
+        <aside className="story-open-question"><h4>이어 읽고 점검할 부분</h4><p>{group.auditNote}</p></aside>
+      </div>}
+      {setting && ['all', 'memory'].includes(category) && <section className="composition-truths" id="truth-consequences">
+        <h3>진실을 맡긴 뒤, 달라지는 결말</h3>
+        <p className="composition-note">설득할 때의 설명과 실제 파장을 비교해 보세요. 매장은 이미 공식 입증된 사실을 지우지 않습니다.</p>
+        {setting.finalActions.map(truth => <article key={truth.id}>
+          <h4><Link to={path(truth.id)}>{truth.title}</Link></h4><p>{truth.intent}</p>
+          <TruthConsequences truth={truth} />
+          <nav aria-label={`${truth.title} 연결 단서`}>{truth.connectionCardIds?.map(id => <Link key={id} to={path(id)}>{byId.get(id)?.title ?? id}</Link>)}</nav>
+        </article>)}
+      </section>}
+      {setting && <details className="composition-connections"><summary>인물의 신념과 목표</summary><p className="composition-note">{setting.objective}</p><p>{setting.belief}</p><ul>{setting.goals.map(goal => <li key={goal}>{goal}</li>)}</ul><Link className="composition-note" to={`/characters/${segment(setting.id)}`}>전체 인물 설정 보기 ↗</Link></details>}
+    </article>
+    <CardReader card={selected} onClose={() => { void navigate(path()) }}>{selected && <div className="issue-card-meta"><span>{cardKinds[selected.kind].label}</span>{labelsFor(selected).map(label => <span key={label}>{label}</span>)}<code>{selected.id}</code><Link to={`/library/cards/${segment(selected.id)}`}>라이브러리에서 보기 ↗</Link></div>}</CardReader>
+  </section>
 }

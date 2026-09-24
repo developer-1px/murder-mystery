@@ -2,29 +2,29 @@
 .play button { font: inherit; cursor: pointer; }
 .play button:disabled { cursor: not-allowed; }
 .play-toolbar, .play-phase-control > button, .play-my-hand, .play-auto-tools { border: 1px solid #68715a80; background: #14271feb; color: #e5d7bb; box-shadow: 0 4px 16px #0003; backdrop-filter: blur(16px); }
-.play-toolbar { position: fixed; top: 12px; right: 12px; z-index: 20; height: 42px; display: flex; align-items: center; gap: 7px; padding: 4px; border-radius: 9px; }
+.play-toolbar { position: fixed; top: 12px; right: 12px; z-index: 20; min-height: 44px; display: flex; align-items: center; gap: 7px; padding: 4px; border-radius: 9px; }
 .play-tabs { display: flex; gap: 2px; }
-.play-tabs button { padding: 8px 11px; background: transparent; border: 0; color: #a4a698; border-radius: 5px; font-size: 11px; }
+.play-tabs button { padding: 8px 11px; background: transparent; border: 0; color: #a4a698; border-radius: 5px; font-size: 14px; }
 .play-tabs button[aria-pressed=true] { color: #f0dfb8; background: #374139; box-shadow: 0 1px 3px #0004; }
 .play-history-tools { display: flex; gap: 2px; padding-left: 6px; border-left: 1px solid #77826440; }
-.play-history-tools button { min-width: 26px; padding: 7px; border: 0; background: none; color: #b8aa92; border-radius: 4px; font-size: 11px; }
+.play-history-tools button { min-width: 26px; padding: 7px; border: 0; background: none; color: #b8aa92; border-radius: 4px; font-size: 14px; }
 .play-history-tools button:disabled { opacity: .3; }
 .play-phase-control { position: fixed; top: 12px; left: 50%; transform: translateX(-50%); z-index: 20; }
 .play-phase-control > button { height: 42px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-radius: 9px; white-space: nowrap; }
-.play-phase-control strong { font: 700 16px 'Gowun Batang', serif; }
-.play-phase-control button > span { color: #acb599; font-size: 10px; }
-.play-phase-control small { color: #ddc590; font-size: 10px; }
+.play-phase-control strong { font: 700 18px 'Gowun Batang', serif; }
+.play-phase-control button > span { color: #acb599; font-size: 12px; }
+.play-phase-control small { color: #ddc590; font-size: 12px; }
 .play-overview { position: fixed; inset: 64px auto auto 50%; transform: translateX(-50%); margin: 0; width: 420px; max-width: calc(100vw - 32px); max-height: calc(100dvh - 84px); overflow: auto; padding: 18px; border: 1px solid #7d8669; border-radius: 12px; background: #172b22f7; color: var(--play-ink); box-shadow: 0 16px 50px #0008; backdrop-filter: blur(18px); }
 .play-overview > header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-.play-overview > header strong { font: 700 17px 'Gowun Batang', serif; }
-.play-overview > header button { border: 0; background: none; color: #c8cbb3; font-size: 20px; padding: 0 4px; }
-.play-overview > p { color: #abbba1; font-size: 11px; line-height: 1.9; }
-.play-overview > footer { padding-top: 14px; border-top: 1px solid #6b785633; font-size: 9px; color: #90a18a; text-align: center; }
+.play-overview > header strong { font: 700 19px 'Gowun Batang', serif; }
+.play-overview > header button { border: 0; background: none; color: #c8cbb3; font-size: 22px; padding: 0 4px; }
+.play-overview > p { color: #abbba1; font-size: 14px; line-height: 1.9; }
+.play-overview > footer { padding-top: 14px; border-top: 1px solid #6b785633; font-size: 12px; color: #90a18a; text-align: center; }
 .play-progress { display: flex; justify-content: space-between; border-block: 1px solid #69745355; }
-.play-progress > div { display: flex; align-items: center; gap: 5px; padding: 12px 4px; color: #727f75; font-size: 10px; position: relative; }
+.play-progress > div { display: flex; align-items: center; gap: 5px; padding: 12px 4px; color: #727f75; font-size: 12px; position: relative; }
 .play-progress > div::after { content: '›'; position: absolute; right: -3px; color: #535c50; }
 .play-progress > div:nth-child(6)::after { content: none; }
-.play-progress > div > span { font-size: 8px; font-variant-numeric: tabular-nums; color: #697363; }
+.play-progress > div > span { font-size: 12px; font-variant-numeric: tabular-nums; color: #697363; }
 .play-progress > div.is-current { color: #e9d2a5; box-shadow: 0 -2px #dbc393 inset; }
 .play-progress > div.is-current > span { color: #e9d2a5; }
 .play-progress > div.is-done { color: #b3b6a0; }
@@ -32,34 +32,34 @@
 .play-seats > div { display: flex; align-items: center; gap: 9px; padding: 9px; border: 1px solid #454d41; border-radius: 6px; background: #212822; opacity: .65; transition: background .2s, opacity .2s; }
 .play-seats > div.is-active { border-color: #af9770; background: linear-gradient(120deg, #454639, #28352d); opacity: 1; box-shadow: 0 0 18px #d8bf8220; }
 .play-seats > div.is-me { opacity: 1; border-bottom: 2px solid #dfc99e; }
-.play-collection { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; padding: 14px 0; border-block: 1px solid #6b785633; font-size: 10px; }
-.play-collection strong { font-size: 12px; color: #eddbb7; }
+.play-collection { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; padding: 14px 0; border-block: 1px solid #6b785633; font-size: 12px; }
+.play-collection strong { font-size: 14px; color: #eddbb7; }
 .play-collection > strong { flex-basis: 100%; }
 .play-collection strong b { margin-left: 5px; }
 .play-collection > span { color: #aebaa3; }
 .play-collection > span b { color: #e0cfac; margin-left: 2px; }
 .play-hud { position: fixed; inset: auto 16px 12px; z-index: 20; display: flex; justify-content: space-between; align-items: end; gap: 20px; pointer-events: none; }
 .play-hud > * { pointer-events: auto; }
-.play-my-hand { display: flex; align-items: center; gap: 10px; height: 38px; padding: 5px 11px 5px 6px; border-radius: 9px; font-size: 11px !important; }
-.play-my-hand .play-avatar { width: 25px; height: 25px; font-size: 12px; }
+.play-my-hand { display: flex; align-items: center; gap: 10px; height: 38px; padding: 5px 11px 5px 6px; border-radius: 9px; font-size: 14px !important; }
+.play-my-hand .play-avatar { width: 25px; height: 25px; font-size: 14px; }
 .play-my-hand strong { font-weight: 500; }
-.play-my-hand > span:not(.play-avatar), .play-my-hand small { color: #a8b599; font-size: 10px; }
+.play-my-hand > span:not(.play-avatar), .play-my-hand small { color: #a8b599; font-size: 12px; }
 .play-my-hand b { margin-left: 3px; color: #e6d3ac; }
 .play-auto-tools { height: 38px; display: flex; align-items: center; gap: 12px; padding: 4px 5px 4px 12px; border-radius: 9px; }
-.play-auto-tools > span { color: #a4b195; font-size: 10px; }
-.play-auto-tools button { display: flex; align-items: center; gap: 7px; padding: 7px 10px; border: 0; border-radius: 5px; color: #eddbb7; background: #394939; font-size: 10px; }
+.play-auto-tools > span { color: #a4b195; font-size: 12px; }
+.play-auto-tools button { display: flex; align-items: center; gap: 7px; padding: 7px 10px; border: 0; border-radius: 5px; color: #eddbb7; background: #394939; font-size: 12px; }
 .play-auto-tools button:disabled { opacity: .4; }
 .play-bot-turn { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 22px 20px; }
 .play-bot-turn .play-avatar { width: 42px; height: 42px; font-size: 21px; }
 .play-bot-turn h4 { margin: 16px 0 10px; font: 700 22px 'Gowun Batang', serif; }
-.play-bot-turn p { margin: 0 0 10px; font-size: 11px; color: #c1c8af; line-height: 1.8; }
-.play-bot-turn small { color: #94a78e; font-size: 10px; }
+.play-bot-turn p { margin: 0 0 10px; font-size: 14px; color: #c1c8af; line-height: 1.8; }
+.play-bot-turn small { color: #94a78e; font-size: 12px; }
 .play-perspective-choices > button:not(.play-primary) { width: 132px; padding-block: 22px; }
-.play-perspective-choices em { font-style: normal; color: #d6c49b; font-size: 9px; margin-top: 10px; }
-.play-avatar { display: grid; place-items: center; width: 31px; height: 31px; flex: 0 0 auto; border-radius: 50%; color: #f3e7cf; background: var(--seat-color); border: 1px solid #fff3; font: 700 15px 'Gowun Batang', serif; }
-.play-seats strong { display: block; font-size: 11px; font-weight: 500; }
-.play-seats small { display: block; margin-top: 3px; color: #a0a997; font-size: 8px; }
-.play-seats b { display: flex; align-items: baseline; gap: 3px; margin-left: auto; font: 13px 'Gowun Batang', serif; }
+.play-perspective-choices em { font-style: normal; color: #d6c49b; font-size: 12px; margin-top: 10px; }
+.play-avatar { display: grid; place-items: center; width: 31px; height: 31px; flex: 0 0 auto; border-radius: 50%; color: #f3e7cf; background: var(--seat-color); border: 1px solid #fff3; font: 700 17px 'Gowun Batang', serif; }
+.play-seats strong { display: block; font-size: 14px; font-weight: 500; }
+.play-seats small { display: block; margin-top: 3px; color: #a0a997; font-size: 12px; }
+.play-seats b { display: flex; align-items: baseline; gap: 3px; margin-left: auto; font: 15px 'Gowun Batang', serif; }
 .play-surface { position: absolute; inset: 8px; isolation: isolate; border: 1px solid #61705a88; border-radius: 12px; background: radial-gradient(ellipse at 50% 45%, #354f42, #263d33 62%, #1b3028); box-shadow: inset 0 0 100px #04130f66; overflow: hidden; }
 .play-canvas { position: absolute; inset: 72px 8px 8px; z-index: 1; }
 .play-canvas:has(.table-piece--raised), .play-canvas:has([aria-modal=true]) { z-index: 5; }
@@ -77,66 +77,68 @@
 .play .card-reader__sheet > .play-primary { margin-top: 12px; width: 100%; }
 .play-surface::before { content: ''; position: absolute; inset: 12px; border: 1px solid #b8b18523; border-radius: 4px; pointer-events: none; z-index: -1; }
 .play-table-mark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font: 170px 'Gowun Batang', serif; color: #d0c59d05; pointer-events: none; z-index: -1; }
-.play-stage-note { position: absolute; top: 56px; left: 20%; right: 20%; z-index: 2; margin: 0; text-align: center; font-size: 10px; line-height: 1.7; color: #afbea6; pointer-events: none; }
+.play-stage-note { position: absolute; top: 56px; left: 20%; right: 20%; z-index: 2; margin: 0; text-align: center; font-size: 12px; line-height: 1.7; color: #afbea6; pointer-events: none; }
 .play-stage { width: 100%; padding: 16px 0; }
 .play:has(.table-surface[aria-modal=true]) :is(.play-toolbar, .play-phase-control, .play-hud, .play-stage-note) { visibility: hidden; }
 .play:has(.table-surface[aria-modal=true]) .play-canvas { inset: 0; }
 .play[data-view=character] .play-surface, .play[data-view=record] .play-surface { padding: 72px 24px 68px; overflow: auto; }
-.play-primary { display: inline-flex; justify-content: center; align-items: center; gap: 20px; padding: 13px 24px; border: 1px solid #e0c795; border-radius: 5px; background: linear-gradient(135deg, #dfc99e, #bba477); color: #24281e; font-size: 12px !important; font-weight: 700 !important; box-shadow: 0 4px 12px #0003; cursor: pointer; transition: background .15s, transform .15s; }
+.play-primary { display: inline-flex; justify-content: center; align-items: center; gap: 20px; padding: 13px 24px; border: 1px solid #e0c795; border-radius: 5px; background: linear-gradient(135deg, #dfc99e, #bba477); color: #24281e; font-size: 16px !important; font-weight: 700 !important; box-shadow: 0 4px 12px #0003; cursor: pointer; transition: background .15s, transform .15s; }
 .play-primary:hover { background: #efd9ad; transform: translateY(-1px); }
 .play-primary:disabled { opacity: .4; }
-.play-text-button { display: block; padding: 10px; margin: 8px auto 0; border: 0; background: transparent; color: #c6c8b4; font-size: 11px !important; text-decoration: underline; text-underline-offset: 4px; }
+.play-text-button { display: block; padding: 10px; margin: 8px auto 0; border: 0; background: transparent; color: #c6c8b4; font-size: 14px !important; text-decoration: underline; text-underline-offset: 4px; }
 .play-intro { display: flex; align-items: center; flex-direction: column; justify-content: center; padding: 15px 20px 32px; text-align: center; }
 .play-intro h3 { margin: 14px 0 16px; font: 700 30px 'Gowun Batang', serif; }
-.play-intro small { margin-top: 18px; color: #94a591; font-size: 10px; line-height: 1.9; }
-.play-private-label { display: inline-block; padding: 5px 10px; border: 1px solid #bca38077; border-radius: 4px; background: #172b22; color: #dbbd92; font-size: 9px; }
+.play-intro small { margin-top: 18px; color: #94a591; font-size: 12px; line-height: 1.9; }
+.play-private-label { display: inline-block; padding: 5px 10px; border: 1px solid #bca38077; border-radius: 4px; background: #172b22; color: #dbbd92; font-size: 12px; }
 .play-private-label::before { content: '◇ '; }
 .play .card { border-radius: 6px; }
 .play-inspection-result, .play-question, .play-submit { display: flex; align-items: center; justify-content: center; gap: 38px; max-width: 1000px; margin: 0 auto; }
 .play-feature-card { width: clamp(130px, min(23vw, calc((100dvh - 440px) / 1.5)), 280px); flex: 0 0 auto; }
+.play-inspection-result .play-feature-card { width: clamp(280px, min(36vw, calc((100dvh - var(--table-card-width) * 1.12 - 238px) / 1.5)), 440px); }
 .play-submit-panel { position: relative; z-index: 1; min-width: min(530px, calc(100vw - var(--table-card-width) - 130px)); padding: 24px 28px 20px; border: 1px solid #8b9274; border-radius: 10px; background: #183027; box-shadow: 0 18px 48px #07140fbf, inset 0 1px #f2dfb71f; text-align: center; }
 .play-submit-panel::before { content: ''; position: absolute; inset: 7px; z-index: -1; border: 1px solid #c2ad7d22; border-radius: 6px; pointer-events: none; }
 .play-submit-panel .play-person-choices { flex-wrap: nowrap; }
 .play-inspection-result h4, .play-question h4, .play-submit h4 { font: 700 24px/1.6 'Gowun Batang', serif; margin: 16px 0 12px; }
-.play-inspection-result p, .play-question p, .play-submit p { font-size: 11px; line-height: 1.9; color: #b7c5b0; margin: 0 0 22px; }
-.play-subtle { display: block; text-align: center; font-size: 10px; color: #a8b79e; line-height: 1.8; }
+.play-inspection-result p:not(.card__text), .play-question p:not(.card__text), .play-submit p:not(.card__text) { font-size: 16px; line-height: 1.8; color: #cbd5c5; margin: 0 0 22px; }
+@media (max-width: 700px) { .play-inspection-result { flex-direction: column; gap: 20px; }.play-inspection-result .play-feature-card { width: min(360px, 100%); } }
+.play-subtle { display: block; text-align: center; font-size: 12px; color: #a8b79e; line-height: 1.8; }
 .play-location-members { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 24px 0 0; }
-.play-location-members > span { padding: 7px 12px; background: #192d24; border: 1px solid #81927955; border-radius: 4px; font-size: 9px; color: #d4cfb5; }
+.play-location-members > span { padding: 7px 12px; background: #192d24; border: 1px solid #81927955; border-radius: 4px; font-size: 12px; color: #d4cfb5; }
 .play-location-members b { margin-left: 10px; color: #96ad95; font-weight: 400; }
 .play-discussion, .play-defense, .play-nominate { text-align: center; max-width: 1000px; margin: 0 auto; }
 .play-discussion-symbol { font: 60px 'Gowun Batang', serif; color: #c8b78f; }
-.play-inspection-sealed { font-size: 10px; color: #bea77f; border-top: 1px solid #9fa48033; padding: 15px 0 25px; max-width: 430px; margin: auto; }
+.play-inspection-sealed { font-size: 12px; color: #bea77f; border-top: 1px solid #9fa48033; padding: 15px 0 25px; max-width: 430px; margin: auto; }
 .play-person-choices { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
 .play-person-choices > button:not(.play-primary) { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 110px; padding: 18px 10px; background: #24362d; color: #e4d9bd; border: 1px solid #77806b; border-radius: 5px; transition: background .15s; }
 .play-person-choices > button:not(.play-primary):hover, .play-person-choices > button[aria-pressed=true] { background: #465442; border-color: #dac093; }
-.play-person-choices > button > span { display: grid; place-items: center; width: 33px; height: 33px; background: var(--seat-color); border-radius: 50%; font: 18px 'Gowun Batang', serif; color: #f1e6cf; }
-.play-person-choices strong { font-size: 11px; font-weight: 500; }
-.play-person-choices small { color: #a5b69b; font-size: 9px; }
+.play-person-choices > button > span { display: grid; place-items: center; width: 33px; height: 33px; background: var(--seat-color); border-radius: 50%; font: 20px 'Gowun Batang', serif; color: #f1e6cf; }
+.play-person-choices strong { font-size: 14px; font-weight: 500; }
+.play-person-choices small { color: #a5b69b; font-size: 12px; }
 .play-submit .play-person-choices > button:not(.play-primary) { width: 86px; }
 .play-indict-confirm { flex-basis: 100%; max-width: 370px; margin: 10px 100px 0; }
 .play-nominations { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; padding: 10px 0 20px; }
 .play-nominations > div { display: flex; align-items: center; gap: 8px; padding: 9px 13px; background: #1b2f25; border: 1px solid #7a846e; border-radius: 4px; }
-.play-nominations small { font-size: 10px; color: #a3b296; }
-.play-nominations span { color: #8e9a7c; font-size: 9px; }
-.play-nominations strong { color: #e0c496; font-size: 11px; font-weight: 500; }
+.play-nominations small { font-size: 12px; color: #a3b296; }
+.play-nominations span { color: #8e9a7c; font-size: 12px; }
+.play-nominations strong { color: #e0c496; font-size: 14px; font-weight: 500; }
 .play-defense > .play-primary { margin-top: 24px; }
 .play-complete { text-align: center; display: flex; flex-direction: column; align-items: center; }
 .play-complete > span { font-size: 43px; color: #cbb78c; }
 .play-complete h4 { font: 700 30px 'Gowun Batang', serif; margin: 10px 0; }
-.play-complete > p { font: 14px/1.9 'Gowun Batang', serif; color: #c9d0b8; margin: 5px 0 20px; }
-.play-complete > div { display: flex; gap: 8px; align-items: baseline; font-size: 11px; color: #a9b899; }
+.play-complete > p { font: 16px/1.9 'Gowun Batang', serif; color: #c9d0b8; margin: 5px 0 20px; }
+.play-complete > div { display: flex; gap: 8px; align-items: baseline; font-size: 14px; color: #a9b899; }
 .play-complete > div b { font: 23px 'Gowun Batang', serif; color: #e3c58c; }
 .play-complete > div i { margin: 0 10px; }
-.play-complete small { font-size: 10px; line-height: 1.8; margin: 18px 0 20px; color: #9dac8f; }
+.play-complete small { font-size: 12px; line-height: 1.8; margin: 18px 0 20px; color: #9dac8f; }
 .play[data-phase=complete] .play-canvas, .play[data-phase=complete] .play-stage-note, .play[data-phase=complete] .play-hud { display: none; }
 .play[data-phase=complete] .play-scene-content { inset: 70px 18px 18px; align-items: start; }
 .play[data-phase=complete] .play-stage { padding: 22px 0 48px; }
 .play-truth-ending { width: min(1120px, 100%); margin: 0 auto; }
 .play-truth-ending > p { margin-bottom: 30px; }
 .play-truth-group { width: 100%; margin: 0 0 34px; padding-top: 20px; border-top: 1px solid #91a08355; }
-.play-truth-group h5 { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 0; color: #e8ddc6; font: 700 18px 'Gowun Batang', serif; }
-.play-truth-group h5 b { display: grid; place-items: center; min-width: 26px; height: 26px; padding: 0 7px; border-radius: 999px; background: #dbc393; color: #203127; font: 700 12px 'Noto Sans KR', sans-serif; }
-.play-truth-group > p { margin: 7px 0 18px; color: #abb9a4; font: 10px 'Noto Sans KR', sans-serif; }
+.play-truth-group h5 { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 0; color: #e8ddc6; font: 700 20px 'Gowun Batang', serif; }
+.play-truth-group h5 b { display: grid; place-items: center; min-width: 26px; height: 26px; padding: 0 7px; border-radius: 999px; background: #dbc393; color: #203127; font: 700 14px 'Noto Sans KR', sans-serif; }
+.play-truth-group > p { margin: 7px 0 18px; color: #abb9a4; font: 12px 'Noto Sans KR', sans-serif; }
 .play-truth-ending .play-record-cards { grid-template-columns: repeat(auto-fit, minmax(190px, 220px)); justify-content: center; gap: 20px; width: 100%; }
 .play-truth-ending .card { color: #211b25; border-color: #8a778d; box-shadow: 0 10px 24px #07140f80; }
 .play-truth-ending .card__kind, .play-truth-ending .card__tags { color: #5b4660; }
@@ -145,34 +147,59 @@
 .play-record, .play-character { padding: 30px 40px 44px; max-width: 1250px; margin: auto; }
 .play-record > header, .play-character > header { border-bottom: 1px solid #9fa98055; padding-bottom: 15px; margin-bottom: 22px; }
 .play-record h3, .play-character h3 { font: 700 26px 'Gowun Batang', serif; margin: 8px 0; }
-.play-record header p, .play-character header p { font-size: 11px; line-height: 1.8; color: #bac5ad; }
-.play-record h4 { font: 700 17px 'Gowun Batang', serif; }
-.play-record h4 > span { font: 10px 'Noto Sans KR', sans-serif; color: #9eae8d; margin-left: 10px; }
+.play-record header p, .play-character header p { font-size: 14px; line-height: 1.8; color: #bac5ad; }
+.play-record h4 { font: 700 19px 'Gowun Batang', serif; }
+.play-record h4 > span { font: 12px 'Noto Sans KR', sans-serif; color: #9eae8d; margin-left: 10px; }
 .play-record-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 145px)); gap: 15px; }
-.play-record-cards > div > small { font-size: 9px; color: #b5c3a8; display: block; margin-bottom: 8px; }
+.play-record-cards > div > small { font-size: 12px; color: #b5c3a8; display: block; margin-bottom: 8px; }
 .play-record > section { margin-bottom: 30px; }
-.play-empty { text-align: center; padding: 60px 20px; color: #9cab91; font: 15px/2 'Gowun Batang', serif; }
+.play-empty { text-align: center; padding: 60px 20px; color: #9cab91; font: 17px/2 'Gowun Batang', serif; }
 .play-character-memories { display: flex; justify-content: center; gap: 18px; margin: 25px 0; }
 .play-character-memories .card { width: 190px; }
 .play-character > section { margin: 25px 0; max-width: 820px; }
-.play-character > section h4 { font: 700 18px 'Gowun Batang', serif; color: #ddccaa; }
-.play-character > section p { font: 13px/1.95 'Gowun Batang', serif; color: #bec9b1; }
+.play-character > section h4 { font: 700 20px 'Gowun Batang', serif; color: #ddccaa; }
+.play-character > section p { font: 18px/1.85 'Gowun Batang', serif; color: #bec9b1; }
 .play-character-scores { display: grid; gap: 7px; margin-top: 15px; }
-.play-character-scores > div { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; padding: 8px 12px; border: 1px solid #9fa98033; border-radius: 5px; background: #edf0dd0d; font: 13px/1.7 'Gowun Batang', serif; }
-.play-character-scores strong { flex: none; color: #e9d5a8; font: 700 17px 'Gowun Batang', serif; }
+.play-character-scores > div { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; padding: 8px 12px; border: 1px solid #9fa98033; border-radius: 5px; background: #edf0dd0d; font: 15px/1.7 'Gowun Batang', serif; }
+.play-character-scores strong { flex: none; color: #e9d5a8; font: 700 19px 'Gowun Batang', serif; }
 .play-history { position: fixed; z-index: 50; top: 64px; right: 12px; width: 350px; max-height: calc(100dvh - 82px); overflow: auto; border: 1px solid #9b8d6e; border-radius: 8px; padding: 20px; background: #1b2b22; color: #ddd2b5; box-shadow: 0 12px 50px #0009; }
 .play-history header { display: flex; align-items: center; justify-content: space-between; }
-.play-history h3 { margin: 0; font: 700 20px 'Gowun Batang', serif; }
+.play-history h3 { margin: 0; font: 700 22px 'Gowun Batang', serif; }
 .play-history button:not(.play-primary) { background: transparent; color: #c9ba99; border: 0; cursor: pointer; }
-.play-history > p { font-size: 10px; line-height: 1.8; color: #a1b091; }
+.play-history > p { font-size: 12px; line-height: 1.8; color: #a1b091; }
 .play-history details { border-block: 1px solid #556049; padding: 12px 0; }
-.play-history summary { cursor: pointer; font-size: 12px; margin: 5px 0; }
-.play-history a { color: #bdc4aa; display: block; padding: 9px 8px; font-size: 10px; line-height: 1.7; text-decoration: none; }
+.play-history summary { cursor: pointer; font-size: 14px; margin: 5px 0; }
+.play-history a { color: #bdc4aa; display: block; padding: 9px 8px; font-size: 12px; line-height: 1.7; text-decoration: none; }
 .play-history a b { margin-right: 9px; color: #d4b981; }
 .play-history a[aria-current] { background: #43503a; color: #e2cc9b; }
 .play-history > .play-primary { width: 100%; margin: 15px 0 8px; }
-.play-warning { position: fixed; top: 64px; left: 20px; z-index: 60; max-width: 340px; margin: 0; padding: 12px; border: 1px solid #926342; border-radius: 6px; background: #382619; color: #e6be93; font-size: 11px; }
-@media (max-width: 1050px) { .play-phase-control { top: 64px; }.play-phase-control > button { height: 34px; }.play-stage-note { top: 99px; left: 10%; right: 10%; }.play-canvas { top: 120px; }.play-overview { top: 105px; max-height: calc(100dvh - 125px); }.play-scene-content { top: 148px; }.play-question, .play-submit { gap: 20px; }.play-submit-panel { min-width: min(430px, calc(100vw - var(--table-card-width) - 90px)); padding-inline: 18px; }.play-submit .play-person-choices > button:not(.play-primary) { width: 75px; }.play-person-choices { gap: 7px; }.play-perspective-choices > button:not(.play-primary) { width: 112px; }.play-intro h3 { font-size: 25px; } }
-@media (max-height: 760px) { .play-stage { padding-block: 8px; }.play-person-choices { margin-top: 12px; }.play-person-choices > button:not(.play-primary) { padding-block: 10px; }.play-inspection-result h4, .play-question h4, .play-submit h4 { font-size: 19px; }.play-discussion-symbol { font-size: 38px; }.play-bot-turn { padding-block: 12px; } }
+.play-warning { position: fixed; top: 64px; left: 20px; z-index: 60; max-width: 340px; margin: 0; padding: 12px; border: 1px solid #926342; border-radius: 6px; background: #382619; color: #e6be93; font-size: 14px; }
+@media (max-width: 1200px) { .play-phase-control { top: 64px; }.play-phase-control > button { height: 34px; }.play-stage-note { top: 99px; left: 10%; right: 10%; }.play-canvas { top: 120px; }.play-overview { top: 105px; max-height: calc(100dvh - 125px); }.play-scene-content { top: 148px; }.play-question, .play-submit { gap: 20px; }.play-submit-panel { min-width: min(430px, calc(100vw - var(--table-card-width) - 90px)); padding-inline: 18px; }.play-submit .play-person-choices > button:not(.play-primary) { width: 75px; }.play-person-choices { gap: 7px; }.play-perspective-choices > button:not(.play-primary) { width: 112px; }.play-intro h3 { font-size: 25px; } }
+@media (max-height: 760px) { .play-stage { padding-block: 8px; }.play-person-choices { margin-top: 12px; }.play-person-choices > button:not(.play-primary) { padding-block: 10px; }.play-inspection-result h4, .play-question h4, .play-submit h4 { font-size: 21px; }.play-discussion-symbol { font-size: 38px; }.play-bot-turn { padding-block: 12px; } }
 @media (max-width: 520px) { .play[data-phase=complete] .play-scene-content { inset-inline: 10px; }.play-truth-ending .play-record-cards { grid-template-columns: minmax(210px, 260px); }.play-truth-ending > span { font-size: 34px; }.play-truth-ending h4 { font-size: 25px; } }
 @media (prefers-reduced-motion: reduce) { .play *, .play *::before, .play *::after { transition: none !important; } }
+
+.play[data-choosing] .play-canvas { display: none; }
+.play[data-choosing] .play-scene-content { bottom: 30px; }
+.play[data-choosing] .play-tabs { display: none; }
+.play[data-choosing] .play-perspective-choices { display: grid; grid-template-columns: repeat(3, minmax(140px, 1fr)); width: min(660px, 100%); gap: 14px; }
+.play[data-choosing] .play-perspective-choices > button { width: auto; min-height: 145px; }
+.play-scene-content { align-items: safe center; pointer-events: auto; }
+.play-scene-content--cards { pointer-events: none; }
+.play-warning { display: flex; align-items: start; gap: 12px; }
+.play-warning button { border: 0; padding: 0 4px; background: transparent; color: inherit; font-size: 20px; cursor: pointer; }
+.play-truth-exchange .play-record-cards, .play-truth-choice .play-record-cards { justify-content: center; grid-template-columns: repeat(2, minmax(130px, 190px)); }
+.play-truth-exchange .play-record-cards .play-primary, .play-truth-choice .play-record-cards .play-primary { width: 100%; margin-top: 10px; padding: 10px; }
+.play-submit-panel .play-person-choices { flex-wrap: wrap; }
+
+.play-recovery { width: min(560px, calc(100% - 48px)); margin: 0 auto; padding: max(120px, 20vh) 0 60px; }
+.play-recovery h2 { font: 700 30px 'Gowun Batang', serif; }
+.play-recovery p { font-size: 17px; line-height: 1.9; color: var(--ui-text-soft); }
+.play-recovery > a { display: block; margin-top: 24px; color: var(--ui-gold); font-size: 15px; }
+
+.play .table-piece--disabled .card { opacity: .42; filter: saturate(.45); }
+.play .card h3 { word-break: keep-all; }
+
+.play-reading { height: 100dvh; overflow-y: auto; }
+.play-reading__start { margin-top: 32px; padding: 30px; border-top: 1px solid var(--ui-border); text-align: center; }
+.play-reading__start p { color: var(--ui-text-soft); line-height: 1.8; }

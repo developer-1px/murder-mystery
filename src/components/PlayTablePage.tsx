@@ -6,12 +6,13 @@ import { availableEvidence, createPlaySession, getDeckBlockReason, getInspection
 import { characterSettings, memoryStages, npcGroups, scenario } from '../scenario/load'
 import { getCardGroups } from '../scenario/cardGroups'
 import inspectionDocument from '../../scenarios/crown-trial/inspections.json'
-import { appendPlay, playPath, playStorageKey, readPlayHistory, type PlayHistory } from '../playHistory'
+import { appendPlay, playPath, playStorageKey, readPlayHistory, recoverPlayHistory, type PlayHistory } from '../playHistory'
 import { href, MissingRoute, useQueryState } from '../routing'
 import { CardReader, CardView } from './CardView'
 import { CardTable, type CardTablePolicy } from './CardTable'
 import { playTablePiles } from '../domain/playTable'
 import './play-table.css'
+import { CharacterSettings } from './CharacterSettings'
 
 const groups = getCardGroups(scenario, npcGroups, memoryStages)
 const assets: PlayAssets = { scenario, groups, memoryStages, inspectionCards: inspectionDocument as Card[] }
@@ -32,6 +33,8 @@ function phaseTitle(session: PlaySession) {
 
 export function PlayTablePage() {
   const [stored, setStored] = useState(() => readPlayHistory(assets))
+  const [recovering, setRecovering] = useState(false)
+  const [recoveryError, setRecoveryError] = useState('')
   const [warning, setWarning] = useState(stored.warning)
   const [runAt, setRunAt] = useState<{ branchId: string; step: number } | null>(null)
   const { branchId, step } = useParams()
@@ -44,7 +47,7 @@ export function PlayTablePage() {
   const autoRunning = runAt?.branchId === branch?.id && runAt?.step === cursor && cursor === (branch?.snapshots.length ?? 0) - 1
   const save = (next: PlayHistory) => {
     setStored({ history: next })
-    try { localStorage.setItem(playStorageKey(scenario.meta.id), JSON.stringify(next)); setWarning(undefined) }
+    try { localStorage.setItem(playStorageKey(scenario.meta.id), JSON.stringify(next)) }
     catch { setWarning('저장에 실패했습니다. 현재 플레이는 유지되지만 새로고침하면 복원되지 않을 수 있습니다.') }
   }
   useEffect(() => {
@@ -57,7 +60,25 @@ export function PlayTablePage() {
     return () => window.removeEventListener('popstate', pause)
   }, [])
 
-  if (stored.error) return <MissingRoute message={stored.error} to="/library" label="카드 라이브러리로" />
+  if (stored.error) return <section className="play-recovery">
+    <span className="eyebrow">왕관재판 · 플레이 복구</span>
+    <h2>새 시나리오로 이어갈 준비</h2>
+    <p>{stored.error}</p>
+    <button className="play-primary" disabled={recovering} onClick={async () => {
+      setRecovering(true)
+      setRecoveryError('')
+      try {
+        const next = await recoverPlayHistory(assets)
+        setStored({ history: next })
+        setWarning('이전 기록을 이 브라우저에 별도 보관했습니다. 새 플레이를 시작합니다.')
+        void navigate(playPath(next.last.branchId, next.last.step), { replace: true })
+      } catch {
+        setRecoveryError('기록 보관 또는 저장에 실패했습니다. 기존 기록은 보존됩니다. 브라우저 저장 공간과 권한을 확인한 뒤 다시 시도해 주세요.')
+      } finally { setRecovering(false) }
+    }}>{recovering ? '이전 기록 보관 중…' : '이전 기록 보관하고 새 플레이'}</button>
+    {recoveryError && <p role="alert">{recoveryError}</p>}
+    <Link to="/guide">게임 진행 읽기</Link>
+  </section>
   if (!branch || !session) return <MissingRoute message="이 브라우저에 해당 플레이 기록이 없습니다. 플레이 링크는 같은 브라우저에 저장된 기록을 엽니다." />
   if (!branchId || step === undefined) return <Navigate replace to={href(playPath(branch.id, cursor), params)} />
   const go = (next: PlayHistory, keepView = false, run = false) => {
@@ -67,14 +88,14 @@ export function PlayTablePage() {
   }
   const act = (action: PlayAction, automatic = false) => {
     const next = transitionPlay(session, action, assets)
-    if (next !== session) go(appendPlay(history, branch, cursor, next), automatic || action.type === 'reorder-hand', autoRunning || action.type === 'play-as')
+    if (next !== session) go(appendPlay(history, branch, cursor, next), automatic || action.type === 'reorder-hand', autoRunning || action.type === 'start' || action.type === 'play-as' && next.phase !== 'ready')
   }
   const newGame = () => {
     const session = createPlaySession(assets)
     go({ ...history, branches: [...history.branches, { id: session.id, name: `플레이 ${history.branches.length + 1}`, snapshots: [session] }], last: { branchId: session.id, step: 0 } })
   }
   return <>
-    {warning && <p className="play-warning" role="alert">{warning}</p>}
+    {warning && <div className="play-warning" role="status"><span>{warning}</span><button onClick={() => setWarning(undefined)} aria-label="안내 닫기">×</button></div>}
     <PlayTable session={session} act={act} newGame={newGame} cursor={cursor} lastStep={branch.snapshots.length - 1}
       autoRunning={autoRunning} onToggleAuto={() => setRunAt(autoRunning ? null : { branchId: branch.id, step: cursor })}
       onUndo={() => { setRunAt(null); void navigate(playPath(branch.id, cursor - 1)) }} onRedo={() => { setRunAt(null); void navigate(playPath(branch.id, cursor + 1)) }} />
@@ -108,7 +129,7 @@ function PlayTable({ session, act, newGame, cursor, lastStep, onUndo, onRedo, au
   const automaticTurn = !!viewer && !ownTurn && !['ready', 'discussion', 'complete'].includes(session.phase)
   const view = viewer && ['character', 'record'].includes(params.get('view') ?? '') ? params.get('view')! : 'table'
   const publicIds = new Set(session.publicCards.map(entry => entry.cardId))
-  const visibleIds = new Set([...publicIds, ...(viewer ? session.hands[viewer.id] : []), ...(ownTurn ? session.choice?.cardIds ?? [] : []), ...session.inspections.filter(entry => entry.published || viewer?.id === 'rowen').map(entry => entry.cardId)])
+  const visibleIds = new Set([...Object.entries(session.truthOutcomes).filter(([, outcome]) => outcome === 'revealed').map(([id]) => id), ...publicIds, ...(viewer ? session.hands[viewer.id] : []), ...(ownTurn ? session.choice?.cardIds ?? [] : []), ...session.inspections.filter(entry => entry.published || viewer?.id === 'rowen').map(entry => entry.cardId)])
   const readingId = params.get('card') ?? ''
   const reading = visibleIds.has(readingId) ? cards.get(readingId) : undefined
   const evidence = availableEvidence(session, assets)
@@ -149,12 +170,16 @@ function PlayTable({ session, act, newGame, cursor, lastStep, onUndo, onRedo, au
       run: () => act({ type: session.phase === 'investigation' ? 'choose-location' : 'open-deck', deckId: group.id }),
     }])),
     choice: ownTurn && session.choice ? { sourceId: session.choice.deckId, cards: session.choice.cardIds.map(cardId => ({ cardId, faceUp: true })), onPick: take,
-      note: `${actor.name} · 클릭하거나 아래 손패로 끌어 한 장을 가져오세요. 남은 카드는 규칙에 따라 돌아갑니다.` } : undefined,
+      note: `${actor.name} · 클릭하거나 아래 손패로 끌어 한 장을 가져오세요. 고르지 않은 카드는 덱 아래로 돌아갑니다.` } : undefined,
     play: session.phase === 'court' && ownTurn && !session.courtTurn && !pendingEvidence ? { label: '증거 제출', accepts: id => evidence.some(card => card.id === id), run: submit } : undefined,
     reorderHand: cardIds => act({ type: 'reorder-hand', cardIds }),
   }
 
-  return <section className="play" data-view={view} data-phase={session.phase} style={{ '--actor-color': viewer?.color ?? actor.color } as CSSProperties}>
+  if (session.phase === 'ready' && viewer) return <div className="play-reading">
+    <CharacterSettings key={viewer.id} settings={characterSettings} characterId={viewer.id} onBack={onUndo} footer={<footer className="play-reading__start"><p>당신의 이야기와 두 진실을 확인했다면, 그날 밤의 조사를 시작하세요.</p><button className="play-primary" onClick={() => act({ type: 'start' })}>설정서를 읽었습니다 · {viewer.name}으로 시작 →</button></footer>} />
+  </div>
+
+  return <section className="play" data-view={view} data-phase={session.phase} data-choosing={!viewer || undefined} style={{ '--actor-color': viewer?.color ?? actor.color } as CSSProperties}>
     <header className="play-toolbar">
       <h2 className="sr-only">{viewer ? `${viewer.name} 시점 · ${session.round}라운드` : '플레이할 인물 선택'}</h2>
       <nav className="play-tabs" aria-label="플레이 화면">
@@ -195,7 +220,7 @@ function PlayTable({ session, act, newGame, cursor, lastStep, onUndo, onRedo, au
         <div className={`play-scene-content ${cardStage ? 'play-scene-content--cards' : ''}`}>
         {!viewer ? <div className="play-intro">
           <span className="eyebrow">CHOOSE YOUR PERSPECTIVE</span><h3>누구의 시점으로 플레이할까요?</h3>
-          <div className="play-person-choices play-perspective-choices">{scenario.characters.map(character => <button key={character.id} onClick={() => act({ type: 'play-as', playerId: character.id })} style={{ '--seat-color': character.color } as CSSProperties}><span>{character.name.slice(0, 1)}</span><strong>{character.name}</strong><small>{character.title}</small><em>이 인물로 {session.phase === 'ready' ? '시작' : '이어서 플레이'} →</em></button>)}</div>
+          <div className="play-person-choices play-perspective-choices">{scenario.characters.map(character => <button key={character.id} onClick={() => act({ type: 'play-as', playerId: character.id })} style={{ '--seat-color': character.color } as CSSProperties}><span>{character.name.slice(0, 1)}</span><strong>{character.name}</strong><small>{character.title}</small><em>{session.phase === 'ready' ? '설정서 먼저 읽기' : '이 인물로 이어서 플레이'} →</em></button>)}</div>
           <small>{session.phase === 'ready' ? '묻어야 할 진실 2장과 소문·탐문·조사 카드로 재판을 준비합니다.' : '기존 덱과 진행은 그대로 두고 선택한 인물의 시점으로 이어갑니다.'}<br />자동 플레이는 추론 AI가 아닌 무작위 선택입니다. 기존 기록은 유지됩니다.</small>
         </div> : automaticTurn ? <div className="play-bot-turn">
           <span className="play-avatar" style={{ '--seat-color': actor.color } as CSSProperties}>{actor.name.slice(0, 1)}</span>
@@ -208,13 +233,12 @@ function PlayTable({ session, act, newGame, cursor, lastStep, onUndo, onRedo, au
           {session.phase === 'court' && (session.courtTurn ? <div className="play-question"><div className="play-feature-card"><CardView card={cards.get(session.courtTurn.cardId)!} onClick={() => readCard(session.courtTurn!.cardId)} /></div><div><span className="eyebrow">공식 증거 제출 완료</span><h4>{actor.name} → {player(session.courtTurn.targetId)?.name}</h4><p>{session.round === 2 ? '이 증거로 의심하는 혐의를 주장하고 질문하세요.' : '이 증거와 관련된 질문을 한 번 하세요.'}<br />질문받은 인물은 자유롭게 답합니다.</p><button className="play-primary" onClick={() => act({ type: 'end-question' })}>질문·답변을 마쳤습니다 →</button></div></div> : pendingEvidence ? <div className="play-submit"><div className="play-feature-card"><CardView card={pendingEvidence} onClick={() => readCard(pendingEvidence.id)} /></div><div className="play-submit-panel"><h4>{session.round === 3 ? '마지막 증거를 남깁니다.' : session.round === 2 ? '누구의 혐의를 주장하나요?' : '누구에게 질문하나요?'}</h4><p>제출한 카드는 모두에게 공개되고 손패에서 이동합니다.</p>{session.round === 3 ? <button className="play-primary" onClick={() => act({ type: 'submit-evidence', cardId: pendingEvidence.id, targetId: '' })}>최종 증거로 제출 →</button> : <CharacterChoices actorId={actor.id} onChoose={targetId => act({ type: 'submit-evidence', cardId: pendingEvidence.id, targetId })} />}<button className="play-text-button" onClick={() => update({ evidence: null })}>다른 증거 선택</button></div></div> : null)}
           {session.phase === 'truth_exchange' && <TruthExchange session={session} actor={actor} act={act} />}
           {session.phase === 'truth_choice' && <TruthChoice session={session} actor={actor} act={act} />}
-          {session.phase === 'accusation' && <div className="play-nominate"><span className="play-private-label">비공개 지목 · {Object.keys(session.accusations).length} / 6 제출</span><h4>누가 아드리안을 죽였다고 생각하나요?</h4><p>로웬은 살해범 후보가 아닙니다. 모두 제출하기 전까지 지목은 공개되지 않습니다.<br />이 지목은 기소가 아닙니다. 최후변론 후 로웬이 결정합니다.</p><CharacterChoices actorId={actor.id} excludeRowen onChoose={targetId => act({ type: 'accuse', targetId })} /></div>}
-          {session.phase === 'defense' && <div className="play-defense"><Nominations session={session} /><h4>{actor.name}의 최후변론</h4><p>“{player(session.accusations[actor.id])?.name}이 범인이라고 생각하는 이유는…”<br />“그리고 내가 범인이 아닌 이유는…”</p><span className="play-subtle">공개 증거를 근거로 변론합니다. 이 단계에는 질문·반박이 없습니다.</span><button className="play-primary" onClick={() => act({ type: 'end-defense' })}>변론을 마쳤습니다 →</button></div>}
+          {session.phase === 'accusation' && <div className="play-nominate"><span className="play-private-label">비공개 지목 · {Object.keys(session.accusations).length} / 5 제출</span><h4>누가 아드리안을 죽였다고 생각하나요?</h4><p>로웬은 살해범 후보가 아닙니다. 모두 제출하기 전까지 지목은 공개되지 않습니다.<br />이 지목은 기소가 아닙니다. 최후변론 후 로웬이 결정합니다.</p><CharacterChoices actorId={actor.id} excludeRowen onChoose={targetId => act({ type: 'accuse', targetId })} /></div>}
+          {session.phase === 'defense' && <div className="play-defense"><Nominations session={session} /><h4>{actor.name}의 최후변론</h4><p>{actor.id === 'rowen' ? '공개된 증거와 변론을 바탕으로 수사 결론을 정리하세요.' : <>“{player(session.accusations[actor.id])?.name}이 범인이라고 생각하는 이유는…”<br />“그리고 내가 범인이 아닌 이유는…”</>}</p><span className="play-subtle">공개 증거를 근거로 변론합니다. 이 단계에는 질문·반박이 없습니다.</span><button className="play-primary" onClick={() => act({ type: 'end-defense' })}>변론을 마쳤습니다 →</button></div>}
           {session.phase === 'indictment' && <div className="play-nominate"><Nominations session={session} /><h4>로웬, 한 사람을 기소하십시오.</h4><p>앞선 지목과 달라도 됩니다. 공개 증거와 가진 모든 카드, 최후변론을 바탕으로 결정하세요.</p><CharacterChoices actorId="rowen" excludeRowen onChoose={targetId => act({ type: 'indict', targetId })} confirm /></div>}
           {session.phase === 'complete' && <TruthEnding session={session} onRead={readCard} onRecord={() => update({ view: 'record' })} newGame={newGame} />}
         </motion.div></AnimatePresence>}
         </div>
-        {ownTurn && session.phase === 'investigation' && !session.choice && <div className="play-location-members">{Object.entries(session.locationChoices).map(([id, groupId]) => <span key={id}>{player(id).name}<b>{groups.find(group => group.id === groupId)?.backTitle}</b></span>)}</div>}
       </>}
     </div>
     <CardReader card={canvasReadingId ? undefined : reading} onClose={() => update({ card: null })}>
@@ -246,7 +270,7 @@ function TruthChoice({ session, actor, act }: { session: PlaySession; actor: Cha
   return <div className="play-nominate play-truth-choice">
     <span className="play-private-label">기소 전에 비공개로 결정</span>
     <h4>무엇을 밝히고, 무엇을 묻겠습니까?</h4>
-    <p>밝힐 진실 한 장을 고르십시오. 나머지 한 장은 묻기로 결정됩니다.<br />카드의 파장은 현재 소지자가 아니라 상단에 적힌 원래 주인에게만 적용됩니다.<br />자기 진실을 다시 들고 있다면 묻기로 골라도 마지막에 자동으로 밝혀집니다.</p>
+    <p>밝힐 진실 한 장을 고르십시오. 나머지 한 장은 묻기로 결정됩니다.<br />진실의 책임은 원래 주인에게 있지만, 그 파장은 다른 인물의 권리와 왕국의 미래에도 이어집니다.<br />자기 진실을 다시 들고 있다면 묻기로 골라도 마지막에 자동으로 밝혀집니다.</p>
     <div className="play-record-cards">{held.map(id => <div key={id}><CardView card={cards.get(id)!} /><button className="play-primary" onClick={() => act({ type: 'choose-truth', revealId: id })}>이 진실을 밝힌다 →</button></div>)}</div>
   </div>
 }
@@ -255,7 +279,8 @@ function TruthEnding({ session, onRead, onRecord, newGame }: { session: PlaySess
   const revealed = Object.entries(session.truthOutcomes).filter(([, outcome]) => outcome === 'revealed').map(([id]) => id)
   const buried = Object.entries(session.truthOutcomes).filter(([, outcome]) => outcome === 'buried').map(([id]) => id)
   return <div className="play-complete play-truth-ending"><span>⚖</span><h4>{player(session.indictment ?? '')?.name} 기소</h4><p>로웬의 기소로 진실의 운명이 확정되었습니다.</p>
-    <section className="play-truth-group play-truth-group--revealed"><h5><span>세상에 밝혀진 진실</span><b>{revealed.length}</b></h5><p>각 카드의 파장은 상단에 적힌 원래 주인에게만 적용됩니다. 카드를 누르면 크게 읽을 수 있습니다.</p><div className="play-record-cards">{revealed.map(id => <CardView key={id} card={cards.get(id)!} onClick={() => onRead(id)} />)}</div></section>
+    <section className="play-truth-group play-truth-group--revealed"><h5><span>세상에 밝혀진 진실</span><b>{revealed.length}</b></h5><p>공개된 진실은 원래 주인뿐 아니라 다른 인물의 권리와 왕국의 결말에도 영향을 줍니다. 아래 파장을 재판 기록과 함께 읽으세요.</p><div className="play-record-cards">{revealed.map(id => <CardView key={id} card={cards.get(id)!} onClick={() => onRead(id)} />)}</div></section>
+    <section className="play-ending-consequences"><h5>공개된 진실이 바꾼 미래</h5><p>각 결과의 조건을 재판 기록과 대조합니다. 같은 사실이 이미 공식 입증되었다면 카드를 묻어도 그 사실은 지워지지 않습니다. 계승·후견 자격을 먼저 정하고, 남은 후보와 보호자가 선택을 마칩니다.</p>{characterSettings.flatMap(setting => setting.finalActions).filter(truth => revealed.includes(truth.id)).map(truth => <div key={truth.id}><strong>{truth.title}</strong><p>{truth.omen}</p></div>)}</section>
     <section className="play-truth-group play-truth-group--buried"><h5><span>영원히 묻힌 진실</span><b>{buried.length}</b></h5><p>묻힌 진실의 내용은 끝내 공개되지 않습니다.</p><div className="play-record-cards">{buried.map(id => <CardView key={id} card={cards.get(id)!} faceDown backTitle="영원히 묻힌 진실" backLabel="내용이 공개되지 않은 진실" />)}</div></section>
     <small>기소된 사람이 가진 진실과 자기 손에 남은 자기 진실은 모두 밝혀졌습니다.</small><button className="play-primary" onClick={onRecord}>공개 기록 돌아보기 →</button><button className="play-text-button" onClick={newGame}>기존 기록을 남기고 새 플레이</button>
   </div>
@@ -267,7 +292,7 @@ function CharacterChoices({ actorId, onChoose, confirm = false, excludeRowen = f
 }
 
 function Nominations({ session }: { session: PlaySession }) {
-  return <div className="play-nominations">{scenario.characters.map(character => <div key={character.id}><small>{character.name}</small><span>→</span><strong>{player(session.accusations[character.id])?.name ?? '미제출'}</strong></div>)}</div>
+  return <div className="play-nominations">{scenario.characters.filter(character => character.id !== 'rowen').map(character => <div key={character.id}><small>{character.name}</small><span>→</span><strong>{player(session.accusations[character.id])?.name ?? '미제출'}</strong></div>)}</div>
 }
 
 function PublicRecord({ session, onRead }: { session: PlaySession; onRead: (id: string) => void }) {
@@ -282,8 +307,8 @@ function PublicRecord({ session, onRead }: { session: PlaySession; onRead: (id: 
 function CharacterSheet({ actor, session, onRead }: { actor: Character; session: PlaySession; onRead: (id: string) => void }) {
   const setting = characterSettings.find(setting => setting.id === actor.id)
   return <div className="play-character"><header><span className="eyebrow">{actor.title} · PRIVATE</span><h3>{actor.name}</h3><p>{setting?.objective ?? actor.desire}</p></header><div className="play-character-memories">{session.hands[actor.id].filter(id => cards.get(id)?.kind === 'memory').map(id => <CardView key={id} card={cards.get(id)!} onClick={() => onRead(id)} />)}</div>
-    {setting && <section><h4>나의 채점표</h4><p>{setting.scoreGuide}</p><div className="play-character-scores">{[...setting.victoryConditions, ...setting.ruinConditions].map(condition => <div key={condition.result}><span>{condition.result}</span><strong>{condition.score > 0 ? '+' : ''}{condition.score}</strong></div>)}</div></section>}
-    {setting && <section><h4>내 진실의 무게</h4><p>카드에 적힌 사실이 당신의 목표와 관계에 왜 치명적인지 확인하세요.</p>{setting.finalActions.map(truth => <div key={truth.id}><strong>{truth.title}</strong><p>{truth.intent}</p><p>{truth.omen}</p></div>)}</section>}
+    {setting && <section><h4>당신의 신념</h4><p>{setting.belief}</p><ul>{setting.goals.map(goal => <li key={goal}>{goal}</li>)}</ul><p>공통 목표는 실제 진범을 알아내는 것입니다. 지키려던 것을 지켰는지는 그와 별개로 남습니다.</p></section>}
+    {setting && <section><h4>내 진실의 무게</h4><p>두 진실이 모두 공개되면 발각되어 가장 두려워한 대가를 치릅니다. 그래도 지키려던 것까지 잃는지는 아직 정해지지 않았습니다.</p>{setting.finalActions.map(truth => <div key={truth.id}><strong>{truth.title}</strong><p>{truth.intent}</p></div>)}</section>}
     {actor.id === 'rowen' && session.inspections.length > 0 && <section><h4>내 검시 결과</h4><p>아직 공개하지 않은 결과도 이곳에서 다시 읽을 수 있습니다.</p><div className="play-record-cards">{session.inspections.map(entry => <div key={entry.cardId}><small>{entry.round}라운드 · {entry.published ? '공개 완료' : '나만 아는 결과'}</small><CardView card={cards.get(entry.cardId)!} onClick={() => onRead(entry.cardId)} /></div>)}</div></section>}
     {setting?.sections.map(section => <section key={section.title}><h4>{section.title}</h4>{section.paragraphs?.map(text => <p key={text}>{text}</p>)}{section.relations?.map(relation => <p key={relation.name}><strong>{relation.name}</strong> — {relation.description}</p>)}{section.points?.map(text => <p key={text}>{text}</p>)}</section>)}
   </div>
@@ -291,5 +316,5 @@ function CharacterSheet({ actor, session, onRead }: { actor: Character; session:
 
 function stageHint(session: PlaySession) {
   if (session.choice) return `${groups.find(group => group.id === session.choice!.deckId)?.backTitle ?? '선택한 덱'}에서 확인한 카드입니다. 한 장을 손패로 가져갑니다.`
-  return ({ ready: '묻어야 할 진실 두 장을 받고 조사와 재판을 시작합니다.', inspection: session.round === 1 ? '첫 라운드에는 시신 전반에 관한 소견을 요청합니다.' : '검시관에게 자세히 살펴볼 항목 하나를 요청합니다.', rumor: '공용 소문 덱을 눌러 세 장을 읽고 한 장을 가져옵니다.', testimony: '이번 라운드에 아직 선점되지 않은 NPC 중, 자신이 이전에 만나지 않은 한 사람을 탐문하세요.', investigation: '모두 장소를 고르면 같은 장소의 인원 + 1장을 함께 확인합니다. 남은 카드가 적으면 남은 만큼 확인합니다.', discussion: '재판이 열리기 전, 마지막으로 이야기를 맞출 시간입니다.', court: `제${session.round}재판 · 각자 한 장씩 공개 증거를 제출합니다.`, truth_exchange: '상대와 합의해 뒷면 상태의 진실 한 장씩을 교환합니다.', truth_choice: '기소 결과를 보기 전에 하나를 밝히고 하나를 묻기로 결정합니다.', accusation: '로웬을 제외한 다섯 사람 중 진범이라고 생각하는 사람을 지목합니다.', defense: '범인 지목이 공개되었습니다. 로웬은 마지막에 수사 결론을 정리합니다.', indictment: '로웬은 공개 증거와 가진 모든 카드로 한 사람을 기소합니다.', complete: '기소된 사람의 진실은 모두 밝혀졌고, 나머지는 결정한 운명을 따릅니다.' } as Record<PlayPhase, string>)[session.phase]
+  return ({ ready: '묻어야 할 진실 두 장을 받고 조사와 재판을 시작합니다.', inspection: session.round === 1 ? '첫 라운드에는 시신 전반에 관한 소견을 요청합니다.' : '검시관에게 자세히 살펴볼 항목 하나를 요청합니다.', rumor: '공용 소문 덱을 눌러 세 장을 읽고 한 장을 가져옵니다.', testimony: '로웬도 다른 인물과 똑같이 탐문합니다. 이번 라운드에 아직 선점되지 않은 NPC 중, 자신이 이전에 만나지 않은 한 사람을 고르세요.', investigation: '장소를 골라 혼자 2장을 보고 1장을 가져갑니다. 고르지 않은 카드는 덱 아래로 돌립니다. 1장만 남으면 그 카드를 가져갑니다.', discussion: '재판이 열리기 전, 마지막으로 이야기를 맞출 시간입니다.', court: `제${session.round}재판 · 각자 한 장씩 공개 증거를 제출합니다.`, truth_exchange: '상대와 합의해 뒷면 상태의 진실 한 장씩을 교환합니다.', truth_choice: '기소 결과를 보기 전에 하나를 밝히고 하나를 묻기로 결정합니다.', accusation: '로웬을 제외한 다섯 사람 중 진범이라고 생각하는 사람을 지목합니다.', defense: '범인 지목이 공개되었습니다. 로웬은 마지막에 수사 결론을 정리합니다.', indictment: '로웬은 공개 증거와 가진 모든 카드로 한 사람을 기소합니다.', complete: '기소된 사람의 진실은 모두 밝혀졌고, 나머지는 결정한 운명을 따릅니다.' } as Record<PlayPhase, string>)[session.phase]
 }

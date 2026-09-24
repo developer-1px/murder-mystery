@@ -612,11 +612,11 @@ export function CardTable({ scenario, piles, onChange, onUndo, onRedo, canUndo, 
           const stage = memoryStages.stages.find((item) => item.cardIds.includes(card.id))
           const deckAction = policy?.deckActions[pile.id]
           const backTitle = deckAction?.backTitle ?? group?.backTitle
-          const backSubtitle = deckAction?.disabled ?? deckAction?.backSubtitle ?? (card.kind === 'memory' ? stage?.label : group?.backSubtitle ?? cardKinds[card.kind].label)
+          const backSubtitle = deckAction?.backSubtitle ?? (card.kind === 'memory' ? stage?.label : group?.backSubtitle ?? cardKinds[card.kind].label)
           return <TableCardPiece key={floating ? 'active-card-preview' : card.id} card={card} pileId={pile.id} position={position} origin={floating || candidate ? home : origins.current.get(card.id)}
             faceDown={candidate ? false : !top.faceUp} backTitle={backTitle ?? cardKinds[card.kind].label} backSubtitle={backSubtitle}
             label={deckAction?.label ?? nameOf(pile)} count={candidate ? 1 : pile.cards.length} selected={selectedIds.includes(pile.id) && !candidate}
-            disabled={!!deckAction?.disabled && !candidate}
+            disabled={!!deckAction?.disabled && !candidate} disabledReason={candidate ? undefined : deckAction?.disabled}
             concealed={concealed} inHand={isHandPile(pile)}
             previewKind={floating ? reading ? 'reader' : 'hover' : undefined}
             previewed={!floating && !reading && activeCard?.top.cardId === card.id}

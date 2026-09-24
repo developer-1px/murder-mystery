@@ -9,6 +9,7 @@ import memoryStagesDocument from '../../scenarios/crown-trial/memory-stages.json
 import timelineDocument from '../../scenarios/crown-trial/timeline.json'
 import deductionAuditDocument from '../../scenarios/crown-trial/deduction-audit.json'
 import commonSettingDocument from '../../scenarios/crown-trial/common-setting.json'
+import playGuideDocument from '../../scenarios/crown-trial/play-guide.json'
 import characterSettingsDocument from '../../scenarios/crown-trial/character-settings.json'
 import releasePlanDocument from '../../scenarios/crown-trial/release-plan.json'
 import inspectionsDocument from '../../scenarios/crown-trial/inspections.json'
@@ -43,6 +44,7 @@ export const memoryStages = memoryStagesDocument as MemoryStagesDocument
 export const timeline = timelineDocument as TimelineDocument
 export const deductionAudit = deductionAuditDocument as DeductionAuditDocument
 export const commonSetting = commonSettingDocument as CommonSettingDocument
+export const playGuide = playGuideDocument as CommonSettingDocument
 export const characterSettings = characterSettingsDocument as CharacterSetting[]
 export const releasePlan = releasePlanDocument as ReleasePlanDocument
 export const inspectionCards = inspectionsDocument as Card[]

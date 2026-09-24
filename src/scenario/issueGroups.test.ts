@@ -45,10 +45,10 @@ describe('designer issue groups', () => {
 })
 
 describe('NPC inquiry groups', () => {
-  it('pairs six characters with one NPC and four testimony cards each', () => {
+  it('pairs five players and the victim with four testimony cards each', () => {
     const validate = new Ajv2020({ allErrors: true }).compile(npcGroupsSchema)
     expect(validate(npcGroups), JSON.stringify(validate.errors)).toBe(true)
-    expect(new Set(npcGroups.npcs.map((npc) => npc.pairedCharacterId))).toEqual(new Set(['queen', 'cassian', 'isabel', 'seraphine', 'benedict', 'rowen']))
+    expect(new Set(npcGroups.npcs.map((npc) => npc.pairedCharacterId))).toEqual(new Set(['queen', 'cassian', 'isabel', 'seraphine', 'benedict', 'adrian']))
 
     const testimonyIds = cards.filter((card) => card.kind === 'testimony').map((card) => card.id)
     const groupedIds = npcGroups.npcs.flatMap((npc) => npc.cardIds)

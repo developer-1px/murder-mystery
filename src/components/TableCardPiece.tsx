@@ -7,11 +7,11 @@ export interface CardPosition { x: number; y: number; width: number }
 export interface CardDestination extends CardPosition { faceDown: boolean }
 
 // The card ID stays mounted across deck, hand, hover, reading and choice states.
-export function TableCardPiece({ card, pileId, position, origin, faceDown, backTitle, backSubtitle, label, count, selected, moving, raised, target, candidate, inactive, disabled, concealed, inHand, previewKind, previewed, zIndex, onPointerDown, onPointerEnter, onPointerLeave, onClick, onDoubleClick, onContextMenu }: {
+export function TableCardPiece({ card, pileId, position, origin, faceDown, backTitle, backSubtitle, label, count, selected, moving, raised, target, candidate, inactive, disabled, disabledReason, concealed, inHand, previewKind, previewed, zIndex, onPointerDown, onPointerEnter, onPointerLeave, onClick, onDoubleClick, onContextMenu }: {
   card: Card; pileId: string; position: CardPosition; origin?: CardPosition; faceDown: boolean
   backTitle: string; backSubtitle?: string; label: string; count: number
   selected: boolean; moving: boolean; raised: boolean; target: boolean; candidate: boolean; inactive: boolean; zIndex: number
-  disabled?: boolean
+  disabled?: boolean; disabledReason?: string
   concealed?: boolean; inHand?: boolean
   previewKind?: 'hover' | 'reader'; previewed?: boolean
   onPointerDown: (event: PointerEvent<HTMLDivElement>) => void
@@ -26,6 +26,7 @@ export function TableCardPiece({ card, pileId, position, origin, faceDown, backT
   const back = present ? faceDown : destination.faceDown
   return <motion.div data-pile-id={pileId} data-card-id={card.id} data-choice-card={candidate || undefined} data-card-zone={inHand ? 'hand' : 'table'} data-card-preview={previewKind}
     inert={inactive || !present} aria-hidden={inactive || !present || previewKind === 'hover' || undefined}
+    title={disabledReason}
     className={['table-piece', previewed && 'table-piece--previewed', disabled && 'table-piece--disabled', count > 1 && 'table-piece--deck', selected && 'table-piece--selected', moving && 'table-piece--dragging', raised && 'table-piece--raised', target && 'table-piece--target'].filter(Boolean).join(' ')}
     initial={origin ? { ...origin, opacity: 1 } : false}
     animate={{ ...position, opacity: 1 }}

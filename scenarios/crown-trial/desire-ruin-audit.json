@@ -9,12 +9,12 @@
     {
       "characterId": "queen",
       "desire": [
-        "rumor.queen-old-letter",
+        "evidence.queen-summons-copy",
         "evidence.coronation-book"
       ],
       "ruin": [
         "evidence.belladonna-ledger",
-        "testimony.marta-order"
+        "testimony.marta-recall"
       ],
       "inference": "자신의 지위보다 카시안의 군권과 즉위를 우선하며, 이를 위해 아드리안을 혼절시켜 즉위식을 막는 계획까지 세웠다가 투약 전에 취소했다."
     },
@@ -28,7 +28,7 @@
         "rumor.cassian-quarrel",
         "evidence.royal-birth-register"
       ],
-      "inference": "대관보다 비밀 약속을 우선하며, 폭행과 혈통 논란 때문에 그 이유를 공개하기 어렵다."
+      "inference": "오래 좋아한 이사벨의 부탁으로 후사를 속이는 공모에 가담했다. 홧김에 형에게 관계를 드러내고 도망쳤다. 아이를 보호한다는 말로 그 책임을 묻으려 하며, 계승 사양 약속과 왕관 사이에서 선택한다."
     },
     {
       "characterId": "isabel",
@@ -37,10 +37,10 @@
         "rumor.secret-letter"
       ],
       "ruin": [
-        "evidence.sedative-prescription",
+        "evidence.second-glass",
         "rumor.isabel-annulment"
       ],
-      "inference": "아이의 권리를 지키는 수준을 넘어 성인인 둘째 왕자가 제외된 뒤의 단독 후견을 준비했으며, 첫 방문 뒤의 행적을 숨긴다."
+      "inference": "혼인 무효화 서류를 없애려 의도적으로 수면제를 늘렸고, 잠든 사이 서류를 가져와 태웠다. 카시안의 편지를 받았지만 아드리안을 살해하기로 결심해 폐예배실 대신 서재로 돌아갔다. 사실의 일부만 밝혀 관계 발각과 새 처분의 이유, 이후 재방문과 살인을 감춘다."
     },
     {
       "characterId": "seraphine",
@@ -50,9 +50,9 @@
       ],
       "ruin": [
         "rumor.seraphine-copy",
-        "testimony.isabel-attendant"
+        "testimony.archivist"
       ],
-      "inference": "강요된 혼인을 피하는 데서 나아가 직접 계승 심의에 들어가려 했고, 그 준비의 출입 기록을 지웠다."
+      "inference": "아버지에게 인정받지 못했다고 믿고 왕위의 지지를 얻으려 북부에 요새를 약속했다. 유언을 발견하면 아버지가 자신의 계승 심의 청구권을 보장했음을 처음 알게 된다."
     },
     {
       "characterId": "benedict",
@@ -61,10 +61,10 @@
         "rumor.benedict-edmund-letter"
       ],
       "ruin": [
-        "rumor.multiple-footsteps",
-        "evidence.repaired-coat"
+        "evidence.black-cloth",
+        "testimony.wardrobe-keeper"
       ],
-      "inference": "미성년 섭정보다 새벽 전 성인 군주 확정을 원하며, 자신이 아드리안을 공격한 흔적을 감춘다."
+      "inference": "자신이 왕세자를 죽였다고 믿고 흔적을 감춘다. 세라핀의 심의권과 자신의 권한 제한을 담은 유언을 묻어 즉위를 막으려 하며, 로웬의 경비 명령과 수사 기록에서 기소를 흔들 약점을 찾는다. 실제 살해범은 이사벨이다."
     },
     {
       "characterId": "rowen",

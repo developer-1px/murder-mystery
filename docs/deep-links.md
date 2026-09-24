@@ -20,19 +20,19 @@
 | 전체 라이브러리 | `/library` |
 | 종류·검색 | `/library?kind=memory&q=서재` |
 | 장소·NPC·인물별 개인 진실 묶음 | `/library?group=all-rumors`, 드롭다운·묶음 제목 링크의 실제 ID 사용 |
-| 뒷면·펼친 카드 | `/library?side=back&revealed=memory.queen-poison` |
+| 뒷면·펼친 카드 | `/library?side=back&revealed=memory.queen-summons` |
 | 여러 펼친 카드 | `revealed`를 카드 ID별로 반복 |
 | 라이브러리 인물 요약 | `/library?profile=queen` (`profiles=1`은 전체 요약 영역만 펼침) |
-| 카드 확대 | `/library/cards/memory.queen-poison` |
-| 카드 설계 정보 | `/library/cards/memory.queen-poison?details=1` |
-| 카드 확대 + 검색 문맥 | `/library/cards/memory.queen-poison?kind=memory&q=약병` |
+| 카드 확대 | `/library/cards/memory.queen-summons` |
+| 카드 설계 정보 | `/library/cards/memory.queen-summons?details=1` |
+| 카드 확대 + 검색 문맥 | `/library/cards/memory.queen-summons?kind=memory&q=약병` |
 | 쟁점 목록 진입 | `/issues` → 첫 쟁점의 고유 주소 |
 | 특정 쟁점 | `/issues/issue.poison-chain` |
 | 정보 조각 | `/issues/issue.poison-chain#fragment-poison-acquired` |
 | 쟁점 안의 카드 | `/issues/issue.poison-chain/cards/evidence.belladonna-ledger#fragment-poison-acquired` |
 | 전체 타임라인 | `/timeline` |
-| 타임라인 카드 확대 | `/timeline/cards/evidence.young-benedict-letter` |
-| 추리 경로 검증 | `/deduction` |
+| 타임라인 카드 확대 | `/timeline/cards/evidence.queen-summons-copy` |
+| 인물별 이야기 점검 | `/issues` (`/deduction`에서 자동 이동) |
 | 1인칭 게임 플레이 | `/table/play/:branchId/steps/:step` |
 | 플레이하는 내 인물 | `/table/play/:branchId/steps/:step?view=character` |
 | 게임 공개 기록 | `/table/play/:branchId/steps/:step?view=record` |
@@ -48,6 +48,8 @@
 | 조작법 | `/table/main/steps/0?help=1` |
 
 `kind`는 `memory`, `rumor`, `evidence`, `testimony`다. 한글·공백·특수문자는 브라우저가 URL 인코딩한다. 인물·카드·쟁점·묶음은 데이터의 고유 ID를 사용한다. 절·인물 관계는 제목/이름에서 공백을 `-`로 바꾼 앵커를 사용하므로 제목이 바뀌면 주소도 바뀐다. 별도 ID가 없는 문단·질문·목록 항목은 `p1`, `q1`, `point1`처럼 1부터 시작하는 순번이며 순서를 바꾸면 대상도 바뀔 수 있다. 직접 URL을 조립하기보다 화면의 링크를 복사하는 편이 안전하다.
+
+`/deduction`은 제거된 추리검증 화면의 이전 주소이며 `/issues`로 이동합니다. 인물별 기본 화면은 이야기 순서이고, `?category=testimony` 등으로 유형별 카드를 모아 봅니다.
 
 ## URL과 실행 상태
 
@@ -66,6 +68,6 @@
 
 ## 실행과 배포
 
-개발 서버는 기존 `npm run dev`를 사용한다. Vite 개발 서버는 직접 입력한 세부 경로도 앱으로 연결한다. 정적 배포 서버에서는 `/setting`, `/characters/*`, `/library/*`, `/issues/*`, `/timeline/*`, `/deduction`, `/table/*`의 요청을 `index.html`로 fallback하도록 구성해야 한다. 새 라우트를 추가했다고 서버 배포나 rewrite 설정이 자동 적용된 것은 아니다.
+개발 서버는 기존 `npm run dev`를 사용한다. Vite 개발 서버는 직접 입력한 세부 경로도 앱으로 연결한다. 정적 배포 서버에서는 `/setting`, `/characters/*`, `/library/*`, `/issues/*`, `/timeline/*`, `/table/*`의 요청을 `index.html`로 fallback하도록 구성해야 한다. 새 라우트를 추가했다고 서버 배포나 rewrite 설정이 자동 적용된 것은 아니다.
 
 라우팅은 [React Router의 선언적 라우팅](https://reactrouter.com/start/declarative/routing)을 사용한다. 제품의 세부 주소 계약과 로컬 테이블 저장 정책은 이 문서에 정의한다.

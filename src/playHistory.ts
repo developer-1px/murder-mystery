@@ -45,7 +45,7 @@ export function readPlayHistory(assets: PlayAssets): { history: PlayHistory; err
     if (!last || !Number.isInteger(history.last.step) || !last.snapshots[history.last.step]) throw new Error('cursor')
     return { history }
   } catch {
-    return { history: createPlayHistory(assets), error: '저장된 플레이가 현재 시나리오와 맞지 않습니다. 원래 기록을 덮어쓰지 않았습니다.' }
+    return { history: createPlayHistory(assets), error: '저장된 플레이가 현재 시나리오와 맞지 않습니다. 이전 기록을 보관한 뒤 새 플레이를 시작할 수 있습니다.' }
   }
 }
 
@@ -56,4 +56,29 @@ export function appendPlay(history: PlayHistory, branch: PlayBranch, step: numbe
   }
   const next = { ...branch, snapshots: [...branch.snapshots, session] }
   return { ...history, branches: history.branches.map(item => item.id === branch.id ? next : item), last: { branchId: branch.id, step: next.snapshots.length - 1 } }
+}
+
+export async function recoverPlayHistory(assets: PlayAssets): Promise<PlayHistory> {
+  const key = playStorageKey(assets.scenario.meta.id)
+  const raw = localStorage.getItem(key)
+  if (raw) {
+    // Use a separate archive so a full localStorage can still be recovered.
+    await new Promise<void>((resolve, reject) => {
+      const request = indexedDB.open('murder-mystery-play-archive', 1)
+      request.onupgradeneeded = () => request.result.createObjectStore('records', { keyPath: 'id' })
+      request.onerror = () => reject(request.error)
+      request.onblocked = () => reject(new Error('기록 보관소가 다른 탭에서 사용 중입니다.'))
+      request.onsuccess = () => {
+        const db = request.result
+        const transaction = db.transaction('records', 'readwrite')
+        transaction.objectStore('records').add({ id: crypto.randomUUID(), key, raw, archivedAt: new Date().toISOString() })
+        transaction.oncomplete = () => { db.close(); resolve() }
+        transaction.onabort = () => { db.close(); reject(transaction.error) }
+        transaction.onerror = () => { db.close(); reject(transaction.error) }
+      }
+    })
+  }
+  const history = createPlayHistory(assets)
+  localStorage.setItem(key, JSON.stringify(history))
+  return history
 }

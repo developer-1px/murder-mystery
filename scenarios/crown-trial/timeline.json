@@ -1,13 +1,70 @@
 {
-  "description": "22시 55분부터 59분 사이, 모든 용의자에게 살해를 완성할 수 있는 +α 가설이 생긴다. 비범인은 숨기고 싶은 다른 죄를 밝히면 그 시간의 위치가 설명되고, 이사벨만 약속 장소에도 없으며 현장 흔적과 이어진다.",
-  "designerOnly": "진범은 이사벨이다. 검시는 위해의 결과를 확정하고 주치의는 가능한 치명 조건만 제시한다. 다른 인물의 +α는 실행되지 않았으며, 각자의 묻어야 하는 진실이 그 시간의 간접 알리바이를 완성한다.",
+  "description": "제작자용 사건 정본. 카시안의 우발적 폭로와 도주가 이사벨의 추궁·수면제 투여·재방문으로 이어진다. 시간표는 실제 사건이며, 각 플레이어가 아는 범위와 구분해 읽는다.",
+  "designerOnly": "진범은 이사벨이며 본인도 안다. 카시안은 자신의 폭로와 도주만 알고 살인을 모른다. 베네딕트는 자신이 죽였다고 믿는다. 이사벨의 진실 카드가 밝히는 수면제는 단독 사인이 아니지만 재방문을 부정하지도 않는다. 선왕의 숨긴 본문은 세라핀의 계승 심의 청구권을 보장하고 재상실의 단독 안건 편성권을 거둔다. 후보 간 즉위 순위는 정하지 않는다.",
   "rows": [
     {
-      "id": "isabel-petition",
-      "time": "사건 사흘 전",
-      "summary": "이사벨이 카시안의 계승 자격 정지와 태아의 우선 심의를 전제로 한 후견 청원서 초안을 준비한다.",
+      "id": "royal-childhood",
+      "time": "어린 시절",
+      "summary": "아드리안은 선왕의 장남, 세라핀은 둘째 자녀이자 장녀, 카시안은 셋째 자녀이자 차남이다. 아드리안은 병치레가 잦아 주치의가 오래 돌봤다. 불임을 확정한 기록은 없다. 카시안은 선왕의 적법한 아들로 출생 등록부에 기재되어 있다.",
       "cardIds": [
-        "memory.isabel-petition"
+        "evidence.physician-log",
+        "evidence.royal-birth-register",
+        "evidence.royal-recognition"
+      ]
+    },
+    {
+      "id": "cassian-affection",
+      "time": "이사벨의 혼인 전",
+      "summary": "카시안은 이사벨을 좋아하지만 마음을 밝히지 않는다. 이사벨은 아드리안과 혼인한다.",
+      "cardIds": []
+    },
+    {
+      "id": "king-final-designation",
+      "time": "선왕 생전",
+      "summary": "선왕은 아드리안을 후계자로 삼되 건강을 염려해 유고에 대비한 계승 문서를 남긴다. 아드리안 유고 시 세라핀의 심의 청구권을 보장하고 재상실의 단독 안건 편성권을 거둔다. 후보 간 즉위 순위는 적지 않는다.",
+      "cardIds": [
+        "evidence.last-will"
+      ]
+    },
+    {
+      "id": "will-withheld",
+      "time": "선왕 사후 · 반년 전",
+      "summary": "베네딕트가 별도 계승 문서의 본문을 분리하고 낭독에서 제외한다. 아드리안의 대관식과 세라핀의 혼인이 추진된다.",
+      "cardIds": [
+        "memory.benedict-will-clause",
+        "testimony.minister-clerk"
+      ]
+    },
+    {
+      "id": "northern-bargain",
+      "time": "선왕 사후 · 사건 전",
+      "summary": "세라핀이 북부의 계승 지지를 얻는 대가로 즉위 후 두 요새의 관할을 넘기기로 한다. 베네딕트는 접촉의 심화만 알고 최종 대가는 모른다.",
+      "cardIds": [
+        "memory.seraphine-archive"
+      ]
+    },
+    {
+      "id": "heir-pressure",
+      "time": "임신 전",
+      "summary": "아드리안과 이사벨은 함께 후사를 기다리며 애썼다. 대신들의 혼인 교체 요구를 막던 아드리안도 다음 봄을 기한으로 받아들인다. 친정은 혼인 해소 뒤 이사벨을 수도원에 보낼 준비를 한다. 이사벨은 카시안에게 아이를 낳아 아드리안의 후사로 기르자고 부탁하고, 카시안은 받아들인다.",
+      "cardIds": []
+    },
+    {
+      "id": "pregnancy-announced",
+      "time": "사건 전 · 임신 발표",
+      "summary": "궁정은 이사벨의 임신을 알고 아드리안의 후사로 받아들인다. 이사벨은 남편과도 부부로 지냈으므로 실제 친부는 누구도 확신하지 못한다. 아드리안은 아직 관계를 모른다. 혼인 교체 논의는 멎지만 미제출 혼인 무효화 청원은 출산 뒤까지 보관된다.",
+      "cardIds": [
+        "rumor.secret-letter"
+      ]
+    },
+    {
+      "id": "queen-summons",
+      "time": "사건 전 · 즉위식 준비",
+      "summary": "아드리안이 살아 있을 때 엘레노라는 평의회 의원 셋에게 비상시 카시안의 계승을 먼저 심의해 달라는 소집장을 보낸다. 카시안은 모른다. 누구도 지지를 확약하지 않았다.",
+      "cardIds": [
+        "memory.queen-summons",
+        "evidence.queen-summons-copy",
+        "testimony.marta-order"
       ]
     },
     {
@@ -15,8 +72,9 @@
       "time": "19:20",
       "summary": "엘레노라가 아드리안을 몇 시간 혼절시켜 즉위식을 미루기 위해 벨라도나 진정액을 술에 섞으라고 명령한다. 직후 그의 과민반응 때문에 같은 양도 치명적일 수 있다는 주치의의 경고를 떠올린다.",
       "cardIds": [
-        "memory.queen-recall",
-        "testimony.marta-order"
+        "evidence.belladonna-ledger",
+        "evidence.wine-bottle",
+        "rumor.apothecary-visit"
       ]
     },
     {
@@ -26,15 +84,56 @@
       "cardIds": [
         "evidence.recall-slip",
         "memory.queen-recall",
-        "testimony.marta-recall"
+        "testimony.marta-recall",
+        "testimony.apothecary-counter",
+        "rumor.queen-luggage"
+      ]
+    },
+    {
+      "id": "seraphine-archive",
+      "time": "20:20경",
+      "summary": "세라핀이 계승법의 왕녀 심의권은 베끼고 태아의 심의 청구권이 있는 아래 조항은 떼어 숨긴다. 출입 서명도 지운다.",
+      "cardIds": [
+        "memory.seraphine-ledger",
+        "testimony.archivist",
+        "testimony.archive-copyist",
+        "rumor.princess-pages"
+      ]
+    },
+    {
+      "id": "seraphine-study",
+      "time": "20:55경",
+      "summary": "세라핀이 붓꽃 향분이 밴 혼인조약서를 들고 서재에서 다툰다. 아드리안은 기침하지만 살아 있다. 혼인조약서의 붉은 끈이 끊어진다.",
+      "cardIds": [
+        "evidence.marriage-treaty",
+        "evidence.succession-leaf",
+        "testimony.isabel-attendant"
+      ]
+    },
+    {
+      "id": "cassian-quarrel",
+      "time": "21:45경",
+      "summary": "군권 회수와 수도 밖 파견 문제를 따지러 간 카시안이 이사벨의 처우를 두고 형과 언쟁한다. 아드리안은 아직 관계를 모르며 자기 아내와 아이의 일에 끼어들지 말라고 한다.",
+      "cardIds": [
+        "rumor.cassian-quarrel"
       ]
     },
     {
       "id": "cassian-assault",
       "time": "21:52",
-      "summary": "카시안이 아드리안과 몸싸움을 벌인 뒤 떠난다.",
+      "summary": "카시안이 “그 아이가 형님 아이인 줄 압니까?”라고 외친다. 형이 붙잡자 뿌리치고, 형은 책상에 머리를 부딪힌다. 카시안은 자신을 부르는 형을 뒤로하고 도망친다. 관계가 들킨 것은 이 순간이다.",
       "cardIds": [
-        "memory.cassian-assault"
+        "memory.cassian-assault",
+        "evidence.stopped-watch",
+        "testimony.dinner-steward"
+      ]
+    },
+    {
+      "id": "cassian-flight",
+      "time": "21:52–21:56",
+      "summary": "카시안은 서재를 나와 서쪽 회랑을 지나 4분 뒤 폐예배실에 도착한다. 이사벨을 찾아가지도, 관계가 발각됐다고 경고하지도 못한다.",
+      "cardIds": [
+        "rumor.old-portrait"
       ]
     },
     {
@@ -43,78 +142,106 @@
       "summary": "로웬이 왕세자실의 봉인만 믿고 무기명 통행패를 발급한 뒤 서재 앞과 뒤편 계단의 경비를 비운다.",
       "cardIds": [
         "memory.rowen-order",
-        "evidence.guard-log"
+        "evidence.guard-log",
+        "evidence.corridor-plan",
+        "evidence.guard-charter"
+      ]
+    },
+    {
+      "id": "isabel-summoned",
+      "time": "22:05",
+      "summary": "아드리안이 이사벨을 서재로 부른다. 그녀는 카시안이 한 말을 아직 모른다. 아드리안은 동생의 발언으로 관계를 확신하지만 친부를 입증한 것은 아니다. 이사벨은 이 기회에 남편을 잠들게 하고 옛 혼인 무효화 서류를 없애려 평소보다 많은 수면제를 준비한다.",
+      "cardIds": []
+    },
+    {
+      "id": "separation-order",
+      "time": "22:10–22:25",
+      "summary": "아드리안이 즉위 뒤 이사벨을 별궁에 보내고 출산 후 아이를 왕궁에서 따로 기를 지시를 작성한다. 아이의 적법한 지위는 유지한다. 시녀 교체와 출궁 제한 준비가 시작되고 카시안의 국경 파견도 계획한다.",
+      "cardIds": [
+        "evidence.annulment-draft"
       ]
     },
     {
       "id": "isabel-first",
       "time": "22:28–22:34",
-      "summary": "이사벨이 아드리안에게 혼인 무효와 아이의 배제 계획을 듣고 자기 방으로 돌아간다.",
+      "summary": "이사벨은 혼인 무효화 서류를 없애려고 수면제를 준비해 방문한다. “카시안의 아이냐”는 질문에 당황하자 아드리안이 관계를 확신하고 모자 분리를 통보한다. 이사벨은 의도적으로 수면제를 늘려 먹이고 잠든 사이 옛 서류를 가져온다. 22시 32분 서재를 나와 뒤편 계단을 지나 22시 34분 가족동 방으로 귀환해 방의 화로에서 태운다. 투약은 단독 사인이 아니다.",
       "cardIds": [
-        "evidence.annulment-draft",
+        "memory.isabel-petition",
+        "evidence.second-glass",
+        "evidence.sedative-prescription",
+        "testimony.study-servant",
         "testimony.agnes-locked-door",
-        "testimony.study-servant"
+        "testimony.agnes-wet-sleeve",
+        "rumor.heir-calendar"
       ]
     },
     {
-      "id": "cassian-alibi",
-      "time": "22:36–22:58",
-      "summary": "카시안이 폐예배실 안에서 이사벨을 기다린다. 22시 56분에도 시종에게 직접 답하지만 이사벨은 끝내 오지 않는다.",
+      "id": "escape-proposal",
+      "time": "22:35–22:43",
+      "summary": "카시안은 폐예배실에서 니콜에게 연정과 도피 제안, 23시까지 기다리겠다는 편지를 맡긴다. 사양서 사본과 보호 위임장을 동봉한다. 니콜은 22시 39분 가족동에서 이사벨에게 전하고, 오겠다는 답을 받아 22시 43분 예배실로 돌아온다. 이사벨은 이후 살해를 결심하고 답을 번복해 전하지 않는다.",
       "cardIds": [
         "memory.cassian-sedative",
         "memory.isabel-alive",
+        "rumor.anonymous-saddled-horse",
         "testimony.page-sighting"
       ]
     },
     {
+      "id": "cassian-alibi",
+      "time": "22:43–23:00",
+      "summary": "카시안은 니콜의 전달 보고를 듣고 폐예배실에서 기다린다. 22시 56분 문밖의 니콜에게 직접 답한다. 22시 58분 문을 열어 복도를 살피고 다시 기다리다가 23시 왕자궁의 자기 방으로 향한다. 이사벨은 끝내 오지 않는다.",
+      "cardIds": [
+        "testimony.bell-attendant",
+        "evidence.isabel-letter"
+      ]
+    },
+    {
       "id": "benedict-attack",
-      "time": "22:38–22:50",
-      "summary": "베네딕트가 한 손으로 아드리안의 입을 막고 다른 팔로 몸을 눌러 축 늘어지게 만든 뒤, 죽였다고 믿고 떠난다.",
+      "time": "22:38–22:47",
+      "summary": "베네딕트가 서재에서 아드리안의 입을 막고 몸을 눌러 축 늘어지게 만든다. 죽였다고 믿고 22시 47분 떠난다. 동쪽 회랑을 3분 걸어 22시 50분 재상실에 도착하고, 정복을 갈아입은 뒤 22시 53분 기록고로 출발한다.",
       "cardIds": [
         "memory.benedict-birth-dates",
         "evidence.black-cloth",
         "evidence.repaired-coat",
-        "testimony.night-attendant"
+        "testimony.night-attendant",
+        "rumor.night-sewing",
+        "testimony.wardrobe-keeper"
       ]
     },
     {
       "id": "gap.rowen",
       "time": "22:48–23:02",
-      "summary": "로웬이 통행패 소지자를 찾겠다며 초소를 떠난 뒤 공식 기록에서 동선을 지운다.",
+      "summary": "로웬은 서쪽 회랑 초소를 떠나 22시 50분 외곽 순찰로에 도착한다. 닫힌 통용문과 물품 보관칸을 수색하지만 누구도 만나지 않는다. 22시 58분 돌아서서 23시 초소에 도착해 빈 통행 기록을 살핀다. 23시 01분 뒤편 계단으로 향하고 23시 02분 서재에 들어간다. 이 경로를 직접 증언할 사람은 없다.",
       "cardIds": [
         "evidence.watch-roster",
-        "memory.rowen-order",
-        "evidence.ink-blotter"
+        "rumor.anonymous-gate-bolt"
       ]
     },
     {
-      "id": "gap.seraphine",
-      "time": "22:54–22:58",
-      "summary": "세라핀이 북쪽 탑 봉인실에서 훔친 계승법과 북부 밀서를 감추고 붉은 봉인끈을 태운다.",
+      "id": "isabel-leaves-room",
+      "time": "22:48경",
+      "summary": "이사벨은 아드리안을 살해하려고 망토를 걸치고 방을 나선다. 뒤편 계단 앞에서 인기척이 멎기를 기다린다. 아녜스는 방에서 답을 듣지 못한다.",
       "cardIds": [
-        "testimony.foreign-envoy",
-        "memory.seraphine-archive",
-        "memory.seraphine-ledger"
+        "testimony.agnes-unanswered-calls",
+        "testimony.agnes-blue-cloak"
+      ]
+    },
+    {
+      "id": "seraphine-tower",
+      "time": "22:49–22:54",
+      "summary": "세라핀은 왕실서고 열람대에서 출발한다. 22시 52분 북쪽 탑 아래 관리대에서 엘리안에게 열쇠를 받은 뒤 2분 동안 계단을 올라 22시 54분 봉인실에 들어간다.",
+      "cardIds": [
+        "testimony.foreign-envoy"
       ]
     },
     {
       "id": "gap.queen",
       "time": "22:50–22:58",
-      "summary": "엘레노라가 약제실 지하 폐기 화로에서 사용하지 않은 붉은 끈 병을 태운다. 혼절 및 즉위 방해 계획을 인정해야만 이 시간의 위치를 설명할 수 있다.",
+      "summary": "엘레노라는 왕비전에서 병 분실 보고를 듣고 2분 걸어 약제실 지하에 도착한다. 폐기 대기 선반에서 병을 찾아 22시 56분 내용물째 태운다. 올라오는 길에 마르타가 손끝을 보고 손수건을 건넨다. 22시 58분 왕비전으로 돌아온다.",
       "cardIds": [
         "testimony.recall-messenger",
         "evidence.coronation-book",
-        "memory.queen-recall"
-      ]
-    },
-    {
-      "id": "gap.cassian",
-      "time": "22:50–22:58",
-      "summary": "카시안은 폐예배실 안에서 약속 상대를 기다린다. 관계를 숨기기 위해 이 알리바이를 스스로 말하지 못한다.",
-      "cardIds": [
-        "testimony.page-sighting",
-        "evidence.isabel-letter",
-        "memory.cassian-sedative"
+        "rumor.anonymous-west-curtain"
       ]
     },
     {
@@ -128,48 +255,95 @@
     },
     {
       "id": "gap.benedict",
-      "time": "22:53–22:59",
-      "summary": "베네딕트가 동쪽 기록고에 선왕의 문서함을 맡기고 유언 일부를 태운다. 제압과 유언 은폐를 인정해야 위치가 설명된다.",
+      "time": "22:53–23:00",
+      "summary": "베네딕트는 재상실에서 3분 걸어 22시 56분 동쪽 기록고에 도착한다. 선왕 문서의 표지와 공통 조항을 맡기고 겉봉·열람표 일부를 태운다. 숨긴 별도 계승 본문은 품에 남긴다. 22시 57분 나와 23시 재상실로 돌아간다.",
       "cardIds": [
         "testimony.tailor",
         "evidence.minister-dispatch",
         "evidence.burnt-will",
-        "memory.benedict-will-clause"
+        "rumor.anonymous-council-room"
       ]
     },
     {
       "id": "isabel-return",
       "time": "22:54",
-      "summary": "이사벨은 카시안에게 반드시 가겠다고 했지만 폐예배실에는 나타나지 않고, 푸른 망토를 입은 채 뒤편 계단으로 서재에 돌아간다.",
+      "summary": "이사벨이 경비 없는 뒤편 계단으로 서재에 돌아온다. 아드리안은 소파에 기대어 살아 있으며 이사벨을 알아본다.",
       "cardIds": [
-        "memory.isabel-alive",
-        "testimony.page-sighting",
-        "evidence.mud-print",
-        "testimony.agnes-blue-cloak"
+        "rumor.anonymous-family-corridor",
+        "evidence.mud-print"
+      ]
+    },
+    {
+      "id": "gap.seraphine",
+      "time": "22:54–23:03",
+      "summary": "세라핀은 22시 57분 북쪽 탑 봉인실에서 계승법과 북부 밀서를 봉인함에 넣고 붉은 끈을 태운다. 22시 58분 나와 23시 관리대에서 열쇠를 돌려준다. 23시 03분 왕실서고 열람대로 돌아온다.",
+      "cardIds": [
+        "evidence.tower-seal",
+        "rumor.anonymous-archive-knock"
       ]
     },
     {
       "id": "murder",
       "time": "22:56–22:58",
-      "summary": "이사벨이 녹색 벨벳 쿠션으로 아드리안의 코와 입을 막는다. 다른 용의자의 +α와 달리 현장 직물·계단 자국·망토 고리가 실제 실행을 연결한다.",
+      "summary": "이사벨이 녹색 벨벳 쿠션으로 아드리안의 코와 입을 막아 살해한다. 수면제 투여와는 별개의 최종 행위다. 카시안과 베네딕트는 이 재방문을 모른다.",
       "cardIds": [
-        "evidence.broken-seal",
-        "evidence.mud-print",
+        "evidence.broken-seal"
+      ]
+    },
+    {
+      "id": "isabel-cover",
+      "time": "23:00경",
+      "summary": "이사벨은 22시 58분 서재를 나와 뒤편 계단을 내려가 23시 가족동 방으로 돌아온다. 망토 고리가 없어진 것을 알아차린다. 옷을 갈아입기 전 문을 열어 아녜스에게 젖은 소매와 신발을 들키고 물을 쏟았다고 둘러댄 뒤 옷을 갈아입는다.",
+      "cardIds": [
+        "testimony.agnes-unanswered-calls",
         "testimony.agnes-blue-cloak"
       ]
     },
     {
       "id": "rowen-discovery",
       "time": "23:02",
-      "summary": "로웬이 시신을 먼저 발견해 자세를 바꾸고, 자신의 입실을 숨긴 채 발견 시각을 23시 05분으로 고쳐 쓴다.",
+      "summary": "로웬이 시신을 먼저 발견해 자세를 바꾸고, 자신의 입실을 숨긴 채 발견 시각을 23시 05분으로 고쳐 쓴다. 23시 03분 열쇠 꾸러미를 쥔 채 나와 시종실로 향한다. 문은 잠그지 않는다.",
       "cardIds": [
         "memory.rowen-alive",
-        "evidence.guard-log"
+        "evidence.ink-blotter",
+        "rumor.guard-return"
+      ]
+    },
+    {
+      "id": "official-alarm",
+      "time": "23:05",
+      "summary": "하르트가 서재 앞 시종실에서 왕세자의 상태를 확인하러 간다. 잠기지 않은 정문을 열어 시신을 발견하고 23시 05분 경보를 울린다. 로웬은 자신의 23시 02분 선행 입실을 지우고 이 시각만 공식 발견으로 남긴다.",
+      "cardIds": []
+    },
+    {
+      "id": "evidence-intake",
+      "time": "23:05–23:40",
+      "summary": "하르트는 궁문을 통제하고 현장 물건의 발견 지점을 적는다. 시종들은 공개 구역의 물건·문서를 수거해 검사할 것은 약제실, 전달물은 회랑 보관대, 기록은 서고로 옮긴다. 루시엔은 약과 옷의 비교 검사를 준비하고 엘리안은 문서 사본을 비치한다. 제출된 근무일지는 서재 앞 시종실에서 대조한다. 개인이 지닌 비공개 진실 원본과 봉인함 속 비밀 문서는 자동 수거하지 않는다.",
+      "cardIds": []
+    },
+    {
+      "id": "court-begins",
+      "time": "23:40 이후 · 새벽 전",
+      "summary": "여섯 사람이 모인다. 이사벨은 자신이 진범임을 알고, 베네딕트는 자신이 죽였다고 믿으며, 카시안은 폭로를 숨긴 채 오지 않은 이사벨의 행적을 묻는다. 평의회가 오기 전에 로웬이 한 사람을 기소해야 한다.",
+      "cardIds": [
+        "rumor.multiple-footsteps",
+        "rumor.missing-document",
+        "rumor.marriage",
+        "rumor.queen-old-letter",
+        "rumor.cassian-isabel-truth",
+        "rumor.isabel-annulment",
+        "rumor.seraphine-copy",
+        "rumor.benedict-edmund-letter",
+        "rumor.rowen-second-visit",
+        "testimony.physician-limits",
+        "testimony.head-examination",
+        "testimony.residue-examination",
+        "testimony.old-midwife"
       ]
     }
   ],
   "characterIdByCardId": {
-    "memory.queen-poison": "queen",
+    "memory.queen-summons": "queen",
     "memory.queen-recall": "queen",
     "memory.cassian-assault": "cassian",
     "memory.cassian-sedative": "cassian",
@@ -239,7 +413,7 @@
     "evidence.black-cloth": "benedict",
     "evidence.repaired-coat": "benedict",
     "evidence.minister-dispatch": "benedict",
-    "evidence.young-benedict-letter": "benedict",
+    "evidence.queen-summons-copy": "queen",
     "rumor.multiple-footsteps": "rowen",
     "rumor.guard-return": "rowen",
     "evidence.corridor-plan": "rowen",
@@ -256,6 +430,7 @@
     "rumor.anonymous-family-corridor": "isabel",
     "rumor.anonymous-archive-knock": "seraphine",
     "rumor.anonymous-council-room": "benedict",
-    "rumor.anonymous-gate-bolt": "rowen"
+    "rumor.anonymous-gate-bolt": "rowen",
+    "evidence.tower-seal": "seraphine"
   }
 }

@@ -24,14 +24,6 @@ afterEach(async () => {
 })
 
 describe('비공개 인물 설정서', () => {
-  it('여섯 인물의 승리와 파멸 점수 총량이 같고 마지막 행동은 두 개씩이다', () => {
-    for (const setting of characterSettings) {
-      expect(setting.victoryConditions.reduce((total, condition) => total + condition.score, 0)).toBe(10)
-      expect(setting.ruinConditions.reduce((total, condition) => total + condition.score, 0)).toBe(-10)
-      expect(setting.finalActions).toHaveLength(2)
-    }
-  })
-
   it('선택 전에는 어떤 인물의 비밀도 보여주지 않는다', () => {
     expect(host.textContent).toContain('자신이 맡은 인물만 선택하십시오')
     expect(host.textContent).not.toContain('당신은 분노하여 독살을 명령')

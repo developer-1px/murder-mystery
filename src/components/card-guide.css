@@ -1,0 +1,22 @@
+.card-guide { max-width: 1040px; margin: auto; padding: 58px 42px 100px; }
+.card-guide__header h2 { margin: 14px 0 18px; font: 700 42px 'Gowun Batang', serif; }
+.card-guide__header p { color: var(--ui-text-soft); font: 18px/1.9 'Gowun Batang', serif; }
+.card-guide__header > a { color: var(--ui-gold); font-size: 15px; }
+.card-guide__contents { display: flex; flex-wrap: wrap; gap: 10px; margin: 30px 0; }
+.card-guide__contents a { padding: 10px 18px; border: 1px solid var(--ui-border); border-radius: 5px; color: var(--ui-text-soft); text-decoration: none; font-size: 15px; }
+.card-guide__contents a:hover { background: var(--ui-hover); }
+.card-guide__common { padding: 24px 30px; border: 1px solid var(--ui-border); border-left: 3px solid var(--ui-gold); background: var(--ui-surface); }
+.card-guide__common h3 { margin: 0 0 14px; font: 700 19px 'Noto Sans KR', sans-serif; color: var(--ui-gold); }
+.card-guide ol { margin: 0; padding-left: 26px; }
+.card-guide li { padding-left: 5px; color: var(--ui-text-soft); font-size: 16px; line-height: 1.9; word-break: keep-all; overflow-wrap: break-word; }
+.card-guide li + li { margin-top: 9px; }
+.card-guide li::marker { content: counter(list-item) ') '; color: var(--ui-gold); font-weight: 700; }
+.card-guide__kinds { margin-top: 44px; display: grid; gap: 36px; }
+.card-guide__kind { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 40px; padding: 30px 0; border-top: 1px solid var(--ui-border); scroll-margin-top: 80px; }
+.card-guide__kind figure { margin: 0; }
+.card-guide__kind .card { cursor: default; }
+.card-guide__kind figcaption { margin-top: 14px; color: var(--ui-muted); font-size: 14px; line-height: 1.7; text-align: center; word-break: keep-all; }
+.card-guide__kind h3 { margin: 0; font: 700 28px 'Gowun Batang', serif; color: var(--ui-gold); }
+.card-guide__description { margin: 12px 0 22px; color: var(--ui-text-soft); font: 18px/1.9 'Gowun Batang', serif; }
+.card-guide__emphasis { margin: 0 0 20px; padding: 15px 18px; border-left: 3px solid var(--ui-gold); color: var(--ui-gold-strong); background: var(--ui-surface-soft); font-size: 17px; line-height: 1.9; word-break: keep-all; }
+@media (max-width: 850px) { .card-guide__kind { grid-template-columns: 150px minmax(0, 1fr); gap: 26px; } }

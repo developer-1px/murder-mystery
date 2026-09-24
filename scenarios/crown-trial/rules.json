@@ -14,11 +14,11 @@
     },
     {
       "id": "claim.cassian-assault",
-      "text": "카시안은 21시 52분경 아드리안을 폭행했다."
+      "text": "카시안은 21시 52분 아드리안을 거칠게 뿌리쳐 책상에 머리를 부딪히게 했다."
     },
     {
       "id": "claim.isabel-sedative",
-      "text": "이사벨은 아드리안의 첫 번째 술잔에 수면제를 넣었다."
+      "text": "이사벨은 평소보다 많은 백색 수면제를 먹이고 잠든 사이 혼인 무효화 서류를 가져와 태웠다. 투약은 단독 사인이 아니다."
     },
     {
       "id": "claim.alive-2236",
@@ -34,7 +34,7 @@
     },
     {
       "id": "claim.will-exists",
-      "text": "선왕은 왕위계승을 다시 심의하는 문서를 남겼다."
+      "text": "선왕은 아드리안의 유고 시 세라핀의 계승 심의 청구권을 보장하고 재상실의 단독 안건 편성권을 거두는 본문을 남겼다. 베네딕트가 그 본문을 숨겼다."
     },
     {
       "id": "claim.marriage-condition",
@@ -46,11 +46,11 @@
     },
     {
       "id": "claim.cassian-isabel-letters",
-      "text": "카시안과 이사벨은 사적인 편지를 주고받았다."
+      "text": "카시안은 사건 당일 도피 제안을 보냈고 이사벨은 가겠다고 답했으나 나타나지 않았다."
     },
     {
       "id": "claim.isabel-annulment-draft",
-      "text": "아드리안은 이사벨과의 혼인 심의 청원을 준비했다."
+      "text": "아드리안은 아이의 적법한 지위는 유지하되 출산 뒤 이사벨과 강제로 분리할 지시를 준비했다."
     },
     {
       "id": "claim.seraphine-archive-visit",
@@ -65,8 +65,8 @@
       "text": "선왕은 카시안을 친생 여부와 별개로 적법한 아들로 인정했다."
     },
     {
-      "id": "claim.benedict-cassian-parentage",
-      "text": "베네딕트는 카시안의 친부다."
+      "id": "claim.queen-summons",
+      "text": "엘레노라는 아드리안의 즉위 전에 평의회 의원들에게 카시안의 계승을 먼저 심의해 달라는 소집장을 보냈다."
     },
     {
       "id": "claim.benedict-coat-repair",
@@ -103,6 +103,18 @@
     {
       "id": "claim.cassian-command",
       "text": "카시안의 지휘 위임장은 보증인과 평의회 인준이 있어야 효력이 생긴다."
+    },
+    {
+      "id": "claim.cassian-disclosure",
+      "text": "카시안의 우발적인 발언으로 아드리안이 이사벨과 동생의 관계를 알게 됐다. 이 말은 친부를 확정하지 않는다."
+    },
+    {
+      "id": "claim.isabel-missed-meeting",
+      "text": "카시안은 편지로 연정과 도피 제안을 전했으며 이사벨은 폐예배실에 가지 않기로 했다."
+    },
+    {
+      "id": "claim.adrian-health",
+      "text": "아드리안은 어린 시절부터 몸이 약했지만 불임으로 확정 진단받은 적은 없다."
     }
   ]
 }

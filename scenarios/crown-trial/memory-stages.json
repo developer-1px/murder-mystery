@@ -1,6 +1,6 @@
 {
   "description": "각 인물이 게임 시작과 함께 받는 묻어야 하는 진실 2장이다. 카드 뒷면만으로는 주인과 내용을 구분할 수 없다.",
   "stages": [
-    { "id": "buried-truths", "label": "묻어야 하는 진실", "cardIds": ["memory.queen-poison", "memory.queen-recall", "memory.cassian-assault", "memory.cassian-sedative", "memory.isabel-petition", "memory.isabel-alive", "memory.seraphine-archive", "memory.seraphine-ledger", "memory.benedict-will-clause", "memory.benedict-birth-dates", "memory.rowen-order", "memory.rowen-alive"] }
+    { "id": "buried-truths", "label": "묻어야 하는 진실", "cardIds": ["memory.queen-summons", "memory.queen-recall", "memory.cassian-assault", "memory.cassian-sedative", "memory.isabel-petition", "memory.isabel-alive", "memory.seraphine-archive", "memory.seraphine-ledger", "memory.benedict-will-clause", "memory.benedict-birth-dates", "memory.rowen-order", "memory.rowen-alive"] }
   ]
 }

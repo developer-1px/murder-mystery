@@ -1,5 +1,5 @@
 {
-  "description": "맥거핀을 막기 위한 카드 주 역할 감사표. 용의자 쟁점은 12장을 감춰진 이유, 범행 가능성, 사망 가설, 실행 여부의 네 단계로 나누고 각 단계에 서로 다른 역할의 카드 세 장을 둔다. 이 표는 전체 카드가 어느 추론 단계를 보조하는지 기록한다.",
+  "description": "카드의 주 역할을 기록한다. 로웬을 제외한 다섯 인물은 전용 14장을 이야기의 진행에 따라 장면별로 배치한다. 전용 증거 배정과 보류 목록은 evidence-allocation.json을 따른다.",
   "roles": {
     "buried_truth": "원래 주인의 행동·욕망·파멸을 결정적으로 연결하고 마지막에 밝히거나 묻는 대상",
     "motive": "범행이나 정치적 행동을 선택할 이유를 세운다",
@@ -23,7 +23,7 @@
       "memory.cassian-sedative",
       "memory.isabel-alive",
       "memory.isabel-petition",
-      "memory.queen-poison",
+      "memory.queen-summons",
       "memory.queen-recall",
       "memory.rowen-alive",
       "memory.rowen-order",
@@ -62,7 +62,11 @@
       "evidence.wine-bottle",
       "evidence.coronation-book",
       "evidence.marriage-treaty",
-      "evidence.succession-leaf"
+      "evidence.succession-leaf",
+      "evidence.tower-seal",
+      "evidence.study-document-wax",
+      "evidence.medicine-wrappings",
+      "evidence.rear-door-latch"
     ],
     "desire": [
       "evidence.guard-charter",
@@ -76,7 +80,7 @@
     ],
     "secret_hint": [
       "evidence.royal-birth-register",
-      "evidence.young-benedict-letter",
+      "evidence.queen-summons-copy",
       "testimony.marta-order",
       "testimony.page-sighting",
       "testimony.archivist",

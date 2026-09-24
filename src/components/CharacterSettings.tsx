@@ -1,41 +1,59 @@
 import { Link, useParams } from 'react-router'
 import type { CharacterSetting } from '../domain/types'
 import { MissingRoute, SectionLink, sectionId, segment } from '../routing'
+import { scenario } from '../scenario/load'
+import './character-settings.css'
+import type { ReactNode } from 'react'
+import { CardView } from './CardView'
 
 interface CharacterSettingsProps {
   settings: CharacterSetting[]
+  characterId?: string
+  onBack?: () => void
+  footer?: ReactNode
 }
 
-export function CharacterSettings({ settings }: CharacterSettingsProps) {
-  const { characterId: selectedId } = useParams()
+export function CharacterSettings({ settings, characterId, onBack, footer }: CharacterSettingsProps) {
+  const { characterId: routeCharacterId } = useParams()
+  const selectedId = characterId ?? routeCharacterId
   const selected = settings.find((setting) => setting.id === selectedId)
+  const publicCharacter = scenario.characters.find((character) => character.id === selectedId)
 
   if (selectedId && !selected) return <MissingRoute message={`인물 “${selectedId}”을 찾을 수 없습니다.`} to="/characters" label="인물 목록으로" />
 
   if (!selected) return (
     <section className="character-settings character-settings--locked">
-      <span className="eyebrow">PRIVATE CHARACTER FILES</span>
-      <h2>비공개 인물 설정서</h2>
-      <p>자신이 맡은 인물만 선택하십시오. 설정서를 연 뒤에는 다른 플레이어에게 화면을 보여주지 마십시오.</p>
+      <header className="character-gallery-heading">
+        <span className="eyebrow">왕관재판 · 등장인물</span>
+        <h2>왕관을 둘러싼 여섯 사람</h2>
+        <p>같은 왕을 맞이할 예정이었던 이들. 이제 서로의 지난밤을 물어야 한다.</p>
+      </header>
+      <p className="character-gallery-note">소개는 함께 읽으셔도 좋습니다. 설정서는 자신이 맡은 인물만 열어 주세요.</p>
       <div className="character-setting-picker">
-        {settings.map((setting) => (
-          <Link key={setting.id} to={`/characters/${segment(setting.id)}`}>
-            <strong>{setting.name}</strong><span>{setting.role}</span>
+        {settings.map((setting, index) => {
+          const character = scenario.characters.find(item => item.id === setting.id)
+          return <Link className="character-setting-picker__card" key={setting.id} to={`/characters/${segment(setting.id)}`}>
+            <header><span className="character-number">{String(index + 1).padStart(2, '0')}</span></header>
+            <h3>{character?.name ?? setting.name}</h3>
+            <p className="character-setting-picker__role">{character?.title}</p>
+            <blockquote>“{character?.publicQuote}”</blockquote>
+            <footer><span className="character-open">설정서 읽기 <span aria-hidden="true">↗</span></span></footer>
           </Link>
-        ))}
+        })}
       </div>
     </section>
   )
 
   return (
     <article className="character-settings">
+      <nav className="character-detail-nav">{onBack ? <button type="button" onClick={onBack}>← 다른 인물 선택</button> : <Link to="/characters">← 인물 소개로</Link>}<span>비공개 설정서 · 자신이 맡은 인물만 읽어 주세요</span></nav>
       <header className="character-setting__hero">
-        <div>
-          <span className="eyebrow">이 설정서는 다른 플레이어에게 보여주지 마십시오</span>
-          <h2>{selected.name}</h2>
-          <p>{selected.role}</p>
+        <div className="character-setting__hero-copy">
+          <span className="eyebrow">왕관재판 · 인물 설정</span>
+          <blockquote>“{publicCharacter?.publicQuote}”</blockquote>
+          <h2>{publicCharacter?.name ?? selected.name}</h2>
+          <p>{publicCharacter?.title}</p>
         </div>
-        <Link className="button-link" to="/characters">설정서 닫기</Link>
       </header>
 
       <div className="character-setting__body">
@@ -52,32 +70,30 @@ export function CharacterSettings({ settings }: CharacterSettingsProps) {
           </section>
         ))}
         <section className="character-setting__objective" id="objective">
-          <span><SectionLink id="objective">지금 원하는 것</SectionLink></span>
+          <span><SectionLink id="objective">당신이 지키려는 것</SectionLink></span>
           <strong>{selected.objective}</strong>
         </section>
         <section className="character-setting__scores" id="scores">
-          <header><span>+</span><h3><SectionLink id="scores">승리와 파멸</SectionLink></h3></header>
-          <p>{selected.scoreGuide}</p>
-          <div className="character-setting__score-columns">
-            <ScoreTable title="내가 만들고 싶은 미래" conditions={selected.victoryConditions} />
-            <ScoreTable title="반드시 피해야 할 파멸" conditions={selected.ruinConditions} />
-          </div>
+          <header><span>◇</span><h3><SectionLink id="scores">당신의 신념</SectionLink></h3></header>
+          <p>{selected.belief}</p>
+          <ul>{selected.goals.map(goal => <li key={goal}>{goal}</li>)}</ul>
+          <p>모두의 공통 목표는 실제 진범을 알아내는 것입니다. 당신의 선택이 지키려던 것을 지켰는지는 그와 별개로 남습니다.</p>
         </section>
         <section className="character-setting__actions" id="final-actions">
           <header><span>→</span><h3><SectionLink id="final-actions">묻어야 할 진실</SectionLink></h3></header>
-          <p>당신은 아래 진실 두 장을 가지고 시작합니다. 둘 다 세상에 밝혀지지 않기를 바라지만, 직접 가지고 있는 한 끝내 묻을 수 없습니다.</p>
-          <p>다른 사람과 1장 대 1장으로 교환해 맡기십시오. 카드의 내용은 교환이 끝나기 전까지 보여 줄 수 없습니다.</p>
+          <p>당신의 두 진실이 모두 공개되면 ‘발각’되어 가장 두려워한 대가를 치릅니다. 그래도 지키려던 것까지 잃는지는 아직 정해지지 않았습니다.</p>
+          <p>자기 진실은 직접 묻을 수 없습니다. 뒷면으로 한 장씩 교환해 맡기면, 공개할지는 받은 사람이 정합니다.</p>
           <div>
-            {selected.finalActions.map((action) => <article key={action.title}>
-              <span>묻어야 할 진실</span><h4>{action.title}</h4><p>{action.intent}</p><blockquote>{action.omen}</blockquote>
-            </article>)}
+            {selected.finalActions.map((action) => {
+              const card = scenario.cards.find(card => card.id === action.id)
+              return <article className="character-setting__truth" key={action.id}>
+                {card ? <CardView card={card} /> : <h4>{action.title}</h4>}<p>{action.intent}</p>
+              </article>
+            })}
           </div>
         </section>
       </div>
+      {footer}
     </article>
   )
-}
-
-function ScoreTable({ title, conditions }: { title: string; conditions: CharacterSetting['victoryConditions'] }) {
-  return <div><h4>{title}</h4><table><tbody>{conditions.map((condition) => <tr key={condition.result}><td>{condition.result}</td><th>{condition.score > 0 ? '+' : ''}{condition.score}</th></tr>)}</tbody></table></div>
 }

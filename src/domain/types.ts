@@ -8,6 +8,7 @@ export interface Character {
   title: string
   color: string
   publicProfile: string
+  publicQuote: string
   desire: string
   ruin: string
 }
@@ -148,6 +149,8 @@ export interface CommonSettingEntry {
 }
 
 export interface CommonSettingSection {
+  keyRules?: string[]
+  rules?: string[]
   id: string
   title: string
   summary: string
@@ -175,16 +178,15 @@ export interface CharacterSettingSection {
   points?: string[]
 }
 
-export interface CharacterScoreCondition {
-  result: string
-  score: number
-}
-
 export interface CharacterFinalAction {
   id: string
   title: string
   intent: string
   omen: string
+  plea?: string
+  counterReading?: string
+  buriedOutcome?: string
+  connectionCardIds?: string[]
 }
 
 export interface CharacterSetting {
@@ -193,14 +195,13 @@ export interface CharacterSetting {
   role: string
   sections: CharacterSettingSection[]
   objective: string
-  scoreGuide: string
-  victoryConditions: CharacterScoreCondition[]
-  ruinConditions: CharacterScoreCondition[]
+  belief: string
+  goals: string[]
   finalActions: CharacterFinalAction[]
 }
 
 export interface Scenario {
-  meta: { id: string; title: string; version: string; round: number }
+  meta: { id: string; title: string; version: string; round: number; victim?: { id: string; name: string } }
   characters: Character[]
   cards: Card[]
   locations: Location[]

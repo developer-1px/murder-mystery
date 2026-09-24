@@ -60,7 +60,7 @@ export function validateDesignerMeaning(scenario: Scenario, npcGroups: NpcGroups
   const testimonyIds = new Set(scenario.cards.filter((card) => card.kind === 'testimony').map((card) => card.id))
   const groupedTestimony = npcGroups.npcs.flatMap((npc) => npc.cardIds)
   for (const npc of npcGroups.npcs) {
-    if (!characterIds.has(npc.pairedCharacterId)) issues.push({ path: `npc-groups.json/${npc.id}/pairedCharacterId`, message: `존재하지 않는 인물 ${npc.pairedCharacterId}`, severity: 'error' })
+    if (!characterIds.has(npc.pairedCharacterId) && npc.pairedCharacterId !== scenario.meta.victim?.id) issues.push({ path: `npc-groups.json/${npc.id}/pairedCharacterId`, message: `존재하지 않는 인물 ${npc.pairedCharacterId}`, severity: 'error' })
     for (const id of npc.cardIds) if (!testimonyIds.has(id)) issues.push({ path: `npc-groups.json/${npc.id}/cardIds`, message: `존재하지 않거나 증언이 아닌 카드 ${id}`, severity: 'error' })
   }
   for (const id of testimonyIds) if (!groupedTestimony.includes(id)) issues.push({ path: 'npc-groups.json/npcs', message: `NPC 덱에 없는 증언 ${id}`, severity: 'error' })

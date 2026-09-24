@@ -20,8 +20,6 @@ export interface PlaySession {
   // Added after the first playtest format; absent in older saved sessions.
   roundVisitedNpcs?: string[]
   inspectionStage: 'select' | 'result'
-  investigationStage: 'locations' | 'cards'
-  investigationQueue: string[]
   inspections: Array<{ round: number; cardId: string; published: boolean }>
   publicCards: Array<{ cardId: string; actorId: string; round: number; source: 'court' | 'inspection'; targetId?: string }>
   courtTurn?: { cardId: string; targetId: string }
@@ -120,7 +118,7 @@ export function createPlaySession(assets: PlayAssets): PlaySession {
       group.kind === 'memory' ? group.cards.map((card) => card.id) : shuffled(group.cards.map((card) => card.id)),
     ])),
     locationChoices: {}, visitedNpcs: Object.fromEntries(ids.map((id) => [id, []])), roundVisitedNpcs: [],
-    inspectionStage: 'select', investigationStage: 'locations', investigationQueue: [],
+    inspectionStage: 'select',
     inspections: [], publicCards: [], accusations: {}, truthTrades: [], truthChoices: {}, truthOutcomes: {}, log: [],
   }
   session.decks[inspectionDeckId] = assets.inspectionCards.map((card) => card.id)
@@ -132,13 +130,13 @@ function setPhase(session: PlaySession, phase: PlayPhase, assets: PlayAssets): v
   session.phase = phase
   session.turnIndex = 0
   session.actorId = ['inspection', 'discussion', 'indictment', 'complete'].includes(phase)
-    ? rowenId(assets) : playerIds(assets)[0]
+    ? rowenId(assets) : playerIds(assets).find(id => phase !== 'accusation' || id !== rowenId(assets))!
   delete session.choice
   delete session.courtTurn
 }
 
 function nextPlayer(session: PlaySession, followingPhase: PlayPhase, assets: PlayAssets): void {
-  const ids = playerIds(assets)
+  const ids = playerIds(assets).filter(id => session.phase !== 'accusation' || id !== rowenId(assets))
   if (session.turnIndex + 1 < ids.length) {
     session.turnIndex += 1
     session.actorId = ids[session.turnIndex]
@@ -151,8 +149,6 @@ function nextRound(session: PlaySession, assets: PlayAssets): void {
   session.round += 1
   session.locationChoices = {}
   session.roundVisitedNpcs = []
-  session.investigationQueue = []
-  session.investigationStage = 'locations'
   session.inspectionStage = 'select'
   setPhase(session, 'inspection', assets)
   dealMemories(session, assets)
@@ -189,7 +185,7 @@ export function getDeckBlockReason(session: PlaySession, group: CardGroup, asset
   if (group.kind === 'memory') return '묻어야 할 진실 두 장은 게임 시작 시 자동으로 배분됩니다.'
   const matching = (session.phase === 'rumor' && group.kind === 'rumor')
     || (session.phase === 'testimony' && group.kind === 'testimony')
-    || (session.phase === 'investigation' && session.investigationStage === 'locations' && group.kind === 'evidence')
+    || (session.phase === 'investigation' && group.kind === 'evidence')
   if (!matching) return '현재 단계에서 사용할 덱이 아닙니다.'
   const remaining = session.decks[group.id]?.length ?? 0
   if (!remaining) return '이 덱에 남은 카드가 없습니다.'
@@ -200,8 +196,7 @@ export function getDeckBlockReason(session: PlaySession, group: CardGroup, asset
   }
   if (group.kind === 'evidence') {
     if (session.locationChoices[session.actorId]) return '이미 조사 장소를 선택했습니다.'
-    const reserved = Object.values(session.locationChoices).filter((id) => id === group.id).length
-    if (reserved >= remaining) return '먼저 선택한 인원에게 배분하면 남는 카드가 없습니다. 다른 장소를 선택하세요.'
+
   }
   return undefined
 }
@@ -288,19 +283,6 @@ function openCandidates(session: PlaySession, deckId: string, count: number, par
   session.decks[deckId] = cards.slice(count)
 }
 
-function nextInvestigationGroup(session: PlaySession, assets: PlayAssets): void {
-  const deckId = session.investigationQueue.shift()
-  if (!deckId) {
-    setPhase(session, 'discussion', assets)
-    record(session, '모든 조사가 끝났습니다. 밀담과 수사를 진행한 뒤 재판을 여세요.')
-    return
-  }
-  const participants = playerIds(assets).filter((id) => session.locationChoices[id] === deckId)
-  session.actorId = participants[0]
-  session.turnIndex = playerIds(assets).indexOf(session.actorId)
-  openCandidates(session, deckId, Math.min(participants.length + 1, session.decks[deckId].length), participants)
-}
-
 function validOther(session: PlaySession, targetId: string, assets: PlayAssets): boolean {
   return targetId !== session.actorId && playerIds(assets).includes(targetId)
 }
@@ -344,11 +326,7 @@ export function transitionPlay(session: PlaySession, action: PlayAction, assets:
     case 'play-as': {
       if (session.playerId || !playerIds(assets).includes(action.playerId)) return session
       next.playerId = action.playerId
-      record(next, `${nameOf(action.playerId, assets)}의 1인칭 플레이테스트를 시작합니다. 나머지 인물은 무작위로 진행합니다.`)
-      if (next.phase === 'ready') {
-        setPhase(next, 'inspection', assets)
-        record(next, '1라운드가 시작되었습니다. 로웬이 검시관에게 첫 소견을 요청합니다.')
-      }
+      record(next, `${nameOf(action.playerId, assets)}의 시점을 선택했습니다.${next.phase === 'ready' ? ' 설정서를 읽고 시작하세요.' : ' 나머지 인물은 무작위로 진행합니다.'}`)
       return next
     }
     case 'reorder-hand': {
@@ -396,14 +374,7 @@ export function transitionPlay(session: PlaySession, action: PlayAction, assets:
       if (choice.participantIds[0] !== session.actorId) return session
       next.hands[next.actorId].push(action.cardId)
       const unchosen = choice.cardIds.filter((id) => id !== action.cardId)
-      const pending = choice.participantIds.slice(1)
       record(next, `${nameOf(next.actorId, assets)}이 ${session.phase === 'rumor' ? '소문' : session.phase === 'testimony' ? '탐문' : '조사'} 카드 한 장을 비공개 손패에 넣었습니다.`)
-      if (session.phase === 'investigation' && pending.length) {
-        next.choice = { ...choice, cardIds: unchosen, participantIds: pending }
-        next.actorId = pending[0]
-        next.turnIndex = playerIds(assets).indexOf(next.actorId)
-        return next
-      }
       next.decks[choice.deckId].push(...unchosen)
       delete next.choice
       if (session.phase === 'rumor') nextPlayer(next, 'testimony', assets)
@@ -412,23 +383,19 @@ export function transitionPlay(session: PlaySession, action: PlayAction, assets:
         next.roundVisitedNpcs = [...(next.roundVisitedNpcs ?? []), choice.deckId]
         nextPlayer(next, 'investigation', assets)
       }
-      if (session.phase === 'investigation') nextInvestigationGroup(next, assets)
+      if (session.phase === 'investigation') {
+        nextPlayer(next, 'discussion', assets)
+        if (next.phase === 'discussion') record(next, '모든 조사가 끝났습니다. 밀담과 수사를 진행한 뒤 재판을 여세요.')
+      }
       return next
     }
     case 'choose-location': {
-      if (session.phase !== 'investigation' || session.investigationStage !== 'locations') return session
+      if (session.phase !== 'investigation') return session
       const group = assets.groups.find((entry) => entry.id === action.deckId)
       if (!group || group.kind !== 'evidence' || getDeckBlockReason(session, group, assets)) return session
       next.locationChoices[next.actorId] = group.id
       record(next, `${nameOf(next.actorId, assets)}이 ${group.backTitle} 조사를 선택했습니다.`)
-      if (Object.keys(next.locationChoices).length < playerIds(assets).length) {
-        next.turnIndex += 1
-        next.actorId = playerIds(assets)[next.turnIndex]
-      } else {
-        next.investigationStage = 'cards'
-        next.investigationQueue = assets.groups.filter((entry) => entry.kind === 'evidence' && Object.values(next.locationChoices).includes(entry.id)).map((entry) => entry.id)
-        nextInvestigationGroup(next, assets)
-      }
+      openCandidates(next, group.id, 2, [next.actorId])
       return next
     }
     case 'end-discussion': {
@@ -501,7 +468,7 @@ export function transitionPlay(session: PlaySession, action: PlayAction, assets:
       return next
     }
     case 'accuse': {
-      if (session.phase !== 'accusation' || session.accusations[session.actorId] || action.targetId === rowenId(assets) || !validOther(session, action.targetId, assets)) return session
+      if (session.phase !== 'accusation' || session.actorId === rowenId(assets) || session.accusations[session.actorId] || action.targetId === rowenId(assets) || !validOther(session, action.targetId, assets)) return session
       next.accusations[next.actorId] = action.targetId
       record(next, `${nameOf(next.actorId, assets)}이 범인 지목을 비공개로 확정했습니다.`)
       nextPlayer(next, 'defense', assets)
