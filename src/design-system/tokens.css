@@ -1,0 +1,62 @@
+:root {
+  --ui-bg: #0b1b15;
+  --ui-bg-deep: #06100c;
+  --ui-surface: #14271f;
+  --ui-surface-soft: #1b3328;
+  --ui-hover: #294434;
+  --ui-selected: #344f3d;
+  --ui-border-soft: #2c4738;
+  --ui-border: #405b4c;
+  --ui-border-strong: #657058;
+  --ui-text: #e8dfce;
+  --ui-text-soft: #c8c4b5;
+  --ui-muted: #a6aca0;
+  --ui-muted-dim: #7f8d82;
+  --ui-gold: #dbc393;
+  --ui-gold-strong: #efd9a7;
+  --ui-gold-muted: #a88e5d;
+  color: var(--ui-text);
+  background: var(--ui-bg);
+  font-family: var(--font-ui);
+  font-size: 18px;
+  font-synthesis: none;
+}
+:root {
+  --font-ui: 'Noto Sans KR', sans-serif;
+  --font-story: 'Gowun Batang', serif;
+  --text-caption: 12px;
+  --text-label: 14px;
+  --text-control: 16px;
+  --text-body: 18px;
+  --text-heading: 24px;
+  --control-height: 44px;
+  --control-height-compact: 36px;
+  --radius-control: 6px;
+  --radius-panel: 12px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --ui-action-ink: #24281e;
+  --ui-action: linear-gradient(135deg, #dfc99e, #bba477);
+  --ui-action-hover: #efd9ad;
+  --ui-paper: linear-gradient(145deg, #f0e8d7, #d9c9aa);
+  --ui-paper-ink: #302a21;
+  --ui-paper-muted: #70583c;
+  --ui-paper-border: #96835c;
+  --ui-warning-bg: #382619;
+  --ui-warning-text: #e6be93;
+  --ui-warning-border: #926342;
+  --ui-error-bg: #3a2521;
+  --ui-error-text: #e0a597;
+  --ui-error-border: #7c4e45;
+  --ui-shadow: 0 12px 28px #0003;
+  --ui-shadow-floating: 0 16px 50px #0008;
+  --ui-backdrop: #080d0abf;
+}
+
+:root { --text-subheading: 22px; --text-title: 32px; --text-display: 42px; }
+
+:root { --ui-success-text: #91b99b; }

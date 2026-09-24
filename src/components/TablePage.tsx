@@ -1,5 +1,7 @@
+import { ActionLink, Disclosure, DisclosureSummary, Button, Select } from '../design-system/controls'
+import { Icon } from '../design-system/Icon'
 import { useEffect, useState } from 'react'
-import { Link, Navigate, useNavigate, useParams } from 'react-router'
+import { Navigate, useNavigate, useParams } from 'react-router'
 import type { CardPile } from '../domain/table'
 import { memoryStages, npcGroups, scenario } from '../scenario/load'
 import { getCardGroups } from '../scenario/cardGroups'
@@ -92,19 +94,19 @@ export function TablePage() {
 
   return <>
     {warning && <p className="route-warning" role="status">{warning}</p>}
-    {legacyDecks && <div className="table-deck-notice"><span>이전 덱 구성의 기록입니다. 기존 플레이를 보존하고 개인·NPC·장소별 덱으로 시작할 수 있습니다.</span><button type="button" onClick={startScenarioTable}>새 덱 구성으로 시작</button></div>}
-    <details className="table-history" open={historyOpen}>
-      <summary onClick={(event) => { event.preventDefault(); update({ history: historyOpen ? null : '1' }) }}>기록 · {cursor}</summary>
+    {legacyDecks && <div className="table-deck-notice ui-notice" data-tone="warning"><span>이전 덱 구성의 기록입니다. 기존 플레이를 보존하고 개인·NPC·장소별 덱으로 시작할 수 있습니다.</span><Button type="button" onClick={startScenarioTable}>새 덱 구성으로 시작</Button></div>}
+    <Disclosure className="table-history" open={historyOpen}>
+      <DisclosureSummary onClick={(event) => { event.preventDefault(); update({ history: historyOpen ? null : '1' }) }}>기록 · {cursor}</DisclosureSummary>
       <section className="timeline">
         <div className="section-heading"><span>테이블 기록</span><small>{cursor}/{branch.snapshots.length - 1}</small></div>
-        <select aria-label="테이블 가지" value={branch.id} onChange={(event) => { const next = history.branches.find((item) => item.id === event.target.value)!; moveTo(next.id, next.snapshots.length - 1) }}>{history.branches.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</select>
-        <div className="history-controls"><button disabled={cursor === 0} onClick={() => moveTo(branch.id, cursor - 1)}>↶ 되돌리기</button><button disabled={cursor === branch.snapshots.length - 1} onClick={() => moveTo(branch.id, cursor + 1)}>↷ 다시 하기</button></div>
-        <button className="fork-button" onClick={fork}>현재 배치에서 Fork</button>
-        <button className="fork-button" onClick={startScenarioTable}>시나리오 덱으로 새 테이블</button>
-        {branch.snapshots.map((item, index) => <Link className={`event ${cursor === index ? 'active' : ''}`} key={index} to={`${tablePath(branch.id, index)}?history=1`}><b>{index}</b><span>{item.label}</span></Link>)}
+        <Select aria-label="테이블 가지" value={branch.id} onChange={(event) => { const next = history.branches.find((item) => item.id === event.target.value)!; moveTo(next.id, next.snapshots.length - 1) }}>{history.branches.map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</Select>
+        <div className="history-controls"><Button disabled={cursor === 0} onClick={() => moveTo(branch.id, cursor - 1)}><Icon name="undo" />되돌리기</Button><Button disabled={cursor === branch.snapshots.length - 1} onClick={() => moveTo(branch.id, cursor + 1)}><Icon name="redo" />다시 하기</Button></div>
+        <Button className="fork-button" onClick={fork}>현재 배치에서 Fork</Button>
+        <Button className="fork-button" onClick={startScenarioTable}>시나리오 덱으로 새 테이블</Button>
+        {branch.snapshots.map((item, index) => <ActionLink size="compact" className="event" aria-current={cursor === index ? 'step' : undefined} key={index} to={`${tablePath(branch.id, index)}?history=1`}><b>{index}</b><span>{item.label}</span></ActionLink>)}
         <p className="timeline__note">이 브라우저에 저장됩니다. 다른 기기에는 기록이 전달되지 않습니다. 과거 배치에서 조작하면 새 가지에 기록합니다.</p>
       </section>
-    </details>
+    </Disclosure>
     <CardTable scenario={scenario} piles={snapshot.piles} onChange={commit}
       view={view} onViewChange={(next, replace = true) => { void navigate(href(tablePath(branch.id, cursor), viewQuery(next, historyOpen)), { replace }) }}
       onUndo={() => { if (cursor > 0) moveTo(branch.id, cursor - 1) }} onRedo={() => { if (cursor < branch.snapshots.length - 1) moveTo(branch.id, cursor + 1) }} canUndo={cursor > 0} canRedo={cursor < branch.snapshots.length - 1} />

@@ -1,3 +1,4 @@
+import { Button } from '../design-system/controls'
 import { useLayoutEffect, useRef, useState } from 'react'
 
 export interface TableMenuItem {
@@ -18,7 +19,7 @@ export function TableContextMenu({ x, y, items, onClose }: { x: number; y: numbe
   }, [x, y])
 
   return <div className="table-menu-layer" onPointerDown={(event) => { if (event.target === event.currentTarget) onClose() }} onContextMenu={(event) => { event.preventDefault(); onClose() }}>
-    <div ref={ref} role="menu" aria-label="카드 조작" className="table-menu" style={{ left: position.x, top: position.y }} onKeyDown={(event) => {
+    <div ref={ref} role="menu" aria-label="카드 조작" className="table-menu ui-panel" data-elevation="floating" style={{ left: position.x, top: position.y }} onKeyDown={(event) => {
       const buttons = [...ref.current!.querySelectorAll<HTMLButtonElement>('[role="menuitem"]')]
       const index = buttons.indexOf(document.activeElement as HTMLButtonElement)
       if (['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
@@ -29,9 +30,9 @@ export function TableContextMenu({ x, y, items, onClose }: { x: number; y: numbe
       if (event.key === 'Escape') { event.preventDefault(); onClose() }
       if (event.key === 'Tab') onClose()
     }}>
-      {items.map((item) => <button type="button" role="menuitem" tabIndex={-1} aria-disabled={item.disabled || undefined} key={item.label} onClick={() => { if (!item.disabled) { onClose(); item.run() } }}>
+      {items.map((item) => <Button variant="ghost" type="button" role="menuitem" tabIndex={-1} aria-disabled={item.disabled || undefined} key={item.label} onClick={() => { if (!item.disabled) { onClose(); item.run() } }}>
         <span>{item.label}</span>{item.shortcut && <kbd>{item.shortcut}</kbd>}
-      </button>)}
+      </Button>)}
     </div>
   </div>
 }

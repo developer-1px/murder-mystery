@@ -1,4 +1,7 @@
-import { BrowserRouter, Navigate, NavLink, Route, Routes, useLocation } from 'react-router'
+import { Icon } from './design-system/Icon'
+import { Button, NavigationLink } from './design-system/controls'
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router'
+import { DesignSystemPage } from './design-system/DesignSystemPage'
 import { CardLibrary } from './components/CardLibrary'
 import { CardGuide } from './components/CardGuide'
 import { CharacterSettings } from './components/CharacterSettings'
@@ -17,22 +20,23 @@ export function WorkbenchRoutes() {
   const playing = pathname === '/table' || pathname.startsWith('/table/play/')
   const health = <span className={`health ${validationIssues.some((issue) => issue.severity === 'error') ? 'health--error' : ''}`}><i />{validationIssues.length ? `검증 ${validationIssues.length}건` : '시나리오 정상'}</span>
   const navigation = <nav className="workspace-tabs" aria-label="작업 공간">
-          <NavLink to="/setting">공통 설정</NavLink>
-          <NavLink to="/characters">인물 설정</NavLink>
-          <NavLink to="/guide">게임 진행</NavLink>
-          <NavLink to="/cards">카드 설명</NavLink>
-          <NavLink to="/table">게임 테이블</NavLink>
-          <NavLink to="/library">카드 라이브러리</NavLink>
-          <NavLink to="/issues">인물별 카드 구성</NavLink>
-          <NavLink to="/timeline">타임라인</NavLink>
-          <NavLink to="/court-simulator">재판 시뮬레이터</NavLink>
-          <NavLink to="/endings">엔딩 분기</NavLink>
+          <NavigationLink to="/setting">공통 설정</NavigationLink>
+          <NavigationLink to="/characters">인물 설정</NavigationLink>
+          <NavigationLink to="/guide">게임 진행</NavigationLink>
+          <NavigationLink to="/cards">카드 설명</NavigationLink>
+          <NavigationLink to="/table">게임 테이블</NavigationLink>
+          <NavigationLink to="/library">카드 라이브러리</NavigationLink>
+          <NavigationLink to="/issues">인물별 카드 구성</NavigationLink>
+          <NavigationLink to="/timeline">타임라인</NavigationLink>
+          <NavigationLink to="/court-simulator">재판 시뮬레이터</NavigationLink>
+          <NavigationLink to="/endings">엔딩 분기</NavigationLink>
+          <NavigationLink to="/design-system">디자인 시스템</NavigationLink>
         </nav>
   return <main className={`app-shell app-shell--workbench${playing ? ' app-shell--play' : ''}`}>
     <div className="workbench-float">
       <h1 className="sr-only">{scenario.meta.title}</h1>
-      <button className="workbench-launcher" popoverTarget="workbench-menu" aria-label="작업 공간 메뉴"><span aria-hidden="true">♛</span>{scenario.meta.title}<span aria-hidden="true">⌄</span></button>
-      <div id="workbench-menu" className="workbench-menu" popover="auto">
+      <Button size="compact" className="workbench-launcher" popoverTarget="workbench-menu" aria-label="작업 공간 메뉴"><Icon name="crown" size={22} />{scenario.meta.title}<Icon name="chevronDown" size={16} /></Button>
+      <div id="workbench-menu" className="workbench-menu ui-panel" popover="auto">
         <header><span className="eyebrow">WORKBENCH</span>{health}</header>
         {navigation}<RouteTools />
       </div>
@@ -51,6 +55,7 @@ export function WorkbenchRoutes() {
       <Route path="/timeline/cards/:cardId" element={<TimelineBoard scenario={scenario} document={timeline} />} />
       <Route path="/deduction" element={<Navigate replace to="/issues" />} />
       <Route path="/court-simulator" element={<CourtSimulator scenario={scenario} npcGroups={npcGroups} memoryStages={memoryStages} inspectionCards={inspectionCards} roleAudit={cardRoleAudit} />} />
+      <Route path="/design-system" element={<DesignSystemPage />} />
       <Route path="/endings" element={<EndingBranches />} />
       <Route path="/table" element={<PlayTablePage />} />
       <Route path="/table/play/:branchId/steps/:step" element={<PlayTablePage />} />

@@ -1,3 +1,5 @@
+import { Icon } from '../design-system/Icon'
+import { Button } from '../design-system/controls'
 import { useEffect, useLayoutEffect, useRef, type MouseEventHandler, type ReactNode } from 'react'
 import type { Card } from '../domain/types'
 import { cardKinds } from './cardKinds'
@@ -62,7 +64,7 @@ export function CardView({ card, onClick, selected, faceDown, backLabel, backTit
   const content = <div className="card__face">
         {faceDown ? <>
           <span className="card-back__category">{cardKinds[card.kind].backLabel}</span>
-          <span className="card-back__seal" aria-hidden="true">♛</span>
+          <span className="card-back__seal" aria-hidden="true"><Icon name="crown" size="70%" /></span>
           <span className="card-back__caption">{backTitle ?? '왕관재판'}</span>
           {backSubtitle && <span className="card-back__subtitle">{backSubtitle}</span>}
           <span className="card-back__edition">CROWN TRIAL</span>
@@ -89,7 +91,7 @@ export function CardReader({ card, faceDown = false, onClose, children }: { card
   return <dialog ref={dialogRef} className="card-reader" aria-label={faceDown ? '뒷면 카드 크게 보기' : card ? `${card.title} 크게 보기` : '카드 크게 보기'} onClose={() => { if (card) onClose() }} onClick={(event) => { if (event.target === event.currentTarget) onClose() }}>
     {card && <div className="card-reader__sheet">
       <CopyLinkButton />
-      <button type="button" className="card-reader__close" onClick={onClose} aria-label="카드 닫기">닫기 ×</button>
+      <Button type="button" className="card-reader__close" onClick={onClose} aria-label="카드 닫기">닫기 <Icon name="close" /></Button>
       <CardView card={card} faceDown={faceDown} />
       {!faceDown && children}
     </div>}

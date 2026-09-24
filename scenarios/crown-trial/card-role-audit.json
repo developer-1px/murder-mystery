@@ -1,5 +1,5 @@
 {
-  "description": "카드의 주 역할을 기록한다. 로웬을 제외한 다섯 인물은 전용 14장을 이야기의 진행에 따라 장면별로 배치한다. 전용 증거 배정과 보류 목록은 evidence-allocation.json을 따른다.",
+  "description": "진실 12·소문 24·증거 32·탐문 18장. 다섯 측근은 이해관계·당일 행적·진술의 빈틈 각 1장, 아드리안의 루시엔은 의료 탐문 3장. 로웬의 전담 NPC는 없다.",
   "roles": {
     "buried_truth": "원래 주인의 행동·욕망·파멸을 결정적으로 연결하고 마지막에 밝히거나 묻는 대상",
     "motive": "범행이나 정치적 행동을 선택할 이유를 세운다",
@@ -13,7 +13,9 @@
     "medical_hypothesis": "주치의가 병력을 근거로 +α가 있었다면 치명적일 수 있었다는 가능성과 함정을 제시한다",
     "movement_rumor": "사건 흐름 속 특정 장소의 이상한 일이나 목격담을 전하되, 인물·신분·성별·복장·이니셜을 드러내지 않아 누구의 동선인지 확정할 수 없게 한다",
     "rumor_identification": "익명 소문의 장면과 맞춰 그 인물이 누구인지 특정한다",
-    "movement_testimony": "출입·부재·옮겨진 물건을 장소 증거와 맞춰 행적을 추론한다"
+    "movement_testimony": "출입·부재·옮겨진 물건을 장소 증거와 맞춰 행적을 추론한다",
+    "testimony_interest": "담당 인물의 갈등과 잃을 것을 직접 들은 언행으로 제시한다",
+    "testimony_gap": "담당 인물이 설명하지 않은 물건·기록·뒤처리를 목격 범위에서 제시한다"
   },
   "cardsByPrimaryRole": {
     "buried_truth": [
@@ -80,12 +82,7 @@
     ],
     "secret_hint": [
       "evidence.royal-birth-register",
-      "evidence.queen-summons-copy",
-      "testimony.marta-order",
-      "testimony.page-sighting",
-      "testimony.archivist",
-      "testimony.minister-clerk",
-      "testimony.agnes-wet-sleeve"
+      "evidence.queen-summons-copy"
     ],
     "timeline": [
       "evidence.bell-register",
@@ -93,8 +90,7 @@
       "evidence.isabel-letter"
     ],
     "rebuttal": [
-      "evidence.recall-slip",
-      "testimony.old-midwife"
+      "evidence.recall-slip"
     ],
     "medical_hypothesis": [
       "testimony.physician-limits",
@@ -115,23 +111,26 @@
       "rumor.anonymous-council-room",
       "rumor.anonymous-gate-bolt"
     ],
-    "rumor_identification": [
-      "testimony.apothecary-counter",
-      "testimony.dinner-steward",
-      "testimony.archive-copyist",
-      "testimony.night-attendant",
-      "testimony.agnes-locked-door"
-    ],
+    "rumor_identification": [],
     "movement_testimony": [
       "testimony.marta-recall",
-      "testimony.recall-messenger",
-      "testimony.study-servant",
       "testimony.bell-attendant",
       "testimony.foreign-envoy",
+      "testimony.night-attendant",
+      "testimony.agnes-unanswered-calls"
+    ],
+    "testimony_interest": [
+      "testimony.marta-order",
+      "testimony.dinner-steward",
       "testimony.isabel-attendant",
+      "testimony.minister-clerk",
+      "testimony.agnes-wet-sleeve"
+    ],
+    "testimony_gap": [
+      "testimony.recall-messenger",
+      "testimony.page-sighting",
+      "testimony.archivist",
       "testimony.wardrobe-keeper",
-      "testimony.tailor",
-      "testimony.agnes-unanswered-calls",
       "testimony.agnes-blue-cloak"
     ]
   }

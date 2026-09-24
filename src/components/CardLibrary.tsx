@@ -1,3 +1,5 @@
+import { Disclosure, DisclosureSummary, Button, Input, Select } from '../design-system/controls'
+import { Icon } from '../design-system/Icon'
 import { Link, useNavigate, useParams } from 'react-router'
 import type { CardKind, MemoryStagesDocument, NpcGroupsDocument, Scenario, ValidationIssue } from '../domain/types'
 import { CardReader, CardView } from './CardView'
@@ -57,44 +59,44 @@ export function CardLibrary({ scenario, issues, npcGroups, memoryStages }: Props
         <div className="filters">
           <label className="library__search">
             <span>카드 검색</span>
-            <input type="search" value={search} onChange={(event) => update({ q: event.target.value }, true)} placeholder="카드 · 인물 · 장소 · 태그 검색" />
+            <Input type="search" value={search} onChange={(event) => update({ q: event.target.value }, true)} placeholder="카드 · 인물 · 장소 · 태그 검색" />
           </label>
         </div>
       </div>
 
-      <details className="scenario-notes" open={params.get('profiles') === '1' || !!params.get('profile')}>
-        <summary onClick={(event) => { event.preventDefault(); update({ profiles: params.get('profiles') === '1' || params.has('profile') ? null : '1', profile: null }) }}>공개된 인물 정보</summary>
-        <div>{scenario.characters.map((character) => <details className="character-profile" key={character.id} open={params.get('profile') === character.id}>
-          <summary onClick={(event) => { event.preventDefault(); update({ profiles: '1', profile: params.get('profile') === character.id ? null : character.id }) }}>{character.name} · {character.title}</summary><p>{character.publicProfile}</p>
-        </details>)}</div>
-      </details>
+      <Disclosure className="scenario-notes" open={params.get('profiles') === '1' || !!params.get('profile')}>
+        <DisclosureSummary onClick={(event) => { event.preventDefault(); update({ profiles: params.get('profiles') === '1' || params.has('profile') ? null : '1', profile: null }) }}>공개된 인물 정보</DisclosureSummary>
+        <div>{scenario.characters.map((character) => <Disclosure className="character-profile" key={character.id} open={params.get('profile') === character.id}>
+          <DisclosureSummary onClick={(event) => { event.preventDefault(); update({ profiles: '1', profile: params.get('profile') === character.id ? null : character.id }) }}>{character.name} · {character.title}</DisclosureSummary><p>{character.publicProfile}</p>
+        </Disclosure>)}</div>
+      </Disclosure>
 
       <nav className="kind-filters" aria-label="카드 종류">
-        <button type="button" aria-pressed={kind === 'all'} onClick={() => setKind('all')}>
+        <Button variant="choice" type="button" aria-pressed={kind === 'all'} onClick={() => setKind('all')}>
           전체 <span>{scenario.cards.length}</span>
-        </button>
+        </Button>
         {kinds.map((key) => (
-          <button type="button" className={`kind-filter--${key}`} key={key} aria-pressed={kind === key} onClick={() => setKind(key)}>
+          <Button variant="choice" type="button" className={`kind-filter--${key}`} key={key} aria-pressed={kind === key} onClick={() => setKind(key)}>
             {cardKinds[key].label} <span>{totals[key]}</span>
-          </button>
+          </Button>
         ))}
       </nav>
       <div className="card-display-controls" aria-label="카드 표시 방식">
-        <button type="button" aria-pressed={!faceDown} onClick={() => update({ side: null, revealed: null })}>앞면 보기</button>
-        <button type="button" aria-pressed={faceDown} onClick={() => update({ side: 'back', revealed: null })}>하나씩 열기</button>
-        {faceDown && <><button type="button" onClick={() => update({ revealed: null })}>모두 덮기</button><span>한 번 눌러 펼치고, 다시 눌러 상세 보기</span></>}
-        <label className="library-group-filter">묶음 <select aria-label="카드 묶음" value={groupId ?? ''} onChange={(event) => update({ group: event.target.value || null })}><option value="">전체 묶음</option>{allGroups.filter((group) => kind === 'all' || group.kind === kind).map((group) => <option key={group.id} value={group.id}>{group.label}</option>)}</select></label>
+        <Button variant="choice" type="button" aria-pressed={!faceDown} onClick={() => update({ side: null, revealed: null })}>앞면 보기</Button>
+        <Button variant="choice" type="button" aria-pressed={faceDown} onClick={() => update({ side: 'back', revealed: null })}>하나씩 열기</Button>
+        {faceDown && <><Button type="button" onClick={() => update({ revealed: null })}>모두 덮기</Button><span>한 번 눌러 펼치고, 다시 눌러 상세 보기</span></>}
+        <label className="library-group-filter">묶음 <Select aria-label="카드 묶음" value={groupId ?? ''} onChange={(event) => update({ group: event.target.value || null })}><option value="">전체 묶음</option>{allGroups.filter((group) => kind === 'all' || group.kind === kind).map((group) => <option key={group.id} value={group.id}>{group.label}</option>)}</Select></label>
       </div>
       <p className="library__count" role="status">
         {kind === 'all' ? '전체 종류' : cardKinds[kind as CardKind].label} · {resultCount}장{query && ` · “${search.trim()}” 검색 결과`}
       </p>
 
-      {issues.length > 0 && <div className="issues">{issues.map((issue) => <p key={`${issue.path}-${issue.message}`}><strong>{issue.path}</strong> {issue.message}</p>)}</div>}
+      {issues.length > 0 && <div className="issues ui-notice" data-tone="error">{issues.map((issue) => <p key={`${issue.path}-${issue.message}`}><strong>{issue.path}</strong> {issue.message}</p>)}</div>}
 
       {visibleGroups.map((group) => (
         <section className={`library-group library-group--${group.kind}`} key={group.id} aria-labelledby={`group-${group.id}`}>
           <div className="library-group__header">
-            <div><h3 id={`group-${group.id}`}><Link to={href('/library', new URLSearchParams({ kind: group.kind, group: group.id, ...(faceDown ? { side: 'back' } : {}) }))}>{group.label} <span>{group.cards.length}장</span> ↗</Link></h3><p>{group.description}</p></div>
+            <div><h3 id={`group-${group.id}`}><Link to={href('/library', new URLSearchParams({ kind: group.kind, group: group.id, ...(faceDown ? { side: 'back' } : {}) }))}>{group.label} <span>{group.cards.length}장</span> <Icon name="arrowUpRight" size="1em" /></Link></h3><p>{group.description}</p></div>
           </div>
           <div className="library__grid">
             {group.cards.map((card, index) => <CardView key={card.id} card={card} faceDown={faceDown && !revealed.has(card.id)} backTitle={group.backTitle} backSubtitle={card.kind === 'memory' ? memoryStageByCardId.get(card.id) : group.backSubtitle} backLabel={`${group.label} 카드 ${index + 1} 펼치기`}
@@ -113,8 +115,8 @@ export function CardLibrary({ scenario, issues, npcGroups, memoryStages }: Props
 
       <CardReader card={selected} onClose={closeCard}>
         {selected &&
-            <details className="card-reader__metadata" open={params.get('details') === '1'}>
-              <summary onClick={(event) => { event.preventDefault(); update({ details: params.get('details') === '1' ? null : '1' }) }}>설계 정보</summary>
+            <Disclosure className="card-reader__metadata" open={params.get('details') === '1'}>
+              <DisclosureSummary onClick={(event) => { event.preventDefault(); update({ details: params.get('details') === '1' ? null : '1' }) }}>설계 정보</DisclosureSummary>
               <dl>
                 <dt>종류</dt><dd>{cardKinds[selected.kind].label}</dd>
                 <dt>시작 위치</dt><dd>{selected.initialOwnerId ? `${scenario.characters.find((character) => character.id === selected.initialOwnerId)?.name}의 손패` : scenario.locations.find((location) => location.id === selected.locationId)?.name ?? '배치되지 않음'}</dd>
@@ -122,7 +124,7 @@ export function CardLibrary({ scenario, issues, npcGroups, memoryStages }: Props
                 <dt>테이블 배치</dt><dd>테이블에서 자유롭게 옮깁니다. 시나리오의 시작 위치는 참고 정보입니다.</dd>
                 <dt>원본</dt><dd><code>scenarios/crown-trial/cards.json</code><br /><code>{selected.id}</code></dd>
               </dl>
-            </details>
+            </Disclosure>
         }
       </CardReader>
     </section>

@@ -21,19 +21,18 @@ export function getIssueComposition(scenario: Scenario, document: IssueGroupsDoc
     const assignedEvidence = evidenceIdsForPlayer.flatMap(id => byId.has(id) ? [byId.get(id)!] : [])
     const relatedEvidence = evidenceIds.filter(id => !assignedEvidence.some(card => card.id === id))
     const motivation = desireAudit.characters.find(item => item.characterId === character.id)
-    const hasWitness = testimonyIds.length > 0
+    const testimonyTarget = character.id === 'rowen' ? 0 : 3
+    const ownTarget = 10 + testimonyTarget
     const roleIds = (role: string) => testimonyIds.filter(id => roles.cardsByPrimaryRole[role]?.includes(id))
     const buckets = [
       make('rumor', '소문', rumor.map(c => c.id), 4),
       make('hearsay', '카더라', rumor.filter(c => c.tags.includes('카더라')).map(c => c.id), 2),
       make('sighting', '수소문', rumor.filter(c => c.tags.includes('수소문')).map(c => c.id), 2),
       make('memory', '묻어야 하는 진실', truth.map(c => c.id), 2),
-      make('testimony', '탐문', testimonyIds, hasWitness ? 4 : undefined),
-      ...(hasWitness ? [
-        make('identification', '소문 특정', roleIds('rumor_identification'), 1),
-        make('movement', '행적 추론', roleIds('movement_testimony'), 2),
-        make('hint', '진실 암시', roleIds('secret_hint'), 1),
-      ] : []),
+      make('testimony', '탐문', testimonyIds, testimonyTarget, testimonyTarget === 0 ? '로웬의 전담 NPC는 없습니다. 루시엔은 아드리안의 공통 의료 NPC입니다.' : undefined),
+      make('identification', '이해관계', roleIds('testimony_interest'), testimonyTarget ? 1 : 0),
+      make('movement', '당일 행적', roleIds('movement_testimony'), testimonyTarget ? 1 : 0),
+      make('hint', '진술의 빈틈', roleIds('testimony_gap'), testimonyTarget ? 1 : 0),
       make('evidence', '전용 증거', evidenceIdsForPlayer, 4, '이 인물에게 배정된 전용 증거만 셉니다. 다른 인물의 증거를 참고로 연결해도 장수는 늘지 않습니다.'),
       make('desire', '욕망 단서', motivation?.desire ?? [], desireAudit.rule.desirePerCharacter),
       make('ruin', '파멸 단서', motivation?.ruin ?? [], desireAudit.rule.ruinPerCharacter),
@@ -48,13 +47,17 @@ export function getIssueComposition(scenario: Scenario, document: IssueGroupsDoc
     }
     if (inScope) {
       const ownIds = new Set(buckets.filter(bucket => ['rumor', 'memory', 'testimony', 'evidence'].includes(bucket.id)).flatMap(bucket => bucket.cards.map(card => card.id)))
-      if (ownIds.size !== 14) messages.push(`전용 구성 ${ownIds.size}/14장`)
+      if (ownIds.size !== ownTarget) messages.push(`전용 구성 ${ownIds.size}/${ownTarget}장`)
       for (const id of ownIds) if (!linked.includes(id)) messages.push(`${byId.get(id)?.title ?? id}: 쟁점 연결 누락`)
-      for (const id of linked) if (!ownIds.has(id)) messages.push(`${byId.get(id)?.title ?? id}: 전용 14장 밖의 쟁점 연결`)
+      for (const id of linked) if (!ownIds.has(id)) messages.push(`${byId.get(id)?.title ?? id}: 전용 ${ownTarget}장 밖의 쟁점 연결`)
       for (const id of evidenceIdsForPlayer) if (evidenceAllocation.players.filter(player => player.cardIds.includes(id)).length !== 1) messages.push(`${byId.get(id)?.title ?? id}: 전용 증거 배정 중복`)
+      for (const id of ownIds) if ((group?.fragments.flatMap(fragment => fragment.cardIds).filter(link => link === id).length ?? 0) > 1) messages.push(`${byId.get(id)?.title ?? id}: 이야기 장면 중복 배치`)
+      for (const location of scenario.locations) if (assignedEvidence.filter(card => card.locationId === location.id).length !== 1) messages.push(`${location.name}: 전용 증거 1장 필요`)
+      for (const id of [...(motivation?.desire ?? []), ...(motivation?.ruin ?? [])]) if (!ownIds.has(id) || byId.get(id)?.kind === 'memory') messages.push(`${byId.get(id)?.title ?? id}: 욕망·파멸은 전용 공개 카드에서 지정`)
+      if (motivation?.desire.some(id => motivation.ruin.includes(id))) messages.push('욕망·파멸 단서는 서로 다른 4장 필요')
     }
     for (const card of rumor) if (Number(card.tags.includes('카더라')) + Number(card.tags.includes('수소문')) !== 1) messages.push(`${card.title}: 소문 유형 누락 또는 중복`)
-    const subtypeIds = hasWitness ? ['identification', 'movement', 'hint'] : []
+    const subtypeIds = ['identification', 'movement', 'hint']
     for (const id of testimonyIds) if (buckets.filter(b => subtypeIds.includes(b.id)).filter(b => b.cards.some(c => c.id === id)).length !== 1) messages.push(`${byId.get(id)?.title ?? id}: 탐문 유형 누락 또는 중복`)
     return { character, group, buckets, messages, motivation, assignedEvidenceCount: assignedEvidence.length, inScope }
   })

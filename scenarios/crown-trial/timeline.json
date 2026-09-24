@@ -85,7 +85,6 @@
         "evidence.recall-slip",
         "memory.queen-recall",
         "testimony.marta-recall",
-        "testimony.apothecary-counter",
         "rumor.queen-luggage"
       ]
     },
@@ -96,14 +95,13 @@
       "cardIds": [
         "memory.seraphine-ledger",
         "testimony.archivist",
-        "testimony.archive-copyist",
         "rumor.princess-pages"
       ]
     },
     {
       "id": "seraphine-study",
-      "time": "20:55경",
-      "summary": "세라핀이 붓꽃 향분이 밴 혼인조약서를 들고 서재에서 다툰다. 아드리안은 기침하지만 살아 있다. 혼인조약서의 붉은 끈이 끊어진다.",
+      "time": "20:52–21:03",
+      "summary": "세라핀은 20시 52분 왕실서고 열람대를 떠나 20시 55분 서재에 도착한다. 붓꽃 향분이 밴 혼인조약서를 놓고 다투다가 붉은 끈이 끊어진다. 아드리안은 기침하지만 살아 있다. 21시 서재를 나와 21시 03분 열람대로 돌아온다.",
       "cardIds": [
         "evidence.marriage-treaty",
         "evidence.succession-leaf",
@@ -163,14 +161,12 @@
     },
     {
       "id": "isabel-first",
-      "time": "22:28–22:34",
-      "summary": "이사벨은 혼인 무효화 서류를 없애려고 수면제를 준비해 방문한다. “카시안의 아이냐”는 질문에 당황하자 아드리안이 관계를 확신하고 모자 분리를 통보한다. 이사벨은 의도적으로 수면제를 늘려 먹이고 잠든 사이 옛 서류를 가져온다. 22시 32분 서재를 나와 뒤편 계단을 지나 22시 34분 가족동 방으로 귀환해 방의 화로에서 태운다. 투약은 단독 사인이 아니다.",
+      "time": "22:26–22:34",
+      "summary": "이사벨은 가족동 방에서 약갑과 술잔을 들고 22시 26분 출발해 22시 28분 서재에 도착한다. 이사벨은 혼인 무효화 서류를 없애려고 수면제를 준비해 방문한다. “카시안의 아이냐”는 질문에 당황하자 아드리안이 관계를 확신하고 모자 분리를 통보한다. 이사벨은 의도적으로 수면제를 늘려 먹이고 잠든 사이 옛 서류를 가져온다. 22시 32분 서재를 나와 뒤편 계단을 지나 22시 34분 가족동 방으로 귀환해 방의 화로에서 태운다. 투약은 단독 사인이 아니다.",
       "cardIds": [
         "memory.isabel-petition",
         "evidence.second-glass",
         "evidence.sedative-prescription",
-        "testimony.study-servant",
-        "testimony.agnes-locked-door",
         "testimony.agnes-wet-sleeve",
         "rumor.heir-calendar"
       ]
@@ -188,8 +184,8 @@
     },
     {
       "id": "cassian-alibi",
-      "time": "22:43–23:00",
-      "summary": "카시안은 니콜의 전달 보고를 듣고 폐예배실에서 기다린다. 22시 56분 문밖의 니콜에게 직접 답한다. 22시 58분 문을 열어 복도를 살피고 다시 기다리다가 23시 왕자궁의 자기 방으로 향한다. 이사벨은 끝내 오지 않는다.",
+      "time": "22:43–23:01",
+      "summary": "카시안은 니콜의 전달 보고를 듣고 폐예배실에서 기다린다. 22시 56분 문밖의 니콜에게 직접 답한다. 22시 58분 문을 열어 복도를 살피고 다시 기다리다가 23시 왕자궁의 자기 방으로 향해 23시 01분 도착한다. 이사벨은 끝내 오지 않는다.",
       "cardIds": [
         "testimony.bell-attendant",
         "evidence.isabel-letter"
@@ -213,8 +209,7 @@
       "time": "22:48–23:02",
       "summary": "로웬은 서쪽 회랑 초소를 떠나 22시 50분 외곽 순찰로에 도착한다. 닫힌 통용문과 물품 보관칸을 수색하지만 누구도 만나지 않는다. 22시 58분 돌아서서 23시 초소에 도착해 빈 통행 기록을 살핀다. 23시 01분 뒤편 계단으로 향하고 23시 02분 서재에 들어간다. 이 경로를 직접 증언할 사람은 없다.",
       "cardIds": [
-        "evidence.watch-roster",
-        "rumor.anonymous-gate-bolt"
+        "evidence.watch-roster"
       ]
     },
     {
@@ -258,7 +253,6 @@
       "time": "22:53–23:00",
       "summary": "베네딕트는 재상실에서 3분 걸어 22시 56분 동쪽 기록고에 도착한다. 선왕 문서의 표지와 공통 조항을 맡기고 겉봉·열람표 일부를 태운다. 숨긴 별도 계승 본문은 품에 남긴다. 22시 57분 나와 23시 재상실로 돌아간다.",
       "cardIds": [
-        "testimony.tailor",
         "evidence.minister-dispatch",
         "evidence.burnt-will",
         "rumor.anonymous-council-room"
@@ -306,6 +300,7 @@
       "cardIds": [
         "memory.rowen-alive",
         "evidence.ink-blotter",
+        "rumor.anonymous-gate-bolt",
         "rumor.guard-return"
       ]
     },
@@ -337,8 +332,7 @@
         "rumor.rowen-second-visit",
         "testimony.physician-limits",
         "testimony.head-examination",
-        "testimony.residue-examination",
-        "testimony.old-midwife"
+        "testimony.residue-examination"
       ]
     }
   ],
@@ -364,21 +358,16 @@
     "testimony.marta-order": "queen",
     "testimony.marta-recall": "queen",
     "testimony.recall-messenger": "queen",
-    "testimony.apothecary-counter": "queen",
     "testimony.dinner-steward": "cassian",
     "testimony.page-sighting": "cassian",
-    "testimony.study-servant": "isabel",
     "testimony.bell-attendant": "cassian",
-    "testimony.physician-limits": "rowen",
-    "testimony.head-examination": "rowen",
-    "testimony.residue-examination": "rowen",
-    "testimony.old-midwife": "rowen",
+    "testimony.physician-limits": "common",
+    "testimony.head-examination": "common",
+    "testimony.residue-examination": "common",
     "testimony.archivist": "seraphine",
-    "testimony.archive-copyist": "seraphine",
     "testimony.foreign-envoy": "seraphine",
     "testimony.isabel-attendant": "seraphine",
     "testimony.minister-clerk": "benedict",
-    "testimony.tailor": "benedict",
     "testimony.wardrobe-keeper": "benedict",
     "testimony.night-attendant": "benedict",
     "rumor.apothecary-visit": "queen",
@@ -386,7 +375,7 @@
     "rumor.old-portrait": "cassian",
     "evidence.belladonna-ledger": "queen",
     "evidence.recall-slip": "queen",
-    "evidence.wine-bottle": "queen",
+    "evidence.wine-bottle": "common",
     "rumor.cassian-quarrel": "cassian",
     "rumor.secret-letter": "isabel",
     "rumor.heir-calendar": "isabel",
@@ -395,10 +384,10 @@
     "evidence.royal-birth-register": "cassian",
     "evidence.royal-recognition": "cassian",
     "evidence.burnt-will": "benedict",
-    "evidence.physician-log": "queen",
+    "evidence.physician-log": "common",
     "evidence.broken-seal": "isabel",
     "evidence.second-glass": "isabel",
-    "evidence.sedative-prescription": "isabel",
+    "evidence.sedative-prescription": "common",
     "evidence.annulment-draft": "isabel",
     "evidence.isabel-letter": "cassian",
     "rumor.marriage": "seraphine",
@@ -407,7 +396,7 @@
     "evidence.marriage-treaty": "seraphine",
     "evidence.succession-leaf": "seraphine",
     "evidence.last-will": "seraphine",
-    "evidence.bell-register": "benedict",
+    "evidence.bell-register": "common",
     "rumor.missing-document": "benedict",
     "rumor.night-sewing": "benedict",
     "evidence.black-cloth": "benedict",
@@ -416,12 +405,11 @@
     "evidence.queen-summons-copy": "queen",
     "rumor.multiple-footsteps": "rowen",
     "rumor.guard-return": "rowen",
-    "evidence.corridor-plan": "rowen",
+    "evidence.corridor-plan": "common",
     "evidence.guard-log": "rowen",
     "evidence.watch-roster": "rowen",
     "evidence.ink-blotter": "rowen",
     "evidence.guard-charter": "rowen",
-    "testimony.agnes-locked-door": "isabel",
     "testimony.agnes-unanswered-calls": "isabel",
     "testimony.agnes-blue-cloak": "isabel",
     "testimony.agnes-wet-sleeve": "isabel",
@@ -431,6 +419,9 @@
     "rumor.anonymous-archive-knock": "seraphine",
     "rumor.anonymous-council-room": "benedict",
     "rumor.anonymous-gate-bolt": "rowen",
-    "evidence.tower-seal": "seraphine"
+    "evidence.tower-seal": "seraphine",
+    "evidence.study-document-wax": "common",
+    "evidence.medicine-wrappings": "common",
+    "evidence.rear-door-latch": "common"
   }
 }

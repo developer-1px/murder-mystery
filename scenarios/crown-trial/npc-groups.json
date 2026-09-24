@@ -1,5 +1,5 @@
 {
-  "description": "왕실 인물들과 가까운 NPC 여섯 명을 탐문한다. NPC는 자기 주인의 출입과 부재를 직접 본 범위에서 말하되, 충성심과 직무에 따라 이유나 숨긴 물건의 의미는 감춘다. 아드리안의 왕실 주치의 루시엔은 왕세자의 병력과 진료 소견을 증언한다. 카드 앞뒷면에 누구의 측근인지 표시한다. 매 라운드 각자 한 명을 순서대로 선택하며, 그 라운드에 이미 선점된 NPC는 다른 플레이어가 선택할 수 없다. 자신이 이전 라운드에 탐문한 NPC도 다시 선택할 수 없다. 두 장을 함께 읽고 한 장을 획득한다.",
+  "description": "의심하는 인물의 측근을 선택해 그 인물의 이해관계·당일 행적·진술의 빈틈을 조사한다. 다섯 측근과 아드리안의 주치의 루시엔에게 각 3장, 총 18장을 배분한다. 로웬의 전담 NPC는 없다. 두 장 중 한 장을 가져가며 한 장만 남으면 그 장을 가져간다. 현재 선택 규칙은 같은 라운드 NPC 중복과 개인의 재방문을 금지한다.",
   "npcs": [
     {
       "id": "npc.marta",
@@ -9,8 +9,7 @@
       "cardIds": [
         "testimony.marta-order",
         "testimony.marta-recall",
-        "testimony.recall-messenger",
-        "testimony.apothecary-counter"
+        "testimony.recall-messenger"
       ]
     },
     {
@@ -21,7 +20,6 @@
       "cardIds": [
         "testimony.dinner-steward",
         "testimony.page-sighting",
-        "testimony.study-servant",
         "testimony.bell-attendant"
       ]
     },
@@ -33,8 +31,7 @@
       "cardIds": [
         "testimony.physician-limits",
         "testimony.head-examination",
-        "testimony.residue-examination",
-        "testimony.old-midwife"
+        "testimony.residue-examination"
       ]
     },
     {
@@ -44,7 +41,6 @@
       "pairedCharacterId": "seraphine",
       "cardIds": [
         "testimony.archivist",
-        "testimony.archive-copyist",
         "testimony.foreign-envoy",
         "testimony.isabel-attendant"
       ]
@@ -56,7 +52,6 @@
       "pairedCharacterId": "benedict",
       "cardIds": [
         "testimony.minister-clerk",
-        "testimony.tailor",
         "testimony.wardrobe-keeper",
         "testimony.night-attendant"
       ]
@@ -67,7 +62,6 @@
       "role": "왕세자비의 전속 시녀",
       "pairedCharacterId": "isabel",
       "cardIds": [
-        "testimony.agnes-locked-door",
         "testimony.agnes-unanswered-calls",
         "testimony.agnes-blue-cloak",
         "testimony.agnes-wet-sleeve"

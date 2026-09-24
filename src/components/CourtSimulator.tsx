@@ -1,3 +1,4 @@
+import { Button } from '../design-system/controls'
 import { useMemo, useState } from 'react'
 import type { Card, CardRoleAuditDocument, Character, MemoryStagesDocument, NpcGroupsDocument, Scenario } from '../domain/types'
 import { getCardGroups, type CardGroup } from '../scenario/cardGroups'
@@ -125,10 +126,10 @@ export function CourtSimulator({ scenario, npcGroups, memoryStages, inspectionCa
   return <section className="court-simulator">
     <header className="court-simulator__header">
       <div><span className="eyebrow">DESIGNER TESTBED</span><h2>재판 공개 패 시뮬레이터</h2><p>실제 획득 절차를 무작위로 진행한 뒤, 각 인물이 재판에 한 장씩 제출했을 때 로웬이 보게 되는 누적 패입니다.</p></div>
-      <button type="button" onClick={() => { setSeed(Math.floor(Math.random() * 2 ** 31)); setCourt(1) }}>새 판 무작위로 뽑기</button>
+      <Button variant="primary" type="button" onClick={() => { setSeed(Math.floor(Math.random() * 2 ** 31)); setCourt(1) }}>새 판 무작위로 뽑기</Button>
     </header>
     <div className="court-simulator__controls">
-      {[1, 2, 3].map(round => <button type="button" key={round} aria-pressed={court === round} onClick={() => setCourt(round)}><b>제{round}재판</b><span>{round * 7}장 누적</span></button>)}
+      {[1, 2, 3].map(round => <Button variant="choice" type="button" key={round} aria-pressed={court === round} onClick={() => setCourt(round)}><b>제{round}재판</b><span>{round * 7}장 누적</span></Button>)}
       <div><span>현재 공개</span><b>{visible.length}장</b>{kindCounts.map(item => <small key={item.kind}>{item.kind === 'rumor' ? '소문' : item.kind === 'testimony' ? '탐문' : item.kind === 'inspection' ? '검시' : '조사'} {item.count}</small>)}</div>
     </div>
     <div className="court-simulator__rounds">

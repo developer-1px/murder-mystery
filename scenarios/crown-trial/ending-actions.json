@@ -12,8 +12,6 @@
       "buriedOutcome": "다른 기록으로 사전 접촉이 확인되지 않으면 왕비는 심의를 주재할 명분을 유지한다. 접촉한 의원들이 실제로 누구를 지지할지는 별도로 정한다.",
       "connectionCardIds": [
         "evidence.queen-summons-copy",
-        "evidence.royal-birth-register",
-        "evidence.last-will",
         "testimony.marta-order"
       ]
     },
@@ -28,8 +26,9 @@
       "buriedOutcome": "다른 증언으로 명령자가 공식 확인되지 않으면 왕비는 내전 지휘권을 유지하고 마르타에 대한 조사는 계속된다. 시녀를 위한다는 부탁이 시녀에게 의심을 남긴다.",
       "connectionCardIds": [
         "evidence.recall-slip",
-        "testimony.apothecary-counter",
-        "evidence.belladonna-ledger"
+        "evidence.belladonna-ledger",
+        "testimony.marta-recall",
+        "evidence.coronation-book"
       ]
     },
     {
@@ -43,8 +42,8 @@
       "buriedOutcome": "다른 자료로 적통 다툼의 근거가 공식화되지 않으면 아이는 알려진 대로 아드리안의 후사로 심의받는다. 형제의 다툼은 군권 갈등으로 남고 카시안이 이사벨을 궁지로 몬 책임도 감춰진다. 별도로 입증된 폭행 책임은 사라지지 않는다.",
       "connectionCardIds": [
         "evidence.stopped-watch",
-        "testimony.dinner-steward",
-        "evidence.annulment-draft"
+        "evidence.royal-recognition",
+        "testimony.dinner-steward"
       ]
     },
     {
@@ -57,6 +56,7 @@
       "counterReading": "시종이 전한 것은 이날 밤 처음 보낸 도피 제안이다. 편지와 함께 준비한 서명된 사양서는 연애 감정만 적은 쪽지와 다르다.",
       "buriedOutcome": "사양서가 다른 경로로 입증되지 않으면 카시안은 후보로 남는다. 그를 위해 편지를 묻은 사람은 왕관을 버리겠다는 약속도 함께 지워 준다.",
       "connectionCardIds": [
+        "evidence.royal-birth-register",
         "testimony.page-sighting",
         "evidence.isabel-letter"
       ]
@@ -72,9 +72,8 @@
       "buriedOutcome": "다른 자료로 이사벨의 강제 투약이 공식 입증되지 않으면 이 사유로 단독 대리권을 제한하지 않는다. 아이의 지위와 다른 공개 사실이 허용하는 범위에서 이사벨이 직접 권리를 주장한다.",
       "connectionCardIds": [
         "evidence.second-glass",
-        "evidence.sedative-prescription",
         "testimony.agnes-wet-sleeve",
-        "evidence.annulment-draft"
+        "evidence.sedative-prescription"
       ]
     },
     {
@@ -87,8 +86,8 @@
       "counterReading": "편지는 카시안의 마음을 담고 있다. 당신의 대답이나 아이의 친부를 증명하는 문서는 아니다.",
       "buriedOutcome": "다른 자료로 보증의 재심 사유가 공식화되지 않으면 회수되지 않은 보호 위임장은 유효하게 남는다. 카시안의 연정은 사적인 일로 남고, 이사벨은 아이를 위해 그의 보증을 계속 쓸 수 있다.",
       "connectionCardIds": [
+        "evidence.annulment-draft",
         "evidence.isabel-letter",
-        "testimony.page-sighting",
         "testimony.agnes-unanswered-calls"
       ]
     },
@@ -103,8 +102,8 @@
       "buriedOutcome": "다른 증거로 약정이 확인되지 않으면 북부의 약속은 유효하다. 세라핀이 즉위하면 두 요새를 넘기고, 즉위하지 못하면 지원과 양도는 발효되지 않는다.",
       "connectionCardIds": [
         "evidence.marriage-treaty",
-        "testimony.foreign-envoy",
-        "evidence.tower-seal"
+        "evidence.tower-seal",
+        "testimony.foreign-envoy"
       ]
     },
     {
@@ -117,9 +116,8 @@
       "counterReading": "서고지기의 열람 번호는 감춘 계승법 원문을 찾는 단서다. 숨긴 부분을 읽으면 당신의 권리를 지킨 것뿐 아니라 태아의 권리를 감췄다는 사실이 드러난다.",
       "buriedOutcome": "조항이 다른 기록으로 복원되지 않으면 이번 심의는 출생한 후보들로 진행된다. 성인 왕녀를 도왔던 선택이 태아의 발언권을 없앤다.",
       "connectionCardIds": [
-        "testimony.archivist",
         "evidence.last-will",
-        "evidence.tower-seal"
+        "testimony.archivist"
       ]
     },
     {
@@ -132,10 +130,9 @@
       "counterReading": "봉인 문서의 표지와 목록 7번을 맞추면 보관한 문서에서 계승 심의 본문을 떼어 냈음을 알 수 있다. 본문은 세라핀의 청구를 보호하고 재상의 권한을 거둔다. 북부 밀서를 함께 읽으면, 은폐의 명분이 된 위험을 은폐 자체가 키웠을 가능성이 보인다.",
       "buriedOutcome": "본문이 다른 공식 기록으로 복원되지 않으면 유언에 따른 세라핀의 심의 청구권과 재상실의 권한 반납 명령은 공식화되지 않는다. 다른 법에 따른 후보 자격은 별도로 판단한다. 재상실의 종전 권한은 남되, 베네딕트가 별도로 해임되면 후임에게 넘어간다.",
       "connectionCardIds": [
-        "evidence.last-will",
         "evidence.burnt-will",
         "testimony.minister-clerk",
-        "memory.seraphine-archive"
+        "evidence.minister-dispatch"
       ]
     },
     {
@@ -148,9 +145,9 @@
       "counterReading": "정복의 배달표와 해임장을 맞추면 단순한 진정 행위라는 설명이 흔들린다. 아드리안이 요구한 것은 재상의 직인이었고 당신은 거부했다.",
       "buriedOutcome": "다른 자료로 해임 통보와 강제 제압이 입증되지 않으면 베네딕트는 재상으로 남는다. 왕을 제압한 사람이 새 왕의 행정을 이어 맡는다.",
       "connectionCardIds": [
-        "evidence.repaired-coat",
         "evidence.black-cloth",
-        "testimony.night-attendant"
+        "evidence.repaired-coat",
+        "testimony.wardrobe-keeper"
       ]
     },
     {
@@ -163,9 +160,9 @@
       "counterReading": "근위 헌장은 무기명 검문 면제의 책임과 통행권 이관을 명시한다. 비밀 업무라는 설명으로 절차 위반이 없어지지는 않는다.",
       "buriedOutcome": "다른 기록으로 무기명 면제가 입증되지 않으면 근위대가 통행 승인권을 유지한다. 사건을 가능하게 한 재량도 함께 남는다.",
       "connectionCardIds": [
-        "evidence.guard-charter",
         "evidence.guard-log",
-        "evidence.watch-roster"
+        "evidence.watch-roster",
+        "evidence.guard-charter"
       ]
     },
     {
@@ -179,7 +176,7 @@
       "buriedOutcome": "다른 자료로 조작이 입증되지 않으면 로웬의 수사 기록을 근거로 판결 절차가 진행된다. 잘못 기소했다면 그 오류도 공식 기록에 남는다.",
       "connectionCardIds": [
         "evidence.ink-blotter",
-        "evidence.guard-log",
+        "rumor.anonymous-gate-bolt",
         "evidence.guard-charter"
       ]
     }

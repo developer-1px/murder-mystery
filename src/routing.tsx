@@ -1,3 +1,5 @@
+import { Icon } from './design-system/Icon'
+import { Button } from './design-system/controls'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Link, useInRouterContext, useLocation, useNavigate } from 'react-router'
 
@@ -25,7 +27,7 @@ export function useQueryState() {
 }
 
 export function SectionLink({ id, children }: { id: string; children: ReactNode }) {
-  return <a className="section-link" href={`#${segment(id)}`}>{children}<span aria-hidden="true" /></a>
+  return <a className="section-link" href={`#${segment(id)}`}>{children}<span aria-hidden="true"><Icon name="arrowUpRight" size="1em" /></span></a>
 }
 
 export function MissingRoute({ message = '존재하지 않는 페이지 주소입니다.', to = '/table', label = '카드 테이블로' }: { message?: string; to?: string; label?: string }) {
@@ -37,10 +39,10 @@ function RouteCopyButton() {
   const [copied, setCopied] = useState<string>()
   const address = location.pathname + location.search + location.hash
   return <div className="route-tools">
-    <button type="button" onClick={async () => {
+    <Button type="button" onClick={async () => {
       try { await navigator.clipboard.writeText(new URL(address, window.location.origin).href); setCopied(address) }
       catch { setCopied('failed') }
-    }}>{copied === address ? '복사됨 ✓' : '현재 화면 링크 복사'}</button>
+    }}><Icon name={copied === address ? 'check' : 'copy'} />{copied === address ? '복사됨' : '현재 화면 링크 복사'}</Button>
     <span role="status">{copied === 'failed' ? '주소창의 URL을 복사해 주세요.' : ''}</span>
   </div>
 }

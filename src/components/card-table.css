@@ -10,28 +10,27 @@
 .table-hand-area--active { border-top-color: #c7dbab !important; background: linear-gradient(#b9d59c19, #8daf8522) !important; }
 .table-hand-area > span { justify-content: center; padding-top: 11px; }
 .table-hand-area strong { font-weight: 500; }
-.table-hand-area__empty { position: absolute; bottom: 38%; width: 100%; text-align: center; font: 18px 'Gowun Batang', serif; color: #c4b08755; }
+.table-hand-area__empty { position: absolute; bottom: 38%; width: 100%; text-align: center; font: var(--text-body) var(--font-story); color: #c4b08755; }
 .table-overlay-shade { position: absolute; inset: 0; z-index: 400; background: #080d0abf; backdrop-filter: blur(3px); }
 .table-overlay-controls { position: absolute; top: 18px; left: 24px; right: 24px; z-index: 700; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.table-overlay-controls h2 { margin: 0; color: #e7d8b7; font: 22px 'Gowun Batang', serif; }
-.table-overlay-controls button { padding: 9px 14px; border: 1px solid #817051; border-radius: 5px; background: #262820; color: #e6d6b5; cursor: pointer; font-size: 14px; }
-.table-overlay-note { position: absolute; left: 20px; right: 20px; bottom: 12px; z-index: 650; margin: 0; text-align: center; font-size: 13px; color: #d2c6ac; pointer-events: none; }
+.table-overlay-controls h2 { margin: 0; color: var(--ui-gold); font: var(--text-subheading) var(--font-story); }
+.table-overlay-note { position: absolute; left: 20px; right: 20px; bottom: 12px; z-index: 650; margin: 0; text-align: center; font-size: var(--text-label); color: var(--ui-text-soft); pointer-events: none; }
 .table-surface--peek .table-overlay-shade { pointer-events: none; }
 .table-reveal-tools .table-place-button { margin-left: 8px; }
 @media (prefers-reduced-motion: reduce) { .table-hand-area { transition: none !important; } }
 section.free-table { --table-card-width: clamp(64px, min(calc((100dvh - 350px) / 6), calc((100vw - 180px) / 6)), 144px); }
-.table-deck-notice { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 12px 26px 0; padding: 12px 16px; border: 1px solid #66573e; border-radius: 6px; background: #29261f; color: #cbbb9f; font-size: 14px; }
-.table-deck-notice button { flex-shrink: 0; border: 1px solid #897448; border-radius: 4px; padding: 7px 12px; background: #463b29; color: #f0dfbc; cursor: pointer; }
+.table-deck-notice { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 12px 26px 0; padding: 12px 16px; font-size: var(--text-label); }
+.table-deck-notice button { flex-shrink: 0; }
 .table-surface .table-piece__label span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .table-surface .table-piece__label b { flex-shrink: 0; white-space: nowrap; }
 .table-piece--disabled { opacity: .38; cursor: not-allowed; }
 .table-piece[data-card-zone=hand] .table-piece__label { visibility: hidden; }
 .table-piece--previewed .card { outline: 2px solid #e0d395; outline-offset: 3px; box-shadow: 0 0 18px #e3cb7955; }
-.table-play-target { position: absolute; inset: 45% 30% auto; min-height: 95px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 12px; border: 1px dashed #c6ba8870; border-radius: 12px; color: #d6c597; pointer-events: none; }
-.table-play-target span { font: 22px 'Gowun Batang', serif; }
-.table-play-target small { font-size: 13px; color: #a8b49a; }
-.table-play-target--active { border-color: #e5d19a; background: #e5d19a18; }
-.table-reading-action { position: absolute; z-index: 700; bottom: 40px; left: 50%; transform: translateX(-50%); padding: 12px 30px; border: 1px solid #e0c795; border-radius: 5px; background: #d6bf92; color: #252a20; cursor: pointer; }
+.table-play-target { position: absolute; inset: 45% 30% auto; min-height: 95px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 12px; border: 1px dashed #c6ba8870; border-radius: 12px; color: var(--ui-gold); pointer-events: none; }
+.table-play-target span { font: var(--text-subheading) var(--font-story); }
+.table-play-target small { font-size: var(--text-label); color: var(--ui-muted); }
+.table-play-target--active { border-color: var(--ui-border); background: #e5d19a18; }
+.table-reading-action { position: absolute; z-index: 700; bottom: 40px; left: 50%; transform: translateX(-50%); }
 .table-surface--choice .table-hand-area { z-index: 450; pointer-events: none; background: linear-gradient(transparent, #243d30cc); }
 .table-surface--choice .table-hand-area > span { opacity: .65; }
 .table-surface--choice .table-hand-area--active { background: #496c46bb !important; }

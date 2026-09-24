@@ -8,7 +8,6 @@
       "evidence.broken-seal",
       "evidence.stopped-watch",
       "evidence.black-cloth",
-      "testimony.study-servant",
       "rumor.old-portrait",
       "rumor.night-sewing",
       "rumor.anonymous-family-corridor",
@@ -40,10 +39,8 @@
       "evidence.repaired-coat",
       "evidence.royal-recognition",
       "testimony.marta-order",
-      "testimony.apothecary-counter",
       "testimony.head-examination",
       "testimony.residue-examination",
-      "testimony.old-midwife",
       "evidence.medicine-wrappings"
     ]
   },
@@ -56,7 +53,6 @@
       "rumor.secret-letter",
       "evidence.mud-print",
       "testimony.page-sighting",
-      "testimony.agnes-locked-door",
       "rumor.cassian-isabel-truth",
       "rumor.isabel-annulment",
       "rumor.benedict-edmund-letter",
@@ -72,7 +68,6 @@
       "testimony.recall-messenger",
       "testimony.bell-attendant",
       "testimony.agnes-wet-sleeve",
-      "testimony.tailor",
       "testimony.night-attendant",
       "testimony.agnes-unanswered-calls",
       "testimony.isabel-attendant",
@@ -103,7 +98,6 @@
       "evidence.guard-charter",
       "testimony.wardrobe-keeper",
       "testimony.minister-clerk",
-      "testimony.archive-copyist",
       "testimony.foreign-envoy"
     ]
   }

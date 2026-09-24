@@ -71,7 +71,7 @@
       "characterId": "benedict",
       "label": "동쪽 기록고에 감춘 유언",
       "cardIds": [
-        "testimony.tailor",
+        "testimony.night-attendant",
         "evidence.minister-dispatch",
         "evidence.burnt-will",
         "memory.benedict-will-clause"
@@ -81,7 +81,7 @@
       "requiredCardIds": [
         "memory.benedict-will-clause",
         "evidence.minister-dispatch",
-        "testimony.tailor"
+        "testimony.night-attendant"
       ]
     },
     {
@@ -107,18 +107,23 @@
         "label": "베네딕트의 공격 뒤 생존",
         "cardIds": [
           "evidence.bell-register",
-          "testimony.bell-attendant"
+          "testimony.bell-attendant",
+          "testimony.night-attendant"
         ],
         "paths": [
           [
             "evidence.bell-register",
-            "testimony.bell-attendant"
+            "testimony.night-attendant"
+          ],
+          [
+            "testimony.bell-attendant",
+            "testimony.night-attendant"
           ]
         ]
       },
       {
         "id": "fatal-method",
-        "label": "검시가 확정한 호흡 차단과 현장 직물",
+        "label": "호흡 차단 가설과 현장 직물",
         "cardIds": [
           "inspection.neck",
           "evidence.broken-seal",
@@ -218,7 +223,7 @@
       "insufficientFinding": "위 내용물에서 벨라도나와 수면제에 가까운 반응은 나왔지만, 당시 검사로는 언제 얼마나 들어갔는지 알 수 없고 약만으로 죽었다고 확정할 수도 없다.",
       "plusAlpha": "마지막 종 뒤 붉은 끈 병을 되찾아 직접 먹였다면, 알레르기와 술·수면제의 중첩으로 발작이나 호흡 정지에 이를 수 있었다. 다만 시신에는 특징적인 알레르기 반응이 없다.",
       "apparentSmokingGunIds": [
-        "testimony.apothecary-counter",
+        "testimony.marta-recall",
         "evidence.belladonna-ledger",
         "evidence.coronation-book"
       ],
@@ -296,7 +301,7 @@
       "verificationIds": [
         "memory.benedict-will-clause",
         "evidence.minister-dispatch",
-        "testimony.tailor",
+        "testimony.night-attendant",
         "evidence.bell-register",
         "testimony.bell-attendant"
       ],
@@ -310,7 +315,7 @@
       "plusAlpha": "약효로 저항하지 못하는 동안 코와 입을 넓은 물건으로 계속 막으면 죽을 수 있다.",
       "apparentSmokingGunIds": [
         "evidence.second-glass",
-        "testimony.study-servant",
+        "testimony.agnes-wet-sleeve",
         "evidence.annulment-draft"
       ],
       "plusAlphaSupportIds": [

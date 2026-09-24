@@ -1,3 +1,4 @@
+import { Button } from '../design-system/controls'
 import { useRef, useState } from 'react'
 import { endingStories } from './endingStories'
 import './ending-branches.css'
@@ -13,7 +14,7 @@ export function EndingBranches() {
   }
 
   return <article className="ending-branches">
-    <header className="ending-branches__hero">
+    <header className="ending-branches__hero ui-panel">
       <span className="eyebrow">왕관재판 · 제작자용 엔딩북</span>
       <h2>왕관재판의 여덟 결말</h2>
       <p>재판이 끝나면 궁에는 새 왕을 맞을 준비가 시작됩니다. 누군가는 왕관을 받고, 누군가는 평생 쥐었던 인장을 내려놓습니다. 그 밤에 드러난 진실과 끝내 하지 않은 말은 여섯 사람의 삶에 남습니다. 이 책은 그들이 맞이한 여덟 번의 봄을 기록합니다.</p>
@@ -29,20 +30,20 @@ export function EndingBranches() {
     <div className="ending-branches__layout">
       <nav className="ending-branches__chapters" aria-label="엔딩 세계선 선택">
         <h3>세계선 목차</h3>
-        {endingStories.map(story => <button
+        {endingStories.map(story => <Button variant="choice"
           type="button"
           key={story.id}
-          className={selected.id === story.id ? 'ending-branches__chapter is-selected' : 'ending-branches__chapter'}
+          className="ending-branches__chapter"
           aria-pressed={selected.id === story.id}
           aria-controls="ending-branches-story"
           onClick={() => chooseStory(story.id)}
         >
           <span className="ending-branches__chapter-number">{story.number}</span>
           <span className="ending-branches__chapter-body"><strong>{story.title}</strong><small>{story.subtitle}</small><em>기소 {story.accused} · 발각 {story.discovered}</em><em>왕위 {story.crown}</em></span>
-        </button>)}
+        </Button>)}
       </nav>
 
-      <section ref={storyRef} id="ending-branches-story" className="ending-branches__story" aria-live="polite" aria-label={`${selected.title} 엔딩`}>
+      <section ref={storyRef} id="ending-branches-story" className="ending-branches__story ui-paper" aria-live="polite" aria-label={`${selected.title} 엔딩`}>
         <header className="ending-branches__story-head">
           <span className="eyebrow">엔딩 {selected.number}</span>
           <h3>{selected.title}</h3>

@@ -58,9 +58,7 @@
   ],
   "deferredCardIds": [],
   "deferredNote": "배정 보류 없음. 공통 증거는 commonCardIds에 명시한다.",
-  "outOfScopeCharacterIds": [
-    "rowen"
-  ],
+  "outOfScopeCharacterIds": [],
   "commonCardIds": [
     "evidence.bell-register",
     "evidence.physician-log",
@@ -71,5 +69,5 @@
     "evidence.medicine-wrappings",
     "evidence.rear-door-latch"
   ],
-  "scopeNote": "로웬도 전용 증거 배분에 포함한다. outOfScopeCharacterIds는 기존 쟁점 화면의 소문·탐문을 포함한 14장 구성 검사에만 적용한다."
+  "scopeNote": "여섯 플레이어 모두 구성 검토 대상이다. 공통 10장은 진실 2·소문 4·전용 증거 4다. 다섯 인물은 측근 탐문 3장을 더해 13장, NPC가 없는 로웬은 10장이다. 루시엔 의료 탐문 3장과 공통 증거 8장은 별도다."
 }

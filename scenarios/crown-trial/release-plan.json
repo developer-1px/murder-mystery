@@ -51,11 +51,8 @@
         "evidence.watch-roster",
         "evidence.annulment-draft",
         "evidence.corridor-plan",
-        "testimony.study-servant",
         "testimony.agnes-blue-cloak",
-        "testimony.apothecary-counter",
         "testimony.dinner-steward",
-        "testimony.agnes-locked-door",
         "testimony.page-sighting",
         "evidence.rear-door-latch"
       ]
@@ -114,15 +111,12 @@
         "evidence.royal-recognition",
         "evidence.guard-charter",
         "testimony.marta-order",
-        "testimony.tailor",
         "testimony.wardrobe-keeper",
         "testimony.minister-clerk",
         "testimony.agnes-wet-sleeve",
         "testimony.residue-examination",
         "testimony.isabel-attendant",
-        "testimony.archive-copyist",
         "testimony.foreign-envoy",
-        "testimony.old-midwife",
         "evidence.tower-seal"
       ]
     }

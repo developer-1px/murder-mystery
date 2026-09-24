@@ -1,3 +1,4 @@
+import { Anchor } from '../design-system/controls'
 import type { CommonSettingDocument } from '../domain/types'
 import { SectionLink, sectionId } from '../routing'
 
@@ -9,7 +10,7 @@ interface CommonSettingProps {
 export function CommonSetting({ document, guide = false }: CommonSettingProps) {
   return (
     <article className={`common-setting${guide ? " common-setting--guide" : " common-setting--story"}`}>
-      <header className="common-setting__hero" id="setting-intro">
+      <header className="common-setting__hero ui-panel" id="setting-intro">
         <span className="eyebrow">{document.eyebrow}</span>
         <h2><SectionLink id="setting-intro">{document.title}</SectionLink></h2>
         <div>{document.lead.map((paragraph, index) => <p key={paragraph} id={`setting-intro-p${index + 1}`}>{paragraph}<SectionLink id={`setting-intro-p${index + 1}`}><span className="sr-only">문단 링크</span></SectionLink></p>)}</div>
@@ -17,9 +18,9 @@ export function CommonSetting({ document, guide = false }: CommonSettingProps) {
 
       {document.sections.length > 0 && <nav className="common-setting__contents" aria-label={guide ? "게임 진행 목차" : "공통 설정 목차"}>
         {document.sections.map((section, index) => (
-          <a key={section.id} href={`#setting-${section.id}`}>
+          <Anchor key={section.id} href={`#setting-${section.id}`}>
             <span>{String(index + 1).padStart(2, '0')}</span>{section.title}
-          </a>
+          </Anchor>
         ))}
       </nav>}
 
@@ -45,7 +46,7 @@ export function CommonSetting({ document, guide = false }: CommonSettingProps) {
               <h4 id={`setting-${section.id}-rules`}>규칙 요약</h4>
               <ol>{section.rules.map((rule) => <li key={rule}>{rule}</li>)}</ol>
             </aside>}
-            {section.questions && <div className="setting-questions">
+            {section.questions && <div className="setting-questions ui-notice">
               {section.questions.map((question, questionIndex) => <strong key={question} id={`setting-${section.id}-q${questionIndex + 1}`}><SectionLink id={`setting-${section.id}-q${questionIndex + 1}`}>{question}</SectionLink></strong>)}
             </div>}
           </section>

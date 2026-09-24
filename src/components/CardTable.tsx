@@ -1,3 +1,5 @@
+import { Icon } from '../design-system/Icon'
+import { Button } from '../design-system/controls'
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, type PointerEvent } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import type { Scenario } from '../domain/types'
@@ -565,15 +567,15 @@ export function CardTable({ scenario, piles, onChange, onUndo, onRedo, canUndo, 
       {!policy && <div className="table-tools" inert={modal}>
         <span>{selection.length ? selection.length + '개 선택' : '뒷면 클릭으로 펼쳐 가져오기 · Shift+클릭으로 선택'}</span>
         <div className="table-reveal-tools" aria-label="펼쳐 보고 가져오기">
-          {[1, 2, 3].map((count) => <button key={count} type="button" disabled={selection.length !== 1} aria-label={count === 1 ? '한 장 펼쳐 가져오기' : count + '장 중 한 장 고르기'}
-            onClick={() => reveal(selection[0], count)}><kbd>{count}</kbd><span>{count === 1 ? '한 장 가져오기' : count + '장 중 고르기'}</span></button>)}
-          {selection.length > 0 && <button className="table-place-button" type="button" onClick={() => selection.every((id) => isHandPile(piles.find((pile) => pile.id === id)!)) ? putOnTable(selection) : moveToHand(selection)}>{selection.every((id) => isHandPile(piles.find((pile) => pile.id === id)!)) ? '테이블에 놓기 ↑' : '손패에 넣기 ↓'}</button>}
+          {[1, 2, 3].map((count) => <Button key={count} type="button" disabled={selection.length !== 1} aria-label={count === 1 ? '한 장 펼쳐 가져오기' : count + '장 중 한 장 고르기'}
+            onClick={() => reveal(selection[0], count)}><kbd>{count}</kbd><span>{count === 1 ? '한 장 가져오기' : count + '장 중 고르기'}</span></Button>)}
+          {selection.length > 0 && <Button className="table-place-button" type="button" onClick={() => selection.every((id) => isHandPile(piles.find((pile) => pile.id === id)!)) ? putOnTable(selection) : moveToHand(selection)}>{selection.every((id) => isHandPile(piles.find((pile) => pile.id === id)!)) ? '테이블에 놓기 ↑' : '손패에 넣기 ↓'}</Button>}
         </div>
-        {selection.length > 0 && <button type="button" aria-haspopup="menu" onClick={(event) => {
+        {selection.length > 0 && <Button type="button" aria-haspopup="menu" onClick={(event) => {
           const rect = event.currentTarget.getBoundingClientRect()
           openMenu(selection, rect.left, rect.bottom + 6)
-        }}>동작 ▾</button>}
-        <button type="button" className="table-help-button" onClick={() => setHelpOpen(true)}>조작법 <kbd>?</kbd></button>
+        }}>동작 ▾</Button>}
+        <Button type="button" className="table-help-button" onClick={() => setHelpOpen(true)}>조작법 <kbd>?</kbd></Button>
       </div>}
       <div className={`table-surface ${reading?.held ? 'table-surface--peek' : ''} ${choice ? 'table-surface--choice' : ''}`} ref={surfaceRef} role={modal ? 'dialog' : undefined} aria-modal={modal || undefined} aria-label={choice ? '카드 골라 가져오기' : reading && !reading.held ? '카드 크게 보기' : policy?.label ?? '자유 카드 테이블'} tabIndex={-1}
         onPointerDown={startBox} onPointerMove={moveGesture} onPointerUp={endGesture} onPointerCancel={cancelGesture}
@@ -584,7 +586,7 @@ export function CardTable({ scenario, piles, onChange, onUndo, onRedo, canUndo, 
           openMenu(selection, event.clientX, event.clientY)
         }}
         onClickCapture={(event) => { if (suppressClick.current) { event.stopPropagation(); suppressClick.current = false } }}>
-        <div className="table-watermark" aria-hidden="true"><span>♛</span><strong>왕관재판</strong><small>THE CROWN TRIAL</small></div>
+        <div className="table-watermark" aria-hidden="true"><span><Icon name="crown" size="1em" /></span><strong>왕관재판</strong><small>THE CROWN TRIAL</small></div>
         <div ref={sizeRef} className="table-card-size" aria-hidden="true" />
         <div className={`table-hand-area ${preview?.handIndex !== undefined ? 'table-hand-area--active' : ''}`} aria-label="내 손패 영역">
           <span><strong>{policy?.handLabel ?? '내 손패'} · {hand.length}</strong><small>{preview?.handIndex !== undefined ? '여기에 놓으면 손패가 정렬됩니다' : policy?.play ? `올려서 읽기 · 끌어서 순서 변경 · 위로 끌어 ${policy.play.label}` : '올려서 읽기 · 끌어서 순서 변경'}</small></span>
@@ -647,16 +649,16 @@ export function CardTable({ scenario, piles, onChange, onUndo, onRedo, canUndo, 
         </AnimatePresence>
         {modal && <div className="table-overlay-controls" data-table-overlay onPointerDown={(event) => event.stopPropagation()}>
           <h2>{choice ? `${candidates.length}장 중 한 장을 골라주세요` : '카드 크게 보기'}</h2>
-          <div className="dialog-actions"><CopyLinkButton />{!(choice && policy) && <button ref={overlayCloseRef} type="button" onClick={closeOverlay} aria-label={choice ? '카드 선택 취소' : '카드 닫기'}>{choice ? '취소' : '닫기'} · Esc</button>}</div>
+          <div className="dialog-actions"><CopyLinkButton />{!(choice && policy) && <Button ref={overlayCloseRef} type="button" onClick={closeOverlay} aria-label={choice ? '카드 선택 취소' : '카드 닫기'}>{choice ? '취소' : '닫기'} · Esc</Button>}</div>
         </div>}
-        {reading && !reading.held && policy?.play && (() => { const id = piles.find(pile => pile.id === reading.id)?.cards.at(-1)?.cardId; return id && policy.play.accepts(id) ? <button className="table-reading-action" data-table-overlay onClick={() => { setReading(null); policy.play!.run(id) }}>{policy.play.label} →</button> : null })()}
+        {reading && !reading.held && policy?.play && (() => { const id = piles.find(pile => pile.id === reading.id)?.cards.at(-1)?.cardId; return id && policy.play.accepts(id) ? <Button variant="primary" className="table-reading-action" data-table-overlay onClick={() => { setReading(null); policy.play!.run(id) }}>{policy.play.label} <Icon name="arrowRight" /></Button> : null })()}
         {(choice || reading) && <p className="table-overlay-note">{choice ? policy?.choice?.note ?? '클릭하거나 손패로 끌어 한 장을 가져옵니다. 나머지는 원래 덱과 순서로 돌아갑니다.' : reading?.held ? '키를 놓으면 원래 자리로 돌아갑니다' : 'Esc 또는 빈 곳을 누르면 원래 자리로 돌아갑니다'}</p>}
         {box && <div className="table-selection-box" style={{ left: box.x, top: box.y, width: box.width, height: box.height }} />}
         {!modal && !reading && <p className="table-surface__hint" aria-live="polite">{preview?.handIndex !== undefined ? '놓으면 손패에 정렬됩니다 · Esc로 취소' : policy ? policy.hint : preview?.targetId ? '놓으면 이 묶음 위에 쌓입니다' : preview ? '놓아 배치 · Esc로 취소' : '1 한 장 가져오기 · 2 / 3 펼쳐 보고 고르기 · F 뒤집기 · Space 확대 · 우클릭 메뉴'}</p>}
       </div>
       {menu && <TableContextMenu x={menu.x} y={menu.y} items={menuItems(menu.ids)} onClose={closeMenu} />}
       <dialog className="table-help" ref={helpRef} aria-label="테이블 조작법" onClose={() => setHelpOpen(false)} onClick={(event) => { if (event.target === event.currentTarget) setHelpOpen(false) }}>
-        <div><header><h2>카드만, 자연스럽게.</h2><div className="dialog-actions"><CopyLinkButton /><button onClick={() => setHelpOpen(false)} aria-label="조작법 닫기">닫기 ×</button></div></header>
+        <div><header><h2>카드만, 자연스럽게.</h2><div className="dialog-actions"><CopyLinkButton /><Button onClick={() => setHelpOpen(false)} aria-label="조작법 닫기">닫기 <Icon name="close" /></Button></div></header>
           <dl>{tableHelp.map(([keys, description]) => <div key={keys}><dt>{keys}</dt><dd>{description}</dd></div>)}</dl>
           <p>확대는 뒤집기가 아닙니다. 뒷면 카드는 확대해도 뒷면입니다.</p>
         </div>

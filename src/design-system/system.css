@@ -1,0 +1,69 @@
+/* The design system owns control appearance and interaction states.
+   Routes own arrangement, width, placement and product-specific copy. */
+.ui-button {
+  display: inline-flex; justify-content: center; align-items: center; gap: var(--space-2);
+  min-height: var(--control-height); padding: 10px 16px;
+  border: 1px solid var(--ui-border-strong); border-radius: var(--radius-control);
+  background: var(--ui-surface); color: var(--ui-text);
+  font: 500 var(--text-control)/1.4 var(--font-ui); text-align: center;
+  text-decoration: none; cursor: pointer; overflow-wrap: anywhere;
+  transition: background .15s, border-color .15s, box-shadow .15s;
+}
+.ui-button[data-size=compact] { min-height: var(--control-height-compact); padding: 6px 10px; font-size: var(--text-label); }
+.ui-button[data-variant=primary] { background: var(--ui-action); color: var(--ui-action-ink); border-color: var(--ui-gold); font-weight: 700; }
+.ui-button[data-variant=ghost] { background: transparent; border-color: transparent; color: var(--ui-text-soft); }
+.ui-button[data-variant=choice] { text-align: left; justify-content: start; }
+.ui-button:where(:not(:disabled):not([aria-disabled=true])):hover { background: var(--ui-hover); border-color: var(--ui-gold-muted); }
+.ui-button[data-variant=primary]:where(:not(:disabled):not([aria-disabled=true])):hover { background: var(--ui-action-hover); }
+.ui-button[aria-pressed=true], .ui-button[aria-current=page] { background: var(--ui-selected); border-color: var(--ui-gold); color: var(--ui-gold-strong); box-shadow: inset 0 -3px var(--ui-gold); }
+.ui-button:disabled, .ui-button[aria-disabled=true] { opacity: .45; cursor: not-allowed; }
+.ui-field { min-height: var(--control-height); padding: 10px 12px; border: 1px solid var(--ui-border-strong); border-radius: var(--radius-control); background: var(--ui-surface); color: var(--ui-text); font: var(--text-control)/1.4 var(--font-ui); max-width: 100%; color-scheme: dark; }
+.ui-field::placeholder { color: var(--ui-muted); }
+.ui-field:disabled { opacity: .45; cursor: not-allowed; }
+:where(button, a, input, select, textarea, summary):focus-visible { outline: 2px solid var(--ui-gold-strong); outline-offset: 3px; }
+.ui-panel { border: 1px solid var(--ui-border); border-radius: var(--radius-panel); background: var(--ui-surface); color: var(--ui-text); }
+.ui-paper { border: 1px solid var(--ui-paper-border); background: var(--ui-paper); color: var(--ui-paper-ink); box-shadow: var(--ui-shadow); }
+.ui-notice { padding: 12px 16px; border: 1px solid var(--ui-border-strong); border-radius: var(--radius-control); background: var(--ui-surface-soft); color: var(--ui-text-soft); font: var(--text-label)/1.7 var(--font-ui); }
+.ui-notice[data-tone=warning] { background: var(--ui-warning-bg); color: var(--ui-warning-text); border-color: var(--ui-warning-border); }
+.ui-notice[data-tone=error] { background: var(--ui-error-bg); color: var(--ui-error-text); border-color: var(--ui-error-border); }
+@media (prefers-reduced-motion: reduce) { .ui-button { transition: none; } }
+
+.design-system { max-width: 1280px; margin: auto; padding: 40px 24px 80px; }
+.design-system > header h2, .design-system > section > h3, .design-system__surfaces h3 { font-family: var(--font-story); color: var(--ui-gold-strong); }
+.design-system p { line-height: 1.8; }
+.design-system > section { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--ui-border); }
+.design-system__controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 16px 0; }
+.design-system label { display: grid; gap: 8px; font-size: var(--text-label); }
+.design-system__surfaces { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 24px; }
+.design-system__surfaces > div { padding: 24px; }
+.design-system .ui-paper h3 { color: var(--ui-paper-ink); }
+.design-system .ui-paper p { font-family: var(--font-story); }
+.design-system__cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 20px; }
+
+.ui-panel[popover] { box-shadow: var(--ui-shadow-floating); }
+
+a.ui-paper { text-decoration: none; transition: border-color .15s, box-shadow .15s; }
+a.ui-paper:hover { border-color: var(--ui-gold-strong); box-shadow: var(--ui-shadow-floating); }
+@media (prefers-reduced-motion: reduce) { a.ui-paper { transition: none; } }
+
+.ui-icon { display: inline-block; flex: 0 0 auto; vertical-align: -.18em; color: inherit; }
+.design-system__icons { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; }
+.design-system__icons > div { display: grid; justify-items: center; gap: 12px; padding: 20px 12px; border: 1px solid var(--ui-border); border-radius: var(--radius-control); color: var(--ui-gold); background: var(--ui-surface); }
+.design-system__icons span { font-size: var(--text-caption); color: var(--ui-text-soft); }
+.design-system p a { color: var(--ui-gold); text-underline-offset: 3px; }
+
+/* Disclosure appearance is shared; pages only arrange the disclosed content. */
+.ui-disclosure > .ui-disclosure__summary {
+  display: flex; align-items: center; gap: var(--space-2); min-height: var(--control-height);
+  padding: 10px 16px; border: 1px solid var(--ui-border); border-radius: var(--radius-control);
+  background: var(--ui-surface); color: var(--ui-text-soft);
+  font: 500 var(--text-control)/1.5 var(--font-ui); cursor: pointer; list-style: none;
+}
+.ui-disclosure__summary::-webkit-details-marker { display: none; }
+.ui-disclosure__summary:hover { background: var(--ui-hover); border-color: var(--ui-gold-muted); }
+.ui-disclosure[open] > .ui-disclosure__summary { color: var(--ui-gold-strong); border-color: var(--ui-border-strong); }
+.ui-disclosure[open] > .ui-disclosure__summary > .ui-disclosure__chevron { transform: rotate(90deg); }
+.ui-disclosure__summary > span { min-width: 0; }
+.ui-button[aria-current=step] { background: var(--ui-selected); border-color: var(--ui-gold); color: var(--ui-gold-strong); box-shadow: inset 0 -3px var(--ui-gold); }
+.ui-panel[data-elevation=floating] { box-shadow: var(--ui-shadow-floating); }
+.ui-panel[data-tone=accent] { background: var(--ui-selected); border-color: var(--ui-gold-muted); }

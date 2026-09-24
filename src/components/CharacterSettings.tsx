@@ -1,3 +1,5 @@
+import { Icon } from '../design-system/Icon'
+import { Button } from '../design-system/controls'
 import { Link, useParams } from 'react-router'
 import type { CharacterSetting } from '../domain/types'
 import { MissingRoute, SectionLink, sectionId, segment } from '../routing'
@@ -32,12 +34,12 @@ export function CharacterSettings({ settings, characterId, onBack, footer }: Cha
       <div className="character-setting-picker">
         {settings.map((setting, index) => {
           const character = scenario.characters.find(item => item.id === setting.id)
-          return <Link className="character-setting-picker__card" key={setting.id} to={`/characters/${segment(setting.id)}`}>
+          return <Link className="character-setting-picker__card ui-paper" key={setting.id} to={`/characters/${segment(setting.id)}`}>
             <header><span className="character-number">{String(index + 1).padStart(2, '0')}</span></header>
             <h3>{character?.name ?? setting.name}</h3>
             <p className="character-setting-picker__role">{character?.title}</p>
             <blockquote>“{character?.publicQuote}”</blockquote>
-            <footer><span className="character-open">설정서 읽기 <span aria-hidden="true">↗</span></span></footer>
+            <footer><span className="character-open">설정서 읽기 <Icon name="arrowUpRight" size={18} /></span></footer>
           </Link>
         })}
       </div>
@@ -46,8 +48,8 @@ export function CharacterSettings({ settings, characterId, onBack, footer }: Cha
 
   return (
     <article className="character-settings">
-      <nav className="character-detail-nav">{onBack ? <button type="button" onClick={onBack}>← 다른 인물 선택</button> : <Link to="/characters">← 인물 소개로</Link>}<span>비공개 설정서 · 자신이 맡은 인물만 읽어 주세요</span></nav>
-      <header className="character-setting__hero">
+      <nav className="character-detail-nav">{onBack ? <Button type="button" onClick={onBack}><Icon name="arrowLeft" />다른 인물 선택</Button> : <Link to="/characters"><Icon name="arrowLeft" /> 인물 소개로</Link>}<span>비공개 설정서 · 자신이 맡은 인물만 읽어 주세요</span></nav>
+      <header className="character-setting__hero ui-paper">
         <div className="character-setting__hero-copy">
           <span className="eyebrow">왕관재판 · 인물 설정</span>
           <blockquote>“{publicCharacter?.publicQuote}”</blockquote>
@@ -69,18 +71,18 @@ export function CharacterSettings({ settings, characterId, onBack, footer }: Cha
             {section.points && <ul>{section.points.map((point, pointIndex) => <li key={point} id={`${sectionId('section', section.title)}-point${pointIndex + 1}`}>{point}<SectionLink id={`${sectionId('section', section.title)}-point${pointIndex + 1}`}><span className="sr-only">항목 링크</span></SectionLink></li>)}</ul>}
           </section>
         ))}
-        <section className="character-setting__objective" id="objective">
+        <section className="character-setting__objective ui-panel" data-tone="accent" id="objective">
           <span><SectionLink id="objective">당신이 지키려는 것</SectionLink></span>
           <strong>{selected.objective}</strong>
         </section>
         <section className="character-setting__scores" id="scores">
-          <header><span>◇</span><h3><SectionLink id="scores">당신의 신념</SectionLink></h3></header>
+          <header><Icon name="shield" size={16} /><h3><SectionLink id="scores">당신의 신념</SectionLink></h3></header>
           <p>{selected.belief}</p>
           <ul>{selected.goals.map(goal => <li key={goal}>{goal}</li>)}</ul>
           <p>모두의 공통 목표는 실제 진범을 알아내는 것입니다. 당신의 선택이 지키려던 것을 지켰는지는 그와 별개로 남습니다.</p>
         </section>
         <section className="character-setting__actions" id="final-actions">
-          <header><span>→</span><h3><SectionLink id="final-actions">묻어야 할 진실</SectionLink></h3></header>
+          <header><Icon name="arrowRight" size={16} /><h3><SectionLink id="final-actions">묻어야 할 진실</SectionLink></h3></header>
           <p>당신의 두 진실이 모두 공개되면 ‘발각’되어 가장 두려워한 대가를 치릅니다. 그래도 지키려던 것까지 잃는지는 아직 정해지지 않았습니다.</p>
           <p>자기 진실은 직접 묻을 수 없습니다. 뒷면으로 한 장씩 교환해 맡기면, 공개할지는 받은 사람이 정합니다.</p>
           <div>

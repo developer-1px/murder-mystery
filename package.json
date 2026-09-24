@@ -12,6 +12,7 @@
   "dependencies": {
     "@vitejs/plugin-react": "latest",
     "ajv": "latest",
+    "lucide-react": "1.48.0",
     "motion": "^13.4.0",
     "react": "latest",
     "react-dom": "latest",

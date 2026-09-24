@@ -1,13 +1,12 @@
 a.card { display: block; text-decoration: none; }
-a:focus-visible { outline: 2px solid var(--ui-gold); outline-offset: 3px; }
 .route-tools { position: relative; }
 .dialog-actions { display: flex; align-items: center; gap: 12px; }
 .card-reader__sheet > .route-tools { position: absolute; top: 0; left: 0; }
-.route-tools button, .button-link { display: inline-block; padding: 8px 10px; border: 1px solid var(--ui-border-strong); background: var(--ui-surface); color: var(--ui-gold); font-size: 13px; text-decoration: none; white-space: nowrap; cursor: pointer; }
-.route-tools [role='status']:not(:empty) { position: absolute; top: 100%; right: 0; z-index: 200; width: 200px; padding: 8px; background: var(--ui-surface); font-size: 13px; }
+.route-tools button { display: inline-block; white-space: nowrap; }
+.route-tools [role='status']:not(:empty) { position: absolute; top: 100%; right: 0; z-index: 200; width: 200px; padding: 8px; background: var(--ui-surface); font-size: var(--text-label); }
 .section-link, .library-group__header a, .event { color: inherit; text-decoration: none; }
 .section-link > span[aria-hidden] { opacity: .3; font-size: .8em; }
-.section-link > span[aria-hidden]::after { content: ' ↗'; }
+
 .section-link:hover > span[aria-hidden] { opacity: 1; }
 [id] { scroll-margin-top: 24px; }
 :target { outline: 1px solid color-mix(in srgb, var(--ui-gold) 40%, transparent); outline-offset: 8px; }
@@ -16,11 +15,11 @@ a:focus-visible { outline: 2px solid var(--ui-gold); outline-offset: 3px; }
 .issue-nav a:last-child { border-bottom: 0; }
 .issue-nav a:hover { background: var(--ui-hover); }
 .issue-nav a[aria-current='page'] { background: var(--ui-selected); color: var(--ui-gold-strong); box-shadow: inset 3px 0 var(--ui-gold); }
-.issue-nav a > span { grid-row: 1 / span 2; color: var(--ui-gold-muted); font: 12px 'Noto Sans KR', sans-serif; }
+.issue-nav a > span { grid-row: 1 / span 2; color: var(--ui-gold-muted); font: var(--text-caption) var(--font-ui); }
 .issue-card-meta a, .scenario-notes a, .library__empty a { color: var(--ui-gold); }
-.library-group-filter { margin-left: auto; color: var(--ui-muted); font-size: 13px; }
-.library-group-filter select { max-width: 270px; margin-left: 8px; padding: 8px; color: var(--ui-text); border: 1px solid var(--ui-border); background: var(--ui-surface); }
+.library-group-filter { margin-left: auto; color: var(--ui-muted); font-size: var(--text-label); }
+.library-group-filter select { max-width: 270px; margin-left: 8px; }
 .route-not-found { padding: 60px 42px; max-width: 900px; margin: auto; }
 .route-not-found p { color: var(--ui-text-soft); line-height: 1.8; }
 .route-not-found a { color: var(--ui-gold); }
-.route-warning { margin: 0; padding: 8px 26px; color: var(--ui-gold-strong); background: var(--ui-selected); font-size: 14px; }
+.route-warning { margin: 0; padding: 8px 26px; color: var(--ui-gold-strong); background: var(--ui-selected); font-size: var(--text-label); }
